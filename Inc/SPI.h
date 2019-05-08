@@ -1,7 +1,7 @@
 #ifndef SPI_H
 #define SPI_H
 
-#include "App_Test_PCB_Pin_Map.h"
+#include "Juno_Light_Central_Pin_Map.h"
 #include "nrf_spi_mngr.h"
 #include "nrf_delay.h"
 

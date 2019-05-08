@@ -1,19 +1,25 @@
-To correctly compile this project:
+This project contains the embedded drivers for Juno_Light circuit assembly, the software is developed in Kevil_v5, files associated with OTA(Over The Air) Update are generated with Windows batch files. 
 
-1. nRF5_SDK_12.3.0_d7731ad needs to be in C:\Keil_v5 folder.
+Project setup:
 
-2. The project needs to be placed in C:\Keil_v5\Projects folder.
+1. Create a new folder in C:\Keil_v5 directory named "NRF5_SDK". Download the SDK from git repository: . Copy the content of the SDK into NRF_SDK folder. 
 
-To upload the hex software:
+2. Create a new folder in C:\Keil_v5 directory named "Project". In the Project folder, create a new folder named "Juno_Light_Central". Place the git content in the Folder. 
 
-The hex software is located at ble_app_uart/build/IO_Board_Software.hex
+To compile the project in Keil_v5:
 
-Open nRFgo Studio, in Device Manager, choose nRF5x Programming.
+1. Make sure Keil_v5 is installed. 
 
-A LOT of the times, the nRFgo Studio will not show the programming interface correctly. 
+2. Navigate to C:\Keil_v5\Project\Juno_Light_Central\pca10040\s132\arm5_no_packs. Double click Juno_Light_Central.uvprojx
 
-The only solution so far is to continuously switch between "Motherboards" and "nRF5x Programming" tabs until the correct interface shows up.
+3. Keil might warn you about installing or updating packages in the package installer pop up. Install all of those.
 
-![Alt text](https://bitbucket.org/psyonicinc/i-o-board-software/src/master/nRFgo_Studio.jpg "nRF Programming Tab")
+4. Go to Project -> Rebuild all target files. 
 
-Go to "Program Application", choose the IO_Board_Software.hex and click Program. 
+To Program the software onto the central microcontroller: 
+
+1. Attach JLink to the Programming Ports on the central PCB. 
+
+2. Go to OTA folder and double click on Generate_BL_Flash_BL_SD_App.bat. This step only needs to be done once if furture updates are done through OTA.
+
+3. For OTA update with the app: double click Generate_New_OTA_Package.bat and put the generated zip file in firebase. 

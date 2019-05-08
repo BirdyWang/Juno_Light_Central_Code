@@ -1,45 +1,17 @@
-#include "App_Test_PCB_Pin_Map.h"
-#include "App_Test_PCB_Config.h"
-#include "Psyonic_BLE.h"
+#include "Juno_Light_Central_Config.h"
+#include "Juno_Light_Central_Pin_Map.h"
+#include "Juno_BLE.h"
 #include "GPIO.h"
 #include "SPI.h"
 #include "PWM.h"
-#include "Motor_Driver_Control.h"
-#include "Grips.h"
-#include "FOC_Master.h"
 #include "Command_Handling.h"
 #include "MPU6500.h"
 #include "ble_dfu.h"
-#include "STM32_Bootloader.h"
 #define INJECT_I2C_COMMANDS
 
 #define SLEEP_TIMEOUT_VALUE 2000
 
 unsigned int led_ts = 0;
-
-extern float qd_set[NUM_CHANNELS];
-extern float qd[NUM_CHANNELS];
-float q[NUM_CHANNELS] = {0,0,0,0,0,0};
-float dq[NUM_CHANNELS] = {0,0,0,0,0,0};
-const float pgain = 0.3;
-const float dgain = 0.000;
-float k[NUM_CHANNELS] = {pgain, pgain, pgain, pgain, pgain, pgain};
-float kd[NUM_CHANNELS] = {dgain, dgain, dgain, dgain, dgain, dgain};
-
-extern waypoint open_grasp[NUM_CHANNELS];
-extern waypoint power_grasp[NUM_CHANNELS];
-extern waypoint key_grasp[NUM_CHANNELS];
-extern waypoint pinch_grasp[NUM_CHANNELS];
-extern waypoint chuck_grasp[NUM_CHANNELS];
-extern waypoint horns_grasp[NUM_CHANNELS];
-extern waypoint point_grasp[NUM_CHANNELS];
-extern waypoint rude_point_grasp[NUM_CHANNELS];	//THE BIRD
-extern waypoint open_thumb_up_grasp[NUM_CHANNELS];
-extern waypoint open_thumb_down_grasp[NUM_CHANNELS];
-extern waypoint mode_switch_closed_grasp[4];
-extern waypoint mode_switch_thumb_flexor;
-extern waypoint mode_switch_open_grasp[4];
-extern waypoint mode_switch_open_thumb_flexor;
 
 extern uint8_t BLE_cmd[3];
 extern volatile uint8_t imu_new_gyro;
@@ -128,8 +100,6 @@ int main(void)
     conn_params_init();
     advertising_start();
     */
-    //uint8_t poop2[4] = "POOP";
-    //UART_Send_Multiple(poop2, 4);
     __asm{NOP};
     MPU6500_Connection_Test();
     __asm{NOP};

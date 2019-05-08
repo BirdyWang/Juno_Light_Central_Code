@@ -1,6 +1,6 @@
 ..\..\..\build\spi.o: ..\..\..\Src\SPI.c
 ..\..\..\build\spi.o: ..\..\..\Inc\SPI.h
-..\..\..\build\spi.o: ..\..\..\..\App_Test_PCB\App_Test_PCB_Pin_Map.h
+..\..\..\build\spi.o: ..\..\..\..\Juno_Light_Central\Juno_Light_Central_Pin_Map.h
 ..\..\..\build\spi.o: ..\..\..\..\..\NRF5_SDK\modules\nrfx\hal\nrf_gpio.h
 ..\..\..\build\spi.o: ..\..\..\..\..\NRF5_SDK\modules\nrfx\nrfx.h
 ..\..\..\build\spi.o: ..\..\..\..\..\NRF5_SDK\integration\nrfx\nrfx_config.h

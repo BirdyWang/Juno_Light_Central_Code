@@ -48,5 +48,5 @@
 ..\..\..\build\pwm.o: ..\..\..\..\..\NRF5_SDK\components\softdevice\s132\headers\nrf_sd_def.h
 ..\..\..\build\pwm.o: ..\..\..\..\..\NRF5_SDK\modules\nrfx\drivers/nrfx_errors.h
 ..\..\..\build\pwm.o: ..\..\..\..\..\NRF5_SDK\modules\nrfx\hal/nrf_pwm.h
-..\..\..\build\pwm.o: ..\..\..\..\App_Test_PCB\App_Test_PCB_Pin_Map.h
+..\..\..\build\pwm.o: ..\..\..\..\Juno_Light_Central\Juno_Light_Central_Pin_Map.h
 ..\..\..\build\pwm.o: ..\..\..\..\..\NRF5_SDK\modules\nrfx\hal\nrf_gpio.h

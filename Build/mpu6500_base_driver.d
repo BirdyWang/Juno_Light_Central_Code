@@ -1,7 +1,7 @@
 ..\..\..\build\mpu6500_base_driver.o: ..\..\..\Src\MPU6500_Base_Driver.c
 ..\..\..\build\mpu6500_base_driver.o: ..\..\..\Inc\MPU6500_Base_Driver.h
 ..\..\..\build\mpu6500_base_driver.o: ..\..\..\Inc\SPI.h
-..\..\..\build\mpu6500_base_driver.o: ..\..\..\..\App_Test_PCB\App_Test_PCB_Pin_Map.h
+..\..\..\build\mpu6500_base_driver.o: ..\..\..\..\Juno_Light_Central\Juno_Light_Central_Pin_Map.h
 ..\..\..\build\mpu6500_base_driver.o: ..\..\..\..\..\NRF5_SDK\modules\nrfx\hal\nrf_gpio.h
 ..\..\..\build\mpu6500_base_driver.o: ..\..\..\..\..\NRF5_SDK\modules\nrfx\nrfx.h
 ..\..\..\build\mpu6500_base_driver.o: ..\..\..\..\..\NRF5_SDK\integration\nrfx\nrfx_config.h

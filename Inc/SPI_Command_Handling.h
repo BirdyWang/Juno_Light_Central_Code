@@ -2,7 +2,6 @@
 #define SPI_COMMAND_HANDLING_H
 
 #include "SPI.h"
-#include "Grips.h"
 #include <stdint.h>
 
 #define NUM_CMD_BYTES       5

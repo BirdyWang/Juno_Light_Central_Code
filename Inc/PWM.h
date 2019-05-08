@@ -2,7 +2,7 @@
 #define PWM_H
 
 #include "nrf_drv_pwm.h"
-#include "App_Test_PCB_Pin_Map.h"
+#include "Juno_Light_Central_Pin_Map.h"
 
 #define PWM_PIN1    29
 #define PWM_PIN2    31

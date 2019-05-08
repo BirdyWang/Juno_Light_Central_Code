@@ -4,7 +4,7 @@
 
 #include "nrf_uart.h"
 #include "app_uart.h"
-#include "App_Test_PCB_Pin_Map.h"
+#include "Juno_Light_Central_Pin_Map.h"
 
 #define IMU_RX          19         
 #define IMU_TX          15

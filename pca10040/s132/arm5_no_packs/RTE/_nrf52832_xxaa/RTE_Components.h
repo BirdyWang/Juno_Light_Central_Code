@@ -3,7 +3,7 @@
  * Auto generated Run-Time-Environment Component Configuration File
  *      *** Do not modify ! ***
  *
- * Project: 'App_Test_PCB' 
+ * Project: 'Juno_Light_Central' 
  * Target:  'nrf52832_xxaa' 
  */
 

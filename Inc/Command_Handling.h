@@ -3,13 +3,11 @@
 
 #include "app_uart.h"
 #include "PWM.h"
-#include "Psyonic_BLE.h"
+#include "Juno_BLE.h"
 #include "GPIO.h"
-#include "Pressure_Sensing.h"
 #include "nrf_power.h"
 #include "nrf_bootloader_info.h"
 #include "ble_dfu.h"
-#include "STM32_Bootloader.h"
 
 #define HAND_SET_GRASP              0x1D
 #define HAND_PRES_ENABLE            0x65
@@ -29,9 +27,6 @@
 void command_handling(uint8_t * cmd);
 //void command_handling_uart(uint8_t * cmd);
 void command_handling_ble(const uint8_t * cmd);
-void advertising_config_get(ble_adv_modes_config_t * p_config);
-void disconnect(uint16_t conn_handle, void * p_context);
 uint8_t Check_Cmd_Grasp_Inrange(uint8_t cmd);
-void shutdown_dfu_routine(void);
 
 #endif

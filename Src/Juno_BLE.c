@@ -1,4 +1,4 @@
-#include "Psyonic_BLE.h"
+#include "Juno_BLE.h"
 
 uint8_t BLE_cmd[3]; //For now the command size is 2. The first byte is the grip class. The second byte is the grip strength.
 uint16_t nus_data_len = 0;

@@ -54,6 +54,6 @@
 ..\..\..\build\system.o: ..\..\..\..\..\NRF5_SDK\modules\nrfx\hal/nrf_timer.h
 ..\..\..\build\system.o: ..\..\..\..\..\NRF5_SDK\components\libraries\timer\app_timer.h
 ..\..\..\build\system.o: ..\..\..\..\..\NRF5_SDK\components\libraries\delay\nrf_delay.h
-..\..\..\build\system.o: ..\..\..\..\App_Test_PCB\App_Test_PCB_Pin_Map.h
+..\..\..\build\system.o: ..\..\..\..\Juno_Light_Central\Juno_Light_Central_Pin_Map.h
 ..\..\..\build\system.o: ..\..\..\..\..\NRF5_SDK\modules\nrfx\hal\nrf_gpio.h
-..\..\..\build\system.o: ..\..\..\..\App_Test_PCB\App_Test_PCB_Config.h
+..\..\..\build\system.o: ..\..\..\..\Juno_Light_Central\Juno_Light_Central_Config.h

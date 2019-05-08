@@ -47,5 +47,5 @@
 ..\..\..\build\uart.o: ..\..\..\..\..\NRF5_SDK\components\softdevice\s132\headers\nrf_sd_def.h
 ..\..\..\build\uart.o: ..\..\..\..\..\NRF5_SDK\modules\nrfx\drivers/nrfx_errors.h
 ..\..\..\build\uart.o: ..\..\..\..\..\NRF5_SDK\components\libraries\uart\app_uart.h
-..\..\..\build\uart.o: ..\..\..\..\App_Test_PCB\App_Test_PCB_Pin_Map.h
+..\..\..\build\uart.o: ..\..\..\..\Juno_Light_Central\Juno_Light_Central_Pin_Map.h
 ..\..\..\build\uart.o: ..\..\..\..\..\NRF5_SDK\modules\nrfx\hal\nrf_gpio.h

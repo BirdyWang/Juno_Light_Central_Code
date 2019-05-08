@@ -6,8 +6,8 @@
 #include "nrf_drv_timer.h"
 #include "app_timer.h"
 #include "nrf_delay.h"
-#include "App_Test_PCB_Pin_Map.h"
-#include "App_Test_PCB_Config.h"
+#include "Juno_Light_Central_Pin_Map.h"
+#include "Juno_Light_Central_Config.h"
 
 
 #define APP_TIMER_PRESCALER               0                                            /**< Value of the RTC1 PRESCALER register. */
