@@ -1,0 +1,15 @@
+..\..\..\build\system_nrf52.o: RTE\Device\nRF52832_xxAA\system_nrf52.c
+..\..\..\build\system_nrf52.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+..\..\..\build\system_nrf52.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+..\..\..\build\system_nrf52.o: ..\..\..\..\..\NRF5_SDK\modules\nrfx\mdk\nrf.h
+..\..\..\build\system_nrf52.o: ..\..\..\..\..\NRF5_SDK\modules\nrfx\mdk\nrf52.h
+..\..\..\build\system_nrf52.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include\core_cm4.h
+..\..\..\build\system_nrf52.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include\core_cmInstr.h
+..\..\..\build\system_nrf52.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include\cmsis_armcc.h
+..\..\..\build\system_nrf52.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include\core_cmFunc.h
+..\..\..\build\system_nrf52.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include\core_cmSimd.h
+..\..\..\build\system_nrf52.o: ..\..\..\..\..\NRF5_SDK\modules\nrfx\mdk\system_nrf52.h
+..\..\..\build\system_nrf52.o: ..\..\..\..\..\NRF5_SDK\modules\nrfx\mdk\nrf52_bitfields.h
+..\..\..\build\system_nrf52.o: ..\..\..\..\..\NRF5_SDK\modules\nrfx\mdk\nrf51_to_nrf52.h
+..\..\..\build\system_nrf52.o: ..\..\..\..\..\NRF5_SDK\modules\nrfx\mdk\nrf52_name_change.h
+..\..\..\build\system_nrf52.o: ..\..\..\..\..\NRF5_SDK\modules\nrfx\mdk\compiler_abstraction.h
