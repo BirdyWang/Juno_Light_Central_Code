@@ -304,7 +304,7 @@ void set_int_enable(uint8_t enable)
     else
         buf[1] = 0x00;
     buf[0] = st.reg->int_enable + MPU6500_WRITE;
-    SPI_Transmit(MPU6500_SS_CH, buf, 2);
+    IMU_SPI_Transmit(buf, 2);
 }
 
 /**
@@ -319,7 +319,7 @@ void mpu_reg_dump(void)
         if (i == st.reg->fifo_r_w || i == st.reg->mem_r_w)
             continue;
         SPI_command = i + MPU6500_READ;
-        SPI_Receive2(MPU6500_SS_CH, &SPI_command, &data, 1, 1);
+        IMU_SPI_Receive_DMP_Read(&SPI_command, &data, 1, 1);
     }
 }
 
@@ -337,7 +337,7 @@ int mpu_read_reg(uint8_t reg, uint8_t *data)
     if (reg >= st.hw->num_reg)
         return -1;
     SPI_command = reg + MPU6500_READ;
-    SPI_Receive2(MPU6500_SS_CH, &SPI_command, data, 1, 1);
+    IMU_SPI_Receive_DMP_Read(&SPI_command, data, 1, 1);
     return 0;
 }
 
@@ -362,12 +362,12 @@ int mpu_init(void)
     /* Reset device. */
     data[1] = BIT_RESET;
     data[0] = st.reg->pwr_mgmt_1 + MPU6500_WRITE;
-    SPI_Transmit(MPU6500_SS_CH, data, 2);
+    IMU_SPI_Transmit(data, 2);
     nrf_delay_ms(1000);
 
     /* Wake up chip. */
     data[1] = 0x00;
-    SPI_Transmit(MPU6500_SS_CH, data, 2);
+    IMU_SPI_Transmit(data, 2);
 
     st.chip_cfg.accel_half = 0;
 
@@ -376,7 +376,7 @@ int mpu_init(void)
      */
     data[1] = BIT_FIFO_SIZE_1024 | 0x8;
     data[0] = st.reg->accel_cfg2 + MPU6500_WRITE;
-    SPI_Transmit(MPU6500_SS_CH, data, 2);
+    IMU_SPI_Transmit(data, 2);
 
     /* Set to invalid values to ensure no I2C writes are skipped. */
     st.chip_cfg.sensors = 0xFF;
@@ -454,7 +454,7 @@ int mpu_lp_accel_mode(uint16_t rate)
         tmp[2] = 0;
         tmp[1] = BIT_STBY_XYZG;
         tmp[0] = st.reg->pwr_mgmt_1 + MPU6500_WRITE;
-        SPI_Transmit(MPU6500_SS_CH, tmp, 3);
+        IMU_SPI_Transmit(tmp, 3);
         st.chip_cfg.lp_accel_mode = 0;
         return 0;
     }
@@ -488,10 +488,10 @@ int mpu_lp_accel_mode(uint16_t rate)
     else
         tmp[1] = INV_LPA_640HZ;
     tmp[0] = st.reg->lp_accel_odr + MPU6500_WRITE;
-    SPI_Transmit(MPU6500_SS_CH, tmp, 2);
+    IMU_SPI_Transmit(tmp, 2);
     tmp[1] = BIT_LPA_CYCLE;
     tmp[0] = st.reg->pwr_mgmt_1 + MPU6500_WRITE;
-    SPI_Transmit(MPU6500_SS_CH, tmp, 2);
+    IMU_SPI_Transmit(tmp, 2);
     
     st.chip_cfg.sensors = INV_XYZ_ACCEL;
     st.chip_cfg.clk_src = 0;
@@ -514,7 +514,7 @@ int mpu_get_gyro_reg(short *data)
     if (!(st.chip_cfg.sensors & INV_XYZ_GYRO))
         return -1;
     SPI_command = st.reg->raw_gyro + MPU6500_READ;
-    SPI_Receive2(MPU6500_SS_CH, &SPI_command, tmp, 1, 6);
+    IMU_SPI_Receive_DMP_Read(&SPI_command, tmp, 1, 6);
     data[0] = (tmp[0] << 8) | tmp[1];
     data[1] = (tmp[2] << 8) | tmp[3];
     data[2] = (tmp[4] << 8) | tmp[5];
@@ -535,7 +535,7 @@ int mpu_get_accel_reg(short *data)
         return -1;
 
     SPI_command = st.reg->raw_accel + MPU6500_READ;
-    SPI_Receive2(MPU6500_SS_CH, &SPI_command, tmp, 1, 6);
+    IMU_SPI_Receive_DMP_Read(&SPI_command, tmp, 1, 6);
     data[0] = (tmp[0] << 8) | tmp[1];
     data[1] = (tmp[2] << 8) | tmp[3];
     data[2] = (tmp[4] << 8) | tmp[5];
@@ -557,7 +557,7 @@ int mpu_get_temperature(long *data)
         return -1;
 
     SPI_command = st.reg->temp + MPU6500_READ;
-    SPI_Receive2(MPU6500_SS_CH, &SPI_command, tmp, 1, 2);
+    IMU_SPI_Receive_DMP_Read(&SPI_command, tmp, 1, 2);
     raw = (tmp[0] << 8) | tmp[1];
     
     data[0] = (long)((35 + ((raw - (float)st.hw->temp_offset) / st.hw->temp_sens)) * 65536L);
@@ -576,11 +576,11 @@ int mpu_read_6500_accel_bias(long *accel_bias)
 {
 	uint8_t data[6];
     SPI_command = 0x77 + MPU6500_READ;
-    SPI_Receive2(MPU6500_SS_CH, &SPI_command, &data[0], 1, 2);
+    IMU_SPI_Receive_DMP_Read(&SPI_command, &data[0], 1, 2);
     SPI_command = 0x7A + MPU6500_READ;
-    SPI_Receive2(MPU6500_SS_CH, &SPI_command, &data[2], 1, 2);
+    IMU_SPI_Receive_DMP_Read(&SPI_command, &data[2], 1, 2);
     SPI_command = 0x7D + MPU6500_READ;
-    SPI_Receive2(MPU6500_SS_CH, &SPI_command, &data[4], 1, 2);
+    IMU_SPI_Receive_DMP_Read(&SPI_command, &data[4], 1, 2);
 	accel_bias[0] = ((long)data[0]<<8) | data[1];
 	accel_bias[1] = ((long)data[2]<<8) | data[3];
 	accel_bias[2] = ((long)data[4]<<8) | data[5];
@@ -591,11 +591,11 @@ int mpu_read_6500_gyro_bias(long *gyro_bias)
 {
 	uint8_t data[6];
     SPI_command = 0x13 + MPU6500_READ;
-    SPI_Receive2(MPU6500_SS_CH, &SPI_command, &data[0], 1, 2);
+    IMU_SPI_Receive_DMP_Read(&SPI_command, &data[0], 1, 2);
     SPI_command = 0x15 + MPU6500_READ;
-    SPI_Receive2(MPU6500_SS_CH, &SPI_command, &data[2], 1, 2);
+    IMU_SPI_Receive_DMP_Read(&SPI_command, &data[2], 1, 2);
     SPI_command = 0x17 + MPU6500_READ;
-    SPI_Receive2(MPU6500_SS_CH, &SPI_command, &data[4], 1, 2);
+    IMU_SPI_Receive_DMP_Read(&SPI_command, &data[4], 1, 2);
 	gyro_bias[0] = ((long)data[0]<<8) | data[1];
 	gyro_bias[1] = ((long)data[2]<<8) | data[3];
 	gyro_bias[2] = ((long)data[4]<<8) | data[5];
@@ -620,17 +620,17 @@ int mpu_set_gyro_bias_reg(long *gyro_bias)
     data[1] = (gyro_bias[0] >> 8) & 0xff;
     data[2] = (gyro_bias[0]) & 0xff;
     data[0] = 0x13 + MPU6500_WRITE;
-    SPI_Transmit(MPU6500_SS_CH, data, 3);
+    IMU_SPI_Transmit(data, 3);
     
     data[1] = (gyro_bias[1] >> 8) & 0xff;
     data[2] = (gyro_bias[1]) & 0xff;
     data[0] = 0x15 + MPU6500_WRITE;  
-    SPI_Transmit(MPU6500_SS_CH, data, 3);
+    IMU_SPI_Transmit(data, 3);
     
     data[1] = (gyro_bias[2] >> 8) & 0xff;
     data[2] = (gyro_bias[2]) & 0xff;
     data[0] = 0x17 + MPU6500_WRITE;
-    SPI_Transmit(MPU6500_SS_CH, data, 3);
+    IMU_SPI_Transmit(data, 3);
     
     return 0;
 }
@@ -669,20 +669,20 @@ int mpu_set_accel_bias_6500_reg(const long *accel_bias)
     data[2] = (accel_reg_bias[0]) & 0xff;
     data[2] = data[2]|mask_bit[0];
     data[0] = 0x77 + MPU6500_WRITE;
-    SPI_Transmit(MPU6500_SS_CH, data, 3);
+    IMU_SPI_Transmit(data, 3);
     
     data[1] = (accel_reg_bias[1] >> 8) & 0xff;
     data[2] = (accel_reg_bias[1]) & 0xff;
     data[2] = data[2]|mask_bit[1];
     data[0] = 0x7A + MPU6500_WRITE;
-    SPI_Transmit(MPU6500_SS_CH, data, 3);
+    IMU_SPI_Transmit(data, 3);
     
     
     data[1] = (accel_reg_bias[2] >> 8) & 0xff;
     data[2] = (accel_reg_bias[2]) & 0xff;
     data[2] = data[2]|mask_bit[2];
     data[0] = 0x7D + MPU6500_WRITE;
-    SPI_Transmit(MPU6500_SS_CH, data, 3);
+    IMU_SPI_Transmit(data, 3);
     
     return 0;
 }
@@ -700,35 +700,35 @@ int mpu_reset_fifo(void)
 
     data[1] = 0;
     data[0] = st.reg->int_enable + MPU6500_WRITE;
-    SPI_Transmit(MPU6500_SS_CH, data, 2);
+    IMU_SPI_Transmit(data, 2);
     data[0] = st.reg->fifo_en + MPU6500_WRITE;
-    SPI_Transmit(MPU6500_SS_CH, data, 2);    
+    IMU_SPI_Transmit(data, 2);    
     data[0] = st.reg->user_ctrl + MPU6500_WRITE;
-    SPI_Transmit(MPU6500_SS_CH, data, 2);
+    IMU_SPI_Transmit(data, 2);
     
     if (st.chip_cfg.dmp_on) {
         data[1] = BIT_FIFO_RST | BIT_DMP_RST;
         data[0] = st.reg->user_ctrl + MPU6500_WRITE;
-        SPI_Transmit(MPU6500_SS_CH, data, 2);
+        IMU_SPI_Transmit(data, 2);
         nrf_delay_ms(50);
         data[1] = BIT_DMP_EN | BIT_FIFO_EN;
         if (st.chip_cfg.sensors & INV_XYZ_COMPASS)
             data[0] |= BIT_AUX_IF_EN;
         data[0] = st.reg->user_ctrl + MPU6500_WRITE;
-        SPI_Transmit(MPU6500_SS_CH, data, 2);
+        IMU_SPI_Transmit(data, 2);
         if (st.chip_cfg.int_enable)
             data[1] = BIT_DMP_INT_EN;
         else
             data[1] = 0;
         data[0] = st.reg->int_enable + MPU6500_WRITE;
-        SPI_Transmit(MPU6500_SS_CH, data, 2);
+        IMU_SPI_Transmit(data, 2);
         data[1] = 0;
         data[0] = st.reg->fifo_en + MPU6500_WRITE;
-        SPI_Transmit(MPU6500_SS_CH, data, 2);
+        IMU_SPI_Transmit(data, 2);
     } else {
         data[1] = BIT_FIFO_RST;
         data[0] = st.reg->user_ctrl + MPU6500_WRITE;
-        SPI_Transmit(MPU6500_SS_CH, data, 2);
+        IMU_SPI_Transmit(data, 2);
         if (st.chip_cfg.bypass_mode || !(st.chip_cfg.sensors & INV_XYZ_COMPASS))
             data[1] = BIT_FIFO_EN;
         else
@@ -740,10 +740,10 @@ int mpu_reset_fifo(void)
         else
             data[1] = 0;
         data[0] = st.reg->int_enable + MPU6500_WRITE;
-        SPI_Transmit(MPU6500_SS_CH, data, 2);
+        IMU_SPI_Transmit(data, 2);
         data[1] = st.chip_cfg.fifo_enable;
         data[0] = st.reg->fifo_en + MPU6500_WRITE;
-        SPI_Transmit(MPU6500_SS_CH, data, 2);
+        IMU_SPI_Transmit(data, 2);
     }
     return 0;
 }
@@ -807,7 +807,7 @@ int mpu_set_gyro_fsr(unsigned short fsr)
     if (st.chip_cfg.gyro_fsr == (data[1] >> 3))
         return 0;
     data[0] = st.reg->gyro_cfg + MPU6500_WRITE;
-    SPI_Transmit(MPU6500_SS_CH, data, 2);
+    IMU_SPI_Transmit(data, 2);
     st.chip_cfg.gyro_fsr = data[1] >> 3;
     return 0;
 }
@@ -872,7 +872,7 @@ int mpu_set_accel_fsr(uint8_t fsr)
     if (st.chip_cfg.accel_fsr == (data[1] >> 3))
         return 0;
     data[0] = st.reg->accel_cfg + MPU6500_WRITE;
-    SPI_Transmit(MPU6500_SS_CH, data, 2);
+    IMU_SPI_Transmit(data, 2);
     st.chip_cfg.accel_fsr = data[1] >> 3;
     return 0;
 }
@@ -941,7 +941,7 @@ int mpu_set_lpf(unsigned short lpf)
     if (st.chip_cfg.lpf == data[1])
         return 0;
     data[0] = st.reg->lpf + MPU6500_WRITE;
-    SPI_Transmit(MPU6500_SS_CH, data, 2);
+    IMU_SPI_Transmit(data, 2);
     st.chip_cfg.lpf = data[1];
     return 0;
 }
@@ -994,7 +994,7 @@ int mpu_set_sample_rate(unsigned short rate)
 
         data[1] = 1000 / rate - 1;
         data[0] = st.reg->rate_div + MPU6500_WRITE;
-        SPI_Transmit(MPU6500_SS_CH, data, 2);
+        IMU_SPI_Transmit(data, 2);
 
         st.chip_cfg.sample_rate = 1000 / (1 + data[0]);
 
@@ -1157,7 +1157,7 @@ int mpu_set_sensors(uint8_t sensors)
     else
         data[1] = BIT_SLEEP;
     data[0] = st.reg->pwr_mgmt_1 + MPU6500_WRITE;
-    SPI_Transmit(MPU6500_SS_CH, data, 2);
+    IMU_SPI_Transmit(data, 2);
     st.chip_cfg.sensors = 0;
     st.chip_cfg.clk_src = data[1] & ~BIT_SLEEP;
 
@@ -1171,7 +1171,7 @@ int mpu_set_sensors(uint8_t sensors)
     if (!(sensors & INV_XYZ_ACCEL))
         data[1] |= BIT_STBY_XYZA;
     data[0] = st.reg->pwr_mgmt_2 + MPU6500_WRITE;
-    SPI_Transmit(MPU6500_SS_CH, data, 2);
+    IMU_SPI_Transmit(data, 2);
     st.chip_cfg.sensors = 0;
 
     if (sensors && (sensors != INV_XYZ_ACCEL))
@@ -1195,7 +1195,7 @@ int mpu_get_int_status(short *status)
     if (!st.chip_cfg.sensors)
         return -1;
     SPI_command = st.reg->dmp_int_status + MPU6500_READ;
-    SPI_Receive2(MPU6500_SS_CH, &SPI_command, tmp, 1, 2);
+    IMU_SPI_Receive_DMP_Read(&SPI_command, tmp, 1, 2);
     status[0] = (tmp[0] << 8) | tmp[1];
     return 0;
 }
@@ -1245,7 +1245,7 @@ int mpu_read_fifo(short *gyro, short *accel, unsigned long *timestamp,
         packet_size += 6;
 
     SPI_command = st.reg->fifo_count_h + MPU6500_READ;
-    SPI_Receive2(MPU6500_SS_CH, &SPI_command, data, 1, 2);
+    IMU_SPI_Receive(&SPI_command, data, 1, 2);
     fifo_count = (data[0] << 8) | data[1];
     if (fifo_count < packet_size)
         return 0;
@@ -1253,7 +1253,7 @@ int mpu_read_fifo(short *gyro, short *accel, unsigned long *timestamp,
     if (fifo_count > (st.hw->max_fifo >> 1)) {
         /* FIFO is 50% full, better check overflow bit. */
         SPI_command = st.reg->int_status + MPU6500_READ;
-        SPI_Receive2(MPU6500_SS_CH, &SPI_command, data, 1, 1);
+        IMU_SPI_Receive_DMP_Read(&SPI_command, data, 1, 1);
         if (data[0] & BIT_FIFO_OVERFLOW) {
             mpu_reset_fifo();
             return -2;
@@ -1261,7 +1261,7 @@ int mpu_read_fifo(short *gyro, short *accel, unsigned long *timestamp,
     }
     //get_ms((unsigned long*)timestamp);
     SPI_command = st.reg->fifo_r_w + MPU6500_READ;
-    SPI_Receive(MPU6500_SS_CH, &SPI_command, data, 1, packet_size);
+    IMU_SPI_Receive_DMP_Read(&SPI_command, data, 1, packet_size);
     more[0] = fifo_count / packet_size - 1;
     sensors[0] = 0;
 
@@ -1309,7 +1309,7 @@ int mpu_read_fifo_stream(unsigned short length, uint8_t *data,
         return -1;
 
     SPI_command = st.reg->fifo_count_h + MPU6500_READ;
-    SPI_Receive2(MPU6500_SS_CH, &SPI_command, tmp, 1, 2);
+    IMU_SPI_Receive_DMP_Read(&SPI_command, tmp, 1, 2);
     fifo_count = (tmp[0] << 8) | tmp[1];
     if (fifo_count < length) {
         more[0] = 0;
@@ -1318,16 +1318,16 @@ int mpu_read_fifo_stream(unsigned short length, uint8_t *data,
     if (fifo_count > (st.hw->max_fifo >> 1)) {
         /* FIFO is 50% full, better check overflow bit. */
         SPI_command = st.reg->int_status + MPU6500_READ;
-        SPI_Receive2(MPU6500_SS_CH, &SPI_command, tmp, 1, 1);
+        IMU_SPI_Receive_DMP_Read(&SPI_command, tmp, 1, 1);
         if (tmp[0] & BIT_FIFO_OVERFLOW) {
             mpu_reset_fifo();
             SPI_command = st.reg->fifo_count_h + MPU6500_READ;
-            SPI_Receive2(MPU6500_SS_CH, &SPI_command, tmp, 1, 2);
+            IMU_SPI_Receive_DMP_Read(&SPI_command, tmp, 1, 2);
             return -2;
         }
     }
     SPI_command = st.reg->fifo_r_w + MPU6500_READ;
-    SPI_Receive2(MPU6500_SS_CH, &SPI_command, data, 1, length);
+    IMU_SPI_Receive_DMP_Read(&SPI_command, data, 1, length);
     more[0] = fifo_count / length - 1;
     return 0;
 }
@@ -1363,7 +1363,7 @@ int mpu_set_int_latched(uint8_t enable)
     if (st.chip_cfg.active_low_int)
         tmp[1] |= BIT_ACTL;
     tmp[0] = st.reg->int_pin_cfg + MPU6500_WRITE;
-    SPI_Transmit(MPU6500_SS_CH, tmp, 2);
+    IMU_SPI_Transmit(tmp, 2);
     st.chip_cfg.latched_int = enable;
     return 0;
 }
@@ -1377,60 +1377,60 @@ int get_st_biases(long *gyro, long *accel, uint8_t hw_test)
     data[2] = 0x01;
     data[1] = 0;
     data[0] = st.reg->pwr_mgmt_1 + MPU6500_WRITE;
-    SPI_Transmit(MPU6500_SS_CH, data, 3);
+    IMU_SPI_Transmit(data, 3);
     nrf_delay_ms(200);
     data[1] = 0;
     data[0] = st.reg->int_enable + MPU6500_WRITE;
-    SPI_Transmit(MPU6500_SS_CH, data, 2);
+    IMU_SPI_Transmit(data, 2);
     data[0] = st.reg->fifo_en + MPU6500_WRITE;
-    SPI_Transmit(MPU6500_SS_CH, data, 2);
+    IMU_SPI_Transmit(data, 2);
     data[0] = st.reg->pwr_mgmt_1 + MPU6500_WRITE;
-    SPI_Transmit(MPU6500_SS_CH, data, 2);
+    IMU_SPI_Transmit(data, 2);
     data[0] = st.reg->i2c_mst + MPU6500_WRITE;
-    SPI_Transmit(MPU6500_SS_CH, data, 2);    
+    IMU_SPI_Transmit(data, 2);    
     data[0] = st.reg->user_ctrl + MPU6500_WRITE;
-    SPI_Transmit(MPU6500_SS_CH, data, 2);    
+    IMU_SPI_Transmit(data, 2);    
     data[1] = BIT_FIFO_RST | BIT_DMP_RST;
     data[0] = st.reg->user_ctrl + MPU6500_WRITE;
-    SPI_Transmit(MPU6500_SS_CH, data, 2);   
+    IMU_SPI_Transmit(data, 2);   
     nrf_delay_ms(15);
     data[1] = st.test->reg_lpf;
     data[0] = st.reg->lpf + MPU6500_WRITE;
-    SPI_Transmit(MPU6500_SS_CH, data, 2);
+    IMU_SPI_Transmit(data, 2);
     data[1] = st.test->reg_rate_div;
     data[0] = st.reg->rate_div + MPU6500_WRITE;
-    SPI_Transmit(MPU6500_SS_CH, data, 2);
+    IMU_SPI_Transmit(data, 2);
     if (hw_test)
         data[1] = st.test->reg_gyro_fsr | 0xE0;
     else
         data[1] = st.test->reg_gyro_fsr;
     data[0] = st.reg->gyro_cfg + MPU6500_WRITE;
-    SPI_Transmit(MPU6500_SS_CH, data, 2);
+    IMU_SPI_Transmit(data, 2);
     if (hw_test)
         data[1] = st.test->reg_accel_fsr | 0xE0;
     else
         data[1] = test.reg_accel_fsr;
     data[0] = st.reg->accel_cfg + MPU6500_WRITE;
-    SPI_Transmit(MPU6500_SS_CH, data, 2);
+    IMU_SPI_Transmit(data, 2);
     if (hw_test)
         nrf_delay_ms(200);
 
     /* Fill FIFO for test.wait_ms milliseconds. */
     data[1] = BIT_FIFO_EN;
     data[0] = st.reg->user_ctrl + MPU6500_WRITE;
-    SPI_Transmit(MPU6500_SS_CH, data, 2);
+    IMU_SPI_Transmit(data, 2);
 
     data[1] = INV_XYZ_GYRO | INV_XYZ_ACCEL;
     data[0] = st.reg->fifo_en + MPU6500_WRITE;
-    SPI_Transmit(MPU6500_SS_CH, data, 2);
+    IMU_SPI_Transmit(data, 2);
 
     nrf_delay_ms(test.wait_ms);
     data[1] = 0;
     data[0] = st.reg->fifo_en + MPU6500_WRITE;
-    SPI_Transmit(MPU6500_SS_CH, data, 2);
+    IMU_SPI_Transmit(data, 2);
     
     SPI_command = st.reg->fifo_count_h + MPU6500_READ;
-    SPI_Receive2(MPU6500_SS_CH, &SPI_command, data, 1, 2);
+    IMU_SPI_Receive_DMP_Read(&SPI_command, data, 1, 2);
 
     fifo_count = (data[0] << 8) | data[1];
     packet_count = fifo_count / MAX_PACKET_LENGTH;
@@ -1440,7 +1440,7 @@ int get_st_biases(long *gyro, long *accel, uint8_t hw_test)
     for (ii = 0; ii < packet_count; ii++) {
         short accel_cur[3], gyro_cur[3];
         SPI_command = st.reg->fifo_r_w + MPU6500_READ;
-        SPI_Receive2(MPU6500_SS_CH, &SPI_command, data, 1, MAX_PACKET_LENGTH);
+        IMU_SPI_Receive_DMP_Read(&SPI_command, data, 1, MAX_PACKET_LENGTH);
         
         accel_cur[0] = ((short)data[0] << 8) | data[1];
         accel_cur[1] = ((short)data[2] << 8) | data[3];
@@ -1534,7 +1534,7 @@ int accel_6500_self_test(long *bias_regular, long *bias_st)
     float st_shift_cust[3], st_shift_ratio[3], ct_shift_prod[3], accel_offset_max;
     uint8_t regs[3];
     SPI_command = REG_6500_XA_ST_DATA + MPU6500_READ;
-    SPI_Receive2(MPU6500_SS_CH, &SPI_command, regs, 1, 3);
+    IMU_SPI_Receive_DMP_Read(&SPI_command, regs, 1, 3);
 	for (i = 0; i < 3; i++) {
 		if (regs[i] != 0) {
 			ct_shift_prod[i] = mpu_6500_st_tb[regs[i] - 1];
@@ -1589,7 +1589,7 @@ int gyro_6500_self_test(long *bias_regular, long *bias_st)
     uint8_t regs[3];
 
     SPI_command = REG_6500_XG_ST_DATA + MPU6500_READ;
-    SPI_Receive2(MPU6500_SS_CH, &SPI_command, regs, 1, 3);
+    IMU_SPI_Receive_DMP_Read(&SPI_command, regs, 1, 3);
 
 	for (i = 0; i < 3; i++) {
 		if (regs[i] != 0) {
@@ -1646,52 +1646,52 @@ int get_st_6500_biases(long *gyro, long *accel, uint8_t hw_test, int debug)
     data[2] = 0x01;
     data[1] = 0;
     data[0] = st.reg->pwr_mgmt_1 + MPU6500_WRITE;
-    SPI_Transmit(MPU6500_SS_CH, data, 3);
+    IMU_SPI_Transmit(data, 3);
     nrf_delay_ms(200);
     data[1] = 0;
     data[0] = st.reg->int_enable + MPU6500_WRITE;
-    SPI_Transmit(MPU6500_SS_CH, data, 2);
+    IMU_SPI_Transmit(data, 2);
     data[0] = st.reg->fifo_en + MPU6500_WRITE;
-    SPI_Transmit(MPU6500_SS_CH, data, 2);
+    IMU_SPI_Transmit(data, 2);
     data[0] = st.reg->pwr_mgmt_1 + MPU6500_WRITE;
-    SPI_Transmit(MPU6500_SS_CH, data, 2);
+    IMU_SPI_Transmit(data, 2);
     data[0] = st.reg->i2c_mst + MPU6500_WRITE;
-    SPI_Transmit(MPU6500_SS_CH, data, 2);
+    IMU_SPI_Transmit(data, 2);
     data[0] = st.reg->user_ctrl + MPU6500_WRITE;
-    SPI_Transmit(MPU6500_SS_CH, data, 2);
+    IMU_SPI_Transmit(data, 2);
     data[1] = BIT_FIFO_RST | BIT_DMP_RST;
     data[0] = st.reg->user_ctrl + MPU6500_WRITE;
-    SPI_Transmit(MPU6500_SS_CH, data, 2);
+    IMU_SPI_Transmit(data, 2);
     nrf_delay_ms(15);
     data[1] = st.test->reg_lpf;
     data[0] = st.reg->lpf + MPU6500_WRITE;
-    SPI_Transmit(MPU6500_SS_CH, data, 2);
+    IMU_SPI_Transmit(data, 2);
     data[1] = st.test->reg_rate_div;
     data[0] = st.reg->rate_div + MPU6500_WRITE;
-    SPI_Transmit(MPU6500_SS_CH, data, 2);
+    IMU_SPI_Transmit(data, 2);
     if (hw_test)
         data[1] = st.test->reg_gyro_fsr | 0xE0;
     else
         data[1] = st.test->reg_gyro_fsr;
     data[0] = st.reg->gyro_cfg + MPU6500_WRITE;
-    SPI_Transmit(MPU6500_SS_CH, data, 2);
+    IMU_SPI_Transmit(data, 2);
 
     if (hw_test)
         data[1] = st.test->reg_accel_fsr | 0xE0;
     else
         data[1] = test.reg_accel_fsr;
     data[0] = st.reg->accel_cfg + MPU6500_WRITE;
-    SPI_Transmit(MPU6500_SS_CH, data, 2);
+    IMU_SPI_Transmit(data, 2);
 
     nrf_delay_ms(test.wait_ms);  //wait 200ms for sensors to stabilize
 
     /* Enable FIFO */
     data[1] = BIT_FIFO_EN;
     data[0] = st.reg->user_ctrl + MPU6500_WRITE;
-    SPI_Transmit(MPU6500_SS_CH, data, 2);
+    IMU_SPI_Transmit(data, 2);
     data[1] = INV_XYZ_GYRO | INV_XYZ_ACCEL;
     data[0] = st.reg->fifo_en + MPU6500_WRITE;
-    SPI_Transmit(MPU6500_SS_CH, data, 2);
+    IMU_SPI_Transmit(data, 2);
 
     //initialize the bias return values
     gyro[0] = gyro[1] = gyro[2] = 0;
@@ -1701,7 +1701,7 @@ int get_st_6500_biases(long *gyro, long *accel, uint8_t hw_test, int debug)
     while (s < test.packet_thresh) {
     	delay_ms(test.sample_wait_ms); //wait 10ms to fill FIFO
         SPI_command = st.reg->fifo_count_h + MPU6500_READ;
-        SPI_Receive2(MPU6500_SS_CH, &SPI_command, data, 1, 2);
+        IMU_SPI_Receive_DMP_Read(&SPI_command, data, 1, 2);
 		fifo_count = (data[0] << 8) | data[1];
 		packet_count = fifo_count / MAX_PACKET_LENGTH;
 		if ((test.packet_thresh - s) < packet_count)
@@ -1710,7 +1710,7 @@ int get_st_6500_biases(long *gyro, long *accel, uint8_t hw_test, int debug)
 
 		//burst read from FIFO
         SPI_command = st.reg->fifo_r_w + MPU6500_READ;
-        SPI_Receive2(MPU6500_SS_CH, &SPI_command, data, 1, read_size);
+        IMU_SPI_Receive_DMP_Read(&SPI_command, data, 1, read_size);
 		ind = 0;
 		for (ii = 0; ii < packet_count; ii++) {
 			short accel_cur[3], gyro_cur[3];
@@ -1734,7 +1734,7 @@ int get_st_6500_biases(long *gyro, long *accel, uint8_t hw_test, int debug)
     //stop FIFO
     data[1] = 0;
     data[0] = st.reg->fifo_en + MPU6500_WRITE;
-    SPI_Transmit(MPU6500_SS_CH, data, 2);
+    IMU_SPI_Transmit(data, 2);
 
     gyro[0] = (long)(((long long)gyro[0]<<16) / test.gyro_sens / s);
     gyro[1] = (long)(((long long)gyro[1]<<16) / test.gyro_sens / s);
@@ -1922,10 +1922,10 @@ int mpu_write_mem(unsigned short mem_addr, unsigned short length,
     if (tmp[2] + length > st.hw->bank_size)
         return -1;
     tmp[0] = st.reg->bank_sel + MPU6500_WRITE;
-    SPI_Transmit(MPU6500_SS_CH, tmp, 3);
+    IMU_SPI_Transmit(tmp, 3);
     tmp[0] = st.reg->mem_r_w + MPU6500_WRITE;
     
-    SPI_Transmit2(MPU6500_SS_CH, tmp, data, length);
+    IMU_SPI_Transmit_DMP_Write(tmp, data, length);
     return 0;
 }
 
@@ -1956,10 +1956,10 @@ int mpu_read_mem(unsigned short mem_addr, unsigned short length,
         return -1;
 
     tmp[0] = st.reg->bank_sel + MPU6500_WRITE;
-    SPI_Transmit(MPU6500_SS_CH, tmp, 3);
+    IMU_SPI_Transmit(tmp, 3);
     
     SPI_command = st.reg->mem_r_w + MPU6500_READ;
-    SPI_Receive2(MPU6500_SS_CH, &SPI_command, data, 1, length);
+    IMU_SPI_Receive_DMP_Read(&SPI_command, data, 1, length);
     return 0;
 }
 
@@ -2007,7 +2007,7 @@ int mpu_load_firmware(unsigned short length, const uint8_t *firmware,
     tmp[1] = start_addr >> 8;
     tmp[2] = start_addr & 0xFF;
     tmp[0] = st.reg->prgm_start_h + MPU6500_WRITE;
-    SPI_Transmit(MPU6500_SS_CH, tmp, 3);
+    IMU_SPI_Transmit(tmp, 3);
 
     st.chip_cfg.dmp_loaded = 1;
     st.chip_cfg.dmp_sample_rate = sample_rate;
@@ -2035,7 +2035,7 @@ int mpu_set_dmp_state(uint8_t enable)
         /* Remove FIFO elements. */
         tmp[1] = 0;
         tmp[0] = 0x23 + MPU6500_WRITE;
-        SPI_Transmit(MPU6500_SS_CH, tmp, 2);
+        IMU_SPI_Transmit(tmp, 2);
         st.chip_cfg.dmp_on = 1;
         /* Enable DMP interrupt. */
         mpu_reset_fifo();
@@ -2047,7 +2047,7 @@ int mpu_set_dmp_state(uint8_t enable)
         /* Restore FIFO settings. */
         tmp[1] = st.chip_cfg.fifo_enable;
         tmp[0] = 0x23 + MPU6500_WRITE;
-        SPI_Transmit(MPU6500_SS_CH, tmp, 2);
+        IMU_SPI_Transmit(tmp, 2);
         st.chip_cfg.dmp_on = 0;
         mpu_reset_fifo();
     }
@@ -2152,12 +2152,12 @@ int mpu_lp_motion_interrupt(unsigned short thresh, uint8_t time,
         data[2] = 0;
         data[1] = BIT_STBY_XYZG;
         data[0] = st.reg->user_ctrl + MPU6500_WRITE;
-        SPI_Transmit(MPU6500_SS_CH, data, 4);
+        IMU_SPI_Transmit(data, 4);
 
         /* Set motion threshold. */
         data[1] = thresh_hw;
         data[0] = st.reg->motion_thr + MPU6500_WRITE;
-        SPI_Transmit(MPU6500_SS_CH, data, 2);
+        IMU_SPI_Transmit(data, 2);
 
         /* Set wake frequency. */
         if (lpa_freq == 1)
@@ -2181,22 +2181,22 @@ int mpu_lp_motion_interrupt(unsigned short thresh, uint8_t time,
         else
             data[1] = INV_LPA_640HZ;
         data[0] = st.reg->lp_accel_odr + MPU6500_WRITE;
-        SPI_Transmit(MPU6500_SS_CH, data, 2);
+        IMU_SPI_Transmit(data, 2);
 
         /* Enable motion interrupt (MPU6500 version). */
         data[1] = BITS_WOM_EN;
         data[0] = st.reg->accel_intel + MPU6500_WRITE;
-        SPI_Transmit(MPU6500_SS_CH, data, 2);
+        IMU_SPI_Transmit(data, 2);
 
         /* Enable cycle mode. */
         data[1] = BIT_LPA_CYCLE;
         data[0] = st.reg->pwr_mgmt_1 + MPU6500_WRITE;
-        SPI_Transmit(MPU6500_SS_CH, data, 2);
+        IMU_SPI_Transmit(data, 2);
 
         /* Enable interrupt. */
         data[1] = BIT_MOT_INT_EN;
         data[0] = st.reg->int_enable + MPU6500_WRITE;
-        SPI_Transmit(MPU6500_SS_CH, data, 2);
+        IMU_SPI_Transmit(data, 2);
 
         st.chip_cfg.int_motion_only = 1;
         return 0;
@@ -2233,7 +2233,7 @@ lp_int_restore:
     /* Disable motion interrupt (MPU6500 version). */
     data[1] = 0;
     data[0] = st.reg->accel_intel + MPU6500_WRITE;
-    SPI_Transmit(MPU6500_SS_CH, data, 2);
+    IMU_SPI_Transmit(data, 2);
 
     st.chip_cfg.int_motion_only = 0;
     return 0;

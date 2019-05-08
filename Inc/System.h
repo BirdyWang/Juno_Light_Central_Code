@@ -1,14 +1,18 @@
+/* System.h
+ * Author: Bird
+ * Creation Date: 5/8/2019 
+ */
+
 #ifndef SYSTEM_H
 #define SYSTEM_H
 
 #include <stdint.h>
+#include "Juno_Light_Central_Pin_Map.h"
+#include "Juno_Light_Central_Config.h"
 #include "nrf_drv_clock.h"
 #include "nrf_drv_timer.h"
 #include "app_timer.h"
 #include "nrf_delay.h"
-#include "Juno_Light_Central_Pin_Map.h"
-#include "Juno_Light_Central_Config.h"
-
 
 #define APP_TIMER_PRESCALER               0                                            /**< Value of the RTC1 PRESCALER register. */
 #define APP_TIMER_OP_QUEUE_SIZE           4

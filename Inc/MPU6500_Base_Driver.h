@@ -1,23 +1,23 @@
 #ifndef MPU6050_BASE_DRIVER_H
 #define MPU6050_BASE_DRIVER_H
 
-#include "SPI.h"
+#include "SPI0_IMU.h"
 #include "nrf_drv_gpiote.h"
 #include "nrf_delay.h"
 
-#define MPU6500_SS_CH           6
-#define MPU6500_READ            0x80
-#define MPU6500_WRITE           0x00
+#define MPU6500_SS_CH                   6
+#define MPU6500_READ                    0x80
+#define MPU6500_WRITE                   0x00
 
-#define MAX_PACKET_LENGTH       (12)
-#define HWST_MAX_PACKET_LENGTH  (512)
+#define MAX_PACKET_LENGTH               (12)
+#define HWST_MAX_PACKET_LENGTH          (512)
 
-#define INV_X_GYRO              (0x40)
-#define INV_Y_GYRO              (0x20)
-#define INV_Z_GYRO              (0x10)
-#define INV_XYZ_GYRO            (INV_X_GYRO | INV_Y_GYRO | INV_Z_GYRO)
-#define INV_XYZ_ACCEL           (0x08)
-#define INV_XYZ_COMPASS         (0x01)
+#define INV_X_GYRO                      (0x40)
+#define INV_Y_GYRO                      (0x20)
+#define INV_Z_GYRO                      (0x10)
+#define INV_XYZ_GYRO                    (INV_X_GYRO | INV_Y_GYRO | INV_Z_GYRO)
+#define INV_XYZ_ACCEL                   (0x08)
+#define INV_XYZ_COMPASS                 (0x01)
 
 #define MPU_INT_STATUS_DATA_READY       (0x0001)
 #define MPU_INT_STATUS_DMP              (0x0002)

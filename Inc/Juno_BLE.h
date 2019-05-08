@@ -1,3 +1,8 @@
+/* Juno_BLE.h
+ * Author: Bird
+ * Creation Date: 5/8/2019 
+ */
+
 #ifndef JUNO_BLE_H
 #define JUNO_BLE_H
 

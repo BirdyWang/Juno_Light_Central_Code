@@ -1,3 +1,10 @@
+/* UART.c
+ * Purpose: This is the file that controls the LE pins to the LED driver for latching
+ * Usage: LED system.
+ * Author: Bird
+ * Creation Date: 5/8/2019 
+ */
+ 
 #include "PWM.h"
 
 static nrf_drv_pwm_t m_pwm0 = NRF_DRV_PWM_INSTANCE(0);
@@ -10,13 +17,13 @@ void PWM_init(void)
     {
         .output_pins =
         {
-            LED_PWM1, // channel 0
-            LED_PWM2, // channel 1
-            LED_PWM3, // channel 3
+            LED_LE, // channel 0
+            NRF_DRV_PWM_PIN_NOT_USED,
+            NRF_DRV_PWM_PIN_NOT_USED, 
             NRF_DRV_PWM_PIN_NOT_USED
         },
         .irq_priority = APP_IRQ_PRIORITY_LOWEST,
-        .base_clock   = NRF_PWM_CLK_500kHz,
+        .base_clock   = NRF_PWM_CLK_500kHz, //This needs to match SPI clock frequency
         .count_mode   = NRF_PWM_MODE_UP,
         .top_value    = TOP,
         .load_mode    = NRF_PWM_LOAD_INDIVIDUAL,
@@ -30,20 +37,17 @@ void PWM_init(void)
    PWM 100% duty cycle: 0
    PWM 50% duty cycle: 500
    PWM 0% duty cycle: 1000 */
-
-void PWM_play(rgb_pwm duty_cycle)
+void PWM_play(nrf_pwm_values_common_t duty_cycle)
 {
     static nrf_pwm_values_individual_t pwm_seq_values;
-    pwm_seq_values.channel_0 = duty_cycle.r;
-    pwm_seq_values.channel_1 = duty_cycle.g;
-    pwm_seq_values.channel_2 = duty_cycle.b;
+    pwm_seq_values.channel_0 = duty_cycle;
     
     pwm_seq.values.p_individual = &pwm_seq_values;
     pwm_seq.length = NRF_PWM_VALUES_LENGTH(pwm_seq_values);
-    pwm_seq.repeats = 10;
+    pwm_seq.repeats = 1;
     pwm_seq.end_delay = 0;
     
-    nrf_drv_pwm_simple_playback(&m_pwm0, &pwm_seq, 10,
+    nrf_drv_pwm_simple_playback(&m_pwm0, &pwm_seq, 1,
                                 NRF_DRV_PWM_FLAG_STOP);
    
 }

@@ -2,7 +2,6 @@
 #include "Juno_Light_Central_Pin_Map.h"
 #include "Juno_BLE.h"
 #include "GPIO.h"
-#include "SPI.h"
 #include "PWM.h"
 #include "Command_Handling.h"
 #include "MPU6500.h"
@@ -47,7 +46,6 @@ static void power_manage(void)
  * BLE_ADV_EVT_IDLE is handled through setting up indications and reset the chip. 
  * The current indication should avoid that and put the 
  **/
-
 /**@brief Application main function.
  */
 int main(void)
@@ -61,34 +59,9 @@ int main(void)
     /*Initialize peripherals*/
     
     GPIO_Init();
-    
+    IMU_SPI_Init();
     PWM_init();
-    SPI_Init();
     UART_Init();
-    int i,j;
-    rgb_pwm l = {0, 0, 0};
-    
-    for(i = 0; i < 3; i++)
-    {
-        for(j = 0; j < 100; j++)
-        {
-            if(i == 0)
-            {
-                l.r = 10*j;
-            }
-            if(i == 1)
-            {
-                l.g = 10*j;
-            }
-            if(i == 2)
-            {
-                l.b = 10*j;
-            }
-            PWM_play(l);
-            __asm{NOP};
-            nrf_delay_ms(5);
-        }
-    }
     /*
     nrf_gpio_pin_write(BOOT_CH3, 1);
     power_management_init();

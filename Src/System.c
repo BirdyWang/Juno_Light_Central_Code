@@ -1,8 +1,14 @@
+/* UART.c
+ * Purpose: This is the file that implements system tick timer as well as sleep logic.
+ * Usage: Timer and sleep system.
+ * Author: Bird
+ * Creation Date: 5/8/2019 
+ */
+
 #include "System.h"
 
 const nrf_drv_timer_t Timer_ms_Tick = NRF_DRV_TIMER_INSTANCE(2);
 uint32_t timerTicks;
-uint8_t direct_control_perform = 0;
 
 /**@brief Function for initializing the timer module.
  */

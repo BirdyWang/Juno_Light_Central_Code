@@ -1,3 +1,10 @@
+/* UART.c
+ * Purpose: This is the file that handles UART communication between the central and host computer.
+ * Usage: Host computing system.
+ * Author: Bird
+ * Creation Date: 5/8/2019 
+ */
+ 
 #include "UART.h"
 
 void UART_Init(void)
@@ -5,10 +12,10 @@ void UART_Init(void)
     uint32_t err_code;
     const app_uart_comm_params_t comm_params =
     {
-        IMU_RX,
-        IMU_TX,
-        IMU_RTS,
-        IMU_CTS,
+        UART_RX,
+        UART_TX,
+        UART_RTS,
+        UART_CTS,
         APP_UART_FLOW_CONTROL_DISABLED,
         true,
         NRF_UART_BAUDRATE_115200

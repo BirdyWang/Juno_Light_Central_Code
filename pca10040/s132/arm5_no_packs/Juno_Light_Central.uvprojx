@@ -48,8 +48,8 @@
             <NotGenerated>0</NotGenerated>
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
-          <OutputDirectory>..\..\..\Build\</OutputDirectory>
-          <OutputName>App_Tester</OutputName>
+          <OutputDirectory>.\_build\</OutputDirectory>
+          <OutputName>Juno_Light_Central</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>1</CreateHexFile>
@@ -431,11 +431,6 @@
               <FilePath>..\..\..\Src\SAADC.c</FilePath>
             </File>
             <File>
-              <FileName>SPI.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\Src\SPI.c</FilePath>
-            </File>
-            <File>
               <FileName>System.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\Src\System.c</FilePath>
@@ -455,17 +450,20 @@
               <FileType>1</FileType>
               <FilePath>..\..\..\Src\Juno_Buttonless_DFU.c</FilePath>
             </File>
+            <File>
+              <FileName>SPI0_IMU.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\Src\SPI0_IMU.c</FilePath>
+            </File>
+            <File>
+              <FileName>SPI1_LED.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\Src\SPI1_LED.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
           <GroupName>Juno_LED_Driver</GroupName>
-          <Files>
-            <File>
-              <FileName>SPI_Command_Handling.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\Src\SPI_Command_Handling.c</FilePath>
-            </File>
-          </Files>
         </Group>
         <Group>
           <GroupName>Juno IMU_Sensor</GroupName>
@@ -3645,11 +3643,6 @@
               <FilePath>..\..\..\Src\SAADC.c</FilePath>
             </File>
             <File>
-              <FileName>SPI.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\Src\SPI.c</FilePath>
-            </File>
-            <File>
               <FileName>System.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\Src\System.c</FilePath>
@@ -3669,17 +3662,20 @@
               <FileType>1</FileType>
               <FilePath>..\..\..\Src\Juno_Buttonless_DFU.c</FilePath>
             </File>
+            <File>
+              <FileName>SPI0_IMU.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\Src\SPI0_IMU.c</FilePath>
+            </File>
+            <File>
+              <FileName>SPI1_LED.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\Src\SPI1_LED.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
           <GroupName>Juno_LED_Driver</GroupName>
-          <Files>
-            <File>
-              <FileName>SPI_Command_Handling.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\Src\SPI_Command_Handling.c</FilePath>
-            </File>
-          </Files>
         </Group>
         <Group>
           <GroupName>Juno IMU_Sensor</GroupName>

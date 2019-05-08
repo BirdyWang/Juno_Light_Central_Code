@@ -1,9 +1,14 @@
+/* Juno_Buttonless_DFU.c
+ * Purpose: This is the file that implements buttonless DFU routine. 
+ * Usage: BLE system.
+ * Author: Bird
+ * Creation Date: 5/8/2019 
+ */
+
 #include "Juno_Buttonless_DFU.h"
 
 extern ble_nus_t m_nus; /**< Structure to identify the Nordic UART Service. */
 extern ble_advertising_t m_advertising;
-
-
 
 void advertising_config_get(ble_adv_modes_config_t * p_config)
 {
@@ -43,7 +48,5 @@ void shutdown_dfu_routine(void)
     // on bootup after a successful (or aborted) Device Firmware Update.
     uint32_t conn_count = ble_conn_state_for_each_connected(disconnect, NULL);
     /*Code from shutdown handler. */
-    uint32_t err_code;
-    err_code = ble_dfu_buttonless_bootloader_start_prepare();
-    
+    ble_dfu_buttonless_bootloader_start_prepare();
 }

@@ -1,3 +1,8 @@
+/* SAADC.h
+ * Author: Bird
+ * Creation Date: 5/8/2019 
+ */
+ 
 #ifndef ADC_H
 #define ADC_H
 
@@ -7,6 +12,6 @@
 
 void SAADC_Init(void);
 void saadc_callback(nrf_drv_saadc_evt_t const * p_event);
-nrf_saadc_value_t SAADC_Convert(uint8_t channel);
+nrf_saadc_value_t SAADC_Convert(void);
 
 #endif

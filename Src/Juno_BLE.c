@@ -1,3 +1,10 @@
+/* Juno_Buttonless_DFU.c
+ * Purpose: This is the file that implements base driver for BLE. 
+ * Usage: BLE system.
+ * Author: Bird
+ * Creation Date: 5/8/2019 
+ */
+ 
 #include "Juno_BLE.h"
 
 uint8_t BLE_cmd[3]; //For now the command size is 2. The first byte is the grip class. The second byte is the grip strength.
