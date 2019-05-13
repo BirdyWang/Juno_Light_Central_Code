@@ -27,7 +27,7 @@ void LED_SPI_Manager_Init(void)
         .irq_priority   = APP_IRQ_PRIORITY_MID,
         .orc            = 0xAA,
         .frequency      = NRF_DRV_SPI_FREQ_250K,
-        .mode           = NRF_DRV_SPI_MODE_3,
+        .mode           = NRF_SPI_MODE_0,
         .bit_order      = NRF_DRV_SPI_BIT_ORDER_MSB_FIRST
     };
     nrf_spi_mngr_init(&ledSpiMngr, &m_master1_config);
@@ -52,6 +52,8 @@ void LED_Stop_Transaction(ret_code_t result, void * p_user_data)
     //We are going to stop the PWM generation
     ledSpiCompleteFlag = 1;
 }
+
+/*TODO: create a wrapper for 16bit data function*/
 
 uint32_t LED_SPI_Transmit(uint8_t * Tx_data, uint8_t tx_data_length)
 {

@@ -1,4 +1,4 @@
-/* UART.c
+/* System.c
  * Purpose: This is the file that implements system tick timer as well as sleep logic.
  * Usage: Timer and sleep system.
  * Author: Bird
