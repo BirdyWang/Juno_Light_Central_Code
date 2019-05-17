@@ -378,7 +378,7 @@ void LED1642GW_RGB_Translation_Array(rgb_led * RGB_Color)
 {
     int i, j;
     /* Setting the brightness. */
-    LED1642_Set_Brightness(0x007F);
+    LED1642_Set_Brightness(0x0010);
     
     for(i = 0; i < CHANNEL_PER_DRIVER_NUM - 1; i++)
     {
