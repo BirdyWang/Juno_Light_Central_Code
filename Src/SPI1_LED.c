@@ -167,7 +167,6 @@ void LED_SPI_Transmit_LE_16(nrf_pwm_values_common_t duty_cycle, uint16_t input)
     transmitData[0] = (input >> 8) & 0xFF;
     transmitData[1] = input & 0xFF;
     LED_SPI_Transmit_LE(duty_cycle, transmitData, 2);
-    nrf_delay_ms(10);
     return;
 }
 

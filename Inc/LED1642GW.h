@@ -25,9 +25,17 @@
 #define START_COMBINED_ERROR_DETECTION_MODE             102  // 11 rising edges
 #define END_ERROR_DETECTON_MODE                         94  // 12 rising edges
 
+typedef struct rgb_led
+{
+    uint8_t r, g, b;
+}rgb_led;
+
 void LED1642GW_Test_WaveFormGeneration(nrf_pwm_values_common_t duty_cycle);
 void LED1642GW_Driver_Count(void);
 void LED1642_LED_All_On(void);
+void LED1642_LED_RGB_Train_Forward(void);
+void LED1642_LED_Different_Color_Same_Time(void);
+void LED1642GW_Color_Translation(void);
 void LED1642GW_Write_Configuration_Register(uint16_t tempData);
 void LED1642GW_Data_Latch(uint16_t tempData);
 void LED1642GW_Global_Latch(uint16_t tempData);

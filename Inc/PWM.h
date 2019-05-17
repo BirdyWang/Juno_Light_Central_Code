@@ -13,5 +13,7 @@
     
 void PWM_init(void);
 void PWM_play(nrf_pwm_values_common_t duty_cycle);
+void PWM1_init(void);
+void PWM1_play(void);
 
 #endif

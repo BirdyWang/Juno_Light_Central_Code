@@ -65,6 +65,7 @@ int main(void)
     GPIO_Init();
     
     PWM_init();
+    PWM1_init();
     UART_Init();
     /*
     nrf_gpio_pin_write(BOOT_CH3, 1);
@@ -112,8 +113,9 @@ int main(void)
 #endif
 #if(LED_TEST)
     LED_SPI_Init();
+    PWM1_play();
     LED1642GW_Driver_Count();
-    LED1642_LED_All_On();
+    LED1642GW_Color_Translation();
     while(1){
         __asm{NOP};
     }
