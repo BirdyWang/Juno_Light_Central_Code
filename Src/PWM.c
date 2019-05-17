@@ -10,6 +10,12 @@
 static nrf_drv_pwm_t m_pwm0 = NRF_DRV_PWM_INSTANCE(0);
 nrf_pwm_sequence_t pwm_seq;
 
+/* We want the PWM generate to be at 4MHz / 16 = 250kHz. 
+ * 16MHz / 64 = 250kHz. 
+ * So the TOP value is 64. each step is 4. 
+ * Only if this method works, theoretically this method will sync up the clock, but in reality due to delay between function calls,
+ * The PWM generation happens well before SPI clock is generated. The delay between PWM starts and SPI finishes is 27.78us which 36kHz. 
+ * So what needs to happen is that the PWM generation needs to slow down to 36kHz or some value close to it. */
 void PWM_init(void)
 {
     uint32_t                   err_code;
@@ -23,7 +29,7 @@ void PWM_init(void)
             NRF_DRV_PWM_PIN_NOT_USED
         },
         .irq_priority = APP_IRQ_PRIORITY_LOWEST,
-        .base_clock   = NRF_PWM_CLK_250kHz, //I am running SPI at 250KHz so this should match
+        .base_clock   = NRF_PWM_CLK_8MHz, //I am running SPI at 250KHz so this should match
         .count_mode   = NRF_PWM_MODE_UP,
         .top_value    = TOP,
         .load_mode    = NRF_PWM_LOAD_INDIVIDUAL,

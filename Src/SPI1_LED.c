@@ -10,6 +10,8 @@
 NRF_SPI_MNGR_DEF(ledSpiMngr, TRANSACTION_QUEUE_SIZE, LED_SPI_INSTANCE);
 static nrf_spi_mngr_transfer_t ledSpitTransferData;
 volatile uint8_t ledSpiCompleteFlag = 0;
+volatile uint8_t ledSpiLECompleteFlag = 0;
+nrf_pwm_values_common_t leDutyCycle;
 
 void LED_SPI_Init(void)
 {
@@ -26,8 +28,8 @@ void LED_SPI_Manager_Init(void)
         .ss_pin         = NRF_DRV_SPI_PIN_NOT_USED,
         .irq_priority   = APP_IRQ_PRIORITY_MID,
         .orc            = 0xAA,
-        .frequency      = NRF_DRV_SPI_FREQ_250K,
-        .mode           = NRF_SPI_MODE_0,
+        .frequency      = NRF_DRV_SPI_FREQ_1M,
+        .mode           = NRF_DRV_SPI_MODE_0,
         .bit_order      = NRF_DRV_SPI_BIT_ORDER_MSB_FIRST
     };
     nrf_spi_mngr_init(&ledSpiMngr, &m_master1_config);
@@ -109,3 +111,64 @@ uint32_t LED_SPI_Receive(uint8_t * Tx_data, uint8_t * Rx_data, uint8_t tx_data_l
             return 1;
     }
 }
+
+void LED_SPI_Transmit_16(uint16_t input)
+{
+    uint8_t transmitData[2];
+    transmitData[0] = (input >> 8) & 0xFF;
+    transmitData[1] = input & 0xFF;
+    LED_SPI_Transmit(transmitData, 2);
+    return;
+}
+
+void LED_Start_Transaction_LE(void * p_user_data)
+{
+    //We are going to set the duty cycle of the LE pin and enable PWM generation.
+    PWM_play(leDutyCycle);
+    ledSpiLECompleteFlag = 0;
+}
+
+void LED_Stop_Transaction_LE(ret_code_t result, void * p_user_data)
+{
+    //We are going to stop the PWM generation
+    ledSpiLECompleteFlag = 1;
+}
+
+
+uint32_t LED_SPI_Transmit_LE(nrf_pwm_values_common_t duty_cycle, uint8_t * Tx_data, uint8_t tx_data_length)
+{
+    leDutyCycle = duty_cycle;
+    ledSpiLECompleteFlag = 0;
+    ledSpitTransferData.p_tx_data = Tx_data;
+    ledSpitTransferData.tx_length = tx_data_length;
+    ledSpitTransferData.p_rx_data = NULL;
+    ledSpitTransferData.rx_length = 0;
+    static nrf_spi_mngr_transaction_t transaction = 
+    {
+        .begin_callback = LED_Start_Transaction_LE,
+        .end_callback = LED_Stop_Transaction_LE,
+        .p_user_data = NULL,
+        .p_transfers = &ledSpitTransferData,
+        .number_of_transfers = 1,
+        .p_required_spi_cfg = NULL
+    };
+
+    nrf_spi_mngr_schedule(&ledSpiMngr, &transaction);
+    while(1)
+    {
+        if(ledSpiLECompleteFlag == 1)
+            return 1;
+    }
+}
+
+void LED_SPI_Transmit_LE_16(nrf_pwm_values_common_t duty_cycle, uint16_t input)
+{
+    uint8_t transmitData[2];
+    transmitData[0] = (input >> 8) & 0xFF;
+    transmitData[1] = input & 0xFF;
+    LED_SPI_Transmit_LE(duty_cycle, transmitData, 2);
+    nrf_delay_ms(10);
+    return;
+}
+
+

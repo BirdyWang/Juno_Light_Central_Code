@@ -12,7 +12,7 @@ uint8_t MPU6500_Connection_Test(void)
     //Start_Transaction(SS_CH7);
     IMU_SPI_Receive(&SPI_command, SPI_data, 1, 2);
     //Stop_Transaction(SS_CH7);
-    if(SPI_data[1] == 0x38)
+    if(SPI_data[1] == 0x70)
         return 1;
     return 0;
 }

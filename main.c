@@ -5,10 +5,14 @@
 #include "PWM.h"
 #include "Command_Handling.h"
 #include "MPU6500.h"
+#include "LED1642GW.h"
 #include "ble_dfu.h"
 #define INJECT_I2C_COMMANDS
 
 #define SLEEP_TIMEOUT_VALUE 2000
+
+#define MPU6500_TEST        0
+#define LED_TEST            1
 
 unsigned int led_ts = 0;
 
@@ -59,7 +63,7 @@ int main(void)
     /*Initialize peripherals*/
     
     GPIO_Init();
-    IMU_SPI_Init();
+    
     PWM_init();
     UART_Init();
     /*
@@ -73,6 +77,8 @@ int main(void)
     conn_params_init();
     advertising_start();
     */
+#if (MPU6500_TEST == 1)
+    IMU_SPI_Init();
     __asm{NOP};
     MPU6500_Connection_Test();
     __asm{NOP};
@@ -103,4 +109,13 @@ int main(void)
         nrf_delay_ms(100);
         */
     }
+#endif
+#if(LED_TEST)
+    LED_SPI_Init();
+    LED1642GW_Driver_Count();
+    LED1642_LED_All_On();
+    while(1){
+        __asm{NOP};
+    }
+#endif
 }

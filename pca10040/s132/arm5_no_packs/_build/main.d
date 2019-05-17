@@ -133,3 +133,5 @@
 .\_build\main.o: ..\..\..\..\..\NRF5_SDK\modules\nrfx\hal/nrf_gpiote.h
 .\_build\main.o: ..\..\..\Inc\MPU6500_DMP_Map.h
 .\_build\main.o: ..\..\..\Inc\MPU6500_DMP_Key.h
+.\_build\main.o: ..\..\..\Inc\LED1642GW.h
+.\_build\main.o: ..\..\..\Inc\SPI1_LED.h

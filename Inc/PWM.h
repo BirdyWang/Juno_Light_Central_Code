@@ -9,8 +9,7 @@
 #include "Juno_Light_Central_Pin_Map.h"
 #include "nrf_drv_pwm.h"
 
-#define TOP         1000
-#define STEP_COUNT  25
+#define TOP         256
     
 void PWM_init(void);
 void PWM_play(nrf_pwm_values_common_t duty_cycle);

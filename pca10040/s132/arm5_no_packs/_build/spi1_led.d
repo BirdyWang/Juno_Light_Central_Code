@@ -47,6 +47,10 @@
 .\_build\spi1_led.o: ..\..\..\..\..\NRF5_SDK\components\libraries\util\sdk_resources.h
 .\_build\spi1_led.o: ..\..\..\..\..\NRF5_SDK\components\softdevice\s132\headers\nrf_sd_def.h
 .\_build\spi1_led.o: ..\..\..\..\..\NRF5_SDK\modules\nrfx\drivers/nrfx_errors.h
+.\_build\spi1_led.o: ..\..\..\Inc\PWM.h
+.\_build\spi1_led.o: ..\..\..\..\..\NRF5_SDK\integration\nrfx\legacy\nrf_drv_pwm.h
+.\_build\spi1_led.o: ..\..\..\..\..\NRF5_SDK\modules\nrfx\drivers\include\nrfx_pwm.h
+.\_build\spi1_led.o: ..\..\..\..\..\NRF5_SDK\modules\nrfx\hal/nrf_pwm.h
 .\_build\spi1_led.o: ..\..\..\..\..\NRF5_SDK\components\libraries\spi_mngr\nrf_spi_mngr.h
 .\_build\spi1_led.o: ..\..\..\..\..\NRF5_SDK\integration\nrfx\legacy\nrf_drv_spi.h
 .\_build\spi1_led.o: ..\..\..\..\..\NRF5_SDK\modules\nrfx\drivers\include\nrfx_spim.h

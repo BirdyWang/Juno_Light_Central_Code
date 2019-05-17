@@ -10,6 +10,7 @@
 ".\_build\juno_buttonless_dfu.o"
 ".\_build\spi0_imu.o"
 ".\_build\spi1_led.o"
+".\_build\led1642gw.o"
 ".\_build\mpu6500_base_driver.o"
 ".\_build\mpu6500_dmp_motion_driver.o"
 ".\_build\mpu6500.o"

@@ -464,6 +464,13 @@
         </Group>
         <Group>
           <GroupName>Juno_LED_Driver</GroupName>
+          <Files>
+            <File>
+              <FileName>LED1642GW.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\Src\LED1642GW.c</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>Juno IMU_Sensor</GroupName>
@@ -3676,6 +3683,13 @@
         </Group>
         <Group>
           <GroupName>Juno_LED_Driver</GroupName>
+          <Files>
+            <File>
+              <FileName>LED1642GW.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\Src\LED1642GW.c</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>Juno IMU_Sensor</GroupName>

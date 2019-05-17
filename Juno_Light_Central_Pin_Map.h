@@ -10,30 +10,30 @@
     
 /****************JUNO DEFINED*******************/    
 /**For IMU**/
-#define IMU_MOSI        1
-#define IMU_MISO        2
-#define IMU_SCK         3
-#define IMU_SS          4
-#define IMU_INT         5
+#define IMU_MOSI        16
+#define IMU_MISO        14
+#define IMU_SCK         18
+#define IMU_SS          20
+#define IMU_INT         12
     
 /**For LED Drivers**/
-#define LED_MOSI        6
-#define LED_MISO        7
-#define LED_SCK         8
-#define LED_LE          9
-#define LED_PWCLK       10
+#define LED_MOSI        9
+#define LED_MISO        10
+#define LED_SCK         24
+#define LED_LE          11
+#define LED_PWCLK       23
 
 /**For Touch Input**/
-#define TOUCH_IN        11
+#define TOUCH_IN        28
 
 /**For Battery Charging Status**/
-#define BATT_CHRG_STAT  12
+#define BATT_CHRG_STAT  29
 
 /**For UART Debugging**/
-#define UART_TX         13
-#define UART_RX         14
-#define UART_RTS        15
-#define UART_CTS        15
+#define UART_TX         0
+#define UART_RX         2
+#define UART_RTS        4
+#define UART_CTS        5
 #define UART_HWFC       false
 
 // Low frequency clock source to be used by the SoftDevice

@@ -6,8 +6,10 @@
 #define SPI1_LED_H
 
 #include "Juno_Light_Central_Pin_Map.h"
+#include "PWM.h"
 #include "nrf_spi_mngr.h"
 #include "nrf_delay.h"
+
 
 #define TRANSACTION_QUEUE_SIZE  3
 #define LED_SPI_INSTANCE        1
@@ -19,5 +21,10 @@ void LED_Start_Transaction(void * p_user_data);
 void LED_Stop_Transaction(ret_code_t result, void * p_user_data);
 uint32_t LED_SPI_Transmit(uint8_t * Tx_data, uint8_t tx_data_length);
 uint32_t LED_SPI_Receive(uint8_t * Tx_data, uint8_t * Rx_data, uint8_t tx_data_length, uint8_t rx_data_length);
+void LED_SPI_Transmit_16(uint16_t input);
 
+void LED_Start_Transaction_LE(void * p_user_data);
+void LED_Stop_Transaction_LE(ret_code_t result, void * p_user_data);
+uint32_t LED_SPI_Transmit_LE(nrf_pwm_values_common_t duty_cycle, uint8_t * Tx_data, uint8_t tx_data_length);
+void LED_SPI_Transmit_LE_16(nrf_pwm_values_common_t duty_cycle, uint16_t input);
 #endif
