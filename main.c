@@ -65,7 +65,7 @@ int main(void)
     GPIO_Init();
     
     PWM_init();
-    PWM1_init();
+    PWM_PWCLK_init();
     UART_Init();
     /*
     nrf_gpio_pin_write(BOOT_CH3, 1);
@@ -113,11 +113,34 @@ int main(void)
 #endif
 #if(LED_TEST)
     LED_SPI_Init();
-    PWM1_play();
+    PWM_PWCLK_play();
     LED1642GW_Driver_Count();
-    LED1642GW_Color_Translation();
-    while(1){
+    rgb_led rgbTestColor = {.r = 0, .g = 255, .b = 0};
+    /*
+    for(int i = 0; i < 16; i++)
+    {
+        LED1642GW_RGB_Translation_Individual_Channel(i, rgbTestColor);
+        nrf_delay_ms(100);
         __asm{NOP};
+    }
+    */
+    
+    while(1)
+    {
+        rgbTestColor.r = 255;
+        rgbTestColor.g = 0;
+        rgbTestColor.b = 0;
+        
+        for(int i = 0; i < 16; i++)
+        {
+            
+            rgbTestColor.r = rgbTestColor.r - 15 * i;
+            rgbTestColor.g = rgbTestColor.g + 10 * i;
+            rgbTestColor.b = rgbTestColor.b + 5 * i;
+            
+            LED1642GW_RGB_Translation_Individual_Channel(i, rgbTestColor);
+            nrf_delay_ms(10);
+        }
     }
 #endif
 }

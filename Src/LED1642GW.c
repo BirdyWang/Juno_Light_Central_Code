@@ -252,14 +252,14 @@ void LED1642_LED_Different_Color_Same_Time(void)
     }
 }
 
-void LED1642GW_Color_Translation(void)
+void LED1642GW_Brightness_Control_Test(void)
 {
     int i;
     int tempBrighnessBufferCount = 0;
     /* Setting the brightness. */
     for(i = 0; i < DRIVER_NUM; i++)
     {
-        txBuffer[i] = 0x007F;
+        txBuffer[i] = 0x0010;
         if(i == DRIVER_NUM - 1)
         {
             LED1642GW_Write_Configuration_Register(txBuffer[i]);
@@ -313,9 +313,9 @@ void LED1642GW_Color_Translation(void)
                     LED_SPI_Transmit_16(txBuffer[i]);
                 }
             }
-            txBuffer[0] = 0x0001;
-            txBuffer[1] = 0x0000;
-            txBuffer[2] = 0x0000;
+            txBuffer[0] = 0xFFFF;
+            txBuffer[1] = 0xFFFF;
+            txBuffer[2] = 0xFFFF;
             for(i = 0; i < DRIVER_NUM; i++)
             {
                 if(i == DRIVER_NUM - 1)
@@ -329,6 +329,102 @@ void LED1642GW_Color_Translation(void)
                 nrf_delay_ms(2);
             }
         }
+    }
+}
+
+void LED1642GW_RGB_Translation_Individual_Channel(uint8_t channel, rgb_led RGB_Color)
+{
+    int i;
+    int tempBrighnessBufferCount = 0;
+    /* Setting the brightness. */
+    for(i = 0; i < DRIVER_NUM; i++)
+    {
+        txBuffer[i] = 0x0010;
+        if(i == DRIVER_NUM - 1)
+        {
+            LED1642GW_Write_Configuration_Register(txBuffer[i]);
+        }
+        else
+        {
+            LED_SPI_Transmit_16(txBuffer[i]);
+        }
+    }
+    for(i = 0; i < SPI_BUFFER_SIZE - DRIVER_NUM; i++)
+    {
+        if(i == ((14 - channel) * 3))
+        {
+            txBuffer[i] = RGB_Color.b * 256;
+        }
+        else if(i == ((14 - channel) * 3 + 1))
+        {
+            txBuffer[i] = RGB_Color.g * 256;
+        }
+        else if(i == ((14 - channel) * 3 + 2))
+        {
+            txBuffer[i] = RGB_Color.r * 256;
+        }
+        else
+        {
+             txBuffer[i] = 0x0000;
+        }
+        if(tempBrighnessBufferCount == (DRIVER_NUM - 1))
+        {
+            LED1642GW_Data_Latch(txBuffer[i]); 
+            tempBrighnessBufferCount = 0;
+        }
+        else
+        {
+            LED_SPI_Transmit_16(txBuffer[i]);
+            tempBrighnessBufferCount++;
+        }
+    }
+    __asm{NOP};
+    for(i = 0; i < DRIVER_NUM; i++)
+    {
+        if(channel == 15)
+        {
+            if(i == 0)
+            {
+                txBuffer[45 + i] = RGB_Color.b * 256;
+            }
+            else if(i == 1)
+            {
+                txBuffer[45 + i] = RGB_Color.g * 256;
+            }
+            else if(i == 2)
+            {
+                txBuffer[45 + i] = RGB_Color.r * 256;
+            }
+        }
+        else
+        {
+            txBuffer[45 + i] = 0x0000;
+        }
+        if(i == DRIVER_NUM - 1)
+        {
+            LED1642GW_Global_Latch(txBuffer[45 + i]);
+        }
+        else
+        {
+            LED_SPI_Transmit_16(txBuffer[45 + i]);
+        }
+    }
+    __asm{NOP};
+    txBuffer[0] = 0xFFFF;
+    txBuffer[1] = 0xFFFF;
+    txBuffer[2] = 0xFFFF;
+    for(i = 0; i < DRIVER_NUM; i++)
+    {
+        if(i == DRIVER_NUM - 1)
+        {
+            LED1642GW_Switch(txBuffer[i]);
+            nrf_delay_ms(2);
+        }
+        else
+        {
+            LED_SPI_Transmit_16(txBuffer[i]);
+        }
+        
     }
 }
 

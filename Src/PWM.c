@@ -58,7 +58,7 @@ void PWM_play(nrf_pwm_values_common_t duty_cycle)
     nrf_drv_pwm_simple_playback(&m_pwm0, &pwm_seq, 1, NRF_DRV_PWM_FLAG_STOP);
 }
 
-void PWM1_init(void)
+void PWM_PWCLK_init(void)
 {
     uint32_t                   err_code;
     nrf_drv_pwm_config_t const config1 =
@@ -81,7 +81,7 @@ void PWM1_init(void)
     APP_ERROR_CHECK(err_code);
 }
 
-void PWM1_play(void)
+void PWM_PWCLK_play(void)
 {
     static nrf_pwm_values_individual_t pwm_seq_values;
     pwm_seq_values.channel_0 = 2;
