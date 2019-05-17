@@ -37,6 +37,8 @@ void LED1642_LED_RGB_Train_Forward(void);
 void LED1642_LED_Different_Color_Same_Time(void);
 void LED1642GW_Brightness_Control_Test(void);
 void LED1642GW_RGB_Translation_Individual_Channel(uint8_t channel, rgb_led RGB_Color);
+void LED1642GW_RGB_Translation_Array(rgb_led * RGB_Color);
+void LED1642_Set_Brightness(uint16_t brightness);
 void LED1642GW_Write_Configuration_Register(uint16_t tempData);
 void LED1642GW_Data_Latch(uint16_t tempData);
 void LED1642GW_Global_Latch(uint16_t tempData);

@@ -116,6 +116,11 @@ int main(void)
     PWM_PWCLK_play();
     LED1642GW_Driver_Count();
     rgb_led rgbTestColor = {.r = 0, .g = 255, .b = 0};
+    rgb_led rgbTestArray[16];
+    rgbTestArray[0] = (rgb_led){.r = 0, .g = 255, .b = 0};
+    rgbTestArray[3] = (rgb_led){.r = 255, .g = 0, .b = 0};
+    rgbTestArray[5] = (rgb_led){.r = 0, .g = 0, .b = 255};
+    rgbTestArray[15] = (rgb_led){.r = 0, .g = 255, .b = 255};
     /*
     for(int i = 0; i < 16; i++)
     {
@@ -124,7 +129,8 @@ int main(void)
         __asm{NOP};
     }
     */
-    
+    LED1642GW_RGB_Translation_Array(rgbTestArray);
+    /*
     while(1)
     {
         rgbTestColor.r = 255;
@@ -139,8 +145,9 @@ int main(void)
             rgbTestColor.b = rgbTestColor.b + 5 * i;
             
             LED1642GW_RGB_Translation_Individual_Channel(i, rgbTestColor);
-            nrf_delay_ms(10);
+            nrf_delay_ms(200);
         }
     }
+    */
 #endif
 }

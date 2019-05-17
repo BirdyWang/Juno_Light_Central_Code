@@ -28,10 +28,13 @@ Project File Date:  05/12/2019
 *** Using Compiler 'V5.06 update 5 (build 528)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'nrf52832_xxaa'
 compiling main.c...
+..\..\..\main.c(118): warning:  #177-D: variable "rgbTestColor"  was declared but never referenced
+      rgb_led rgbTestColor = {.r = 0, .g = 255, .b = 0};
+..\..\..\main.c: 1 warning, 0 errors
 linking...
-Program Size: Code=38672 RO-data=1732 RW-data=476 ZI-data=11868  
+Program Size: Code=38620 RO-data=1736 RW-data=480 ZI-data=11960  
 FromELF: creating hex file...
-".\_build\Juno_Light_Central.axf" - 0 Error(s), 0 Warning(s).
+".\_build\Juno_Light_Central.axf" - 0 Error(s), 1 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -60,7 +63,7 @@ Package Vendor: NordicSemiconductor
       Include file:  Device\Include\system_nrf52.h
 
    * Component: ARM::CMSIS:CORE:4.3.0
-Build Time Elapsed:  00:00:03
+Build Time Elapsed:  00:00:04
 </pre>
 </body>
 </html>
