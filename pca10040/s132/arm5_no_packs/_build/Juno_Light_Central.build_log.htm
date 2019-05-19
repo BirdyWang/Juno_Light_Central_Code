@@ -5,7 +5,7 @@
 <h2>Tool Versions:</h2>
 IDE-Version: µVision V5.24.2.0
 Copyright (C) 2017 ARM Ltd and ARM Germany GmbH. All rights reserved.
-License Information: h s, f, LIC=IC963-A7M8W-QIA5M-X813A-KRD70-F3XNC
+License Information: Ziasdf Wsdf, UIUC, LIC=NHYFW-QZYW6-LUA4M-XTS12-9HMEK-768BN
  
 Tool Versions:
 Toolchain:       MDK-ARM Professional  Version: 5.24.1
@@ -21,21 +21,22 @@ Target DLL:      Segger\JL2CM3.dll V2.99.26.0
 Dialog DLL:      TCM.DLL V1.32.0.0
  
 <h2>Project:</h2>
-C:\Keil_v5\Project\Juno_Light_Central\pca10040\s132\arm5_no_packs\Juno_Light_Central.uvprojx
-Project File Date:  05/12/2019
+C:\Keil_v5\Project\Juno_Light_Central_Code\pca10040\s132\arm5_no_packs\Juno_Light_Central.uvprojx
+Project File Date:  05/18/2019
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 5 (build 528)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'nrf52832_xxaa'
-compiling LED1642GW.c...
 compiling main.c...
-..\..\..\main.c(118): warning:  #177-D: variable "rgbTestColor"  was declared but never referenced
-      rgb_led rgbTestColor = {.r = 0, .g = 255, .b = 0};
-..\..\..\main.c: 1 warning, 0 errors
+..\..\..\main.c(156): warning:  #111-D: statement is unreachable
+      LED1642GW_RGB_Translation_Array(rgbTestArray);
+..\..\..\main.c(60): warning:  #177-D: variable "touchInValue"  was declared but never referenced
+      nrf_saadc_value_t touchInValue;
+..\..\..\main.c: 2 warnings, 0 errors
 linking...
-Program Size: Code=38620 RO-data=1736 RW-data=480 ZI-data=11960  
+Program Size: Code=40016 RO-data=1732 RW-data=480 ZI-data=11944  
 FromELF: creating hex file...
-".\_build\Juno_Light_Central.axf" - 0 Error(s), 1 Warning(s).
+".\_build\Juno_Light_Central.axf" - 0 Error(s), 2 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -59,12 +60,12 @@ Package Vendor: NordicSemiconductor
 <h2>Collection of Component Files used:</h2>
 
    * Component: NordicSemiconductor::Device:Startup:8.17.0
-      Source file:   Device\Source\arm\arm_startup_nrf52.s
       Source file:   Device\Source\system_nrf52.c
       Include file:  Device\Include\system_nrf52.h
+      Source file:   Device\Source\arm\arm_startup_nrf52.s
 
    * Component: ARM::CMSIS:CORE:4.3.0
-Build Time Elapsed:  00:00:03
+Build Time Elapsed:  00:00:02
 </pre>
 </body>
 </html>

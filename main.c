@@ -2,6 +2,7 @@
 #include "Juno_Light_Central_Pin_Map.h"
 #include "Juno_BLE.h"
 #include "GPIO.h"
+#include "SAADC.h"
 #include "PWM.h"
 #include "Command_Handling.h"
 #include "MPU6500.h"
@@ -13,7 +14,7 @@
 
 #define MPU6500_TEST        0
 #define LED_TEST            1
-
+#define INTERRUPT_TEST      0
 unsigned int led_ts = 0;
 
 extern uint8_t BLE_cmd[3];
@@ -55,6 +56,8 @@ static void power_manage(void)
 int main(void)
 {
     __asm{NOP};
+    rgb_led rgbTestArray[16];
+    nrf_saadc_value_t touchInValue;
     volatile ret_code_t err_code;
     //err_code = ble_dfu_buttonless_async_svci_init();
     //APP_ERROR_CHECK(err_code);
@@ -67,6 +70,39 @@ int main(void)
     PWM_init();
     PWM_PWCLK_init();
     UART_Init();
+    //SAADC_Init();
+    LED_SPI_Init();
+    nrf_delay_ms(10);
+    PWM_PWCLK_play();
+    nrf_delay_ms(10);
+    LED1642GW_Driver_Count();
+    for(int i = 0; i < 16; i++)
+    {
+        rgbTestArray[i] = (rgb_led){.r = 0, .g = 0, .b = 0};
+    }
+    LED1642GW_RGB_Translation_Array(rgbTestArray);
+    
+    while(1)
+    {
+        for(int j = 0; j < 16; j++)
+        {
+            for(int i = 0; i < 16; i++)
+            {
+                if(i <= j)
+                {
+                    rgbTestArray[j-i] = (rgb_led){.r = 0 + (15-i)*15, .g = 150-(15-i)*10, .b = 0};
+                }
+                else
+                {
+                    rgbTestArray[i+j] = (rgb_led){.r = 0 + i*15, .g = 150-i*10, .b = 0};
+                }
+            }
+            LED1642GW_RGB_Translation_Array(rgbTestArray);
+            nrf_delay_ms(500);
+        }
+        
+    }
+    
     /*
     nrf_gpio_pin_write(BOOT_CH3, 1);
     power_management_init();
@@ -112,24 +148,18 @@ int main(void)
     }
 #endif
 #if(LED_TEST)
-    LED_SPI_Init();
-    PWM_PWCLK_play();
-    LED1642GW_Driver_Count();
-    rgb_led rgbTestColor = {.r = 0, .g = 255, .b = 0};
-    rgb_led rgbTestArray[16];
-    rgbTestArray[0] = (rgb_led){.r = 0, .g = 255, .b = 0};
-    rgbTestArray[3] = (rgb_led){.r = 255, .g = 0, .b = 0};
-    rgbTestArray[5] = (rgb_led){.r = 0, .g = 0, .b = 255};
-    rgbTestArray[15] = (rgb_led){.r = 0, .g = 255, .b = 255};
-    /*
-    for(int i = 0; i < 16; i++)
-    {
-        LED1642GW_RGB_Translation_Individual_Channel(i, rgbTestColor);
-        nrf_delay_ms(100);
-        __asm{NOP};
-    }
-    */
+    
+    //
+    //rgb_led rgbTestColor = {.r = 255, .g = 0, .b = 0};
+    
+    
     LED1642GW_RGB_Translation_Array(rgbTestArray);
+    LED1642GW_RGB_Translation_Array(rgbTestArray);
+    while(1)
+    {
+        
+    }
+    //LED1642_LED_RGB_Train_Forward();
     /*
     while(1)
     {

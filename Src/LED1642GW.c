@@ -150,7 +150,7 @@ void LED1642_LED_RGB_Train_Forward(void)
                 nrf_delay_ms(2);
                 
             }
-            nrf_delay_ms(10);
+            nrf_delay_ms(100);
         }
         
     }
@@ -295,7 +295,7 @@ void LED1642GW_RGB_Translation_Individual_Channel(uint8_t channel, rgb_led RGB_C
     int i;
     int tempBrighnessBufferCount = 0;
     /* Setting the brightness. */
-    LED1642_Set_Brightness(0x007F);
+    LED1642_Set_Brightness(0x0040);
     for(i = 0; i < SPI_BUFFER_SIZE - DRIVER_NUM; i++)
     {
         if(i == ((14 - channel) * 3))
@@ -363,7 +363,6 @@ void LED1642GW_RGB_Translation_Individual_Channel(uint8_t channel, rgb_led RGB_C
         if(i == DRIVER_NUM - 1)
         {
             LED1642GW_Switch(ledConfigBuffer[i]);
-            nrf_delay_ms(2);
         }
         else
         {
@@ -423,13 +422,12 @@ void LED1642GW_RGB_Translation_Array(rgb_led * RGB_Color)
         if(i == DRIVER_NUM - 1)
         {
             LED1642GW_Switch(ledConfigBuffer[i]);
-            nrf_delay_ms(2);
         }
         else
         {
             LED_SPI_Transmit_16(ledConfigBuffer[i]);
         }
-        
+        nrf_delay_us(1000);
     }
 }
 

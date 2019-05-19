@@ -1,7 +1,7 @@
 .\_build\system.o: ..\..\..\Src\System.c
 .\_build\system.o: ..\..\..\Inc\System.h
 .\_build\system.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
-.\_build\system.o: ..\..\..\..\Juno_Light_Central\Juno_Light_Central_Pin_Map.h
+.\_build\system.o: ..\..\..\..\Juno_Light_Central_Code\Juno_Light_Central_Pin_Map.h
 .\_build\system.o: ..\..\..\..\..\NRF5_SDK\modules\nrfx\hal\nrf_gpio.h
 .\_build\system.o: ..\..\..\..\..\NRF5_SDK\modules\nrfx\nrfx.h
 .\_build\system.o: ..\..\..\..\..\NRF5_SDK\integration\nrfx\nrfx_config.h
@@ -47,7 +47,7 @@
 .\_build\system.o: ..\..\..\..\..\NRF5_SDK\components\libraries\util\sdk_resources.h
 .\_build\system.o: ..\..\..\..\..\NRF5_SDK\components\softdevice\s132\headers\nrf_sd_def.h
 .\_build\system.o: ..\..\..\..\..\NRF5_SDK\modules\nrfx\drivers/nrfx_errors.h
-.\_build\system.o: ..\..\..\..\Juno_Light_Central\Juno_Light_Central_Config.h
+.\_build\system.o: ..\..\..\..\Juno_Light_Central_Code\Juno_Light_Central_Config.h
 .\_build\system.o: ..\..\..\..\..\NRF5_SDK\integration\nrfx\legacy\nrf_drv_clock.h
 .\_build\system.o: ..\..\..\..\..\NRF5_SDK\modules\nrfx\drivers\include\nrfx_clock.h
 .\_build\system.o: ..\..\..\..\..\NRF5_SDK\modules\nrfx\hal/nrf_clock.h

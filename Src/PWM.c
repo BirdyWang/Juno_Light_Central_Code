@@ -88,7 +88,7 @@ void PWM_PWCLK_play(void)
     
     pwm_seq1.values.p_individual = &pwm_seq_values;
     pwm_seq1.length = NRF_PWM_VALUES_LENGTH(pwm_seq_values);
-    pwm_seq1.repeats = 10;
+    pwm_seq1.repeats = 1;
     pwm_seq1.end_delay = 0;
     
     nrf_drv_pwm_simple_playback(&m_pwm1, &pwm_seq1, 10, NRF_DRV_PWM_FLAG_LOOP);

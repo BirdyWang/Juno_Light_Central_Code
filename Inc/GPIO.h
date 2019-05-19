@@ -8,9 +8,10 @@
 #include "Juno_Light_Central_Pin_Map.h"
 #include "Juno_Light_Central_Config.h"
 #include "nrf_gpio.h"
-#include "UART.h"
-#include "nrf_drv_timer.h"
+#include "nrf_drv_gpiote.h"
+#include "LED1642GW.h"
 
 void GPIO_Init(void);
+void Touch_In_handler(nrf_drv_gpiote_pin_t pin, nrf_gpiote_polarity_t action);
 
 #endif
