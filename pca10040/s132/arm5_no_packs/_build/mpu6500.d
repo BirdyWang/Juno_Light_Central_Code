@@ -3,7 +3,7 @@
 .\_build\mpu6500.o: ..\..\..\Inc\MPU6500_DMP_Motion_Driver.h
 .\_build\mpu6500.o: ..\..\..\Inc\MPU6500_Base_Driver.h
 .\_build\mpu6500.o: ..\..\..\Inc\SPI0_IMU.h
-.\_build\mpu6500.o: ..\..\..\..\Juno_Light_Central_Code\Juno_Light_Central_Pin_Map.h
+.\_build\mpu6500.o: ..\..\..\..\Juno_Light_Central\Juno_Light_Central_Pin_Map.h
 .\_build\mpu6500.o: ..\..\..\..\..\NRF5_SDK\modules\nrfx\hal\nrf_gpio.h
 .\_build\mpu6500.o: ..\..\..\..\..\NRF5_SDK\modules\nrfx\nrfx.h
 .\_build\mpu6500.o: ..\..\..\..\..\NRF5_SDK\integration\nrfx\nrfx_config.h

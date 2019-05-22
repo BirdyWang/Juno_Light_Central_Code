@@ -3,7 +3,7 @@
 .\_build\uart.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
 .\_build\uart.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\_build\uart.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
-.\_build\uart.o: ..\..\..\..\Juno_Light_Central_Code\Juno_Light_Central_Pin_Map.h
+.\_build\uart.o: ..\..\..\..\Juno_Light_Central\Juno_Light_Central_Pin_Map.h
 .\_build\uart.o: ..\..\..\..\..\NRF5_SDK\modules\nrfx\hal\nrf_gpio.h
 .\_build\uart.o: ..\..\..\..\..\NRF5_SDK\modules\nrfx\nrfx.h
 .\_build\uart.o: ..\..\..\..\..\NRF5_SDK\integration\nrfx\nrfx_config.h

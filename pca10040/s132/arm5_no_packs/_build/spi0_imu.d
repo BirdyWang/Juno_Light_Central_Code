@@ -1,6 +1,6 @@
 .\_build\spi0_imu.o: ..\..\..\Src\SPI0_IMU.c
 .\_build\spi0_imu.o: ..\..\..\Inc\SPI0_IMU.h
-.\_build\spi0_imu.o: ..\..\..\..\Juno_Light_Central_Code\Juno_Light_Central_Pin_Map.h
+.\_build\spi0_imu.o: ..\..\..\..\Juno_Light_Central\Juno_Light_Central_Pin_Map.h
 .\_build\spi0_imu.o: ..\..\..\..\..\NRF5_SDK\modules\nrfx\hal\nrf_gpio.h
 .\_build\spi0_imu.o: ..\..\..\..\..\NRF5_SDK\modules\nrfx\nrfx.h
 .\_build\spi0_imu.o: ..\..\..\..\..\NRF5_SDK\integration\nrfx\nrfx_config.h

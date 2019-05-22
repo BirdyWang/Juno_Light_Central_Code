@@ -7,15 +7,17 @@
 #include "GPIO.h"
 void GPIO_Init(void) 
 {
+    
     ret_code_t err_code;
     err_code = nrf_drv_gpiote_init();
     APP_ERROR_CHECK(err_code);
-    nrf_drv_gpiote_in_config_t in_config = GPIOTE_CONFIG_IN_SENSE_TOGGLE(true);
+    nrf_drv_gpiote_in_config_t in_config = GPIOTE_CONFIG_IN_SENSE_LOTOHI(true);
     in_config.pull = NRF_GPIO_PIN_NOPULL;
     err_code = nrf_drv_gpiote_in_init(TOUCH_IN, &in_config, Touch_In_handler);
     APP_ERROR_CHECK(err_code);
     nrf_drv_gpiote_in_event_enable(TOUCH_IN, true);
     
+    //nrf_gpio_cfg_input(TOUCH_IN, NRF_GPIO_PIN_PULLUP);
     nrf_gpio_cfg_input(BATT_CHRG_STAT, NRF_GPIO_PIN_NOPULL);
 	
 }

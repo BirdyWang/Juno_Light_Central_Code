@@ -14,6 +14,7 @@
 ".\_build\mpu6500_base_driver.o"
 ".\_build\mpu6500_dmp_motion_driver.o"
 ".\_build\mpu6500.o"
+".\_build\euler_angle.o"
 ".\_build\boards.o"
 ".\_build\bsp.o"
 ".\_build\bsp_btn_ble.o"

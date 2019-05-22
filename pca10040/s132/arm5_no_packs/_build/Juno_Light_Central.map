@@ -481,6 +481,12 @@ Section Cross References
     mpu6500.o(i.getDMP_Data) refers to mpu6500_base_driver.o(.data) for imu_new_gyro
     mpu6500.o(i.send_packet) refers to memseta.o(.text) for __aeabi_memclr4
     mpu6500.o(i.send_packet) refers to uart.o(i.UART_Send_Multiple) for UART_Send_Multiple
+    euler_angle.o(i.QuatToEulerAngle) refers to f2d.o(.text) for __aeabi_f2d
+    euler_angle.o(i.QuatToEulerAngle) refers to atan2.o(i.__hardfp_atan2) for __hardfp_atan2
+    euler_angle.o(i.QuatToEulerAngle) refers to d2f.o(.text) for __aeabi_d2f
+    euler_angle.o(i.QuatToEulerAngle) refers to fabs.o(i.__hardfp_fabs) for __hardfp_fabs
+    euler_angle.o(i.QuatToEulerAngle) refers to cdrcmple.o(.text) for __aeabi_cdrcmple
+    euler_angle.o(i.QuatToEulerAngle) refers to asin.o(i.__hardfp_asin) for __hardfp_asin
     boards.o(i.bsp_board_button_idx_to_pin) refers to boards.o(.constdata) for m_board_btn_list
     boards.o(i.bsp_board_button_state_get) refers to boards.o(.constdata) for m_board_btn_list
     boards.o(i.bsp_board_buttons_init) refers to boards.o(i.nrf_gpio_cfg) for nrf_gpio_cfg
@@ -2699,6 +2705,65 @@ Section Cross References
     system_nrf52.o(i.SystemInit) refers to system_nrf52.o(i.errata_136) for errata_136
     system_nrf52.o(i.SystemInit) refers to system_nrf52.o(i.errata_182) for errata_182
     system_nrf52.o(i.SystemInit) refers to system_nrf52.o(i.SystemCoreClockUpdate) for SystemCoreClockUpdate
+    asin.o(i.__hardfp_asin) refers (Special) to iusefp.o(.text) for __I$use$fp
+    asin.o(i.__hardfp_asin) refers to dunder.o(i.__mathlib_dbl_infnan) for __mathlib_dbl_infnan
+    asin.o(i.__hardfp_asin) refers to dmul.o(.text) for __aeabi_dmul
+    asin.o(i.__hardfp_asin) refers to dadd.o(.text) for __aeabi_dadd
+    asin.o(i.__hardfp_asin) refers to errno.o(i.__set_errno) for __set_errno
+    asin.o(i.__hardfp_asin) refers to dunder.o(i.__mathlib_dbl_invalid) for __mathlib_dbl_invalid
+    asin.o(i.__hardfp_asin) refers to fpclassify.o(i.__ARM_fpclassify) for __ARM_fpclassify
+    asin.o(i.__hardfp_asin) refers to dunder.o(i.__mathlib_dbl_underflow) for __mathlib_dbl_underflow
+    asin.o(i.__hardfp_asin) refers to poly.o(i.__kernel_poly) for __kernel_poly
+    asin.o(i.__hardfp_asin) refers to ddiv.o(.text) for __aeabi_ddiv
+    asin.o(i.__hardfp_asin) refers to fabs.o(i.fabs) for fabs
+    asin.o(i.__hardfp_asin) refers to sqrt.o(i.sqrt) for sqrt
+    asin.o(i.__hardfp_asin) refers to asin.o(.constdata) for .constdata
+    asin.o(i.__softfp_asin) refers (Special) to iusefp.o(.text) for __I$use$fp
+    asin.o(i.__softfp_asin) refers to asin.o(i.__hardfp_asin) for __hardfp_asin
+    asin.o(i.asin) refers (Special) to iusefp.o(.text) for __I$use$fp
+    asin.o(i.asin) refers to asin.o(i.__hardfp_asin) for __hardfp_asin
+    asin.o(.constdata) refers (Special) to iusefp.o(.text) for __I$use$fp
+    asin_x.o(i.____hardfp_asin$lsc) refers (Special) to iusefp.o(.text) for __I$use$fp
+    asin_x.o(i.____hardfp_asin$lsc) refers to dunder.o(i.__mathlib_dbl_infnan) for __mathlib_dbl_infnan
+    asin_x.o(i.____hardfp_asin$lsc) refers to dmul.o(.text) for __aeabi_dmul
+    asin_x.o(i.____hardfp_asin$lsc) refers to dadd.o(.text) for __aeabi_dadd
+    asin_x.o(i.____hardfp_asin$lsc) refers to errno.o(i.__set_errno) for __set_errno
+    asin_x.o(i.____hardfp_asin$lsc) refers to poly.o(i.__kernel_poly) for __kernel_poly
+    asin_x.o(i.____hardfp_asin$lsc) refers to ddiv.o(.text) for __aeabi_ddiv
+    asin_x.o(i.____hardfp_asin$lsc) refers to fabs.o(i.fabs) for fabs
+    asin_x.o(i.____hardfp_asin$lsc) refers to sqrt.o(i.sqrt) for sqrt
+    asin_x.o(i.____hardfp_asin$lsc) refers to asin_x.o(.constdata) for .constdata
+    asin_x.o(i.____softfp_asin$lsc) refers (Special) to iusefp.o(.text) for __I$use$fp
+    asin_x.o(i.____softfp_asin$lsc) refers to asin_x.o(i.____hardfp_asin$lsc) for ____hardfp_asin$lsc
+    asin_x.o(i.__asin$lsc) refers (Special) to iusefp.o(.text) for __I$use$fp
+    asin_x.o(i.__asin$lsc) refers to asin_x.o(i.____hardfp_asin$lsc) for ____hardfp_asin$lsc
+    asin_x.o(.constdata) refers (Special) to iusefp.o(.text) for __I$use$fp
+    atan2.o(i.__hardfp_atan2) refers (Special) to iusefp.o(.text) for __I$use$fp
+    atan2.o(i.__hardfp_atan2) refers to dunder.o(i.__mathlib_dbl_infnan2) for __mathlib_dbl_infnan2
+    atan2.o(i.__hardfp_atan2) refers to atan.o(i.atan) for atan
+    atan2.o(i.__hardfp_atan2) refers to ddiv.o(.text) for __aeabi_ddiv
+    atan2.o(i.__hardfp_atan2) refers to fabs.o(i.fabs) for fabs
+    atan2.o(i.__hardfp_atan2) refers to dadd.o(.text) for __aeabi_dsub
+    atan2.o(i.__hardfp_atan2) refers to qnan.o(.constdata) for __mathlib_zero
+    atan2.o(i.__softfp_atan2) refers (Special) to iusefp.o(.text) for __I$use$fp
+    atan2.o(i.__softfp_atan2) refers to atan2.o(i.__hardfp_atan2) for __hardfp_atan2
+    atan2.o(i.atan2) refers (Special) to iusefp.o(.text) for __I$use$fp
+    atan2.o(i.atan2) refers to atan2.o(i.__hardfp_atan2) for __hardfp_atan2
+    atan2_x.o(i.____hardfp_atan2$lsc) refers (Special) to iusefp.o(.text) for __I$use$fp
+    atan2_x.o(i.____hardfp_atan2$lsc) refers to dunder.o(i.__mathlib_dbl_infnan2) for __mathlib_dbl_infnan2
+    atan2_x.o(i.____hardfp_atan2$lsc) refers to atan.o(i.atan) for atan
+    atan2_x.o(i.____hardfp_atan2$lsc) refers to errno.o(i.__set_errno) for __set_errno
+    atan2_x.o(i.____hardfp_atan2$lsc) refers to ddiv.o(.text) for __aeabi_ddiv
+    atan2_x.o(i.____hardfp_atan2$lsc) refers to fabs.o(i.fabs) for fabs
+    atan2_x.o(i.____hardfp_atan2$lsc) refers to dadd.o(.text) for __aeabi_dsub
+    atan2_x.o(i.____hardfp_atan2$lsc) refers to qnan.o(.constdata) for __mathlib_zero
+    atan2_x.o(i.____softfp_atan2$lsc) refers (Special) to iusefp.o(.text) for __I$use$fp
+    atan2_x.o(i.____softfp_atan2$lsc) refers to atan2_x.o(i.____hardfp_atan2$lsc) for ____hardfp_atan2$lsc
+    atan2_x.o(i.__atan2$lsc) refers (Special) to iusefp.o(.text) for __I$use$fp
+    atan2_x.o(i.__atan2$lsc) refers to atan2_x.o(i.____hardfp_atan2$lsc) for ____hardfp_atan2$lsc
+    fabs.o(i.__hardfp_fabs) refers (Special) to iusefp.o(.text) for __I$use$fp
+    fabs.o(i.__softfp_fabs) refers (Special) to iusefp.o(.text) for __I$use$fp
+    fabs.o(i.fabs) refers (Special) to iusefp.o(.text) for __I$use$fp
     entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry10a.o(.ARM.Collect$$$$0000000D) for __rt_final_cpp
     entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry11a.o(.ARM.Collect$$$$0000000F) for __rt_final_exit
     entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry7b.o(.ARM.Collect$$$$00000008) for _main_clock
@@ -2709,6 +2774,71 @@ Section Cross References
     uldiv.o(.text) refers to llushr.o(.text) for __aeabi_llsr
     uldiv.o(.text) refers to llshl.o(.text) for __aeabi_llsl
     ldiv.o(.text) refers to uldiv.o(.text) for __aeabi_uldivmod
+    f2d.o(.text) refers (Special) to iusefp.o(.text) for __I$use$fp
+    cdrcmple.o(.text) refers (Special) to iusefp.o(.text) for __I$use$fp
+    d2f.o(.text) refers (Special) to iusefp.o(.text) for __I$use$fp
+    d2f.o(.text) refers to fepilogue.o(.text) for _float_round
+    atan.o(i.__hardfp_atan) refers (Special) to iusefp.o(.text) for __I$use$fp
+    atan.o(i.__hardfp_atan) refers to dunder.o(i.__mathlib_dbl_infnan) for __mathlib_dbl_infnan
+    atan.o(i.__hardfp_atan) refers to fpclassify.o(i.__ARM_fpclassify) for __ARM_fpclassify
+    atan.o(i.__hardfp_atan) refers to dunder.o(i.__mathlib_dbl_underflow) for __mathlib_dbl_underflow
+    atan.o(i.__hardfp_atan) refers to fabs.o(i.fabs) for fabs
+    atan.o(i.__hardfp_atan) refers to dadd.o(.text) for __aeabi_dadd
+    atan.o(i.__hardfp_atan) refers to dmul.o(.text) for __aeabi_dmul
+    atan.o(i.__hardfp_atan) refers to ddiv.o(.text) for __aeabi_ddiv
+    atan.o(i.__hardfp_atan) refers to poly.o(i.__kernel_poly) for __kernel_poly
+    atan.o(i.__hardfp_atan) refers to atan.o(.constdata) for .constdata
+    atan.o(i.__softfp_atan) refers (Special) to iusefp.o(.text) for __I$use$fp
+    atan.o(i.__softfp_atan) refers to atan.o(i.__hardfp_atan) for __hardfp_atan
+    atan.o(i.atan) refers (Special) to iusefp.o(.text) for __I$use$fp
+    atan.o(i.atan) refers to atan.o(i.__hardfp_atan) for __hardfp_atan
+    atan.o(.constdata) refers (Special) to iusefp.o(.text) for __I$use$fp
+    atan_x.o(i.____hardfp_atan$lsc) refers (Special) to iusefp.o(.text) for __I$use$fp
+    atan_x.o(i.____hardfp_atan$lsc) refers to dunder.o(i.__mathlib_dbl_infnan) for __mathlib_dbl_infnan
+    atan_x.o(i.____hardfp_atan$lsc) refers to fabs.o(i.fabs) for fabs
+    atan_x.o(i.____hardfp_atan$lsc) refers to dadd.o(.text) for __aeabi_dadd
+    atan_x.o(i.____hardfp_atan$lsc) refers to dmul.o(.text) for __aeabi_dmul
+    atan_x.o(i.____hardfp_atan$lsc) refers to ddiv.o(.text) for __aeabi_ddiv
+    atan_x.o(i.____hardfp_atan$lsc) refers to poly.o(i.__kernel_poly) for __kernel_poly
+    atan_x.o(i.____hardfp_atan$lsc) refers to atan_x.o(.constdata) for .constdata
+    atan_x.o(i.____softfp_atan$lsc) refers (Special) to iusefp.o(.text) for __I$use$fp
+    atan_x.o(i.____softfp_atan$lsc) refers to atan_x.o(i.____hardfp_atan$lsc) for ____hardfp_atan$lsc
+    atan_x.o(i.__atan$lsc) refers (Special) to iusefp.o(.text) for __I$use$fp
+    atan_x.o(i.__atan$lsc) refers to atan_x.o(i.____hardfp_atan$lsc) for ____hardfp_atan$lsc
+    atan_x.o(.constdata) refers (Special) to iusefp.o(.text) for __I$use$fp
+    dunder.o(i.__mathlib_dbl_divzero) refers to ddiv.o(.text) for __aeabi_ddiv
+    dunder.o(i.__mathlib_dbl_infnan) refers to dadd.o(.text) for __aeabi_dadd
+    dunder.o(i.__mathlib_dbl_infnan2) refers to dadd.o(.text) for __aeabi_dadd
+    dunder.o(i.__mathlib_dbl_invalid) refers to ddiv.o(.text) for __aeabi_ddiv
+    dunder.o(i.__mathlib_dbl_overflow) refers to dmul.o(.text) for __aeabi_dmul
+    dunder.o(i.__mathlib_dbl_posinfnan) refers to dmul.o(.text) for __aeabi_dmul
+    dunder.o(i.__mathlib_dbl_underflow) refers to dmul.o(.text) for __aeabi_dmul
+    fpclassify.o(i.__ARM_fpclassify) refers (Special) to iusefp.o(.text) for __I$use$fp
+    poly.o(i.__kernel_poly) refers (Special) to iusefp.o(.text) for __I$use$fp
+    poly.o(i.__kernel_poly) refers to dmul.o(.text) for __aeabi_dmul
+    poly.o(i.__kernel_poly) refers to dadd.o(.text) for __aeabi_dadd
+    qnan.o(.constdata) refers (Special) to iusefp.o(.text) for __I$use$fp
+    sqrt.o(i.__hardfp_sqrt) refers (Special) to iusefp.o(.text) for __I$use$fp
+    sqrt.o(i.__hardfp_sqrt) refers to dsqrt.o(.text) for _dsqrt
+    sqrt.o(i.__hardfp_sqrt) refers to errno.o(i.__set_errno) for __set_errno
+    sqrt.o(i.__softfp_sqrt) refers (Special) to iusefp.o(.text) for __I$use$fp
+    sqrt.o(i.__softfp_sqrt) refers to dsqrt.o(.text) for _dsqrt
+    sqrt.o(i.__softfp_sqrt) refers to errno.o(i.__set_errno) for __set_errno
+    sqrt.o(i.sqrt) refers (Special) to iusefp.o(.text) for __I$use$fp
+    sqrt.o(i.sqrt) refers to dsqrt.o(.text) for _dsqrt
+    sqrt.o(i.sqrt) refers to errno.o(i.__set_errno) for __set_errno
+    sqrt_x.o(i.____hardfp_sqrt$lsc) refers (Special) to iusefp.o(.text) for __I$use$fp
+    sqrt_x.o(i.____hardfp_sqrt$lsc) refers to cdcmple.o(.text) for __aeabi_cdcmple
+    sqrt_x.o(i.____hardfp_sqrt$lsc) refers to errno.o(i.__set_errno) for __set_errno
+    sqrt_x.o(i.____hardfp_sqrt$lsc) refers to dsqrt.o(.text) for _dsqrt
+    sqrt_x.o(i.____softfp_sqrt$lsc) refers (Special) to iusefp.o(.text) for __I$use$fp
+    sqrt_x.o(i.____softfp_sqrt$lsc) refers to cdcmple.o(.text) for __aeabi_cdcmple
+    sqrt_x.o(i.____softfp_sqrt$lsc) refers to errno.o(i.__set_errno) for __set_errno
+    sqrt_x.o(i.____softfp_sqrt$lsc) refers to dsqrt.o(.text) for _dsqrt
+    sqrt_x.o(i.__sqrt$lsc) refers (Special) to iusefp.o(.text) for __I$use$fp
+    sqrt_x.o(i.__sqrt$lsc) refers to cdcmple.o(.text) for __aeabi_cdcmple
+    sqrt_x.o(i.__sqrt$lsc) refers to errno.o(i.__set_errno) for __set_errno
+    sqrt_x.o(i.__sqrt$lsc) refers to dsqrt.o(.text) for _dsqrt
     entry2.o(.ARM.Collect$$$$00000001) refers to entry2.o(.ARM.Collect$$$$00002712) for __lit__00000000
     entry2.o(.ARM.Collect$$$$00002712) refers to arm_startup_nrf52.o(STACK) for __initial_sp
     entry2.o(__vectab_stack_and_reset_area) refers to arm_startup_nrf52.o(STACK) for __initial_sp
@@ -2716,7 +2846,19 @@ Section Cross References
     entry5.o(.ARM.Collect$$$$00000004) refers to init.o(.text) for __scatterload
     entry9a.o(.ARM.Collect$$$$0000000B) refers to main.o(i.main) for main
     entry9b.o(.ARM.Collect$$$$0000000C) refers to main.o(i.main) for main
+    errno.o(i.__aeabi_errno_addr) refers to errno.o(.data) for .data
+    errno.o(i.__read_errno) refers to errno.o(.data) for .data
+    errno.o(i.__set_errno) refers to errno.o(.data) for .data
+    dadd.o(.text) refers to llshl.o(.text) for __aeabi_llsl
+    dadd.o(.text) refers to llsshr.o(.text) for __aeabi_lasr
+    dadd.o(.text) refers to depilogue.o(.text) for _double_epilogue
+    dmul.o(.text) refers to depilogue.o(.text) for _double_epilogue
+    ddiv.o(.text) refers to depilogue.o(.text) for _double_round
     init.o(.text) refers to entry5.o(.ARM.Collect$$$$00000004) for __main_after_scatterload
+    depilogue.o(.text) refers to llshl.o(.text) for __aeabi_llsl
+    depilogue.o(.text) refers to llushr.o(.text) for __aeabi_llsr
+    dsqrt.o(.text) refers to llushr.o(.text) for __aeabi_llsr
+    dsqrt.o(.text) refers to depilogue.o(.text) for _double_round
 
 
 ==============================================================================
@@ -2907,6 +3049,7 @@ Removing Unused input sections from the image.
     Removing mpu6500.o(i.inv_row_2_scale), (78 bytes).
     Removing mpu6500.o(i.send_packet), (356 bytes).
     Removing mpu6500.o(.data), (9 bytes).
+    Removing euler_angle.o(i.QuatToEulerAngle), (476 bytes).
     Removing boards.o(.rev16_text), (4 bytes).
     Removing boards.o(.revsh_text), (4 bytes).
     Removing boards.o(.rrx_text), (6 bytes).
@@ -3658,8 +3801,19 @@ Removing Unused input sections from the image.
     Removing system_nrf52.o(.rev16_text), (4 bytes).
     Removing system_nrf52.o(.revsh_text), (4 bytes).
     Removing system_nrf52.o(.rrx_text), (6 bytes).
+    Removing f2d.o(.text), (38 bytes).
+    Removing cdrcmple.o(.text), (48 bytes).
+    Removing d2f.o(.text), (56 bytes).
+    Removing fepilogue.o(.text), (110 bytes).
+    Removing dadd.o(.text), (334 bytes).
+    Removing dmul.o(.text), (228 bytes).
+    Removing ddiv.o(.text), (222 bytes).
+    Removing dneg.o(.text), (6 bytes).
+    Removing depilogue.o(.text), (186 bytes).
+    Removing dsqrt.o(.text), (162 bytes).
+    Removing cdcmple.o(.text), (48 bytes).
 
-935 unused section(s) (total 62011 bytes) removed from the image.
+947 unused section(s) (total 63925 bytes) removed from the image.
 
 ==============================================================================
 
@@ -3670,21 +3824,23 @@ Image Symbol Table
     Symbol Name                              Value     Ov Type        Size  Object(Section)
 
     ../clib/../cmprslib/zerorunl2.c          0x00000000   Number         0  __dczerorl2.o ABSOLUTE
-    ../clib/microlib/division.c              0x00000000   Number         0  uldiv.o ABSOLUTE
     ../clib/microlib/division.c              0x00000000   Number         0  ldiv.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7b.o ABSOLUTE
+    ../clib/microlib/division.c              0x00000000   Number         0  uldiv.o ABSOLUTE
+    ../clib/microlib/errno.c                 0x00000000   Number         0  errno.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry5.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry2.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7b.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry2.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry5.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10b.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10a.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8a.o ABSOLUTE
+    ../clib/microlib/longlong.c              0x00000000   Number         0  llsshr.o ABSOLUTE
     ../clib/microlib/longlong.c              0x00000000   Number         0  llushr.o ABSOLUTE
     ../clib/microlib/longlong.c              0x00000000   Number         0  llshl.o ABSOLUTE
     ../clib/microlib/string/memcmp.c         0x00000000   Number         0  memcmp.o ABSOLUTE
@@ -3693,6 +3849,29 @@ Image Symbol Table
     ../clib/microlib/string/memset.c         0x00000000   Number         0  memseta.o ABSOLUTE
     ../clib/microlib/string/strcpy.c         0x00000000   Number         0  strcpy.o ABSOLUTE
     ../clib/microlib/string/strlen.c         0x00000000   Number         0  strlen.o ABSOLUTE
+    ../clib/microlib/stubs.s                 0x00000000   Number         0  iusefp.o ABSOLUTE
+    ../fplib/microlib/d2f.c                  0x00000000   Number         0  d2f.o ABSOLUTE
+    ../fplib/microlib/f2d.c                  0x00000000   Number         0  f2d.o ABSOLUTE
+    ../fplib/microlib/fpadd.c                0x00000000   Number         0  dadd.o ABSOLUTE
+    ../fplib/microlib/fpdiv.c                0x00000000   Number         0  ddiv.o ABSOLUTE
+    ../fplib/microlib/fpepilogue.c           0x00000000   Number         0  fepilogue.o ABSOLUTE
+    ../fplib/microlib/fpepilogue.c           0x00000000   Number         0  depilogue.o ABSOLUTE
+    ../fplib/microlib/fpmul.c                0x00000000   Number         0  dmul.o ABSOLUTE
+    ../fplib/microlib/fpneg.c                0x00000000   Number         0  dneg.o ABSOLUTE
+    ../fplib/microlib/fpsqrt.c               0x00000000   Number         0  dsqrt.o ABSOLUTE
+    ../mathlib/asin.c                        0x00000000   Number         0  asin.o ABSOLUTE
+    ../mathlib/asin.c                        0x00000000   Number         0  asin_x.o ABSOLUTE
+    ../mathlib/atan.c                        0x00000000   Number         0  atan.o ABSOLUTE
+    ../mathlib/atan.c                        0x00000000   Number         0  atan_x.o ABSOLUTE
+    ../mathlib/atan2.c                       0x00000000   Number         0  atan2_x.o ABSOLUTE
+    ../mathlib/atan2.c                       0x00000000   Number         0  atan2.o ABSOLUTE
+    ../mathlib/dunder.c                      0x00000000   Number         0  dunder.o ABSOLUTE
+    ../mathlib/fabs.c                        0x00000000   Number         0  fabs.o ABSOLUTE
+    ../mathlib/fpclassify.c                  0x00000000   Number         0  fpclassify.o ABSOLUTE
+    ../mathlib/poly.c                        0x00000000   Number         0  poly.o ABSOLUTE
+    ../mathlib/qnan.c                        0x00000000   Number         0  qnan.o ABSOLUTE
+    ../mathlib/sqrt.c                        0x00000000   Number         0  sqrt_x.o ABSOLUTE
+    ../mathlib/sqrt.c                        0x00000000   Number         0  sqrt.o ABSOLUTE
     ..\..\..\..\..\NRF5_SDK\components\ble\ble_services\ble_dfu\ble_dfu.c 0x00000000   Number         0  ble_dfu.o ABSOLUTE
     ..\..\..\..\..\NRF5_SDK\components\ble\ble_services\ble_dfu\ble_dfu_bonded.c 0x00000000   Number         0  ble_dfu_bonded.o ABSOLUTE
     ..\..\..\..\..\NRF5_SDK\components\ble\ble_services\ble_dfu\ble_dfu_unbonded.c 0x00000000   Number         0  ble_dfu_unbonded.o ABSOLUTE
@@ -3733,6 +3912,7 @@ Image Symbol Table
     ..\..\..\..\..\NRF5_SDK\modules\nrfx\hal\nrf_nvmc.c 0x00000000   Number         0  nrf_nvmc.o ABSOLUTE
     ..\..\..\..\..\NRF5_SDK\modules\nrfx\soc\nrfx_atomic.c 0x00000000   Number         0  nrfx_atomic.o ABSOLUTE
     ..\..\..\Src\Command_Handling.c          0x00000000   Number         0  command_handling.o ABSOLUTE
+    ..\..\..\Src\Euler_Angle.c               0x00000000   Number         0  euler_angle.o ABSOLUTE
     ..\..\..\Src\GPIO.c                      0x00000000   Number         0  gpio.o ABSOLUTE
     ..\..\..\Src\Juno_BLE.c                  0x00000000   Number         0  juno_ble.o ABSOLUTE
     ..\..\..\Src\Juno_Buttonless_DFU.c       0x00000000   Number         0  juno_buttonless_dfu.o ABSOLUTE
@@ -3893,6 +4073,8 @@ Image Symbol Table
     RTE\Device\nRF52832_xxAA\arm_startup_nrf52.s 0x00000000   Number         0  arm_startup_nrf52.o ABSOLUTE
     RTE\Device\nRF52832_xxAA\system_nrf52.c  0x00000000   Number         0  system_nrf52.o ABSOLUTE
     RTE\\Device\\nRF52832_xxAA\\system_nrf52.c 0x00000000   Number         0  system_nrf52.o ABSOLUTE
+    cdcmple.s                                0x00000000   Number         0  cdcmple.o ABSOLUTE
+    cdrcmple.s                               0x00000000   Number         0  cdrcmple.o ABSOLUTE
     dc.s                                     0x00000000   Number         0  dc.o ABSOLUTE
     handlers.s                               0x00000000   Number         0  handlers.o ABSOLUTE
     init.s                                   0x00000000   Number         0  init.o ABSOLUTE
@@ -5249,7 +5431,7 @@ Image Symbol Table
 
     Symbol Name                              Value     Ov Type        Size  Object(Section)
 
-    BuildAttributes$$THM_ISAv4$E$P$D$K$B$S$7EM$VFPi3$EXTD16$VFPS$VFMA$PE$A:L22UL41UL21$X:L11$S22US41US21$IEEE1$IW$USESV6$~STKCKD$USESV7$~SHL$OSPACE$EBA8$MICROLIB$REQ8$EABIv2 0x00000000   Number         0  anon$$obj.o ABSOLUTE
+    BuildAttributes$$THM_ISAv4$E$P$D$K$B$S$7EM$VFPi3$EXTD16$VFPS$VFMA$PE$A:L22UL41UL21$X:L11$S22US41US21$IEEE1$IW$USESV6$~STKCKD$USESV7$~SHL$OTIME$ROPI$IEEEX$EBA8$MICROLIB$REQ8$EABIv2 0x00000000   Number         0  anon$$obj.o ABSOLUTE
     __ARM_use_no_argv                        0x00000000   Number         0  main.o ABSOLUTE
     __cpp_initialize__aeabi_                  - Undefined Weak Reference
     __cxa_finalize                            - Undefined Weak Reference
@@ -5639,31 +5821,31 @@ Memory Map of the image
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x00026000   0x00026000   0x00000200   Data   RO         9911    RESET               arm_startup_nrf52.o
-    0x00026200   0x00026200   0x00000000   Code   RO        10007  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
-    0x00026200   0x00026200   0x00000004   Code   RO        10030    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)
-    0x00026204   0x00026204   0x00000004   Code   RO        10033    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
-    0x00026208   0x00026208   0x00000000   Code   RO        10035    .ARM.Collect$$$$00000008  mc_w.l(entry7b.o)
-    0x00026208   0x00026208   0x00000000   Code   RO        10037    .ARM.Collect$$$$0000000A  mc_w.l(entry8b.o)
-    0x00026208   0x00026208   0x00000008   Code   RO        10038    .ARM.Collect$$$$0000000B  mc_w.l(entry9a.o)
-    0x00026210   0x00026210   0x00000000   Code   RO        10040    .ARM.Collect$$$$0000000D  mc_w.l(entry10a.o)
-    0x00026210   0x00026210   0x00000000   Code   RO        10042    .ARM.Collect$$$$0000000F  mc_w.l(entry11a.o)
-    0x00026210   0x00026210   0x00000004   Code   RO        10031    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)
-    0x00026214   0x00026214   0x000000c8   Code   RO         8120    .emb_text           nrf_atfifo.o
-    0x000262dc   0x000262dc   0x000000e2   Code   RO         8265    .emb_text           nrf_atomic.o
+    0x00026000   0x00026000   0x00000200   Data   RO         9933    RESET               arm_startup_nrf52.o
+    0x00026200   0x00026200   0x00000000   Code   RO        10061  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
+    0x00026200   0x00026200   0x00000004   Code   RO        10135    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)
+    0x00026204   0x00026204   0x00000004   Code   RO        10138    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
+    0x00026208   0x00026208   0x00000000   Code   RO        10140    .ARM.Collect$$$$00000008  mc_w.l(entry7b.o)
+    0x00026208   0x00026208   0x00000000   Code   RO        10142    .ARM.Collect$$$$0000000A  mc_w.l(entry8b.o)
+    0x00026208   0x00026208   0x00000008   Code   RO        10143    .ARM.Collect$$$$0000000B  mc_w.l(entry9a.o)
+    0x00026210   0x00026210   0x00000000   Code   RO        10145    .ARM.Collect$$$$0000000D  mc_w.l(entry10a.o)
+    0x00026210   0x00026210   0x00000000   Code   RO        10147    .ARM.Collect$$$$0000000F  mc_w.l(entry11a.o)
+    0x00026210   0x00026210   0x00000004   Code   RO        10136    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)
+    0x00026214   0x00026214   0x000000c8   Code   RO         8142    .emb_text           nrf_atfifo.o
+    0x000262dc   0x000262dc   0x000000e2   Code   RO         8287    .emb_text           nrf_atomic.o
     0x000263be   0x000263be   0x00000002   PAD
-    0x000263c0   0x000263c0   0x00000024   Code   RO         9912    .text               arm_startup_nrf52.o
-    0x000263e4   0x000263e4   0x00000062   Code   RO        10010    .text               mc_w.l(uldiv.o)
-    0x00026446   0x00026446   0x0000001e   Code   RO        10014    .text               mc_w.l(llshl.o)
-    0x00026464   0x00026464   0x00000020   Code   RO        10016    .text               mc_w.l(llushr.o)
-    0x00026484   0x00026484   0x00000024   Code   RO        10018    .text               mc_w.l(memcpya.o)
-    0x000264a8   0x000264a8   0x00000024   Code   RO        10020    .text               mc_w.l(memseta.o)
-    0x000264cc   0x000264cc   0x0000001a   Code   RO        10024    .text               mc_w.l(memcmp.o)
+    0x000263c0   0x000263c0   0x00000024   Code   RO         9934    .text               arm_startup_nrf52.o
+    0x000263e4   0x000263e4   0x00000062   Code   RO        10064    .text               mc_w.l(uldiv.o)
+    0x00026446   0x00026446   0x0000001e   Code   RO        10068    .text               mc_w.l(llshl.o)
+    0x00026464   0x00026464   0x00000020   Code   RO        10070    .text               mc_w.l(llushr.o)
+    0x00026484   0x00026484   0x00000024   Code   RO        10072    .text               mc_w.l(memcpya.o)
+    0x000264a8   0x000264a8   0x00000024   Code   RO        10074    .text               mc_w.l(memseta.o)
+    0x000264cc   0x000264cc   0x0000001a   Code   RO        10078    .text               mc_w.l(memcmp.o)
     0x000264e6   0x000264e6   0x00000002   PAD
-    0x000264e8   0x000264e8   0x00000024   Code   RO        10044    .text               mc_w.l(init.o)
-    0x0002650c   0x0002650c   0x00000056   Code   RO        10054    .text               mc_w.l(__dczerorl2.o)
+    0x000264e8   0x000264e8   0x00000024   Code   RO        10167    .text               mc_w.l(init.o)
+    0x0002650c   0x0002650c   0x00000056   Code   RO        10185    .text               mc_w.l(__dczerorl2.o)
     0x00026562   0x00026562   0x00000002   PAD
-    0x00026564   0x00026564   0x0000021c   Code   RO         5896    i.GPIOTE_IRQHandler  nrfx_gpiote.o
+    0x00026564   0x00026564   0x0000021c   Code   RO         5918    i.GPIOTE_IRQHandler  nrfx_gpiote.o
     0x00026780   0x00026780   0x0000008c   Code   RO          602    i.GPIO_Init         gpio.o
     0x0002680c   0x0002680c   0x00000044   Code   RO            4    i.HardFault_Handler  main.o
     0x00026850   0x00026850   0x0000000e   Code   RO         1269    i.LED1642GW_Data_Latch  led1642gw.o
@@ -5689,625 +5871,625 @@ Memory Map of the image
     0x00026c8c   0x00026c8c   0x0000001c   Code   RO         1173    i.LED_Start_Transaction_LE  spi1_led.o
     0x00026ca8   0x00026ca8   0x0000000c   Code   RO         1174    i.LED_Stop_Transaction  spi1_led.o
     0x00026cb4   0x00026cb4   0x0000000c   Code   RO         1175    i.LED_Stop_Transaction_LE  spi1_led.o
-    0x00026cc0   0x00026cc0   0x00000018   Code   RO         7117    i.NVIC_ClearPendingIRQ  app_timer.o
-    0x00026cd8   0x00026cd8   0x00000016   Code   RO         7118    i.NVIC_EnableIRQ    app_timer.o
+    0x00026cc0   0x00026cc0   0x00000018   Code   RO         7139    i.NVIC_ClearPendingIRQ  app_timer.o
+    0x00026cd8   0x00026cd8   0x00000016   Code   RO         7140    i.NVIC_EnableIRQ    app_timer.o
     0x00026cee   0x00026cee   0x00000002   PAD
-    0x00026cf0   0x00026cf0   0x00000018   Code   RO         7119    i.NVIC_SetPendingIRQ  app_timer.o
-    0x00026d08   0x00026d08   0x00000028   Code   RO         7120    i.NVIC_SetPriority  app_timer.o
-    0x00026d30   0x00026d30   0x00000054   Code   RO         5741    i.POWER_CLOCK_IRQHandler  nrfx_clock.o
-    0x00026d84   0x00026d84   0x00000014   Code   RO         6540    i.PWM0_IRQHandler   nrfx_pwm.o
-    0x00026d98   0x00026d98   0x00000014   Code   RO         6541    i.PWM1_IRQHandler   nrfx_pwm.o
+    0x00026cf0   0x00026cf0   0x00000018   Code   RO         7141    i.NVIC_SetPendingIRQ  app_timer.o
+    0x00026d08   0x00026d08   0x00000028   Code   RO         7142    i.NVIC_SetPriority  app_timer.o
+    0x00026d30   0x00026d30   0x00000054   Code   RO         5763    i.POWER_CLOCK_IRQHandler  nrfx_clock.o
+    0x00026d84   0x00026d84   0x00000014   Code   RO         6562    i.PWM0_IRQHandler   nrfx_pwm.o
+    0x00026d98   0x00026d98   0x00000014   Code   RO         6563    i.PWM1_IRQHandler   nrfx_pwm.o
     0x00026dac   0x00026dac   0x00000034   Code   RO          653    i.PWM_PWCLK_init    pwm.o
     0x00026de0   0x00026de0   0x00000034   Code   RO          654    i.PWM_PWCLK_play    pwm.o
     0x00026e14   0x00026e14   0x00000034   Code   RO          655    i.PWM_init          pwm.o
     0x00026e48   0x00026e48   0x00000030   Code   RO          656    i.PWM_play          pwm.o
-    0x00026e78   0x00026e78   0x00000034   Code   RO         7121    i.RTC1_IRQHandler   app_timer.o
-    0x00026eac   0x00026eac   0x000001cc   Code   RO         5445    i.SAADC_IRQHandler  nrfx_saadc.o
-    0x00027078   0x00027078   0x00000014   Code   RO         6677    i.SPIM0_SPIS0_TWIM0_TWIS0_SPI0_TWI0_IRQHandler  nrfx_spim.o
-    0x0002708c   0x0002708c   0x00000014   Code   RO         6678    i.SPIM1_SPIS1_TWIM1_TWIS1_SPI1_TWI1_IRQHandler  nrfx_spim.o
-    0x000270a0   0x000270a0   0x00000008   Code   RO         7122    i.SWI0_EGU0_IRQHandler  app_timer.o
-    0x000270a8   0x000270a8   0x00000008   Code   RO         9693    i.SWI2_EGU2_IRQHandler  nrf_sdh.o
-    0x000270b0   0x000270b0   0x00000010   Code   RO         9919    i.SystemCoreClockUpdate  system_nrf52.o
-    0x000270c0   0x000270c0   0x00000284   Code   RO         9920    i.SystemInit        system_nrf52.o
-    0x00027344   0x00027344   0x00000018   Code   RO         5248    i.TIMER1_IRQHandler  nrfx_timer.o
-    0x0002735c   0x0002735c   0x00000018   Code   RO         5249    i.TIMER2_IRQHandler  nrfx_timer.o
-    0x00027374   0x00027374   0x00000018   Code   RO         5250    i.TIMER3_IRQHandler  nrfx_timer.o
-    0x0002738c   0x0002738c   0x00000018   Code   RO         5251    i.TIMER4_IRQHandler  nrfx_timer.o
+    0x00026e78   0x00026e78   0x00000034   Code   RO         7143    i.RTC1_IRQHandler   app_timer.o
+    0x00026eac   0x00026eac   0x000001cc   Code   RO         5467    i.SAADC_IRQHandler  nrfx_saadc.o
+    0x00027078   0x00027078   0x00000014   Code   RO         6699    i.SPIM0_SPIS0_TWIM0_TWIS0_SPI0_TWI0_IRQHandler  nrfx_spim.o
+    0x0002708c   0x0002708c   0x00000014   Code   RO         6700    i.SPIM1_SPIS1_TWIM1_TWIS1_SPI1_TWI1_IRQHandler  nrfx_spim.o
+    0x000270a0   0x000270a0   0x00000008   Code   RO         7144    i.SWI0_EGU0_IRQHandler  app_timer.o
+    0x000270a8   0x000270a8   0x00000008   Code   RO         9715    i.SWI2_EGU2_IRQHandler  nrf_sdh.o
+    0x000270b0   0x000270b0   0x00000010   Code   RO         9941    i.SystemCoreClockUpdate  system_nrf52.o
+    0x000270c0   0x000270c0   0x00000284   Code   RO         9942    i.SystemInit        system_nrf52.o
+    0x00027344   0x00027344   0x00000018   Code   RO         5270    i.TIMER1_IRQHandler  nrfx_timer.o
+    0x0002735c   0x0002735c   0x00000018   Code   RO         5271    i.TIMER2_IRQHandler  nrfx_timer.o
+    0x00027374   0x00027374   0x00000018   Code   RO         5272    i.TIMER3_IRQHandler  nrfx_timer.o
+    0x0002738c   0x0002738c   0x00000018   Code   RO         5273    i.TIMER4_IRQHandler  nrfx_timer.o
     0x000273a4   0x000273a4   0x0000000c   Code   RO          603    i.Touch_In_handler  gpio.o
-    0x000273b0   0x000273b0   0x00000010   Code   RO         6214    i.UARTE0_UART0_IRQHandler  nrfx_prs.o
+    0x000273b0   0x000273b0   0x00000010   Code   RO         6236    i.UARTE0_UART0_IRQHandler  nrfx_prs.o
     0x000273c0   0x000273c0   0x00000058   Code   RO          816    i.UART_Init         uart.o
-    0x00027418   0x00027418   0x0000000e   Code   RO        10048    i.__scatterload_copy  mc_w.l(handlers.o)
-    0x00027426   0x00027426   0x00000002   Code   RO        10049    i.__scatterload_null  mc_w.l(handlers.o)
-    0x00027428   0x00027428   0x0000000e   Code   RO        10050    i.__scatterload_zeroinit  mc_w.l(handlers.o)
+    0x00027418   0x00027418   0x0000000e   Code   RO        10179    i.__scatterload_copy  mc_w.l(handlers.o)
+    0x00027426   0x00027426   0x00000002   Code   RO        10180    i.__scatterload_null  mc_w.l(handlers.o)
+    0x00027428   0x00027428   0x0000000e   Code   RO        10181    i.__scatterload_zeroinit  mc_w.l(handlers.o)
     0x00027436   0x00027436   0x00000002   PAD
-    0x00027438   0x00027438   0x00000038   Code   RO         9694    i.__sd_nvic_app_accessible_irq  nrf_sdh.o
-    0x00027470   0x00027470   0x0000000c   Code   RO         7342    i.__sd_nvic_irq_disable  app_util_platform.o
-    0x0002747c   0x0002747c   0x00000032   Code   RO         3180    i.addr_compare      id_manager.o
-    0x000274ae   0x000274ae   0x00000010   Code   RO         8541    i.addr_is_aligned32  nrf_fstorage.o
-    0x000274be   0x000274be   0x00000014   Code   RO         8542    i.addr_is_page_aligned  nrf_fstorage.o
-    0x000274d2   0x000274d2   0x00000018   Code   RO         2350    i.addr_is_valid     ble_advertising.o
-    0x000274ea   0x000274ea   0x0000001c   Code   RO         8543    i.addr_is_within_bounds  nrf_fstorage.o
+    0x00027438   0x00027438   0x00000038   Code   RO         9716    i.__sd_nvic_app_accessible_irq  nrf_sdh.o
+    0x00027470   0x00027470   0x0000000c   Code   RO         7364    i.__sd_nvic_irq_disable  app_util_platform.o
+    0x0002747c   0x0002747c   0x00000032   Code   RO         3202    i.addr_compare      id_manager.o
+    0x000274ae   0x000274ae   0x00000010   Code   RO         8563    i.addr_is_aligned32  nrf_fstorage.o
+    0x000274be   0x000274be   0x00000014   Code   RO         8564    i.addr_is_page_aligned  nrf_fstorage.o
+    0x000274d2   0x000274d2   0x00000018   Code   RO         2372    i.addr_is_valid     ble_advertising.o
+    0x000274ea   0x000274ea   0x0000001c   Code   RO         8565    i.addr_is_within_bounds  nrf_fstorage.o
     0x00027506   0x00027506   0x00000002   PAD
-    0x00027508   0x00027508   0x0000002c   Code   RO         7626    i.address_is_valid  fds.o
-    0x00027534   0x00027534   0x00000058   Code   RO         2351    i.adv_mode_next_avail_get  ble_advertising.o
-    0x0002758c   0x0002758c   0x00000012   Code   RO         2352    i.adv_mode_next_get  ble_advertising.o
-    0x0002759e   0x0002759e   0x00000054   Code   RO         2146    i.advertising_buttons_configure  bsp_btn_ble.o
-    0x000275f2   0x000275f2   0x00000056   Code   RO         3181    i.ah                id_manager.o
-    0x00027648   0x00027648   0x00000014   Code   RO         4407    i.allow_repairing   security_dispatcher.o
-    0x0002765c   0x0002765c   0x00000060   Code   RO         7034    i.app_error_fault_handler  app_error_weak.o
-    0x000276bc   0x000276bc   0x0000001c   Code   RO         6950    i.app_error_handler_bare  app_error.o
-    0x000276d8   0x000276d8   0x0000001e   Code   RO         7421    i.app_fifo_get      app_fifo.o
-    0x000276f6   0x000276f6   0x00000024   Code   RO         7422    i.app_fifo_init     app_fifo.o
-    0x0002771a   0x0002771a   0x00000022   Code   RO         7424    i.app_fifo_put      app_fifo.o
-    0x0002773c   0x0002773c   0x0000005c   Code   RO         7126    i.app_timer_init    app_timer.o
-    0x00027798   0x00027798   0x00000054   Code   RO         7129    i.app_timer_start   app_timer.o
-    0x000277ec   0x000277ec   0x00000030   Code   RO         7130    i.app_timer_stop    app_timer.o
-    0x0002781c   0x0002781c   0x000000dc   Code   RO         7524    i.app_uart_init     app_uart_fifo.o
-    0x000278f8   0x000278f8   0x0000000c   Code   RO         7343    i.app_util_critical_region_enter  app_util_platform.o
-    0x00027904   0x00027904   0x00000048   Code   RO         7344    i.app_util_critical_region_exit  app_util_platform.o
-    0x0002794c   0x0002794c   0x0000007c   Code   RO         6265    i.apply_config      nrfx_uart.o
-    0x000279c8   0x000279c8   0x0000000e   Code   RO         2890    i.apply_pending_handle  gatt_cache_manager.o
-    0x000279d6   0x000279d6   0x00000014   Code   RO         4408    i.auth_status_failure_process  security_dispatcher.o
-    0x000279ea   0x000279ea   0x0000001c   Code   RO         4409    i.auth_status_process  security_dispatcher.o
+    0x00027508   0x00027508   0x0000002c   Code   RO         7648    i.address_is_valid  fds.o
+    0x00027534   0x00027534   0x00000058   Code   RO         2373    i.adv_mode_next_avail_get  ble_advertising.o
+    0x0002758c   0x0002758c   0x00000012   Code   RO         2374    i.adv_mode_next_get  ble_advertising.o
+    0x0002759e   0x0002759e   0x00000054   Code   RO         2168    i.advertising_buttons_configure  bsp_btn_ble.o
+    0x000275f2   0x000275f2   0x00000056   Code   RO         3203    i.ah                id_manager.o
+    0x00027648   0x00027648   0x00000014   Code   RO         4429    i.allow_repairing   security_dispatcher.o
+    0x0002765c   0x0002765c   0x00000060   Code   RO         7056    i.app_error_fault_handler  app_error_weak.o
+    0x000276bc   0x000276bc   0x0000001c   Code   RO         6972    i.app_error_handler_bare  app_error.o
+    0x000276d8   0x000276d8   0x0000001e   Code   RO         7443    i.app_fifo_get      app_fifo.o
+    0x000276f6   0x000276f6   0x00000024   Code   RO         7444    i.app_fifo_init     app_fifo.o
+    0x0002771a   0x0002771a   0x00000022   Code   RO         7446    i.app_fifo_put      app_fifo.o
+    0x0002773c   0x0002773c   0x0000005c   Code   RO         7148    i.app_timer_init    app_timer.o
+    0x00027798   0x00027798   0x00000054   Code   RO         7151    i.app_timer_start   app_timer.o
+    0x000277ec   0x000277ec   0x00000030   Code   RO         7152    i.app_timer_stop    app_timer.o
+    0x0002781c   0x0002781c   0x000000dc   Code   RO         7546    i.app_uart_init     app_uart_fifo.o
+    0x000278f8   0x000278f8   0x0000000c   Code   RO         7365    i.app_util_critical_region_enter  app_util_platform.o
+    0x00027904   0x00027904   0x00000048   Code   RO         7366    i.app_util_critical_region_exit  app_util_platform.o
+    0x0002794c   0x0002794c   0x0000007c   Code   RO         6287    i.apply_config      nrfx_uart.o
+    0x000279c8   0x000279c8   0x0000000e   Code   RO         2912    i.apply_pending_handle  gatt_cache_manager.o
+    0x000279d6   0x000279d6   0x00000014   Code   RO         4430    i.auth_status_failure_process  security_dispatcher.o
+    0x000279ea   0x000279ea   0x0000001c   Code   RO         4431    i.auth_status_process  security_dispatcher.o
     0x00027a06   0x00027a06   0x00000002   PAD
-    0x00027a08   0x00027a08   0x00000124   Code   RO         4410    i.auth_status_success_process  security_dispatcher.o
-    0x00027b2c   0x00027b2c   0x0000006c   Code   RO         2863    i.blcm_link_ctx_get  ble_link_ctx_manager.o
-    0x00027b98   0x00027b98   0x00000028   Code   RO         2224    i.ble_advdata_parse  ble_advdata.o
-    0x00027bc0   0x00027bc0   0x00000040   Code   RO         2225    i.ble_advdata_search  ble_advdata.o
-    0x00027c00   0x00027c00   0x0000003c   Code   RO         2357    i.ble_advertising_on_ble_evt  ble_advertising.o
-    0x00027c3c   0x00027c3c   0x00000002   Code   RO         2358    i.ble_advertising_on_sys_evt  ble_advertising.o
-    0x00027c3e   0x00027c3e   0x00000174   Code   RO         2361    i.ble_advertising_start  ble_advertising.o
-    0x00027db2   0x00027db2   0x00000014   Code   RO         2616    i.ble_conn_state_conn_idx  ble_conn_state.o
+    0x00027a08   0x00027a08   0x00000124   Code   RO         4432    i.auth_status_success_process  security_dispatcher.o
+    0x00027b2c   0x00027b2c   0x0000006c   Code   RO         2885    i.blcm_link_ctx_get  ble_link_ctx_manager.o
+    0x00027b98   0x00027b98   0x00000028   Code   RO         2246    i.ble_advdata_parse  ble_advdata.o
+    0x00027bc0   0x00027bc0   0x00000040   Code   RO         2247    i.ble_advdata_search  ble_advdata.o
+    0x00027c00   0x00027c00   0x0000003c   Code   RO         2379    i.ble_advertising_on_ble_evt  ble_advertising.o
+    0x00027c3c   0x00027c3c   0x00000002   Code   RO         2380    i.ble_advertising_on_sys_evt  ble_advertising.o
+    0x00027c3e   0x00027c3e   0x00000174   Code   RO         2383    i.ble_advertising_start  ble_advertising.o
+    0x00027db2   0x00027db2   0x00000014   Code   RO         2638    i.ble_conn_state_conn_idx  ble_conn_state.o
     0x00027dc6   0x00027dc6   0x00000002   PAD
-    0x00027dc8   0x00027dc8   0x00000020   Code   RO         2617    i.ble_conn_state_encrypted  ble_conn_state.o
-    0x00027de8   0x00027de8   0x00000028   Code   RO         2619    i.ble_conn_state_for_each_set_user_flag  ble_conn_state.o
-    0x00027e10   0x00027e10   0x0000002c   Code   RO         2624    i.ble_conn_state_role  ble_conn_state.o
-    0x00027e3c   0x00027e3c   0x0000002c   Code   RO         2627    i.ble_conn_state_user_flag_get  ble_conn_state.o
-    0x00027e68   0x00027e68   0x0000003c   Code   RO         2628    i.ble_conn_state_user_flag_set  ble_conn_state.o
-    0x00027ea4   0x00027ea4   0x0000001c   Code   RO         2629    i.ble_conn_state_valid  ble_conn_state.o
-    0x00027ec0   0x00027ec0   0x00000032   Code   RO         4812    i.ble_dfu_buttonless_bootloader_start_finalize  ble_dfu.o
-    0x00027ef2   0x00027ef2   0x0000000c   Code   RO         4940    i.ble_dfu_buttonless_bootloader_start_prepare  ble_dfu_unbonded.o
-    0x00027efe   0x00027efe   0x0000005a   Code   RO         4814    i.ble_dfu_buttonless_on_ble_evt  ble_dfu.o
-    0x00027f58   0x00027f58   0x0000008c   Code   RO         4942    i.ble_dfu_buttonless_on_ctrl_pt_write  ble_dfu_unbonded.o
-    0x00027fe4   0x00027fe4   0x0000008c   Code   RO         4943    i.ble_dfu_buttonless_on_sys_evt  ble_dfu_unbonded.o
-    0x00028070   0x00028070   0x00000064   Code   RO         4815    i.ble_dfu_buttonless_resp_send  ble_dfu.o
+    0x00027dc8   0x00027dc8   0x00000020   Code   RO         2639    i.ble_conn_state_encrypted  ble_conn_state.o
+    0x00027de8   0x00027de8   0x00000028   Code   RO         2641    i.ble_conn_state_for_each_set_user_flag  ble_conn_state.o
+    0x00027e10   0x00027e10   0x0000002c   Code   RO         2646    i.ble_conn_state_role  ble_conn_state.o
+    0x00027e3c   0x00027e3c   0x0000002c   Code   RO         2649    i.ble_conn_state_user_flag_get  ble_conn_state.o
+    0x00027e68   0x00027e68   0x0000003c   Code   RO         2650    i.ble_conn_state_user_flag_set  ble_conn_state.o
+    0x00027ea4   0x00027ea4   0x0000001c   Code   RO         2651    i.ble_conn_state_valid  ble_conn_state.o
+    0x00027ec0   0x00027ec0   0x00000032   Code   RO         4834    i.ble_dfu_buttonless_bootloader_start_finalize  ble_dfu.o
+    0x00027ef2   0x00027ef2   0x0000000c   Code   RO         4962    i.ble_dfu_buttonless_bootloader_start_prepare  ble_dfu_unbonded.o
+    0x00027efe   0x00027efe   0x0000005a   Code   RO         4836    i.ble_dfu_buttonless_on_ble_evt  ble_dfu.o
+    0x00027f58   0x00027f58   0x0000008c   Code   RO         4964    i.ble_dfu_buttonless_on_ctrl_pt_write  ble_dfu_unbonded.o
+    0x00027fe4   0x00027fe4   0x0000008c   Code   RO         4965    i.ble_dfu_buttonless_on_sys_evt  ble_dfu_unbonded.o
+    0x00028070   0x00028070   0x00000064   Code   RO         4837    i.ble_dfu_buttonless_resp_send  ble_dfu.o
     0x000280d4   0x000280d4   0x00000120   Code   RO          858    i.ble_evt_handler   juno_ble.o
-    0x000281f4   0x000281f4   0x00000078   Code   RO         2147    i.ble_evt_handler   bsp_btn_ble.o
-    0x0002826c   0x0002826c   0x00000040   Code   RO         2509    i.ble_evt_handler   ble_conn_params.o
-    0x000282ac   0x000282ac   0x000000b4   Code   RO         2630    i.ble_evt_handler   ble_conn_state.o
-    0x00028360   0x00028360   0x0000002c   Code   RO         3949    i.ble_evt_handler   peer_manager.o
-    0x0002838c   0x0002838c   0x00000044   Code   RO         4755    i.ble_nus_on_ble_evt  ble_nus.o
-    0x000283d0   0x000283d0   0x00000012   Code   RO         2796    i.ble_srv_is_indication_enabled  ble_srv_common.o
-    0x000283e2   0x000283e2   0x00000012   Code   RO         2797    i.ble_srv_is_notification_enabled  ble_srv_common.o
-    0x000283f4   0x000283f4   0x00000030   Code   RO         1913    i.bsp_board_led_invert  boards.o
-    0x00028424   0x00028424   0x00000014   Code   RO         1914    i.bsp_board_led_off  boards.o
-    0x00028438   0x00028438   0x00000014   Code   RO         1915    i.bsp_board_led_on  boards.o
-    0x0002844c   0x0002844c   0x00000030   Code   RO         1916    i.bsp_board_led_state_get  boards.o
-    0x0002847c   0x0002847c   0x00000014   Code   RO         1918    i.bsp_board_leds_off  boards.o
-    0x00028490   0x00028490   0x00000014   Code   RO         1919    i.bsp_board_leds_on  boards.o
-    0x000284a4   0x000284a4   0x00000024   Code   RO         1920    i.bsp_board_pin_to_button_idx  boards.o
-    0x000284c8   0x000284c8   0x000000c4   Code   RO         2030    i.bsp_button_event_handler  bsp.o
-    0x0002858c   0x0002858c   0x0000005c   Code   RO         2034    i.bsp_event_to_button_action_assign  bsp.o
-    0x000285e8   0x000285e8   0x00000020   Code   RO         2035    i.bsp_indication_set  bsp.o
-    0x00028608   0x00028608   0x00000388   Code   RO         2037    i.bsp_led_indication  bsp.o
-    0x00028990   0x00028990   0x0000002c   Code   RO         2891    i.car_update_needed  gatt_cache_manager.o
-    0x000289bc   0x000289bc   0x00000040   Code   RO         2892    i.car_update_pending_handle  gatt_cache_manager.o
-    0x000289fc   0x000289fc   0x00000020   Code   RO         2893    i.cccd_written      gatt_cache_manager.o
-    0x00028a1c   0x00028a1c   0x00000020   Code   RO         5897    i.channel_free      nrfx_gpiote.o
-    0x00028a3c   0x00028a3c   0x00000010   Code   RO         5898    i.channel_handler_get  nrfx_gpiote.o
-    0x00028a4c   0x00028a4c   0x00000080   Code   RO         5899    i.channel_port_alloc  nrfx_gpiote.o
-    0x00028acc   0x00028acc   0x0000000c   Code   RO         5900    i.channel_port_get  nrfx_gpiote.o
-    0x00028ad8   0x00028ad8   0x0000004c   Code   RO         3854    i.claim             peer_id.o
-    0x00028b24   0x00028b24   0x00000030   Code   RO         5007    i.clock_clk_started_notify  nrf_drv_clock.o
-    0x00028b54   0x00028b54   0x00000028   Code   RO         5008    i.clock_irq_handler  nrf_drv_clock.o
-    0x00028b7c   0x00028b7c   0x00000090   Code   RO         7132    i.compare_reg_update  app_timer.o
-    0x00028c0c   0x00028c0c   0x000000c2   Code   RO         6542    i.configure_pins    nrfx_pwm.o
-    0x00028cce   0x00028cce   0x0000003c   Code   RO         2631    i.conn_handle_list_get  ble_conn_state.o
+    0x000281f4   0x000281f4   0x00000078   Code   RO         2169    i.ble_evt_handler   bsp_btn_ble.o
+    0x0002826c   0x0002826c   0x00000040   Code   RO         2531    i.ble_evt_handler   ble_conn_params.o
+    0x000282ac   0x000282ac   0x000000b4   Code   RO         2652    i.ble_evt_handler   ble_conn_state.o
+    0x00028360   0x00028360   0x0000002c   Code   RO         3971    i.ble_evt_handler   peer_manager.o
+    0x0002838c   0x0002838c   0x00000044   Code   RO         4777    i.ble_nus_on_ble_evt  ble_nus.o
+    0x000283d0   0x000283d0   0x00000012   Code   RO         2818    i.ble_srv_is_indication_enabled  ble_srv_common.o
+    0x000283e2   0x000283e2   0x00000012   Code   RO         2819    i.ble_srv_is_notification_enabled  ble_srv_common.o
+    0x000283f4   0x000283f4   0x00000030   Code   RO         1935    i.bsp_board_led_invert  boards.o
+    0x00028424   0x00028424   0x00000014   Code   RO         1936    i.bsp_board_led_off  boards.o
+    0x00028438   0x00028438   0x00000014   Code   RO         1937    i.bsp_board_led_on  boards.o
+    0x0002844c   0x0002844c   0x00000030   Code   RO         1938    i.bsp_board_led_state_get  boards.o
+    0x0002847c   0x0002847c   0x00000014   Code   RO         1940    i.bsp_board_leds_off  boards.o
+    0x00028490   0x00028490   0x00000014   Code   RO         1941    i.bsp_board_leds_on  boards.o
+    0x000284a4   0x000284a4   0x00000024   Code   RO         1942    i.bsp_board_pin_to_button_idx  boards.o
+    0x000284c8   0x000284c8   0x000000c4   Code   RO         2052    i.bsp_button_event_handler  bsp.o
+    0x0002858c   0x0002858c   0x0000005c   Code   RO         2056    i.bsp_event_to_button_action_assign  bsp.o
+    0x000285e8   0x000285e8   0x00000020   Code   RO         2057    i.bsp_indication_set  bsp.o
+    0x00028608   0x00028608   0x00000388   Code   RO         2059    i.bsp_led_indication  bsp.o
+    0x00028990   0x00028990   0x0000002c   Code   RO         2913    i.car_update_needed  gatt_cache_manager.o
+    0x000289bc   0x000289bc   0x00000040   Code   RO         2914    i.car_update_pending_handle  gatt_cache_manager.o
+    0x000289fc   0x000289fc   0x00000020   Code   RO         2915    i.cccd_written      gatt_cache_manager.o
+    0x00028a1c   0x00028a1c   0x00000020   Code   RO         5919    i.channel_free      nrfx_gpiote.o
+    0x00028a3c   0x00028a3c   0x00000010   Code   RO         5920    i.channel_handler_get  nrfx_gpiote.o
+    0x00028a4c   0x00028a4c   0x00000080   Code   RO         5921    i.channel_port_alloc  nrfx_gpiote.o
+    0x00028acc   0x00028acc   0x0000000c   Code   RO         5922    i.channel_port_get  nrfx_gpiote.o
+    0x00028ad8   0x00028ad8   0x0000004c   Code   RO         3876    i.claim             peer_id.o
+    0x00028b24   0x00028b24   0x00000030   Code   RO         5029    i.clock_clk_started_notify  nrf_drv_clock.o
+    0x00028b54   0x00028b54   0x00000028   Code   RO         5030    i.clock_irq_handler  nrf_drv_clock.o
+    0x00028b7c   0x00028b7c   0x00000090   Code   RO         7154    i.compare_reg_update  app_timer.o
+    0x00028c0c   0x00028c0c   0x000000c2   Code   RO         6564    i.configure_pins    nrfx_pwm.o
+    0x00028cce   0x00028cce   0x0000003c   Code   RO         2653    i.conn_handle_list_get  ble_conn_state.o
     0x00028d0a   0x00028d0a   0x00000002   PAD
-    0x00028d0c   0x00028d0c   0x00000054   Code   RO         2510    i.conn_params_negotiation  ble_conn_params.o
-    0x00028d60   0x00028d60   0x00000044   Code   RO         4411    i.conn_sec_failure  security_dispatcher.o
-    0x00028da4   0x00028da4   0x00000058   Code   RO         4412    i.conn_sec_update_process  security_dispatcher.o
-    0x00028dfc   0x00028dfc   0x00000054   Code   RO         2150    i.connection_buttons_configure  bsp_btn_ble.o
-    0x00028e50   0x00028e50   0x0000002c   Code   RO         3354    i.data_length_update  nrf_ble_gatt.o
-    0x00028e7c   0x00028e7c   0x0000004c   Code   RO         2894    i.db_update_pending_handle  gatt_cache_manager.o
-    0x00028ec8   0x00028ec8   0x0000004a   Code   RO         7627    i.delete_execute    fds.o
-    0x00028f12   0x00028f12   0x00000022   Code   RO         4413    i.disconnect_process  security_dispatcher.o
-    0x00028f34   0x00028f34   0x00000064   Code   RO         7133    i.elapsed_ticks_acquire  app_timer.o
-    0x00028f98   0x00028f98   0x00000016   Code   RO         4414    i.encryption_failure  security_dispatcher.o
+    0x00028d0c   0x00028d0c   0x00000054   Code   RO         2532    i.conn_params_negotiation  ble_conn_params.o
+    0x00028d60   0x00028d60   0x00000044   Code   RO         4433    i.conn_sec_failure  security_dispatcher.o
+    0x00028da4   0x00028da4   0x00000058   Code   RO         4434    i.conn_sec_update_process  security_dispatcher.o
+    0x00028dfc   0x00028dfc   0x00000054   Code   RO         2172    i.connection_buttons_configure  bsp_btn_ble.o
+    0x00028e50   0x00028e50   0x0000002c   Code   RO         3376    i.data_length_update  nrf_ble_gatt.o
+    0x00028e7c   0x00028e7c   0x0000004c   Code   RO         2916    i.db_update_pending_handle  gatt_cache_manager.o
+    0x00028ec8   0x00028ec8   0x0000004a   Code   RO         7649    i.delete_execute    fds.o
+    0x00028f12   0x00028f12   0x00000022   Code   RO         4435    i.disconnect_process  security_dispatcher.o
+    0x00028f34   0x00028f34   0x00000064   Code   RO         7155    i.elapsed_ticks_acquire  app_timer.o
+    0x00028f98   0x00028f98   0x00000016   Code   RO         4436    i.encryption_failure  security_dispatcher.o
     0x00028fae   0x00028fae   0x00000002   PAD
-    0x00028fb0   0x00028fb0   0x00000048   Code   RO         4944    i.enter_bootloader  ble_dfu_unbonded.o
-    0x00028ff8   0x00028ff8   0x00000058   Code   RO         8628    i.erase             nrf_fstorage_sd.o
-    0x00029050   0x00029050   0x0000000e   Code   RO         8629    i.erase_execute     nrf_fstorage_sd.o
+    0x00028fb0   0x00028fb0   0x00000048   Code   RO         4966    i.enter_bootloader  ble_dfu_unbonded.o
+    0x00028ff8   0x00028ff8   0x00000058   Code   RO         8650    i.erase             nrf_fstorage_sd.o
+    0x00029050   0x00029050   0x0000000e   Code   RO         8651    i.erase_execute     nrf_fstorage_sd.o
     0x0002905e   0x0002905e   0x00000002   PAD
-    0x00029060   0x00029060   0x00000054   Code   RO         9921    i.errata_108        system_nrf52.o
-    0x000290b4   0x000290b4   0x00000054   Code   RO         9922    i.errata_12         system_nrf52.o
-    0x00029108   0x00029108   0x00000054   Code   RO         9923    i.errata_136        system_nrf52.o
-    0x0002915c   0x0002915c   0x00000030   Code   RO         9924    i.errata_16         system_nrf52.o
-    0x0002918c   0x0002918c   0x00000020   Code   RO         9925    i.errata_182        system_nrf52.o
-    0x000291ac   0x000291ac   0x00000054   Code   RO         9926    i.errata_31         system_nrf52.o
-    0x00029200   0x00029200   0x00000030   Code   RO         9927    i.errata_32         system_nrf52.o
-    0x00029230   0x00029230   0x00000054   Code   RO         9928    i.errata_36         system_nrf52.o
-    0x00029284   0x00029284   0x00000030   Code   RO         9929    i.errata_37         system_nrf52.o
-    0x000292b4   0x000292b4   0x00000030   Code   RO         9930    i.errata_57         system_nrf52.o
-    0x000292e4   0x000292e4   0x00000030   Code   RO         9931    i.errata_66         system_nrf52.o
-    0x00029314   0x00029314   0x0000007e   Code   RO         7628    i.event_prepare     fds.o
+    0x00029060   0x00029060   0x00000054   Code   RO         9943    i.errata_108        system_nrf52.o
+    0x000290b4   0x000290b4   0x00000054   Code   RO         9944    i.errata_12         system_nrf52.o
+    0x00029108   0x00029108   0x00000054   Code   RO         9945    i.errata_136        system_nrf52.o
+    0x0002915c   0x0002915c   0x00000030   Code   RO         9946    i.errata_16         system_nrf52.o
+    0x0002918c   0x0002918c   0x00000020   Code   RO         9947    i.errata_182        system_nrf52.o
+    0x000291ac   0x000291ac   0x00000054   Code   RO         9948    i.errata_31         system_nrf52.o
+    0x00029200   0x00029200   0x00000030   Code   RO         9949    i.errata_32         system_nrf52.o
+    0x00029230   0x00029230   0x00000054   Code   RO         9950    i.errata_36         system_nrf52.o
+    0x00029284   0x00029284   0x00000030   Code   RO         9951    i.errata_37         system_nrf52.o
+    0x000292b4   0x000292b4   0x00000030   Code   RO         9952    i.errata_57         system_nrf52.o
+    0x000292e4   0x000292e4   0x00000030   Code   RO         9953    i.errata_66         system_nrf52.o
+    0x00029314   0x00029314   0x0000007e   Code   RO         7650    i.event_prepare     fds.o
     0x00029392   0x00029392   0x00000002   PAD
-    0x00029394   0x00029394   0x00000028   Code   RO         7629    i.event_send        fds.o
-    0x000293bc   0x000293bc   0x00000068   Code   RO         8630    i.event_send        nrf_fstorage_sd.o
-    0x00029424   0x00029424   0x00000072   Code   RO         4594    i.events_send_from_err_code  security_manager.o
-    0x00029496   0x00029496   0x0000000c   Code   RO         4595    i.evt_forward       security_manager.o
+    0x00029394   0x00029394   0x00000028   Code   RO         7651    i.event_send        fds.o
+    0x000293bc   0x000293bc   0x00000068   Code   RO         8652    i.event_send        nrf_fstorage_sd.o
+    0x00029424   0x00029424   0x00000072   Code   RO         4616    i.events_send_from_err_code  security_manager.o
+    0x00029496   0x00029496   0x0000000c   Code   RO         4617    i.evt_forward       security_manager.o
     0x000294a2   0x000294a2   0x00000002   PAD
-    0x000294a4   0x000294a4   0x00000028   Code   RO         2895    i.evt_send          gatt_cache_manager.o
-    0x000294cc   0x000294cc   0x00000028   Code   RO         3086    i.evt_send          gatts_cache_manager.o
-    0x000294f4   0x000294f4   0x00000020   Code   RO         3182    i.evt_send          id_manager.o
-    0x00029514   0x00029514   0x00000028   Code   RO         3950    i.evt_send          peer_manager.o
-    0x0002953c   0x0002953c   0x00000028   Code   RO         4415    i.evt_send          security_dispatcher.o
-    0x00029564   0x00029564   0x00000020   Code   RO         4596    i.evt_send          security_manager.o
-    0x00029584   0x00029584   0x00000058   Code   RO         7134    i.expired_timers_handler  app_timer.o
-    0x000295dc   0x000295dc   0x00000044   Code   RO         7631    i.fds_file_delete   fds.o
-    0x00029620   0x00029620   0x00000060   Code   RO         7634    i.fds_record_close  fds.o
-    0x00029680   0x00029680   0x00000016   Code   RO         7636    i.fds_record_find   fds.o
-    0x00029696   0x00029696   0x00000014   Code   RO         7637    i.fds_record_find_by_key  fds.o
-    0x000296aa   0x000296aa   0x00000014   Code   RO         7638    i.fds_record_find_in_file  fds.o
-    0x000296be   0x000296be   0x00000012   Code   RO         7639    i.fds_record_id_from_desc  fds.o
-    0x000296d0   0x000296d0   0x0000004c   Code   RO         7641    i.fds_record_open   fds.o
-    0x0002971c   0x0002971c   0x0000001a   Code   RO         7642    i.fds_record_update  fds.o
-    0x00029736   0x00029736   0x00000014   Code   RO         7643    i.fds_record_write  fds.o
-    0x0002974a   0x0002974a   0x00000018   Code   RO         7427    i.fifo_get          app_fifo.o
-    0x00029762   0x00029762   0x0000000a   Code   RO         7428    i.fifo_length       app_fifo.o
-    0x0002976c   0x0002976c   0x0000000a   Code   RO         7526    i.fifo_length       app_uart_fifo.o
-    0x00029776   0x00029776   0x00000012   Code   RO         7429    i.fifo_peek         app_fifo.o
-    0x00029788   0x00029788   0x00000012   Code   RO         7430    i.fifo_put          app_fifo.o
+    0x000294a4   0x000294a4   0x00000028   Code   RO         2917    i.evt_send          gatt_cache_manager.o
+    0x000294cc   0x000294cc   0x00000028   Code   RO         3108    i.evt_send          gatts_cache_manager.o
+    0x000294f4   0x000294f4   0x00000020   Code   RO         3204    i.evt_send          id_manager.o
+    0x00029514   0x00029514   0x00000028   Code   RO         3972    i.evt_send          peer_manager.o
+    0x0002953c   0x0002953c   0x00000028   Code   RO         4437    i.evt_send          security_dispatcher.o
+    0x00029564   0x00029564   0x00000020   Code   RO         4618    i.evt_send          security_manager.o
+    0x00029584   0x00029584   0x00000058   Code   RO         7156    i.expired_timers_handler  app_timer.o
+    0x000295dc   0x000295dc   0x00000044   Code   RO         7653    i.fds_file_delete   fds.o
+    0x00029620   0x00029620   0x00000060   Code   RO         7656    i.fds_record_close  fds.o
+    0x00029680   0x00029680   0x00000016   Code   RO         7658    i.fds_record_find   fds.o
+    0x00029696   0x00029696   0x00000014   Code   RO         7659    i.fds_record_find_by_key  fds.o
+    0x000296aa   0x000296aa   0x00000014   Code   RO         7660    i.fds_record_find_in_file  fds.o
+    0x000296be   0x000296be   0x00000012   Code   RO         7661    i.fds_record_id_from_desc  fds.o
+    0x000296d0   0x000296d0   0x0000004c   Code   RO         7663    i.fds_record_open   fds.o
+    0x0002971c   0x0002971c   0x0000001a   Code   RO         7664    i.fds_record_update  fds.o
+    0x00029736   0x00029736   0x00000014   Code   RO         7665    i.fds_record_write  fds.o
+    0x0002974a   0x0002974a   0x00000018   Code   RO         7449    i.fifo_get          app_fifo.o
+    0x00029762   0x00029762   0x0000000a   Code   RO         7450    i.fifo_length       app_fifo.o
+    0x0002976c   0x0002976c   0x0000000a   Code   RO         7548    i.fifo_length       app_uart_fifo.o
+    0x00029776   0x00029776   0x00000012   Code   RO         7451    i.fifo_peek         app_fifo.o
+    0x00029788   0x00029788   0x00000012   Code   RO         7452    i.fifo_put          app_fifo.o
     0x0002979a   0x0002979a   0x00000002   PAD
-    0x0002979c   0x0002979c   0x00000034   Code   RO         7649    i.file_find_and_delete  fds.o
-    0x000297d0   0x000297d0   0x0000000a   Code   RO         3531    i.file_id_to_peer_id  peer_data_storage.o
-    0x000297da   0x000297da   0x0000002e   Code   RO         6679    i.finish_transfer   nrfx_spim.o
-    0x00029808   0x00029808   0x0000002c   Code   RO         2364    i.flags_set         ble_advertising.o
-    0x00029834   0x00029834   0x0000004c   Code   RO         4598    i.flags_set_from_err_code  security_manager.o
-    0x00029880   0x00029880   0x00000032   Code   RO         2632    i.for_each_set_flag  ble_conn_state.o
-    0x000298b2   0x000298b2   0x0000000c   Code   RO         7653    i.fs_event_handler  fds.o
+    0x0002979c   0x0002979c   0x00000034   Code   RO         7671    i.file_find_and_delete  fds.o
+    0x000297d0   0x000297d0   0x0000000a   Code   RO         3553    i.file_id_to_peer_id  peer_data_storage.o
+    0x000297da   0x000297da   0x0000002e   Code   RO         6701    i.finish_transfer   nrfx_spim.o
+    0x00029808   0x00029808   0x0000002c   Code   RO         2386    i.flags_set         ble_advertising.o
+    0x00029834   0x00029834   0x0000004c   Code   RO         4620    i.flags_set_from_err_code  security_manager.o
+    0x00029880   0x00029880   0x00000032   Code   RO         2654    i.for_each_set_flag  ble_conn_state.o
+    0x000298b2   0x000298b2   0x0000000c   Code   RO         7675    i.fs_event_handler  fds.o
     0x000298be   0x000298be   0x00000002   PAD
-    0x000298c0   0x000298c0   0x00000070   Code   RO         7654    i.gc_execute        fds.o
-    0x00029930   0x00029930   0x00000040   Code   RO         7655    i.gc_init           fds.o
-    0x00029970   0x00029970   0x00000028   Code   RO         7656    i.gc_next_page      fds.o
-    0x00029998   0x00029998   0x0000004c   Code   RO         7657    i.gc_page_erase     fds.o
-    0x000299e4   0x000299e4   0x00000050   Code   RO         7658    i.gc_page_next      fds.o
-    0x00029a34   0x00029a34   0x00000040   Code   RO         7659    i.gc_record_copy    fds.o
-    0x00029a74   0x00029a74   0x00000024   Code   RO         7660    i.gc_record_find_next  fds.o
-    0x00029a98   0x00029a98   0x00000058   Code   RO         7661    i.gc_state_advance  fds.o
-    0x00029af0   0x00029af0   0x0000002c   Code   RO         7662    i.gc_swap_erase     fds.o
-    0x00029b1c   0x00029b1c   0x00000050   Code   RO         7663    i.gc_swap_pages     fds.o
-    0x00029b6c   0x00029b6c   0x00000024   Code   RO         7664    i.gc_swap_promote   fds.o
-    0x00029b90   0x00029b90   0x00000018   Code   RO         7665    i.gc_tag_new_swap   fds.o
-    0x00029ba8   0x00029ba8   0x00000020   Code   RO         7666    i.gc_update_swap_offset  fds.o
-    0x00029bc8   0x00029bc8   0x00000160   Code   RO         2896    i.gcm_ble_evt_handler  gatt_cache_manager.o
-    0x00029d28   0x00029d28   0x00000026   Code   RO         2897    i.gcm_im_evt_handler  gatt_cache_manager.o
+    0x000298c0   0x000298c0   0x00000070   Code   RO         7676    i.gc_execute        fds.o
+    0x00029930   0x00029930   0x00000040   Code   RO         7677    i.gc_init           fds.o
+    0x00029970   0x00029970   0x00000028   Code   RO         7678    i.gc_next_page      fds.o
+    0x00029998   0x00029998   0x0000004c   Code   RO         7679    i.gc_page_erase     fds.o
+    0x000299e4   0x000299e4   0x00000050   Code   RO         7680    i.gc_page_next      fds.o
+    0x00029a34   0x00029a34   0x00000040   Code   RO         7681    i.gc_record_copy    fds.o
+    0x00029a74   0x00029a74   0x00000024   Code   RO         7682    i.gc_record_find_next  fds.o
+    0x00029a98   0x00029a98   0x00000058   Code   RO         7683    i.gc_state_advance  fds.o
+    0x00029af0   0x00029af0   0x0000002c   Code   RO         7684    i.gc_swap_erase     fds.o
+    0x00029b1c   0x00029b1c   0x00000050   Code   RO         7685    i.gc_swap_pages     fds.o
+    0x00029b6c   0x00029b6c   0x00000024   Code   RO         7686    i.gc_swap_promote   fds.o
+    0x00029b90   0x00029b90   0x00000018   Code   RO         7687    i.gc_tag_new_swap   fds.o
+    0x00029ba8   0x00029ba8   0x00000020   Code   RO         7688    i.gc_update_swap_offset  fds.o
+    0x00029bc8   0x00029bc8   0x00000160   Code   RO         2918    i.gcm_ble_evt_handler  gatt_cache_manager.o
+    0x00029d28   0x00029d28   0x00000026   Code   RO         2919    i.gcm_im_evt_handler  gatt_cache_manager.o
     0x00029d4e   0x00029d4e   0x00000002   PAD
-    0x00029d50   0x00029d50   0x0000009c   Code   RO         2901    i.gcm_pdb_evt_handler  gatt_cache_manager.o
-    0x00029dec   0x00029dec   0x0000001c   Code   RO         3087    i.gscm_db_change_notification_done  gatts_cache_manager.o
-    0x00029e08   0x00029e08   0x00000090   Code   RO         3090    i.gscm_local_db_cache_apply  gatts_cache_manager.o
-    0x00029e98   0x00029e98   0x00000098   Code   RO         3091    i.gscm_local_db_cache_update  gatts_cache_manager.o
-    0x00029f30   0x00029f30   0x0000001c   Code   RO         3092    i.gscm_pdb_evt_handler  gatts_cache_manager.o
-    0x00029f4c   0x00029f4c   0x00000028   Code   RO         3093    i.gscm_service_changed_ind_needed  gatts_cache_manager.o
-    0x00029f74   0x00029f74   0x00000048   Code   RO         3094    i.gscm_service_changed_ind_send  gatts_cache_manager.o
-    0x00029fbc   0x00029fbc   0x0000002a   Code   RO         7667    i.header_check      fds.o
-    0x00029fe6   0x00029fe6   0x00000016   Code   RO         7668    i.header_has_next   fds.o
-    0x00029ffc   0x00029ffc   0x0000000e   Code   RO         7669    i.header_jump       fds.o
-    0x0002a00a   0x0002a00a   0x0000004c   Code   RO         3183    i.im_address_resolve  id_manager.o
+    0x00029d50   0x00029d50   0x0000009c   Code   RO         2923    i.gcm_pdb_evt_handler  gatt_cache_manager.o
+    0x00029dec   0x00029dec   0x0000001c   Code   RO         3109    i.gscm_db_change_notification_done  gatts_cache_manager.o
+    0x00029e08   0x00029e08   0x00000090   Code   RO         3112    i.gscm_local_db_cache_apply  gatts_cache_manager.o
+    0x00029e98   0x00029e98   0x00000098   Code   RO         3113    i.gscm_local_db_cache_update  gatts_cache_manager.o
+    0x00029f30   0x00029f30   0x0000001c   Code   RO         3114    i.gscm_pdb_evt_handler  gatts_cache_manager.o
+    0x00029f4c   0x00029f4c   0x00000028   Code   RO         3115    i.gscm_service_changed_ind_needed  gatts_cache_manager.o
+    0x00029f74   0x00029f74   0x00000048   Code   RO         3116    i.gscm_service_changed_ind_send  gatts_cache_manager.o
+    0x00029fbc   0x00029fbc   0x0000002a   Code   RO         7689    i.header_check      fds.o
+    0x00029fe6   0x00029fe6   0x00000016   Code   RO         7690    i.header_has_next   fds.o
+    0x00029ffc   0x00029ffc   0x0000000e   Code   RO         7691    i.header_jump       fds.o
+    0x0002a00a   0x0002a00a   0x0000004c   Code   RO         3205    i.im_address_resolve  id_manager.o
     0x0002a056   0x0002a056   0x00000002   PAD
-    0x0002a058   0x0002a058   0x00000038   Code   RO         3184    i.im_ble_addr_get   id_manager.o
-    0x0002a090   0x0002a090   0x000000ec   Code   RO         3185    i.im_ble_evt_handler  id_manager.o
-    0x0002a17c   0x0002a17c   0x00000040   Code   RO         3186    i.im_conn_handle_get  id_manager.o
-    0x0002a1bc   0x0002a1bc   0x00000038   Code   RO         3188    i.im_find_duplicate_bonding_data  id_manager.o
-    0x0002a1f4   0x0002a1f4   0x00000090   Code   RO         3191    i.im_is_duplicate_bonding_data  id_manager.o
-    0x0002a284   0x0002a284   0x00000022   Code   RO         3192    i.im_master_id_is_valid  id_manager.o
-    0x0002a2a6   0x0002a2a6   0x00000032   Code   RO         3193    i.im_master_ids_compare  id_manager.o
-    0x0002a2d8   0x0002a2d8   0x00000014   Code   RO         3194    i.im_new_peer_id    id_manager.o
-    0x0002a2ec   0x0002a2ec   0x00000030   Code   RO         3195    i.im_peer_free      id_manager.o
-    0x0002a31c   0x0002a31c   0x00000028   Code   RO         3196    i.im_peer_id_get_by_conn_handle  id_manager.o
-    0x0002a344   0x0002a344   0x00000040   Code   RO         3197    i.im_peer_id_get_by_master_id  id_manager.o
-    0x0002a384   0x0002a384   0x00000040   Code   RO         8631    i.init              nrf_fstorage_sd.o
-    0x0002a3c4   0x0002a3c4   0x0000012c   Code   RO         7670    i.init_execute      fds.o
-    0x0002a4f0   0x0002a4f0   0x0000002c   Code   RO         2511    i.instance_get      ble_conn_params.o
-    0x0002a51c   0x0002a51c   0x00000088   Code   RO         6267    i.interrupts_enable  nrfx_uart.o
-    0x0002a5a4   0x0002a5a4   0x0000005c   Code   RO         5252    i.irq_handler       nrfx_timer.o
-    0x0002a600   0x0002a600   0x000000a4   Code   RO         6543    i.irq_handler       nrfx_pwm.o
-    0x0002a6a4   0x0002a6a4   0x00000024   Code   RO         6680    i.irq_handler       nrfx_spim.o
-    0x0002a6c8   0x0002a6c8   0x00000014   Code   RO         8632    i.is_busy           nrf_fstorage_sd.o
-    0x0002a6dc   0x0002a6dc   0x00000072   Code   RO         2512    i.is_conn_params_ok  ble_conn_params.o
-    0x0002a74e   0x0002a74e   0x00000018   Code   RO         3202    i.is_valid_irk      id_manager.o
-    0x0002a766   0x0002a766   0x00000010   Code   RO         7671    i.is_word_aligned   fds.o
-    0x0002a776   0x0002a776   0x0000000c   Code   RO         5011    i.item_dequeue      nrf_drv_clock.o
+    0x0002a058   0x0002a058   0x00000038   Code   RO         3206    i.im_ble_addr_get   id_manager.o
+    0x0002a090   0x0002a090   0x000000ec   Code   RO         3207    i.im_ble_evt_handler  id_manager.o
+    0x0002a17c   0x0002a17c   0x00000040   Code   RO         3208    i.im_conn_handle_get  id_manager.o
+    0x0002a1bc   0x0002a1bc   0x00000038   Code   RO         3210    i.im_find_duplicate_bonding_data  id_manager.o
+    0x0002a1f4   0x0002a1f4   0x00000090   Code   RO         3213    i.im_is_duplicate_bonding_data  id_manager.o
+    0x0002a284   0x0002a284   0x00000022   Code   RO         3214    i.im_master_id_is_valid  id_manager.o
+    0x0002a2a6   0x0002a2a6   0x00000032   Code   RO         3215    i.im_master_ids_compare  id_manager.o
+    0x0002a2d8   0x0002a2d8   0x00000014   Code   RO         3216    i.im_new_peer_id    id_manager.o
+    0x0002a2ec   0x0002a2ec   0x00000030   Code   RO         3217    i.im_peer_free      id_manager.o
+    0x0002a31c   0x0002a31c   0x00000028   Code   RO         3218    i.im_peer_id_get_by_conn_handle  id_manager.o
+    0x0002a344   0x0002a344   0x00000040   Code   RO         3219    i.im_peer_id_get_by_master_id  id_manager.o
+    0x0002a384   0x0002a384   0x00000040   Code   RO         8653    i.init              nrf_fstorage_sd.o
+    0x0002a3c4   0x0002a3c4   0x0000012c   Code   RO         7692    i.init_execute      fds.o
+    0x0002a4f0   0x0002a4f0   0x0000002c   Code   RO         2533    i.instance_get      ble_conn_params.o
+    0x0002a51c   0x0002a51c   0x00000088   Code   RO         6289    i.interrupts_enable  nrfx_uart.o
+    0x0002a5a4   0x0002a5a4   0x0000005c   Code   RO         5274    i.irq_handler       nrfx_timer.o
+    0x0002a600   0x0002a600   0x000000a4   Code   RO         6565    i.irq_handler       nrfx_pwm.o
+    0x0002a6a4   0x0002a6a4   0x00000024   Code   RO         6702    i.irq_handler       nrfx_spim.o
+    0x0002a6c8   0x0002a6c8   0x00000014   Code   RO         8654    i.is_busy           nrf_fstorage_sd.o
+    0x0002a6dc   0x0002a6dc   0x00000072   Code   RO         2534    i.is_conn_params_ok  ble_conn_params.o
+    0x0002a74e   0x0002a74e   0x00000018   Code   RO         3224    i.is_valid_irk      id_manager.o
+    0x0002a766   0x0002a766   0x00000010   Code   RO         7693    i.is_word_aligned   fds.o
+    0x0002a776   0x0002a776   0x0000000c   Code   RO         5033    i.item_dequeue      nrf_drv_clock.o
     0x0002a782   0x0002a782   0x00000002   PAD
-    0x0002a784   0x0002a784   0x00000028   Code   RO         2041    i.leds_off          bsp.o
-    0x0002a7ac   0x0002a7ac   0x00000014   Code   RO         5013    i.lfclk_stop        nrf_drv_clock.o
-    0x0002a7c0   0x0002a7c0   0x00000018   Code   RO         3355    i.link_init         nrf_ble_gatt.o
-    0x0002a7d8   0x0002a7d8   0x000000bc   Code   RO         4599    i.link_secure       security_manager.o
-    0x0002a894   0x0002a894   0x00000018   Code   RO         4417    i.link_secure_authenticate  security_dispatcher.o
-    0x0002a8ac   0x0002a8ac   0x0000003c   Code   RO         4418    i.link_secure_failure  security_dispatcher.o
-    0x0002a8e8   0x0002a8e8   0x0000003c   Code   RO         4600    i.link_secure_pending_handle  security_manager.o
-    0x0002a924   0x0002a924   0x00000018   Code   RO         4419    i.link_secure_peripheral  security_dispatcher.o
-    0x0002a93c   0x0002a93c   0x0000013c   Code   RO         7135    i.list_insertions_handler  app_timer.o
-    0x0002aa78   0x0002aa78   0x00000080   Code   RO         2903    i.local_db_apply_in_evt  gatt_cache_manager.o
-    0x0002aaf8   0x0002aaf8   0x00000018   Code   RO         2904    i.local_db_update   gatt_cache_manager.o
-    0x0002ab10   0x0002ab10   0x00000064   Code   RO         2905    i.local_db_update_in_evt  gatt_cache_manager.o
+    0x0002a784   0x0002a784   0x00000028   Code   RO         2063    i.leds_off          bsp.o
+    0x0002a7ac   0x0002a7ac   0x00000014   Code   RO         5035    i.lfclk_stop        nrf_drv_clock.o
+    0x0002a7c0   0x0002a7c0   0x00000018   Code   RO         3377    i.link_init         nrf_ble_gatt.o
+    0x0002a7d8   0x0002a7d8   0x000000bc   Code   RO         4621    i.link_secure       security_manager.o
+    0x0002a894   0x0002a894   0x00000018   Code   RO         4439    i.link_secure_authenticate  security_dispatcher.o
+    0x0002a8ac   0x0002a8ac   0x0000003c   Code   RO         4440    i.link_secure_failure  security_dispatcher.o
+    0x0002a8e8   0x0002a8e8   0x0000003c   Code   RO         4622    i.link_secure_pending_handle  security_manager.o
+    0x0002a924   0x0002a924   0x00000018   Code   RO         4441    i.link_secure_peripheral  security_dispatcher.o
+    0x0002a93c   0x0002a93c   0x0000013c   Code   RO         7157    i.list_insertions_handler  app_timer.o
+    0x0002aa78   0x0002aa78   0x00000080   Code   RO         2925    i.local_db_apply_in_evt  gatt_cache_manager.o
+    0x0002aaf8   0x0002aaf8   0x00000018   Code   RO         2926    i.local_db_update   gatt_cache_manager.o
+    0x0002ab10   0x0002ab10   0x00000064   Code   RO         2927    i.local_db_update_in_evt  gatt_cache_manager.o
     0x0002ab74   0x0002ab74   0x000000f6   Code   RO            5    i.main              main.o
-    0x0002ac6a   0x0002ac6a   0x00000026   Code   RO         4350    i.mutex_lock        pm_buffer.o
-    0x0002ac90   0x0002ac90   0x00000020   Code   RO         4351    i.mutex_lock_status_get  pm_buffer.o
-    0x0002acb0   0x0002acb0   0x00000020   Code   RO         4352    i.mutex_unlock      pm_buffer.o
-    0x0002acd0   0x0002acd0   0x00000020   Code   RO         4601    i.new_context_get   security_manager.o
-    0x0002acf0   0x0002acf0   0x00000034   Code   RO         3856    i.next_id_get       peer_id.o
-    0x0002ad24   0x0002ad24   0x00000016   Code   RO         8122    i.nrf_atfifo_clear  nrf_atfifo.o
-    0x0002ad3a   0x0002ad3a   0x00000028   Code   RO         8124    i.nrf_atfifo_init   nrf_atfifo.o
-    0x0002ad62   0x0002ad62   0x0000001c   Code   RO         8125    i.nrf_atfifo_item_alloc  nrf_atfifo.o
-    0x0002ad7e   0x0002ad7e   0x0000001c   Code   RO         8126    i.nrf_atfifo_item_free  nrf_atfifo.o
-    0x0002ad9a   0x0002ad9a   0x0000001c   Code   RO         8127    i.nrf_atfifo_item_get  nrf_atfifo.o
-    0x0002adb6   0x0002adb6   0x0000001c   Code   RO         8128    i.nrf_atfifo_item_put  nrf_atfifo.o
-    0x0002add2   0x0002add2   0x0000001e   Code   RO         8196    i.nrf_atflags_clear  nrf_atflags.o
-    0x0002adf0   0x0002adf0   0x0000002e   Code   RO         8198    i.nrf_atflags_fetch_set  nrf_atflags.o
-    0x0002ae1e   0x0002ae1e   0x00000060   Code   RO         8200    i.nrf_atflags_find_and_set_flag  nrf_atflags.o
-    0x0002ae7e   0x0002ae7e   0x0000001e   Code   RO         8201    i.nrf_atflags_get   nrf_atflags.o
-    0x0002ae9c   0x0002ae9c   0x0000001e   Code   RO         8203    i.nrf_atflags_set   nrf_atflags.o
-    0x0002aeba   0x0002aeba   0x0000000e   Code   RO         8269    i.nrf_atomic_flag_set_fetch  nrf_atomic.o
-    0x0002aec8   0x0002aec8   0x00000016   Code   RO         8270    i.nrf_atomic_u32_add  nrf_atomic.o
-    0x0002aede   0x0002aede   0x00000016   Code   RO         8271    i.nrf_atomic_u32_and  nrf_atomic.o
-    0x0002aef4   0x0002aef4   0x00000016   Code   RO         8273    i.nrf_atomic_u32_fetch_add  nrf_atomic.o
-    0x0002af0a   0x0002af0a   0x00000016   Code   RO         8275    i.nrf_atomic_u32_fetch_or  nrf_atomic.o
-    0x0002af20   0x0002af20   0x00000016   Code   RO         8276    i.nrf_atomic_u32_fetch_store  nrf_atomic.o
-    0x0002af36   0x0002af36   0x00000016   Code   RO         8280    i.nrf_atomic_u32_or  nrf_atomic.o
-    0x0002af4c   0x0002af4c   0x00000016   Code   RO         8282    i.nrf_atomic_u32_sub  nrf_atomic.o
-    0x0002af62   0x0002af62   0x00000016   Code   RO         5901    i.nrf_bitmask_bit_is_set  nrfx_gpiote.o
-    0x0002af78   0x0002af78   0x00000016   Code   RO         5902    i.nrf_bitmask_bit_set  nrfx_gpiote.o
-    0x0002af8e   0x0002af8e   0x000000ae   Code   RO         3362    i.nrf_ble_gatt_on_ble_evt  nrf_ble_gatt.o
-    0x0002b03c   0x0002b03c   0x00000020   Code   RO         3471    i.nrf_ble_qwr_conn_handle_assign  nrf_ble_qwr.o
-    0x0002b05c   0x0002b05c   0x0000007c   Code   RO         3473    i.nrf_ble_qwr_on_ble_evt  nrf_ble_qwr.o
-    0x0002b0d8   0x0002b0d8   0x00000012   Code   RO         5742    i.nrf_clock_event_check  nrfx_clock.o
-    0x0002b0ea   0x0002b0ea   0x00000012   Code   RO         5743    i.nrf_clock_event_clear  nrfx_clock.o
-    0x0002b0fc   0x0002b0fc   0x0000000c   Code   RO         5744    i.nrf_clock_int_disable  nrfx_clock.o
-    0x0002b108   0x0002b108   0x00000008   Code   RO         5746    i.nrf_clock_task_trigger  nrfx_clock.o
+    0x0002ac6a   0x0002ac6a   0x00000026   Code   RO         4372    i.mutex_lock        pm_buffer.o
+    0x0002ac90   0x0002ac90   0x00000020   Code   RO         4373    i.mutex_lock_status_get  pm_buffer.o
+    0x0002acb0   0x0002acb0   0x00000020   Code   RO         4374    i.mutex_unlock      pm_buffer.o
+    0x0002acd0   0x0002acd0   0x00000020   Code   RO         4623    i.new_context_get   security_manager.o
+    0x0002acf0   0x0002acf0   0x00000034   Code   RO         3878    i.next_id_get       peer_id.o
+    0x0002ad24   0x0002ad24   0x00000016   Code   RO         8144    i.nrf_atfifo_clear  nrf_atfifo.o
+    0x0002ad3a   0x0002ad3a   0x00000028   Code   RO         8146    i.nrf_atfifo_init   nrf_atfifo.o
+    0x0002ad62   0x0002ad62   0x0000001c   Code   RO         8147    i.nrf_atfifo_item_alloc  nrf_atfifo.o
+    0x0002ad7e   0x0002ad7e   0x0000001c   Code   RO         8148    i.nrf_atfifo_item_free  nrf_atfifo.o
+    0x0002ad9a   0x0002ad9a   0x0000001c   Code   RO         8149    i.nrf_atfifo_item_get  nrf_atfifo.o
+    0x0002adb6   0x0002adb6   0x0000001c   Code   RO         8150    i.nrf_atfifo_item_put  nrf_atfifo.o
+    0x0002add2   0x0002add2   0x0000001e   Code   RO         8218    i.nrf_atflags_clear  nrf_atflags.o
+    0x0002adf0   0x0002adf0   0x0000002e   Code   RO         8220    i.nrf_atflags_fetch_set  nrf_atflags.o
+    0x0002ae1e   0x0002ae1e   0x00000060   Code   RO         8222    i.nrf_atflags_find_and_set_flag  nrf_atflags.o
+    0x0002ae7e   0x0002ae7e   0x0000001e   Code   RO         8223    i.nrf_atflags_get   nrf_atflags.o
+    0x0002ae9c   0x0002ae9c   0x0000001e   Code   RO         8225    i.nrf_atflags_set   nrf_atflags.o
+    0x0002aeba   0x0002aeba   0x0000000e   Code   RO         8291    i.nrf_atomic_flag_set_fetch  nrf_atomic.o
+    0x0002aec8   0x0002aec8   0x00000016   Code   RO         8292    i.nrf_atomic_u32_add  nrf_atomic.o
+    0x0002aede   0x0002aede   0x00000016   Code   RO         8293    i.nrf_atomic_u32_and  nrf_atomic.o
+    0x0002aef4   0x0002aef4   0x00000016   Code   RO         8295    i.nrf_atomic_u32_fetch_add  nrf_atomic.o
+    0x0002af0a   0x0002af0a   0x00000016   Code   RO         8297    i.nrf_atomic_u32_fetch_or  nrf_atomic.o
+    0x0002af20   0x0002af20   0x00000016   Code   RO         8298    i.nrf_atomic_u32_fetch_store  nrf_atomic.o
+    0x0002af36   0x0002af36   0x00000016   Code   RO         8302    i.nrf_atomic_u32_or  nrf_atomic.o
+    0x0002af4c   0x0002af4c   0x00000016   Code   RO         8304    i.nrf_atomic_u32_sub  nrf_atomic.o
+    0x0002af62   0x0002af62   0x00000016   Code   RO         5923    i.nrf_bitmask_bit_is_set  nrfx_gpiote.o
+    0x0002af78   0x0002af78   0x00000016   Code   RO         5924    i.nrf_bitmask_bit_set  nrfx_gpiote.o
+    0x0002af8e   0x0002af8e   0x000000ae   Code   RO         3384    i.nrf_ble_gatt_on_ble_evt  nrf_ble_gatt.o
+    0x0002b03c   0x0002b03c   0x00000020   Code   RO         3493    i.nrf_ble_qwr_conn_handle_assign  nrf_ble_qwr.o
+    0x0002b05c   0x0002b05c   0x0000007c   Code   RO         3495    i.nrf_ble_qwr_on_ble_evt  nrf_ble_qwr.o
+    0x0002b0d8   0x0002b0d8   0x00000012   Code   RO         5764    i.nrf_clock_event_check  nrfx_clock.o
+    0x0002b0ea   0x0002b0ea   0x00000012   Code   RO         5765    i.nrf_clock_event_clear  nrfx_clock.o
+    0x0002b0fc   0x0002b0fc   0x0000000c   Code   RO         5766    i.nrf_clock_int_disable  nrfx_clock.o
+    0x0002b108   0x0002b108   0x00000008   Code   RO         5768    i.nrf_clock_task_trigger  nrfx_clock.o
     0x0002b110   0x0002b110   0x00000030   Code   RO            6    i.nrf_delay_ms      main.o
     0x0002b140   0x0002b140   0x0000001c   Code   RO         1281    i.nrf_delay_ms      led1642gw.o
-    0x0002b15c   0x0002b15c   0x00000040   Code   RO         5019    i.nrf_drv_clock_init  nrf_drv_clock.o
-    0x0002b19c   0x0002b19c   0x00000030   Code   RO         5023    i.nrf_drv_clock_lfclk_release  nrf_drv_clock.o
-    0x0002b1cc   0x0002b1cc   0x00000088   Code   RO         5167    i.nrf_drv_spi_init  nrf_drv_spi.o
-    0x0002b254   0x0002b254   0x0000000c   Code   RO         9186    i.nrf_drv_spi_uninit  nrf_spi_mngr.o
-    0x0002b260   0x0002b260   0x00000054   Code   RO         5207    i.nrf_drv_uart_init  nrf_drv_uart.o
-    0x0002b2b4   0x0002b2b4   0x0000001e   Code   RO         7527    i.nrf_drv_uart_rx   app_uart_fifo.o
-    0x0002b2d2   0x0002b2d2   0x0000001e   Code   RO         7528    i.nrf_drv_uart_tx   app_uart_fifo.o
-    0x0002b2f0   0x0002b2f0   0x0000004c   Code   RO         8544    i.nrf_fstorage_erase  nrf_fstorage.o
-    0x0002b33c   0x0002b33c   0x0000001c   Code   RO         8633    i.nrf_fstorage_sdh_req_handler  nrf_fstorage_sd.o
-    0x0002b358   0x0002b358   0x0000002c   Code   RO         8634    i.nrf_fstorage_sdh_state_handler  nrf_fstorage_sd.o
-    0x0002b384   0x0002b384   0x0000008c   Code   RO         8635    i.nrf_fstorage_sys_evt_handler  nrf_fstorage_sd.o
-    0x0002b410   0x0002b410   0x0000005e   Code   RO         8551    i.nrf_fstorage_write  nrf_fstorage.o
-    0x0002b46e   0x0002b46e   0x00000028   Code   RO         5903    i.nrf_gpio_cfg      nrfx_gpiote.o
-    0x0002b496   0x0002b496   0x00000028   Code   RO         6268    i.nrf_gpio_cfg      nrfx_uart.o
-    0x0002b4be   0x0002b4be   0x00000028   Code   RO         6681    i.nrf_gpio_cfg      nrfx_spim.o
-    0x0002b4e6   0x0002b4e6   0x0000001a   Code   RO         6270    i.nrf_gpio_cfg_input  nrfx_uart.o
-    0x0002b500   0x0002b500   0x00000018   Code   RO         6271    i.nrf_gpio_cfg_output  nrfx_uart.o
-    0x0002b518   0x0002b518   0x00000018   Code   RO         6682    i.nrf_gpio_cfg_output  nrfx_spim.o
-    0x0002b530   0x0002b530   0x00000032   Code   RO         5905    i.nrf_gpio_cfg_sense_set  nrfx_gpiote.o
-    0x0002b562   0x0002b562   0x00000016   Code   RO         6683    i.nrf_gpio_pin_clear  nrfx_spim.o
-    0x0002b578   0x0002b578   0x00000018   Code   RO         5907    i.nrf_gpio_pin_read  nrfx_gpiote.o
-    0x0002b590   0x0002b590   0x00000016   Code   RO         6272    i.nrf_gpio_pin_set  nrfx_uart.o
-    0x0002b5a6   0x0002b5a6   0x00000016   Code   RO         6684    i.nrf_gpio_pin_set  nrfx_spim.o
-    0x0002b5bc   0x0002b5bc   0x0000003a   Code   RO         1923    i.nrf_gpio_pin_write  boards.o
+    0x0002b15c   0x0002b15c   0x00000040   Code   RO         5041    i.nrf_drv_clock_init  nrf_drv_clock.o
+    0x0002b19c   0x0002b19c   0x00000030   Code   RO         5045    i.nrf_drv_clock_lfclk_release  nrf_drv_clock.o
+    0x0002b1cc   0x0002b1cc   0x00000088   Code   RO         5189    i.nrf_drv_spi_init  nrf_drv_spi.o
+    0x0002b254   0x0002b254   0x0000000c   Code   RO         9208    i.nrf_drv_spi_uninit  nrf_spi_mngr.o
+    0x0002b260   0x0002b260   0x00000054   Code   RO         5229    i.nrf_drv_uart_init  nrf_drv_uart.o
+    0x0002b2b4   0x0002b2b4   0x0000001e   Code   RO         7549    i.nrf_drv_uart_rx   app_uart_fifo.o
+    0x0002b2d2   0x0002b2d2   0x0000001e   Code   RO         7550    i.nrf_drv_uart_tx   app_uart_fifo.o
+    0x0002b2f0   0x0002b2f0   0x0000004c   Code   RO         8566    i.nrf_fstorage_erase  nrf_fstorage.o
+    0x0002b33c   0x0002b33c   0x0000001c   Code   RO         8655    i.nrf_fstorage_sdh_req_handler  nrf_fstorage_sd.o
+    0x0002b358   0x0002b358   0x0000002c   Code   RO         8656    i.nrf_fstorage_sdh_state_handler  nrf_fstorage_sd.o
+    0x0002b384   0x0002b384   0x0000008c   Code   RO         8657    i.nrf_fstorage_sys_evt_handler  nrf_fstorage_sd.o
+    0x0002b410   0x0002b410   0x0000005e   Code   RO         8573    i.nrf_fstorage_write  nrf_fstorage.o
+    0x0002b46e   0x0002b46e   0x00000028   Code   RO         5925    i.nrf_gpio_cfg      nrfx_gpiote.o
+    0x0002b496   0x0002b496   0x00000028   Code   RO         6290    i.nrf_gpio_cfg      nrfx_uart.o
+    0x0002b4be   0x0002b4be   0x00000028   Code   RO         6703    i.nrf_gpio_cfg      nrfx_spim.o
+    0x0002b4e6   0x0002b4e6   0x0000001a   Code   RO         6292    i.nrf_gpio_cfg_input  nrfx_uart.o
+    0x0002b500   0x0002b500   0x00000018   Code   RO         6293    i.nrf_gpio_cfg_output  nrfx_uart.o
+    0x0002b518   0x0002b518   0x00000018   Code   RO         6704    i.nrf_gpio_cfg_output  nrfx_spim.o
+    0x0002b530   0x0002b530   0x00000032   Code   RO         5927    i.nrf_gpio_cfg_sense_set  nrfx_gpiote.o
+    0x0002b562   0x0002b562   0x00000016   Code   RO         6705    i.nrf_gpio_pin_clear  nrfx_spim.o
+    0x0002b578   0x0002b578   0x00000018   Code   RO         5929    i.nrf_gpio_pin_read  nrfx_gpiote.o
+    0x0002b590   0x0002b590   0x00000016   Code   RO         6294    i.nrf_gpio_pin_set  nrfx_uart.o
+    0x0002b5a6   0x0002b5a6   0x00000016   Code   RO         6706    i.nrf_gpio_pin_set  nrfx_spim.o
+    0x0002b5bc   0x0002b5bc   0x0000003a   Code   RO         1945    i.nrf_gpio_pin_write  boards.o
     0x0002b5f6   0x0002b5f6   0x00000002   PAD
-    0x0002b5f8   0x0002b5f8   0x00000028   Code   RO         5909    i.nrf_gpio_ports_read  nrfx_gpiote.o
-    0x0002b620   0x0002b620   0x0000000c   Code   RO         5910    i.nrf_gpiote_event_addr_get  nrfx_gpiote.o
-    0x0002b62c   0x0002b62c   0x0000001c   Code   RO         5911    i.nrf_gpiote_event_clear  nrfx_gpiote.o
-    0x0002b648   0x0002b648   0x00000016   Code   RO         5912    i.nrf_gpiote_event_is_set  nrfx_gpiote.o
+    0x0002b5f8   0x0002b5f8   0x00000028   Code   RO         5931    i.nrf_gpio_ports_read  nrfx_gpiote.o
+    0x0002b620   0x0002b620   0x0000000c   Code   RO         5932    i.nrf_gpiote_event_addr_get  nrfx_gpiote.o
+    0x0002b62c   0x0002b62c   0x0000001c   Code   RO         5933    i.nrf_gpiote_event_clear  nrfx_gpiote.o
+    0x0002b648   0x0002b648   0x00000016   Code   RO         5934    i.nrf_gpiote_event_is_set  nrfx_gpiote.o
     0x0002b65e   0x0002b65e   0x00000002   PAD
-    0x0002b660   0x0002b660   0x0000000c   Code   RO         5913    i.nrf_gpiote_int_enable  nrfx_gpiote.o
-    0x0002b66c   0x0002b66c   0x00000016   Code   RO         2906    i.nrf_mtx_unlock    gatt_cache_manager.o
-    0x0002b682   0x0002b682   0x00000016   Code   RO         8847    i.nrf_mtx_unlock    nrf_pwr_mgmt.o
-    0x0002b698   0x0002b698   0x0000000e   Code   RO         6544    i.nrf_pwm_event_check  nrfx_pwm.o
-    0x0002b6a6   0x0002b6a6   0x0000000e   Code   RO         6545    i.nrf_pwm_event_clear  nrfx_pwm.o
-    0x0002b6b4   0x0002b6b4   0x00000006   Code   RO         6546    i.nrf_pwm_int_set   nrfx_pwm.o
-    0x0002b6ba   0x0002b6ba   0x00000006   Code   RO         6547    i.nrf_pwm_loop_set  nrfx_pwm.o
-    0x0002b6c0   0x0002b6c0   0x0000003c   Code   RO         6548    i.nrf_pwm_sequence_set  nrfx_pwm.o
-    0x0002b6fc   0x0002b6fc   0x00000006   Code   RO         6549    i.nrf_pwm_shorts_set  nrfx_pwm.o
-    0x0002b702   0x0002b702   0x00000006   Code   RO         6550    i.nrf_pwm_task_trigger  nrfx_pwm.o
-    0x0002b708   0x0002b708   0x00000064   Code   RO         8851    i.nrf_pwr_mgmt_shutdown  nrf_pwr_mgmt.o
-    0x0002b76c   0x0002b76c   0x0000009c   Code   RO         8930    i.nrf_queue_generic_pop  nrf_queue.o
-    0x0002b808   0x0002b808   0x00000016   Code   RO         8932    i.nrf_queue_is_empty  nrf_queue.o
-    0x0002b81e   0x0002b81e   0x00000020   Code   RO         8933    i.nrf_queue_is_full  nrf_queue.o
-    0x0002b83e   0x0002b83e   0x00000010   Code   RO         8936    i.nrf_queue_next_idx  nrf_queue.o
-    0x0002b84e   0x0002b84e   0x000000cc   Code   RO         8938    i.nrf_queue_push    nrf_queue.o
+    0x0002b660   0x0002b660   0x0000000c   Code   RO         5935    i.nrf_gpiote_int_enable  nrfx_gpiote.o
+    0x0002b66c   0x0002b66c   0x00000016   Code   RO         2928    i.nrf_mtx_unlock    gatt_cache_manager.o
+    0x0002b682   0x0002b682   0x00000016   Code   RO         8869    i.nrf_mtx_unlock    nrf_pwr_mgmt.o
+    0x0002b698   0x0002b698   0x0000000e   Code   RO         6566    i.nrf_pwm_event_check  nrfx_pwm.o
+    0x0002b6a6   0x0002b6a6   0x0000000e   Code   RO         6567    i.nrf_pwm_event_clear  nrfx_pwm.o
+    0x0002b6b4   0x0002b6b4   0x00000006   Code   RO         6568    i.nrf_pwm_int_set   nrfx_pwm.o
+    0x0002b6ba   0x0002b6ba   0x00000006   Code   RO         6569    i.nrf_pwm_loop_set  nrfx_pwm.o
+    0x0002b6c0   0x0002b6c0   0x0000003c   Code   RO         6570    i.nrf_pwm_sequence_set  nrfx_pwm.o
+    0x0002b6fc   0x0002b6fc   0x00000006   Code   RO         6571    i.nrf_pwm_shorts_set  nrfx_pwm.o
+    0x0002b702   0x0002b702   0x00000006   Code   RO         6572    i.nrf_pwm_task_trigger  nrfx_pwm.o
+    0x0002b708   0x0002b708   0x00000064   Code   RO         8873    i.nrf_pwr_mgmt_shutdown  nrf_pwr_mgmt.o
+    0x0002b76c   0x0002b76c   0x0000009c   Code   RO         8952    i.nrf_queue_generic_pop  nrf_queue.o
+    0x0002b808   0x0002b808   0x00000016   Code   RO         8954    i.nrf_queue_is_empty  nrf_queue.o
+    0x0002b81e   0x0002b81e   0x00000020   Code   RO         8955    i.nrf_queue_is_full  nrf_queue.o
+    0x0002b83e   0x0002b83e   0x00000010   Code   RO         8958    i.nrf_queue_next_idx  nrf_queue.o
+    0x0002b84e   0x0002b84e   0x000000cc   Code   RO         8960    i.nrf_queue_push    nrf_queue.o
     0x0002b91a   0x0002b91a   0x00000002   PAD
-    0x0002b91c   0x0002b91c   0x00000010   Code   RO         5446    i.nrf_saadc_buffer_init  nrfx_saadc.o
-    0x0002b92c   0x0002b92c   0x00000014   Code   RO         5448    i.nrf_saadc_event_check  nrfx_saadc.o
-    0x0002b940   0x0002b940   0x00000018   Code   RO         5449    i.nrf_saadc_event_clear  nrfx_saadc.o
-    0x0002b958   0x0002b958   0x0000000c   Code   RO         5453    i.nrf_saadc_task_trigger  nrfx_saadc.o
-    0x0002b964   0x0002b964   0x00000074   Code   RO         9822    i.nrf_sdh_ble_evts_poll  nrf_sdh_ble.o
-    0x0002b9d8   0x0002b9d8   0x00000064   Code   RO         9695    i.nrf_sdh_disable_request  nrf_sdh.o
-    0x0002ba3c   0x0002ba3c   0x00000084   Code   RO         9696    i.nrf_sdh_enable_request  nrf_sdh.o
-    0x0002bac0   0x0002bac0   0x00000030   Code   RO         9697    i.nrf_sdh_evts_poll  nrf_sdh.o
-    0x0002baf0   0x0002baf0   0x0000000c   Code   RO         9698    i.nrf_sdh_is_enabled  nrf_sdh.o
-    0x0002bafc   0x0002bafc   0x00000028   Code   RO         9700    i.nrf_sdh_request_continue  nrf_sdh.o
-    0x0002bb24   0x0002bb24   0x00000054   Code   RO         9878    i.nrf_sdh_soc_evts_poll  nrf_sdh_soc.o
-    0x0002bb78   0x0002bb78   0x00000006   Code   RO         9703    i.nrf_section_iter_get  nrf_sdh.o
-    0x0002bb7e   0x0002bb7e   0x00000014   Code   RO         9109    i.nrf_section_iter_init  nrf_section_iter.o
-    0x0002bb92   0x0002bb92   0x0000002e   Code   RO         9110    i.nrf_section_iter_item_set  nrf_section_iter.o
-    0x0002bbc0   0x0002bbc0   0x0000002e   Code   RO         9111    i.nrf_section_iter_next  nrf_section_iter.o
+    0x0002b91c   0x0002b91c   0x00000010   Code   RO         5468    i.nrf_saadc_buffer_init  nrfx_saadc.o
+    0x0002b92c   0x0002b92c   0x00000014   Code   RO         5470    i.nrf_saadc_event_check  nrfx_saadc.o
+    0x0002b940   0x0002b940   0x00000018   Code   RO         5471    i.nrf_saadc_event_clear  nrfx_saadc.o
+    0x0002b958   0x0002b958   0x0000000c   Code   RO         5475    i.nrf_saadc_task_trigger  nrfx_saadc.o
+    0x0002b964   0x0002b964   0x00000074   Code   RO         9844    i.nrf_sdh_ble_evts_poll  nrf_sdh_ble.o
+    0x0002b9d8   0x0002b9d8   0x00000064   Code   RO         9717    i.nrf_sdh_disable_request  nrf_sdh.o
+    0x0002ba3c   0x0002ba3c   0x00000084   Code   RO         9718    i.nrf_sdh_enable_request  nrf_sdh.o
+    0x0002bac0   0x0002bac0   0x00000030   Code   RO         9719    i.nrf_sdh_evts_poll  nrf_sdh.o
+    0x0002baf0   0x0002baf0   0x0000000c   Code   RO         9720    i.nrf_sdh_is_enabled  nrf_sdh.o
+    0x0002bafc   0x0002bafc   0x00000028   Code   RO         9722    i.nrf_sdh_request_continue  nrf_sdh.o
+    0x0002bb24   0x0002bb24   0x00000054   Code   RO         9900    i.nrf_sdh_soc_evts_poll  nrf_sdh_soc.o
+    0x0002bb78   0x0002bb78   0x00000006   Code   RO         9725    i.nrf_section_iter_get  nrf_sdh.o
+    0x0002bb7e   0x0002bb7e   0x00000014   Code   RO         9131    i.nrf_section_iter_init  nrf_section_iter.o
+    0x0002bb92   0x0002bb92   0x0000002e   Code   RO         9132    i.nrf_section_iter_item_set  nrf_section_iter.o
+    0x0002bbc0   0x0002bbc0   0x0000002e   Code   RO         9133    i.nrf_section_iter_next  nrf_section_iter.o
     0x0002bbee   0x0002bbee   0x00000002   PAD
-    0x0002bbf0   0x0002bbf0   0x0000003c   Code   RO         9187    i.nrf_spi_mngr_init  nrf_spi_mngr.o
-    0x0002bc2c   0x0002bc2c   0x0000001c   Code   RO         9189    i.nrf_spi_mngr_schedule  nrf_spi_mngr.o
-    0x0002bc48   0x0002bc48   0x0000000e   Code   RO         6685    i.nrf_spim_event_check  nrfx_spim.o
-    0x0002bc56   0x0002bc56   0x0000000e   Code   RO         6686    i.nrf_spim_event_clear  nrfx_spim.o
-    0x0002bc64   0x0002bc64   0x00000006   Code   RO         6687    i.nrf_spim_int_disable  nrfx_spim.o
-    0x0002bc6a   0x0002bc6a   0x00000006   Code   RO         6688    i.nrf_spim_int_enable  nrfx_spim.o
-    0x0002bc70   0x0002bc70   0x00000006   Code   RO         6689    i.nrf_spim_task_trigger  nrfx_spim.o
-    0x0002bc76   0x0002bc76   0x0000000e   Code   RO         5253    i.nrf_timer_compare_event_get  nrfx_timer.o
-    0x0002bc84   0x0002bc84   0x0000000a   Code   RO         5254    i.nrf_timer_compare_int_get  nrfx_timer.o
-    0x0002bc8e   0x0002bc8e   0x0000000e   Code   RO         5255    i.nrf_timer_event_clear  nrfx_timer.o
-    0x0002bc9c   0x0002bc9c   0x0000000c   Code   RO         6273    i.nrf_uart_errorsrc_get_and_clear  nrfx_uart.o
-    0x0002bca8   0x0002bca8   0x0000000e   Code   RO         6274    i.nrf_uart_event_check  nrfx_uart.o
-    0x0002bcb6   0x0002bcb6   0x0000000e   Code   RO         6275    i.nrf_uart_event_clear  nrfx_uart.o
-    0x0002bcc4   0x0002bcc4   0x0000000a   Code   RO         6276    i.nrf_uart_hwfc_pins_set  nrfx_uart.o
-    0x0002bcce   0x0002bcce   0x00000006   Code   RO         6277    i.nrf_uart_int_disable  nrfx_uart.o
-    0x0002bcd4   0x0002bcd4   0x00000006   Code   RO         6278    i.nrf_uart_int_enable  nrfx_uart.o
-    0x0002bcda   0x0002bcda   0x00000012   Code   RO         6279    i.nrf_uart_int_enable_check  nrfx_uart.o
-    0x0002bcec   0x0002bcec   0x00000006   Code   RO         6280    i.nrf_uart_task_trigger  nrfx_uart.o
-    0x0002bcf2   0x0002bcf2   0x0000000a   Code   RO         6281    i.nrf_uart_txrx_pins_set  nrfx_uart.o
-    0x0002bcfc   0x0002bcfc   0x00000014   Code   RO         5752    i.nrfx_clock_enable  nrfx_clock.o
-    0x0002bd10   0x0002bd10   0x00000024   Code   RO         5755    i.nrfx_clock_init   nrfx_clock.o
-    0x0002bd34   0x0002bd34   0x00000020   Code   RO         5758    i.nrfx_clock_lfclk_stop  nrfx_clock.o
+    0x0002bbf0   0x0002bbf0   0x0000003c   Code   RO         9209    i.nrf_spi_mngr_init  nrf_spi_mngr.o
+    0x0002bc2c   0x0002bc2c   0x0000001c   Code   RO         9211    i.nrf_spi_mngr_schedule  nrf_spi_mngr.o
+    0x0002bc48   0x0002bc48   0x0000000e   Code   RO         6707    i.nrf_spim_event_check  nrfx_spim.o
+    0x0002bc56   0x0002bc56   0x0000000e   Code   RO         6708    i.nrf_spim_event_clear  nrfx_spim.o
+    0x0002bc64   0x0002bc64   0x00000006   Code   RO         6709    i.nrf_spim_int_disable  nrfx_spim.o
+    0x0002bc6a   0x0002bc6a   0x00000006   Code   RO         6710    i.nrf_spim_int_enable  nrfx_spim.o
+    0x0002bc70   0x0002bc70   0x00000006   Code   RO         6711    i.nrf_spim_task_trigger  nrfx_spim.o
+    0x0002bc76   0x0002bc76   0x0000000e   Code   RO         5275    i.nrf_timer_compare_event_get  nrfx_timer.o
+    0x0002bc84   0x0002bc84   0x0000000a   Code   RO         5276    i.nrf_timer_compare_int_get  nrfx_timer.o
+    0x0002bc8e   0x0002bc8e   0x0000000e   Code   RO         5277    i.nrf_timer_event_clear  nrfx_timer.o
+    0x0002bc9c   0x0002bc9c   0x0000000c   Code   RO         6295    i.nrf_uart_errorsrc_get_and_clear  nrfx_uart.o
+    0x0002bca8   0x0002bca8   0x0000000e   Code   RO         6296    i.nrf_uart_event_check  nrfx_uart.o
+    0x0002bcb6   0x0002bcb6   0x0000000e   Code   RO         6297    i.nrf_uart_event_clear  nrfx_uart.o
+    0x0002bcc4   0x0002bcc4   0x0000000a   Code   RO         6298    i.nrf_uart_hwfc_pins_set  nrfx_uart.o
+    0x0002bcce   0x0002bcce   0x00000006   Code   RO         6299    i.nrf_uart_int_disable  nrfx_uart.o
+    0x0002bcd4   0x0002bcd4   0x00000006   Code   RO         6300    i.nrf_uart_int_enable  nrfx_uart.o
+    0x0002bcda   0x0002bcda   0x00000012   Code   RO         6301    i.nrf_uart_int_enable_check  nrfx_uart.o
+    0x0002bcec   0x0002bcec   0x00000006   Code   RO         6302    i.nrf_uart_task_trigger  nrfx_uart.o
+    0x0002bcf2   0x0002bcf2   0x0000000a   Code   RO         6303    i.nrf_uart_txrx_pins_set  nrfx_uart.o
+    0x0002bcfc   0x0002bcfc   0x00000014   Code   RO         5774    i.nrfx_clock_enable  nrfx_clock.o
+    0x0002bd10   0x0002bd10   0x00000024   Code   RO         5777    i.nrfx_clock_init   nrfx_clock.o
+    0x0002bd34   0x0002bd34   0x00000020   Code   RO         5780    i.nrfx_clock_lfclk_stop  nrfx_clock.o
     0x0002bd54   0x0002bd54   0x00000018   Code   RO         1282    i.nrfx_coredep_delay_us  led1642gw.o
-    0x0002bd6c   0x0002bd6c   0x00000018   Code   RO         7136    i.nrfx_coredep_delay_us  app_timer.o
-    0x0002bd84   0x0002bd84   0x00000008   Code   RO         5760    i.nrfx_get_irq_number  nrfx_clock.o
-    0x0002bd8c   0x0002bd8c   0x00000008   Code   RO         6282    i.nrfx_get_irq_number  nrfx_uart.o
-    0x0002bd94   0x0002bd94   0x00000008   Code   RO         6551    i.nrfx_get_irq_number  nrfx_pwm.o
-    0x0002bd9c   0x0002bd9c   0x00000008   Code   RO         6690    i.nrfx_get_irq_number  nrfx_spim.o
-    0x0002bda4   0x0002bda4   0x000000ac   Code   RO         5920    i.nrfx_gpiote_in_event_enable  nrfx_gpiote.o
-    0x0002be50   0x0002be50   0x000000f4   Code   RO         5921    i.nrfx_gpiote_in_init  nrfx_gpiote.o
-    0x0002bf44   0x0002bf44   0x000000b0   Code   RO         5924    i.nrfx_gpiote_init  nrfx_gpiote.o
-    0x0002bff4   0x0002bff4   0x00000014   Code   RO         6691    i.nrfx_is_in_ram    nrfx_spim.o
-    0x0002c008   0x0002c008   0x000000a4   Code   RO         5761    i.nrfx_power_clock_irq_init  nrfx_clock.o
-    0x0002c0ac   0x0002c0ac   0x0000004e   Code   RO         6215    i.nrfx_prs_acquire  nrfx_prs.o
-    0x0002c0fa   0x0002c0fa   0x00000016   Code   RO         6216    i.nrfx_prs_release  nrfx_prs.o
-    0x0002c110   0x0002c110   0x00000108   Code   RO         6553    i.nrfx_pwm_init     nrfx_pwm.o
-    0x0002c218   0x0002c218   0x00000084   Code   RO         6555    i.nrfx_pwm_simple_playback  nrfx_pwm.o
-    0x0002c29c   0x0002c29c   0x000001cc   Code   RO         6694    i.nrfx_spim_init    nrfx_spim.o
-    0x0002c468   0x0002c468   0x000000ac   Code   RO         6696    i.nrfx_spim_uninit  nrfx_spim.o
-    0x0002c514   0x0002c514   0x0000006c   Code   RO         6697    i.nrfx_spim_xfer    nrfx_spim.o
-    0x0002c580   0x0002c580   0x00000014   Code   RO         6283    i.nrfx_uart_0_irq_handler  nrfx_uart.o
-    0x0002c594   0x0002c594   0x00000088   Code   RO         6285    i.nrfx_uart_init    nrfx_uart.o
-    0x0002c61c   0x0002c61c   0x00000124   Code   RO         6286    i.nrfx_uart_rx      nrfx_uart.o
-    0x0002c740   0x0002c740   0x0000008c   Code   RO         6291    i.nrfx_uart_tx      nrfx_uart.o
-    0x0002c7cc   0x0002c7cc   0x00000024   Code   RO         6293    i.nrfx_uart_tx_in_progress  nrfx_uart.o
-    0x0002c7f0   0x0002c7f0   0x00000030   Code   RO         2513    i.on_conn_params_update  ble_conn_params.o
-    0x0002c820   0x0002c820   0x00000070   Code   RO         2514    i.on_connect        ble_conn_params.o
-    0x0002c890   0x0002c890   0x00000074   Code   RO         4756    i.on_connect        ble_nus.o
-    0x0002c904   0x0002c904   0x0000000c   Code   RO         4817    i.on_connect        ble_dfu.o
-    0x0002c910   0x0002c910   0x0000000e   Code   RO         2365    i.on_connected      ble_advertising.o
-    0x0002c91e   0x0002c91e   0x00000066   Code   RO         3363    i.on_connected_evt  nrf_ble_gatt.o
-    0x0002c984   0x0002c984   0x00000058   Code   RO         4818    i.on_ctrlpt_write   ble_dfu.o
-    0x0002c9dc   0x0002c9dc   0x00000054   Code   RO         3364    i.on_data_length_update_evt  nrf_ble_gatt.o
-    0x0002ca30   0x0002ca30   0x00000030   Code   RO         3365    i.on_data_length_update_request_evt  nrf_ble_gatt.o
-    0x0002ca60   0x0002ca60   0x00000032   Code   RO         2515    i.on_disconnect     ble_conn_params.o
+    0x0002bd6c   0x0002bd6c   0x00000018   Code   RO         7158    i.nrfx_coredep_delay_us  app_timer.o
+    0x0002bd84   0x0002bd84   0x00000008   Code   RO         5782    i.nrfx_get_irq_number  nrfx_clock.o
+    0x0002bd8c   0x0002bd8c   0x00000008   Code   RO         6304    i.nrfx_get_irq_number  nrfx_uart.o
+    0x0002bd94   0x0002bd94   0x00000008   Code   RO         6573    i.nrfx_get_irq_number  nrfx_pwm.o
+    0x0002bd9c   0x0002bd9c   0x00000008   Code   RO         6712    i.nrfx_get_irq_number  nrfx_spim.o
+    0x0002bda4   0x0002bda4   0x000000ac   Code   RO         5942    i.nrfx_gpiote_in_event_enable  nrfx_gpiote.o
+    0x0002be50   0x0002be50   0x000000f4   Code   RO         5943    i.nrfx_gpiote_in_init  nrfx_gpiote.o
+    0x0002bf44   0x0002bf44   0x000000b0   Code   RO         5946    i.nrfx_gpiote_init  nrfx_gpiote.o
+    0x0002bff4   0x0002bff4   0x00000014   Code   RO         6713    i.nrfx_is_in_ram    nrfx_spim.o
+    0x0002c008   0x0002c008   0x000000a4   Code   RO         5783    i.nrfx_power_clock_irq_init  nrfx_clock.o
+    0x0002c0ac   0x0002c0ac   0x0000004e   Code   RO         6237    i.nrfx_prs_acquire  nrfx_prs.o
+    0x0002c0fa   0x0002c0fa   0x00000016   Code   RO         6238    i.nrfx_prs_release  nrfx_prs.o
+    0x0002c110   0x0002c110   0x00000108   Code   RO         6575    i.nrfx_pwm_init     nrfx_pwm.o
+    0x0002c218   0x0002c218   0x00000084   Code   RO         6577    i.nrfx_pwm_simple_playback  nrfx_pwm.o
+    0x0002c29c   0x0002c29c   0x000001cc   Code   RO         6716    i.nrfx_spim_init    nrfx_spim.o
+    0x0002c468   0x0002c468   0x000000ac   Code   RO         6718    i.nrfx_spim_uninit  nrfx_spim.o
+    0x0002c514   0x0002c514   0x0000006c   Code   RO         6719    i.nrfx_spim_xfer    nrfx_spim.o
+    0x0002c580   0x0002c580   0x00000014   Code   RO         6305    i.nrfx_uart_0_irq_handler  nrfx_uart.o
+    0x0002c594   0x0002c594   0x00000088   Code   RO         6307    i.nrfx_uart_init    nrfx_uart.o
+    0x0002c61c   0x0002c61c   0x00000124   Code   RO         6308    i.nrfx_uart_rx      nrfx_uart.o
+    0x0002c740   0x0002c740   0x0000008c   Code   RO         6313    i.nrfx_uart_tx      nrfx_uart.o
+    0x0002c7cc   0x0002c7cc   0x00000024   Code   RO         6315    i.nrfx_uart_tx_in_progress  nrfx_uart.o
+    0x0002c7f0   0x0002c7f0   0x00000030   Code   RO         2535    i.on_conn_params_update  ble_conn_params.o
+    0x0002c820   0x0002c820   0x00000070   Code   RO         2536    i.on_connect        ble_conn_params.o
+    0x0002c890   0x0002c890   0x00000074   Code   RO         4778    i.on_connect        ble_nus.o
+    0x0002c904   0x0002c904   0x0000000c   Code   RO         4839    i.on_connect        ble_dfu.o
+    0x0002c910   0x0002c910   0x0000000e   Code   RO         2387    i.on_connected      ble_advertising.o
+    0x0002c91e   0x0002c91e   0x00000066   Code   RO         3385    i.on_connected_evt  nrf_ble_gatt.o
+    0x0002c984   0x0002c984   0x00000058   Code   RO         4840    i.on_ctrlpt_write   ble_dfu.o
+    0x0002c9dc   0x0002c9dc   0x00000054   Code   RO         3386    i.on_data_length_update_evt  nrf_ble_gatt.o
+    0x0002ca30   0x0002ca30   0x00000030   Code   RO         3387    i.on_data_length_update_request_evt  nrf_ble_gatt.o
+    0x0002ca60   0x0002ca60   0x00000032   Code   RO         2537    i.on_disconnect     ble_conn_params.o
     0x0002ca92   0x0002ca92   0x00000002   PAD
-    0x0002ca94   0x0002ca94   0x0000001c   Code   RO         4819    i.on_disconnect     ble_dfu.o
-    0x0002cab0   0x0002cab0   0x00000032   Code   RO         2366    i.on_disconnected   ble_advertising.o
-    0x0002cae2   0x0002cae2   0x00000014   Code   RO         3366    i.on_disconnected_evt  nrf_ble_gatt.o
+    0x0002ca94   0x0002ca94   0x0000001c   Code   RO         4841    i.on_disconnect     ble_dfu.o
+    0x0002cab0   0x0002cab0   0x00000032   Code   RO         2388    i.on_disconnected   ble_advertising.o
+    0x0002cae2   0x0002cae2   0x00000014   Code   RO         3388    i.on_disconnected_evt  nrf_ble_gatt.o
     0x0002caf6   0x0002caf6   0x00000002   PAD
-    0x0002caf8   0x0002caf8   0x0000006c   Code   RO         3367    i.on_exchange_mtu_request_evt  nrf_ble_gatt.o
-    0x0002cb64   0x0002cb64   0x00000064   Code   RO         3368    i.on_exchange_mtu_rsp_evt  nrf_ble_gatt.o
-    0x0002cbc8   0x0002cbc8   0x0000002c   Code   RO         4820    i.on_hvc            ble_dfu.o
-    0x0002cbf4   0x0002cbf4   0x00000044   Code   RO         4757    i.on_hvx_tx_complete  ble_nus.o
-    0x0002cc38   0x0002cc38   0x00000024   Code   RO         8636    i.on_operation_failure  nrf_fstorage_sd.o
-    0x0002cc5c   0x0002cc5c   0x0000005c   Code   RO         8637    i.on_operation_success  nrf_fstorage_sd.o
-    0x0002ccb8   0x0002ccb8   0x00000044   Code   RO         4821    i.on_rw_authorize_req  ble_dfu.o
-    0x0002ccfc   0x0002ccfc   0x0000006a   Code   RO         3474    i.on_rw_authorize_request  nrf_ble_qwr.o
-    0x0002cd66   0x0002cd66   0x00000040   Code   RO         2367    i.on_terminated     ble_advertising.o
-    0x0002cda6   0x0002cda6   0x00000002   Code   RO         3475    i.on_user_mem_release  nrf_ble_qwr.o
-    0x0002cda8   0x0002cda8   0x00000020   Code   RO         3476    i.on_user_mem_request  nrf_ble_qwr.o
-    0x0002cdc8   0x0002cdc8   0x00000058   Code   RO         2516    i.on_write          ble_conn_params.o
-    0x0002ce20   0x0002ce20   0x00000094   Code   RO         4758    i.on_write          ble_nus.o
-    0x0002ceb4   0x0002ceb4   0x0000002c   Code   RO         4822    i.on_write          ble_dfu.o
-    0x0002cee0   0x0002cee0   0x00000044   Code   RO         7672    i.page_from_record  fds.o
-    0x0002cf24   0x0002cf24   0x00000034   Code   RO         7673    i.page_has_space    fds.o
-    0x0002cf58   0x0002cf58   0x0000001c   Code   RO         7676    i.page_offsets_update  fds.o
-    0x0002cf74   0x0002cf74   0x00000020   Code   RO         7678    i.page_tag_write_data  fds.o
-    0x0002cf94   0x0002cf94   0x00000024   Code   RO         7679    i.page_tag_write_swap  fds.o
-    0x0002cfb8   0x0002cfb8   0x00000014   Code   RO         4420    i.pairing           security_dispatcher.o
-    0x0002cfcc   0x0002cfcc   0x00000054   Code   RO         4421    i.pairing_failure   security_dispatcher.o
-    0x0002d020   0x0002d020   0x00000034   Code   RO         4422    i.pairing_success_evt_send  security_dispatcher.o
-    0x0002d054   0x0002d054   0x00000010   Code   RO         4602    i.params_reply_pending_handle  security_manager.o
-    0x0002d064   0x0002d064   0x0000002c   Code   RO         4603    i.params_req_send   security_manager.o
-    0x0002d090   0x0002d090   0x00000020   Code   RO         3705    i.pdb_evt_send      peer_database.o
-    0x0002d0b0   0x0002d0b0   0x0000006c   Code   RO         3707    i.pdb_pds_evt_handler  peer_database.o
-    0x0002d11c   0x0002d11c   0x00000016   Code   RO         3708    i.pdb_peer_data_ptr_get  peer_database.o
-    0x0002d132   0x0002d132   0x00000052   Code   RO         3709    i.pdb_peer_free     peer_database.o
-    0x0002d184   0x0002d184   0x000000cc   Code   RO         3710    i.pdb_write_buf_get  peer_database.o
-    0x0002d250   0x0002d250   0x00000020   Code   RO         3711    i.pdb_write_buf_release  peer_database.o
-    0x0002d270   0x0002d270   0x00000044   Code   RO         3712    i.pdb_write_buf_store  peer_database.o
-    0x0002d2b4   0x0002d2b4   0x00000024   Code   RO         3533    i.pds_evt_send      peer_data_storage.o
-    0x0002d2d8   0x0002d2d8   0x0000000c   Code   RO         3535    i.pds_next_deleted_peer_id_get  peer_data_storage.o
-    0x0002d2e4   0x0002d2e4   0x0000000c   Code   RO         3536    i.pds_next_peer_id_get  peer_data_storage.o
-    0x0002d2f0   0x0002d2f0   0x0000006c   Code   RO         3539    i.pds_peer_data_iterate  peer_data_storage.o
-    0x0002d35c   0x0002d35c   0x00000010   Code   RO         3540    i.pds_peer_data_iterate_prepare  peer_data_storage.o
-    0x0002d36c   0x0002d36c   0x0000009a   Code   RO         3541    i.pds_peer_data_read  peer_data_storage.o
-    0x0002d406   0x0002d406   0x00000096   Code   RO         3542    i.pds_peer_data_store  peer_data_storage.o
-    0x0002d49c   0x0002d49c   0x0000000c   Code   RO         3543    i.pds_peer_id_allocate  peer_data_storage.o
-    0x0002d4a8   0x0002d4a8   0x0000001e   Code   RO         3544    i.pds_peer_id_free  peer_data_storage.o
-    0x0002d4c6   0x0002d4c6   0x0000000c   Code   RO         3545    i.pds_peer_id_is_allocated  peer_data_storage.o
-    0x0002d4d2   0x0002d4d2   0x0000001c   Code   RO         3713    i.peer_data_const_point_to_buffer  peer_database.o
+    0x0002caf8   0x0002caf8   0x0000006c   Code   RO         3389    i.on_exchange_mtu_request_evt  nrf_ble_gatt.o
+    0x0002cb64   0x0002cb64   0x00000064   Code   RO         3390    i.on_exchange_mtu_rsp_evt  nrf_ble_gatt.o
+    0x0002cbc8   0x0002cbc8   0x0000002c   Code   RO         4842    i.on_hvc            ble_dfu.o
+    0x0002cbf4   0x0002cbf4   0x00000044   Code   RO         4779    i.on_hvx_tx_complete  ble_nus.o
+    0x0002cc38   0x0002cc38   0x00000024   Code   RO         8658    i.on_operation_failure  nrf_fstorage_sd.o
+    0x0002cc5c   0x0002cc5c   0x0000005c   Code   RO         8659    i.on_operation_success  nrf_fstorage_sd.o
+    0x0002ccb8   0x0002ccb8   0x00000044   Code   RO         4843    i.on_rw_authorize_req  ble_dfu.o
+    0x0002ccfc   0x0002ccfc   0x0000006a   Code   RO         3496    i.on_rw_authorize_request  nrf_ble_qwr.o
+    0x0002cd66   0x0002cd66   0x00000040   Code   RO         2389    i.on_terminated     ble_advertising.o
+    0x0002cda6   0x0002cda6   0x00000002   Code   RO         3497    i.on_user_mem_release  nrf_ble_qwr.o
+    0x0002cda8   0x0002cda8   0x00000020   Code   RO         3498    i.on_user_mem_request  nrf_ble_qwr.o
+    0x0002cdc8   0x0002cdc8   0x00000058   Code   RO         2538    i.on_write          ble_conn_params.o
+    0x0002ce20   0x0002ce20   0x00000094   Code   RO         4780    i.on_write          ble_nus.o
+    0x0002ceb4   0x0002ceb4   0x0000002c   Code   RO         4844    i.on_write          ble_dfu.o
+    0x0002cee0   0x0002cee0   0x00000044   Code   RO         7694    i.page_from_record  fds.o
+    0x0002cf24   0x0002cf24   0x00000034   Code   RO         7695    i.page_has_space    fds.o
+    0x0002cf58   0x0002cf58   0x0000001c   Code   RO         7698    i.page_offsets_update  fds.o
+    0x0002cf74   0x0002cf74   0x00000020   Code   RO         7700    i.page_tag_write_data  fds.o
+    0x0002cf94   0x0002cf94   0x00000024   Code   RO         7701    i.page_tag_write_swap  fds.o
+    0x0002cfb8   0x0002cfb8   0x00000014   Code   RO         4442    i.pairing           security_dispatcher.o
+    0x0002cfcc   0x0002cfcc   0x00000054   Code   RO         4443    i.pairing_failure   security_dispatcher.o
+    0x0002d020   0x0002d020   0x00000034   Code   RO         4444    i.pairing_success_evt_send  security_dispatcher.o
+    0x0002d054   0x0002d054   0x00000010   Code   RO         4624    i.params_reply_pending_handle  security_manager.o
+    0x0002d064   0x0002d064   0x0000002c   Code   RO         4625    i.params_req_send   security_manager.o
+    0x0002d090   0x0002d090   0x00000020   Code   RO         3727    i.pdb_evt_send      peer_database.o
+    0x0002d0b0   0x0002d0b0   0x0000006c   Code   RO         3729    i.pdb_pds_evt_handler  peer_database.o
+    0x0002d11c   0x0002d11c   0x00000016   Code   RO         3730    i.pdb_peer_data_ptr_get  peer_database.o
+    0x0002d132   0x0002d132   0x00000052   Code   RO         3731    i.pdb_peer_free     peer_database.o
+    0x0002d184   0x0002d184   0x000000cc   Code   RO         3732    i.pdb_write_buf_get  peer_database.o
+    0x0002d250   0x0002d250   0x00000020   Code   RO         3733    i.pdb_write_buf_release  peer_database.o
+    0x0002d270   0x0002d270   0x00000044   Code   RO         3734    i.pdb_write_buf_store  peer_database.o
+    0x0002d2b4   0x0002d2b4   0x00000024   Code   RO         3555    i.pds_evt_send      peer_data_storage.o
+    0x0002d2d8   0x0002d2d8   0x0000000c   Code   RO         3557    i.pds_next_deleted_peer_id_get  peer_data_storage.o
+    0x0002d2e4   0x0002d2e4   0x0000000c   Code   RO         3558    i.pds_next_peer_id_get  peer_data_storage.o
+    0x0002d2f0   0x0002d2f0   0x0000006c   Code   RO         3561    i.pds_peer_data_iterate  peer_data_storage.o
+    0x0002d35c   0x0002d35c   0x00000010   Code   RO         3562    i.pds_peer_data_iterate_prepare  peer_data_storage.o
+    0x0002d36c   0x0002d36c   0x0000009a   Code   RO         3563    i.pds_peer_data_read  peer_data_storage.o
+    0x0002d406   0x0002d406   0x00000096   Code   RO         3564    i.pds_peer_data_store  peer_data_storage.o
+    0x0002d49c   0x0002d49c   0x0000000c   Code   RO         3565    i.pds_peer_id_allocate  peer_data_storage.o
+    0x0002d4a8   0x0002d4a8   0x0000001e   Code   RO         3566    i.pds_peer_id_free  peer_data_storage.o
+    0x0002d4c6   0x0002d4c6   0x0000000c   Code   RO         3567    i.pds_peer_id_is_allocated  peer_data_storage.o
+    0x0002d4d2   0x0002d4d2   0x0000001c   Code   RO         3735    i.peer_data_const_point_to_buffer  peer_database.o
     0x0002d4ee   0x0002d4ee   0x00000002   PAD
-    0x0002d4f0   0x0002d4f0   0x0000007c   Code   RO         3547    i.peer_data_delete_process  peer_data_storage.o
-    0x0002d56c   0x0002d56c   0x00000040   Code   RO         3548    i.peer_data_find    peer_data_storage.o
-    0x0002d5ac   0x0002d5ac   0x00000026   Code   RO         3549    i.peer_data_id_is_valid  peer_data_storage.o
-    0x0002d5d2   0x0002d5d2   0x0000000a   Code   RO         3550    i.peer_data_id_to_record_key  peer_data_storage.o
-    0x0002d5dc   0x0002d5dc   0x0000001a   Code   RO         3714    i.peer_data_point_to_buffer  peer_database.o
+    0x0002d4f0   0x0002d4f0   0x0000007c   Code   RO         3569    i.peer_data_delete_process  peer_data_storage.o
+    0x0002d56c   0x0002d56c   0x00000040   Code   RO         3570    i.peer_data_find    peer_data_storage.o
+    0x0002d5ac   0x0002d5ac   0x00000026   Code   RO         3571    i.peer_data_id_is_valid  peer_data_storage.o
+    0x0002d5d2   0x0002d5d2   0x0000000a   Code   RO         3572    i.peer_data_id_to_record_key  peer_data_storage.o
+    0x0002d5dc   0x0002d5dc   0x0000001a   Code   RO         3736    i.peer_data_point_to_buffer  peer_database.o
     0x0002d5f6   0x0002d5f6   0x00000002   PAD
-    0x0002d5f8   0x0002d5f8   0x00000014   Code   RO         3857    i.peer_id_allocate  peer_id.o
-    0x0002d60c   0x0002d60c   0x0000002c   Code   RO         3858    i.peer_id_delete    peer_id.o
-    0x0002d638   0x0002d638   0x0000001c   Code   RO         3859    i.peer_id_free      peer_id.o
-    0x0002d654   0x0002d654   0x00000014   Code   RO         3860    i.peer_id_get_next_deleted  peer_id.o
-    0x0002d668   0x0002d668   0x00000038   Code   RO         3861    i.peer_id_get_next_used  peer_id.o
-    0x0002d6a0   0x0002d6a0   0x0000001c   Code   RO         3863    i.peer_id_is_allocated  peer_id.o
-    0x0002d6bc   0x0002d6bc   0x0000001c   Code   RO         3864    i.peer_id_is_deleted  peer_id.o
-    0x0002d6d8   0x0002d6d8   0x0000000a   Code   RO         3551    i.peer_id_to_file_id  peer_data_storage.o
-    0x0002d6e2   0x0002d6e2   0x00000016   Code   RO         2368    i.phy_is_valid      ble_advertising.o
-    0x0002d6f8   0x0002d6f8   0x00000014   Code   RO         5941    i.pin_configured_set  nrfx_gpiote.o
-    0x0002d70c   0x0002d70c   0x0000001c   Code   RO         5942    i.pin_in_use_by_gpiote  nrfx_gpiote.o
-    0x0002d728   0x0002d728   0x00000018   Code   RO         5943    i.pin_in_use_by_port  nrfx_gpiote.o
-    0x0002d740   0x0002d740   0x00000020   Code   RO         5944    i.pin_in_use_by_te  nrfx_gpiote.o
-    0x0002d760   0x0002d760   0x0000000c   Code   RO         5945    i.pin_in_use_clear  nrfx_gpiote.o
-    0x0002d76c   0x0002d76c   0x00000062   Code   RO         4353    i.pm_buffer_block_acquire  pm_buffer.o
-    0x0002d7ce   0x0002d7ce   0x00000030   Code   RO         4355    i.pm_buffer_ptr_get  pm_buffer.o
-    0x0002d7fe   0x0002d7fe   0x00000028   Code   RO         4356    i.pm_buffer_release  pm_buffer.o
-    0x0002d826   0x0002d826   0x0000000c   Code   RO         3960    i.pm_gcm_evt_handler  peer_manager.o
-    0x0002d832   0x0002d832   0x0000000c   Code   RO         3961    i.pm_gscm_evt_handler  peer_manager.o
-    0x0002d83e   0x0002d83e   0x0000000c   Code   RO         3964    i.pm_im_evt_handler  peer_manager.o
+    0x0002d5f8   0x0002d5f8   0x00000014   Code   RO         3879    i.peer_id_allocate  peer_id.o
+    0x0002d60c   0x0002d60c   0x0000002c   Code   RO         3880    i.peer_id_delete    peer_id.o
+    0x0002d638   0x0002d638   0x0000001c   Code   RO         3881    i.peer_id_free      peer_id.o
+    0x0002d654   0x0002d654   0x00000014   Code   RO         3882    i.peer_id_get_next_deleted  peer_id.o
+    0x0002d668   0x0002d668   0x00000038   Code   RO         3883    i.peer_id_get_next_used  peer_id.o
+    0x0002d6a0   0x0002d6a0   0x0000001c   Code   RO         3885    i.peer_id_is_allocated  peer_id.o
+    0x0002d6bc   0x0002d6bc   0x0000001c   Code   RO         3886    i.peer_id_is_deleted  peer_id.o
+    0x0002d6d8   0x0002d6d8   0x0000000a   Code   RO         3573    i.peer_id_to_file_id  peer_data_storage.o
+    0x0002d6e2   0x0002d6e2   0x00000016   Code   RO         2390    i.phy_is_valid      ble_advertising.o
+    0x0002d6f8   0x0002d6f8   0x00000014   Code   RO         5963    i.pin_configured_set  nrfx_gpiote.o
+    0x0002d70c   0x0002d70c   0x0000001c   Code   RO         5964    i.pin_in_use_by_gpiote  nrfx_gpiote.o
+    0x0002d728   0x0002d728   0x00000018   Code   RO         5965    i.pin_in_use_by_port  nrfx_gpiote.o
+    0x0002d740   0x0002d740   0x00000020   Code   RO         5966    i.pin_in_use_by_te  nrfx_gpiote.o
+    0x0002d760   0x0002d760   0x0000000c   Code   RO         5967    i.pin_in_use_clear  nrfx_gpiote.o
+    0x0002d76c   0x0002d76c   0x00000062   Code   RO         4375    i.pm_buffer_block_acquire  pm_buffer.o
+    0x0002d7ce   0x0002d7ce   0x00000030   Code   RO         4377    i.pm_buffer_ptr_get  pm_buffer.o
+    0x0002d7fe   0x0002d7fe   0x00000028   Code   RO         4378    i.pm_buffer_release  pm_buffer.o
+    0x0002d826   0x0002d826   0x0000000c   Code   RO         3982    i.pm_gcm_evt_handler  peer_manager.o
+    0x0002d832   0x0002d832   0x0000000c   Code   RO         3983    i.pm_gscm_evt_handler  peer_manager.o
+    0x0002d83e   0x0002d83e   0x0000000c   Code   RO         3986    i.pm_im_evt_handler  peer_manager.o
     0x0002d84a   0x0002d84a   0x00000002   PAD
-    0x0002d84c   0x0002d84c   0x00000184   Code   RO         3969    i.pm_pdb_evt_handler  peer_manager.o
-    0x0002d9d0   0x0002d9d0   0x000000dc   Code   RO         3985    i.pm_peer_ranks_get  peer_manager.o
-    0x0002daac   0x0002daac   0x00000016   Code   RO         3991    i.pm_sm_evt_handler  peer_manager.o
+    0x0002d84c   0x0002d84c   0x00000184   Code   RO         3991    i.pm_pdb_evt_handler  peer_manager.o
+    0x0002d9d0   0x0002d9d0   0x000000dc   Code   RO         4007    i.pm_peer_ranks_get  peer_manager.o
+    0x0002daac   0x0002daac   0x00000016   Code   RO         4013    i.pm_sm_evt_handler  peer_manager.o
     0x0002dac2   0x0002dac2   0x00000002   PAD
-    0x0002dac4   0x0002dac4   0x00000018   Code   RO         6217    i.prs_box_get       nrfx_prs.o
-    0x0002dadc   0x0002dadc   0x00000020   Code   RO         7681    i.queue_buf_get     fds.o
-    0x0002dafc   0x0002dafc   0x00000014   Code   RO         7682    i.queue_buf_store   fds.o
-    0x0002db10   0x0002db10   0x00000014   Code   RO         7683    i.queue_free        fds.o
-    0x0002db24   0x0002db24   0x00000018   Code   RO         8638    i.queue_free        nrf_fstorage_sd.o
-    0x0002db3c   0x0002db3c   0x00000018   Code   RO         7684    i.queue_has_next    fds.o
-    0x0002db54   0x0002db54   0x00000014   Code   RO         7686    i.queue_load        fds.o
-    0x0002db68   0x0002db68   0x0000002c   Code   RO         8639    i.queue_load_next   nrf_fstorage_sd.o
-    0x0002db94   0x0002db94   0x000000c0   Code   RO         7687    i.queue_process     fds.o
-    0x0002dc54   0x0002dc54   0x00000090   Code   RO         8640    i.queue_process     nrf_fstorage_sd.o
-    0x0002dce4   0x0002dce4   0x00000018   Code   RO         7688    i.queue_start       fds.o
-    0x0002dcfc   0x0002dcfc   0x0000001c   Code   RO         8641    i.queue_start       nrf_fstorage_sd.o
-    0x0002dd18   0x0002dd18   0x0000001c   Code   RO         8944    i.queue_utilization_get  nrf_queue.o
-    0x0002dd34   0x0002dd34   0x00000030   Code   RO         3995    i.rank_vars_update  peer_manager.o
-    0x0002dd64   0x0002dd64   0x0000001c   Code   RO         8642    i.read              nrf_fstorage_sd.o
-    0x0002dd80   0x0002dd80   0x00000078   Code   RO         3715    i.reattempt_previous_operations  peer_database.o
-    0x0002ddf8   0x0002ddf8   0x00000028   Code   RO         2633    i.record_activate   ble_conn_state.o
-    0x0002de20   0x0002de20   0x0000008c   Code   RO         7689    i.record_find       fds.o
-    0x0002deac   0x0002deac   0x0000003a   Code   RO         7690    i.record_find_and_delete  fds.o
+    0x0002dac4   0x0002dac4   0x00000018   Code   RO         6239    i.prs_box_get       nrfx_prs.o
+    0x0002dadc   0x0002dadc   0x00000020   Code   RO         7703    i.queue_buf_get     fds.o
+    0x0002dafc   0x0002dafc   0x00000014   Code   RO         7704    i.queue_buf_store   fds.o
+    0x0002db10   0x0002db10   0x00000014   Code   RO         7705    i.queue_free        fds.o
+    0x0002db24   0x0002db24   0x00000018   Code   RO         8660    i.queue_free        nrf_fstorage_sd.o
+    0x0002db3c   0x0002db3c   0x00000018   Code   RO         7706    i.queue_has_next    fds.o
+    0x0002db54   0x0002db54   0x00000014   Code   RO         7708    i.queue_load        fds.o
+    0x0002db68   0x0002db68   0x0000002c   Code   RO         8661    i.queue_load_next   nrf_fstorage_sd.o
+    0x0002db94   0x0002db94   0x000000c0   Code   RO         7709    i.queue_process     fds.o
+    0x0002dc54   0x0002dc54   0x00000090   Code   RO         8662    i.queue_process     nrf_fstorage_sd.o
+    0x0002dce4   0x0002dce4   0x00000018   Code   RO         7710    i.queue_start       fds.o
+    0x0002dcfc   0x0002dcfc   0x0000001c   Code   RO         8663    i.queue_start       nrf_fstorage_sd.o
+    0x0002dd18   0x0002dd18   0x0000001c   Code   RO         8966    i.queue_utilization_get  nrf_queue.o
+    0x0002dd34   0x0002dd34   0x00000030   Code   RO         4017    i.rank_vars_update  peer_manager.o
+    0x0002dd64   0x0002dd64   0x0000001c   Code   RO         8664    i.read              nrf_fstorage_sd.o
+    0x0002dd80   0x0002dd80   0x00000078   Code   RO         3737    i.reattempt_previous_operations  peer_database.o
+    0x0002ddf8   0x0002ddf8   0x00000028   Code   RO         2655    i.record_activate   ble_conn_state.o
+    0x0002de20   0x0002de20   0x0000008c   Code   RO         7711    i.record_find       fds.o
+    0x0002deac   0x0002deac   0x0000003a   Code   RO         7712    i.record_find_and_delete  fds.o
     0x0002dee6   0x0002dee6   0x00000002   PAD
-    0x0002dee8   0x0002dee8   0x0000007c   Code   RO         7691    i.record_find_by_desc  fds.o
-    0x0002df64   0x0002df64   0x00000078   Code   RO         7692    i.record_find_next  fds.o
-    0x0002dfdc   0x0002dfdc   0x0000003c   Code   RO         7693    i.record_header_flag_dirty  fds.o
-    0x0002e018   0x0002e018   0x0000002c   Code   RO         7694    i.record_header_write_begin  fds.o
-    0x0002e044   0x0002e044   0x00000038   Code   RO         7695    i.record_header_write_finalize  fds.o
-    0x0002e07c   0x0002e07c   0x00000038   Code   RO         7696    i.record_header_write_id  fds.o
-    0x0002e0b4   0x0002e0b4   0x00000010   Code   RO         7697    i.record_id_new     fds.o
-    0x0002e0c4   0x0002e0c4   0x00000020   Code   RO         2634    i.record_invalidate  ble_conn_state.o
-    0x0002e0e4   0x0002e0e4   0x00000048   Code   RO         2635    i.record_purge_disconnected  ble_conn_state.o
-    0x0002e12c   0x0002e12c   0x00000014   Code   RO         2636    i.record_set_disconnected  ble_conn_state.o
-    0x0002e140   0x0002e140   0x00000030   Code   RO         7698    i.record_write_data  fds.o
-    0x0002e170   0x0002e170   0x00000014   Code   RO         3866    i.release           peer_id.o
-    0x0002e184   0x0002e184   0x00000006   Code   RO         8643    i.rmap              nrf_fstorage_sd.o
+    0x0002dee8   0x0002dee8   0x0000007c   Code   RO         7713    i.record_find_by_desc  fds.o
+    0x0002df64   0x0002df64   0x00000078   Code   RO         7714    i.record_find_next  fds.o
+    0x0002dfdc   0x0002dfdc   0x0000003c   Code   RO         7715    i.record_header_flag_dirty  fds.o
+    0x0002e018   0x0002e018   0x0000002c   Code   RO         7716    i.record_header_write_begin  fds.o
+    0x0002e044   0x0002e044   0x00000038   Code   RO         7717    i.record_header_write_finalize  fds.o
+    0x0002e07c   0x0002e07c   0x00000038   Code   RO         7718    i.record_header_write_id  fds.o
+    0x0002e0b4   0x0002e0b4   0x00000010   Code   RO         7719    i.record_id_new     fds.o
+    0x0002e0c4   0x0002e0c4   0x00000020   Code   RO         2656    i.record_invalidate  ble_conn_state.o
+    0x0002e0e4   0x0002e0e4   0x00000048   Code   RO         2657    i.record_purge_disconnected  ble_conn_state.o
+    0x0002e12c   0x0002e12c   0x00000014   Code   RO         2658    i.record_set_disconnected  ble_conn_state.o
+    0x0002e140   0x0002e140   0x00000030   Code   RO         7720    i.record_write_data  fds.o
+    0x0002e170   0x0002e170   0x00000014   Code   RO         3888    i.release           peer_id.o
+    0x0002e184   0x0002e184   0x00000006   Code   RO         8665    i.rmap              nrf_fstorage_sd.o
     0x0002e18a   0x0002e18a   0x00000002   PAD
-    0x0002e18c   0x0002e18c   0x0000000c   Code   RO         7137    i.rtc1_compare0_set  app_timer.o
-    0x0002e198   0x0002e198   0x0000000c   Code   RO         7138    i.rtc1_counter_get  app_timer.o
-    0x0002e1a4   0x0002e1a4   0x00000018   Code   RO         7139    i.rtc1_init         app_timer.o
-    0x0002e1bc   0x0002e1bc   0x0000003c   Code   RO         7140    i.rtc1_start        app_timer.o
-    0x0002e1f8   0x0002e1f8   0x00000058   Code   RO         7141    i.rtc1_stop         app_timer.o
-    0x0002e250   0x0002e250   0x0000003e   Code   RO         6296    i.rx_byte           nrfx_uart.o
-    0x0002e28e   0x0002e28e   0x0000001c   Code   RO         6297    i.rx_done_event     nrfx_uart.o
-    0x0002e2aa   0x0002e2aa   0x00000022   Code   RO         6298    i.rx_enable         nrfx_uart.o
-    0x0002e2cc   0x0002e2cc   0x00000020   Code   RO         2907    i.sc_send_pending_handle  gatt_cache_manager.o
-    0x0002e2ec   0x0002e2ec   0x00000098   Code   RO         9704    i.sd_nvic_EnableIRQ  nrf_sdh.o
-    0x0002e384   0x0002e384   0x00000068   Code   RO         7349    i.sd_nvic_critical_region_enter  app_util_platform.o
-    0x0002e3ec   0x0002e3ec   0x00000068   Code   RO         5026    i.sd_state_evt_handler  nrf_drv_clock.o
-    0x0002e454   0x0002e454   0x0000003c   Code   RO         9705    i.sdh_request_observer_notify  nrf_sdh.o
-    0x0002e490   0x0002e490   0x00000034   Code   RO         9706    i.sdh_state_observer_notify  nrf_sdh.o
-    0x0002e4c4   0x0002e4c4   0x000000b0   Code   RO         4423    i.sec_info_request_process  security_dispatcher.o
-    0x0002e574   0x0002e574   0x00000074   Code   RO         4424    i.sec_keyset_fill   security_dispatcher.o
-    0x0002e5e8   0x0002e5e8   0x00000030   Code   RO         4425    i.sec_params_request_process  security_dispatcher.o
-    0x0002e618   0x0002e618   0x00000058   Code   RO         4426    i.sec_proc_start    security_dispatcher.o
-    0x0002e670   0x0002e670   0x0000005c   Code   RO         4605    i.sec_req_process   security_manager.o
-    0x0002e6cc   0x0002e6cc   0x00000028   Code   RO         4427    i.sec_start_send    security_dispatcher.o
-    0x0002e6f4   0x0002e6f4   0x00000022   Code   RO         4428    i.send_config_req   security_dispatcher.o
+    0x0002e18c   0x0002e18c   0x0000000c   Code   RO         7159    i.rtc1_compare0_set  app_timer.o
+    0x0002e198   0x0002e198   0x0000000c   Code   RO         7160    i.rtc1_counter_get  app_timer.o
+    0x0002e1a4   0x0002e1a4   0x00000018   Code   RO         7161    i.rtc1_init         app_timer.o
+    0x0002e1bc   0x0002e1bc   0x0000003c   Code   RO         7162    i.rtc1_start        app_timer.o
+    0x0002e1f8   0x0002e1f8   0x00000058   Code   RO         7163    i.rtc1_stop         app_timer.o
+    0x0002e250   0x0002e250   0x0000003e   Code   RO         6318    i.rx_byte           nrfx_uart.o
+    0x0002e28e   0x0002e28e   0x0000001c   Code   RO         6319    i.rx_done_event     nrfx_uart.o
+    0x0002e2aa   0x0002e2aa   0x00000022   Code   RO         6320    i.rx_enable         nrfx_uart.o
+    0x0002e2cc   0x0002e2cc   0x00000020   Code   RO         2929    i.sc_send_pending_handle  gatt_cache_manager.o
+    0x0002e2ec   0x0002e2ec   0x00000098   Code   RO         9726    i.sd_nvic_EnableIRQ  nrf_sdh.o
+    0x0002e384   0x0002e384   0x00000068   Code   RO         7371    i.sd_nvic_critical_region_enter  app_util_platform.o
+    0x0002e3ec   0x0002e3ec   0x00000068   Code   RO         5048    i.sd_state_evt_handler  nrf_drv_clock.o
+    0x0002e454   0x0002e454   0x0000003c   Code   RO         9727    i.sdh_request_observer_notify  nrf_sdh.o
+    0x0002e490   0x0002e490   0x00000034   Code   RO         9728    i.sdh_state_observer_notify  nrf_sdh.o
+    0x0002e4c4   0x0002e4c4   0x000000b0   Code   RO         4445    i.sec_info_request_process  security_dispatcher.o
+    0x0002e574   0x0002e574   0x00000074   Code   RO         4446    i.sec_keyset_fill   security_dispatcher.o
+    0x0002e5e8   0x0002e5e8   0x00000030   Code   RO         4447    i.sec_params_request_process  security_dispatcher.o
+    0x0002e618   0x0002e618   0x00000058   Code   RO         4448    i.sec_proc_start    security_dispatcher.o
+    0x0002e670   0x0002e670   0x0000005c   Code   RO         4627    i.sec_req_process   security_manager.o
+    0x0002e6cc   0x0002e6cc   0x00000028   Code   RO         4449    i.sec_start_send    security_dispatcher.o
+    0x0002e6f4   0x0002e6f4   0x00000022   Code   RO         4450    i.send_config_req   security_dispatcher.o
     0x0002e716   0x0002e716   0x00000002   PAD
-    0x0002e718   0x0002e718   0x00000018   Code   RO         2517    i.send_error_evt    ble_conn_params.o
-    0x0002e730   0x0002e730   0x00000028   Code   RO         4429    i.send_params_req   security_dispatcher.o
-    0x0002e758   0x0002e758   0x00000024   Code   RO         4430    i.send_storage_full_evt  security_dispatcher.o
-    0x0002e77c   0x0002e77c   0x00000028   Code   RO         2908    i.send_unexpected_error  gatt_cache_manager.o
-    0x0002e7a4   0x0002e7a4   0x0000002c   Code   RO         3555    i.send_unexpected_error  peer_data_storage.o
-    0x0002e7d0   0x0002e7d0   0x00000028   Code   RO         4431    i.send_unexpected_error  security_dispatcher.o
-    0x0002e7f8   0x0002e7f8   0x0000007c   Code   RO         2909    i.service_changed_cccd  gatt_cache_manager.o
-    0x0002e874   0x0002e874   0x00000020   Code   RO         2910    i.service_changed_needed  gatt_cache_manager.o
-    0x0002e894   0x0002e894   0x00000018   Code   RO         2911    i.service_changed_pending_flags_check  gatt_cache_manager.o
-    0x0002e8ac   0x0002e8ac   0x0000007c   Code   RO         3096    i.service_changed_pending_set  gatts_cache_manager.o
-    0x0002e928   0x0002e928   0x000000bc   Code   RO         2912    i.service_changed_send_in_evt  gatt_cache_manager.o
-    0x0002e9e4   0x0002e9e4   0x00000030   Code   RO         2369    i.set_adv_mode_directed  ble_advertising.o
-    0x0002ea14   0x0002ea14   0x00000024   Code   RO         2370    i.set_adv_mode_directed_high_duty  ble_advertising.o
-    0x0002ea38   0x0002ea38   0x0000005c   Code   RO         2371    i.set_adv_mode_fast  ble_advertising.o
-    0x0002ea94   0x0002ea94   0x0000005c   Code   RO         2372    i.set_adv_mode_slow  ble_advertising.o
-    0x0002eaf0   0x0002eaf0   0x0000003c   Code   RO         4945    i.set_adv_name      ble_dfu_unbonded.o
-    0x0002eb2c   0x0002eb2c   0x000000b4   Code   RO         8853    i.shutdown_process  nrf_pwr_mgmt.o
-    0x0002ebe0   0x0002ebe0   0x00000034   Code   RO         4606    i.sm_ble_evt_handler  security_manager.o
-    0x0002ec14   0x0002ec14   0x00000058   Code   RO         4611    i.sm_pdb_evt_handler  security_manager.o
-    0x0002ec6c   0x0002ec6c   0x00000032   Code   RO         4614    i.sm_smd_evt_handler  security_manager.o
-    0x0002ec9e   0x0002ec9e   0x0000004c   Code   RO         4432    i.smd_ble_evt_handler  security_dispatcher.o
-    0x0002ecea   0x0002ecea   0x00000028   Code   RO         4435    i.smd_link_secure   security_dispatcher.o
+    0x0002e718   0x0002e718   0x00000018   Code   RO         2539    i.send_error_evt    ble_conn_params.o
+    0x0002e730   0x0002e730   0x00000028   Code   RO         4451    i.send_params_req   security_dispatcher.o
+    0x0002e758   0x0002e758   0x00000024   Code   RO         4452    i.send_storage_full_evt  security_dispatcher.o
+    0x0002e77c   0x0002e77c   0x00000028   Code   RO         2930    i.send_unexpected_error  gatt_cache_manager.o
+    0x0002e7a4   0x0002e7a4   0x0000002c   Code   RO         3577    i.send_unexpected_error  peer_data_storage.o
+    0x0002e7d0   0x0002e7d0   0x00000028   Code   RO         4453    i.send_unexpected_error  security_dispatcher.o
+    0x0002e7f8   0x0002e7f8   0x0000007c   Code   RO         2931    i.service_changed_cccd  gatt_cache_manager.o
+    0x0002e874   0x0002e874   0x00000020   Code   RO         2932    i.service_changed_needed  gatt_cache_manager.o
+    0x0002e894   0x0002e894   0x00000018   Code   RO         2933    i.service_changed_pending_flags_check  gatt_cache_manager.o
+    0x0002e8ac   0x0002e8ac   0x0000007c   Code   RO         3118    i.service_changed_pending_set  gatts_cache_manager.o
+    0x0002e928   0x0002e928   0x000000bc   Code   RO         2934    i.service_changed_send_in_evt  gatt_cache_manager.o
+    0x0002e9e4   0x0002e9e4   0x00000030   Code   RO         2391    i.set_adv_mode_directed  ble_advertising.o
+    0x0002ea14   0x0002ea14   0x00000024   Code   RO         2392    i.set_adv_mode_directed_high_duty  ble_advertising.o
+    0x0002ea38   0x0002ea38   0x0000005c   Code   RO         2393    i.set_adv_mode_fast  ble_advertising.o
+    0x0002ea94   0x0002ea94   0x0000005c   Code   RO         2394    i.set_adv_mode_slow  ble_advertising.o
+    0x0002eaf0   0x0002eaf0   0x0000003c   Code   RO         4967    i.set_adv_name      ble_dfu_unbonded.o
+    0x0002eb2c   0x0002eb2c   0x000000b4   Code   RO         8875    i.shutdown_process  nrf_pwr_mgmt.o
+    0x0002ebe0   0x0002ebe0   0x00000034   Code   RO         4628    i.sm_ble_evt_handler  security_manager.o
+    0x0002ec14   0x0002ec14   0x00000058   Code   RO         4633    i.sm_pdb_evt_handler  security_manager.o
+    0x0002ec6c   0x0002ec6c   0x00000032   Code   RO         4636    i.sm_smd_evt_handler  security_manager.o
+    0x0002ec9e   0x0002ec9e   0x0000004c   Code   RO         4454    i.smd_ble_evt_handler  security_dispatcher.o
+    0x0002ecea   0x0002ecea   0x00000028   Code   RO         4457    i.smd_link_secure   security_dispatcher.o
     0x0002ed12   0x0002ed12   0x00000002   PAD
-    0x0002ed14   0x0002ed14   0x000000c0   Code   RO         4436    i.smd_params_reply  security_dispatcher.o
-    0x0002edd4   0x0002edd4   0x00000040   Code   RO         4615    i.smd_params_reply_perform  security_manager.o
-    0x0002ee14   0x0002ee14   0x0000001c   Code   RO         5027    i.soc_evt_handler   nrf_drv_clock.o
-    0x0002ee30   0x0002ee30   0x0000006c   Code   RO         9707    i.softdevice_evt_irq_disable  nrf_sdh.o
-    0x0002ee9c   0x0002ee9c   0x0000001e   Code   RO         9708    i.softdevices_evt_irq_enable  nrf_sdh.o
-    0x0002eeba   0x0002eeba   0x00000048   Code   RO         9191    i.spi_event_handler  nrf_spi_mngr.o
+    0x0002ed14   0x0002ed14   0x000000c0   Code   RO         4458    i.smd_params_reply  security_dispatcher.o
+    0x0002edd4   0x0002edd4   0x00000040   Code   RO         4637    i.smd_params_reply_perform  security_manager.o
+    0x0002ee14   0x0002ee14   0x0000001c   Code   RO         5049    i.soc_evt_handler   nrf_drv_clock.o
+    0x0002ee30   0x0002ee30   0x0000006c   Code   RO         9729    i.softdevice_evt_irq_disable  nrf_sdh.o
+    0x0002ee9c   0x0002ee9c   0x0000001e   Code   RO         9730    i.softdevices_evt_irq_enable  nrf_sdh.o
+    0x0002eeba   0x0002eeba   0x00000048   Code   RO         9213    i.spi_event_handler  nrf_spi_mngr.o
     0x0002ef02   0x0002ef02   0x00000002   PAD
-    0x0002ef04   0x0002ef04   0x00000040   Code   RO         5169    i.spim_evt_handler  nrf_drv_spi.o
-    0x0002ef44   0x0002ef44   0x0000010e   Code   RO         6698    i.spim_xfer         nrfx_spim.o
+    0x0002ef04   0x0002ef04   0x00000040   Code   RO         5191    i.spim_evt_handler  nrf_drv_spi.o
+    0x0002ef44   0x0002ef44   0x0000010e   Code   RO         6720    i.spim_xfer         nrfx_spim.o
     0x0002f052   0x0002f052   0x00000002   PAD
-    0x0002f054   0x0002f054   0x000000b8   Code   RO         9193    i.start_pending_transaction  nrf_spi_mngr.o
-    0x0002f10c   0x0002f10c   0x0000006a   Code   RO         6558    i.start_playback    nrfx_pwm.o
-    0x0002f176   0x0002f176   0x00000052   Code   RO         9194    i.start_transfer    nrf_spi_mngr.o
-    0x0002f1c8   0x0002f1c8   0x0000004c   Code   RO         2913    i.store_car_value   gatt_cache_manager.o
-    0x0002f214   0x0002f214   0x0000000a   Code   RO         7142    i.ticks_diff_get    app_timer.o
-    0x0002f21e   0x0002f21e   0x0000000c   Code   RO         7143    i.timeout_handler_exec  app_timer.o
+    0x0002f054   0x0002f054   0x000000b8   Code   RO         9215    i.start_pending_transaction  nrf_spi_mngr.o
+    0x0002f10c   0x0002f10c   0x0000006a   Code   RO         6580    i.start_playback    nrfx_pwm.o
+    0x0002f176   0x0002f176   0x00000052   Code   RO         9216    i.start_transfer    nrf_spi_mngr.o
+    0x0002f1c8   0x0002f1c8   0x0000004c   Code   RO         2935    i.store_car_value   gatt_cache_manager.o
+    0x0002f214   0x0002f214   0x0000000a   Code   RO         7164    i.ticks_diff_get    app_timer.o
+    0x0002f21e   0x0002f21e   0x0000000c   Code   RO         7165    i.timeout_handler_exec  app_timer.o
     0x0002f22a   0x0002f22a   0x00000002   PAD
-    0x0002f22c   0x0002f22c   0x00000050   Code   RO         7144    i.timer_list_handler  app_timer.o
-    0x0002f27c   0x0002f27c   0x0000000a   Code   RO         7145    i.timer_list_handler_sched  app_timer.o
+    0x0002f22c   0x0002f22c   0x00000050   Code   RO         7166    i.timer_list_handler  app_timer.o
+    0x0002f27c   0x0002f27c   0x0000000a   Code   RO         7167    i.timer_list_handler_sched  app_timer.o
     0x0002f286   0x0002f286   0x00000002   PAD
-    0x0002f288   0x0002f288   0x00000068   Code   RO         7146    i.timer_list_insert  app_timer.o
-    0x0002f2f0   0x0002f2f0   0x00000088   Code   RO         7147    i.timer_list_remove  app_timer.o
-    0x0002f378   0x0002f378   0x0000005e   Code   RO         7148    i.timer_start_op_schedule  app_timer.o
-    0x0002f3d6   0x0002f3d6   0x00000042   Code   RO         7149    i.timer_stop_op_schedule  app_timer.o
-    0x0002f418   0x0002f418   0x00000098   Code   RO         7150    i.timer_timeouts_check  app_timer.o
-    0x0002f4b0   0x0002f4b0   0x0000000a   Code   RO         7151    i.timer_timeouts_check_sched  app_timer.o
+    0x0002f288   0x0002f288   0x00000068   Code   RO         7168    i.timer_list_insert  app_timer.o
+    0x0002f2f0   0x0002f2f0   0x00000088   Code   RO         7169    i.timer_list_remove  app_timer.o
+    0x0002f378   0x0002f378   0x0000005e   Code   RO         7170    i.timer_start_op_schedule  app_timer.o
+    0x0002f3d6   0x0002f3d6   0x00000042   Code   RO         7171    i.timer_stop_op_schedule  app_timer.o
+    0x0002f418   0x0002f418   0x00000098   Code   RO         7172    i.timer_timeouts_check  app_timer.o
+    0x0002f4b0   0x0002f4b0   0x0000000a   Code   RO         7173    i.timer_timeouts_check_sched  app_timer.o
     0x0002f4ba   0x0002f4ba   0x0000001c   Code   RO          748    i.timers_init       system.o
-    0x0002f4d6   0x0002f4d6   0x00000018   Code   RO         9195    i.transaction_begin_signal  nrf_spi_mngr.o
-    0x0002f4ee   0x0002f4ee   0x00000020   Code   RO         9196    i.transaction_end_signal  nrf_spi_mngr.o
-    0x0002f50e   0x0002f50e   0x00000036   Code   RO         6299    i.tx_blocking       nrfx_uart.o
-    0x0002f544   0x0002f544   0x00000026   Code   RO         6300    i.tx_byte           nrfx_uart.o
-    0x0002f56a   0x0002f56a   0x00000020   Code   RO         6301    i.tx_done_event     nrfx_uart.o
+    0x0002f4d6   0x0002f4d6   0x00000018   Code   RO         9217    i.transaction_begin_signal  nrf_spi_mngr.o
+    0x0002f4ee   0x0002f4ee   0x00000020   Code   RO         9218    i.transaction_end_signal  nrf_spi_mngr.o
+    0x0002f50e   0x0002f50e   0x00000036   Code   RO         6321    i.tx_blocking       nrfx_uart.o
+    0x0002f544   0x0002f544   0x00000026   Code   RO         6322    i.tx_byte           nrfx_uart.o
+    0x0002f56a   0x0002f56a   0x00000020   Code   RO         6323    i.tx_done_event     nrfx_uart.o
     0x0002f58a   0x0002f58a   0x0000000a   Code   RO          818    i.uart_error_handle  uart.o
-    0x0002f594   0x0002f594   0x000000d4   Code   RO         7529    i.uart_event_handler  app_uart_fifo.o
-    0x0002f668   0x0002f668   0x00000038   Code   RO         5208    i.uart_evt_handler  nrf_drv_uart.o
-    0x0002f6a0   0x0002f6a0   0x0000014c   Code   RO         6302    i.uart_irq_handler  nrfx_uart.o
-    0x0002f7ec   0x0002f7ec   0x0000000c   Code   RO         2802    i.uint16_decode     ble_srv_common.o
-    0x0002f7f8   0x0002f7f8   0x00000024   Code   RO         8644    i.uninit            nrf_fstorage_sd.o
-    0x0002f81c   0x0002f81c   0x00000034   Code   RO         2914    i.update_pending_flags_check  gatt_cache_manager.o
-    0x0002f850   0x0002f850   0x0000001e   Code   RO         2373    i.use_whitelist     ble_advertising.o
+    0x0002f594   0x0002f594   0x000000d4   Code   RO         7551    i.uart_event_handler  app_uart_fifo.o
+    0x0002f668   0x0002f668   0x00000038   Code   RO         5230    i.uart_evt_handler  nrf_drv_uart.o
+    0x0002f6a0   0x0002f6a0   0x0000014c   Code   RO         6324    i.uart_irq_handler  nrfx_uart.o
+    0x0002f7ec   0x0002f7ec   0x0000000c   Code   RO         2824    i.uint16_decode     ble_srv_common.o
+    0x0002f7f8   0x0002f7f8   0x00000024   Code   RO         8666    i.uninit            nrf_fstorage_sd.o
+    0x0002f81c   0x0002f81c   0x00000034   Code   RO         2936    i.update_pending_flags_check  gatt_cache_manager.o
+    0x0002f850   0x0002f850   0x0000001e   Code   RO         2395    i.use_whitelist     ble_advertising.o
     0x0002f86e   0x0002f86e   0x00000002   PAD
-    0x0002f870   0x0002f870   0x00000014   Code   RO         2637    i.user_flag_is_acquired  ble_conn_state.o
-    0x0002f884   0x0002f884   0x0000002c   Code   RO         3477    i.user_mem_reply    nrf_ble_qwr.o
-    0x0002f8b0   0x0002f8b0   0x0000003c   Code   RO         7152    i.user_op_alloc     app_timer.o
-    0x0002f8ec   0x0002f8ec   0x0000000c   Code   RO         7153    i.user_op_enque     app_timer.o
-    0x0002f8f8   0x0002f8f8   0x00000008   Code   RO         2374    i.whitelist_has_entries  ble_advertising.o
-    0x0002f900   0x0002f900   0x00000006   Code   RO         8645    i.wmap              nrf_fstorage_sd.o
+    0x0002f870   0x0002f870   0x00000014   Code   RO         2659    i.user_flag_is_acquired  ble_conn_state.o
+    0x0002f884   0x0002f884   0x0000002c   Code   RO         3499    i.user_mem_reply    nrf_ble_qwr.o
+    0x0002f8b0   0x0002f8b0   0x0000003c   Code   RO         7174    i.user_op_alloc     app_timer.o
+    0x0002f8ec   0x0002f8ec   0x0000000c   Code   RO         7175    i.user_op_enque     app_timer.o
+    0x0002f8f8   0x0002f8f8   0x00000008   Code   RO         2396    i.whitelist_has_entries  ble_advertising.o
+    0x0002f900   0x0002f900   0x00000006   Code   RO         8667    i.wmap              nrf_fstorage_sd.o
     0x0002f906   0x0002f906   0x00000002   PAD
-    0x0002f908   0x0002f908   0x00000054   Code   RO         8646    i.write             nrf_fstorage_sd.o
-    0x0002f95c   0x0002f95c   0x00000038   Code   RO         3716    i.write_buf_length_words_set  peer_database.o
-    0x0002f994   0x0002f994   0x000000ac   Code   RO         3717    i.write_buf_store   peer_database.o
-    0x0002fa40   0x0002fa40   0x00000048   Code   RO         3718    i.write_buf_store_in_event  peer_database.o
-    0x0002fa88   0x0002fa88   0x00000024   Code   RO         3719    i.write_buffer_record_acquire  peer_database.o
-    0x0002faac   0x0002faac   0x0000004c   Code   RO         3720    i.write_buffer_record_find  peer_database.o
-    0x0002faf8   0x0002faf8   0x00000034   Code   RO         3721    i.write_buffer_record_find_next  peer_database.o
-    0x0002fb2c   0x0002fb2c   0x00000030   Code   RO         3722    i.write_buffer_record_find_stored  peer_database.o
-    0x0002fb5c   0x0002fb5c   0x0000000e   Code   RO         3723    i.write_buffer_record_find_unused  peer_database.o
-    0x0002fb6a   0x0002fb6a   0x00000024   Code   RO         3724    i.write_buffer_record_invalidate  peer_database.o
+    0x0002f908   0x0002f908   0x00000054   Code   RO         8668    i.write             nrf_fstorage_sd.o
+    0x0002f95c   0x0002f95c   0x00000038   Code   RO         3738    i.write_buf_length_words_set  peer_database.o
+    0x0002f994   0x0002f994   0x000000ac   Code   RO         3739    i.write_buf_store   peer_database.o
+    0x0002fa40   0x0002fa40   0x00000048   Code   RO         3740    i.write_buf_store_in_event  peer_database.o
+    0x0002fa88   0x0002fa88   0x00000024   Code   RO         3741    i.write_buffer_record_acquire  peer_database.o
+    0x0002faac   0x0002faac   0x0000004c   Code   RO         3742    i.write_buffer_record_find  peer_database.o
+    0x0002faf8   0x0002faf8   0x00000034   Code   RO         3743    i.write_buffer_record_find_next  peer_database.o
+    0x0002fb2c   0x0002fb2c   0x00000030   Code   RO         3744    i.write_buffer_record_find_stored  peer_database.o
+    0x0002fb5c   0x0002fb5c   0x0000000e   Code   RO         3745    i.write_buffer_record_find_unused  peer_database.o
+    0x0002fb6a   0x0002fb6a   0x00000024   Code   RO         3746    i.write_buffer_record_invalidate  peer_database.o
     0x0002fb8e   0x0002fb8e   0x00000002   PAD
-    0x0002fb90   0x0002fb90   0x00000028   Code   RO         3725    i.write_buffer_record_release  peer_database.o
-    0x0002fbb8   0x0002fbb8   0x000000e0   Code   RO         7700    i.write_enqueue     fds.o
-    0x0002fc98   0x0002fc98   0x000000c4   Code   RO         7701    i.write_execute     fds.o
-    0x0002fd5c   0x0002fd5c   0x00000054   Code   RO         8647    i.write_execute     nrf_fstorage_sd.o
-    0x0002fdb0   0x0002fdb0   0x00000024   Code   RO         7702    i.write_space_free  fds.o
-    0x0002fdd4   0x0002fdd4   0x00000078   Code   RO         7703    i.write_space_reserve  fds.o
+    0x0002fb90   0x0002fb90   0x00000028   Code   RO         3747    i.write_buffer_record_release  peer_database.o
+    0x0002fbb8   0x0002fbb8   0x000000e0   Code   RO         7722    i.write_enqueue     fds.o
+    0x0002fc98   0x0002fc98   0x000000c4   Code   RO         7723    i.write_execute     fds.o
+    0x0002fd5c   0x0002fd5c   0x00000054   Code   RO         8669    i.write_execute     nrf_fstorage_sd.o
+    0x0002fdb0   0x0002fdb0   0x00000024   Code   RO         7724    i.write_space_free  fds.o
+    0x0002fdd4   0x0002fdd4   0x00000078   Code   RO         7725    i.write_space_reserve  fds.o
     0x0002fe4c   0x0002fe4c   0x00000004   PAD
     0x0002fe50   0x0002fe50   0x00000006   Data   RO            7    .constdata          main.o
     0x0002fe56   0x0002fe56   0x00000002   PAD
@@ -6318,53 +6500,53 @@ Memory Map of the image
     0x0002fe8c   0x0002fe8c   0x00000028   Data   RO         1178    .constdata          spi1_led.o
     0x0002feb4   0x0002feb4   0x0000000c   PAD
     0x0002fec0   0x0002fec0   0x00000006   Data   RO         1284    .constdata          led1642gw.o
-    0x0002fec6   0x0002fec6   0x00000008   Data   RO         1924    .constdata          boards.o
+    0x0002fec6   0x0002fec6   0x00000008   Data   RO         1946    .constdata          boards.o
     0x0002fece   0x0002fece   0x00000002   PAD
-    0x0002fed0   0x0002fed0   0x0000002c   Data   RO         2045    .constdata          bsp.o
-    0x0002fefc   0x0002fefc   0x0000007c   Data   RO         2915    .constdata          gatt_cache_manager.o
-    0x0002ff78   0x0002ff78   0x00000018   Data   RO         3097    .constdata          gatts_cache_manager.o
-    0x0002ff90   0x0002ff90   0x00000008   Data   RO         3205    .constdata          id_manager.o
-    0x0002ff98   0x0002ff98   0x00000016   Data   RO         3369    .constdata          nrf_ble_gatt.o
+    0x0002fed0   0x0002fed0   0x0000002c   Data   RO         2067    .constdata          bsp.o
+    0x0002fefc   0x0002fefc   0x0000007c   Data   RO         2937    .constdata          gatt_cache_manager.o
+    0x0002ff78   0x0002ff78   0x00000018   Data   RO         3119    .constdata          gatts_cache_manager.o
+    0x0002ff90   0x0002ff90   0x00000008   Data   RO         3227    .constdata          id_manager.o
+    0x0002ff98   0x0002ff98   0x00000016   Data   RO         3391    .constdata          nrf_ble_gatt.o
     0x0002ffae   0x0002ffae   0x00000002   PAD
-    0x0002ffb0   0x0002ffb0   0x0000001c   Data   RO         3556    .constdata          peer_data_storage.o
-    0x0002ffcc   0x0002ffcc   0x00000010   Data   RO         3727    .constdata          peer_database.o
-    0x0002ffdc   0x0002ffdc   0x0000008c   Data   RO         4438    .constdata          security_dispatcher.o
-    0x00030068   0x00030068   0x00000004   Data   RO         4616    .constdata          security_manager.o
-    0x0003006c   0x0003006c   0x00000010   Data   RO         5171    .constdata          nrf_drv_spi.o
-    0x0003007c   0x0003007c   0x0000003e   Data   RO         5947    .constdata          nrfx_gpiote.o
+    0x0002ffb0   0x0002ffb0   0x0000001c   Data   RO         3578    .constdata          peer_data_storage.o
+    0x0002ffcc   0x0002ffcc   0x00000010   Data   RO         3749    .constdata          peer_database.o
+    0x0002ffdc   0x0002ffdc   0x0000008c   Data   RO         4460    .constdata          security_dispatcher.o
+    0x00030068   0x00030068   0x00000004   Data   RO         4638    .constdata          security_manager.o
+    0x0003006c   0x0003006c   0x00000010   Data   RO         5193    .constdata          nrf_drv_spi.o
+    0x0003007c   0x0003007c   0x0000003e   Data   RO         5969    .constdata          nrfx_gpiote.o
     0x000300ba   0x000300ba   0x00000002   PAD
-    0x000300bc   0x000300bc   0x0000002e   Data   RO         6304    .constdata          nrfx_uart.o
+    0x000300bc   0x000300bc   0x0000002e   Data   RO         6326    .constdata          nrfx_uart.o
     0x000300ea   0x000300ea   0x00000002   PAD
-    0x000300ec   0x000300ec   0x00000031   Data   RO         6700    .constdata          nrfx_spim.o
+    0x000300ec   0x000300ec   0x00000031   Data   RO         6722    .constdata          nrfx_spim.o
     0x0003011d   0x0003011d   0x00000003   PAD
-    0x00030120   0x00030120   0x00000006   Data   RO         7155    .constdata          app_timer.o
+    0x00030120   0x00030120   0x00000006   Data   RO         7177    .constdata          app_timer.o
     0x00030126   0x00030126   0x00000002   PAD
-    0x00030128   0x00030128   0x00000020   Data   RO         7531    .constdata          app_uart_fifo.o
-    0x00030148   0x00030148   0x00000018   Data   RO         7705    .constdata          fds.o
-    0x00030160   0x00030160   0x00000030   Data   RO         8649    .constdata          nrf_fstorage_sd.o
-    0x00030190   0x00030190   0x00000058   Data   RO         9709    .constdata          nrf_sdh.o
-    0x000301e8   0x000301e8   0x00000030   Data   RO         9824    .constdata          nrf_sdh_ble.o
-    0x00030218   0x00030218   0x0000001c   Data   RO         9879    .constdata          nrf_sdh_soc.o
-    0x00030234   0x00030234   0x00000020   Data   RO        10046    Region$$Table       anon$$obj.o
+    0x00030128   0x00030128   0x00000020   Data   RO         7553    .constdata          app_uart_fifo.o
+    0x00030148   0x00030148   0x00000018   Data   RO         7727    .constdata          fds.o
+    0x00030160   0x00030160   0x00000030   Data   RO         8671    .constdata          nrf_fstorage_sd.o
+    0x00030190   0x00030190   0x00000058   Data   RO         9731    .constdata          nrf_sdh.o
+    0x000301e8   0x000301e8   0x00000030   Data   RO         9846    .constdata          nrf_sdh_ble.o
+    0x00030218   0x00030218   0x0000001c   Data   RO         9901    .constdata          nrf_sdh_soc.o
+    0x00030234   0x00030234   0x00000020   Data   RO        10177    Region$$Table       anon$$obj.o
     0x00030254   0x00030254   0x00000014   Data   RO         1078    nrf_queue           spi0_imu.o
     0x00030268   0x00030268   0x00000014   Data   RO         1180    nrf_queue           spi1_led.o
-    0x0003027c   0x0003027c   0x00000008   Data   RO         2639    sdh_ble_observers0  ble_conn_state.o
+    0x0003027c   0x0003027c   0x00000008   Data   RO         2661    sdh_ble_observers0  ble_conn_state.o
     0x00030284   0x00030284   0x00000010   Data   RO          875    sdh_ble_observers1  juno_ble.o
-    0x00030294   0x00030294   0x00000008   Data   RO         2153    sdh_ble_observers1  bsp_btn_ble.o
-    0x0003029c   0x0003029c   0x00000008   Data   RO         2522    sdh_ble_observers1  ble_conn_params.o
-    0x000302a4   0x000302a4   0x00000008   Data   RO         3999    sdh_ble_observers1  peer_manager.o
+    0x00030294   0x00030294   0x00000008   Data   RO         2175    sdh_ble_observers1  bsp_btn_ble.o
+    0x0003029c   0x0003029c   0x00000008   Data   RO         2544    sdh_ble_observers1  ble_conn_params.o
+    0x000302a4   0x000302a4   0x00000008   Data   RO         4021    sdh_ble_observers1  peer_manager.o
     0x000302ac   0x000302ac   0x00000010   Data   RO          876    sdh_ble_observers2  juno_ble.o
-    0x000302bc   0x000302bc   0x00000008   Data   RO         4825    sdh_ble_observers2  ble_dfu.o
+    0x000302bc   0x000302bc   0x00000008   Data   RO         4847    sdh_ble_observers2  ble_dfu.o
     0x000302c4   0x000302c4   0x00000008   Data   RO          877    sdh_ble_observers3  juno_ble.o
-    0x000302cc   0x000302cc   0x00000008   Data   RO         8651    sdh_req_observers0  nrf_fstorage_sd.o
-    0x000302d4   0x000302d4   0x00000008   Data   RO         5030    sdh_soc_observers0  nrf_drv_clock.o
-    0x000302dc   0x000302dc   0x00000008   Data   RO         8652    sdh_soc_observers0  nrf_fstorage_sd.o
+    0x000302cc   0x000302cc   0x00000008   Data   RO         8673    sdh_req_observers0  nrf_fstorage_sd.o
+    0x000302d4   0x000302d4   0x00000008   Data   RO         5052    sdh_soc_observers0  nrf_drv_clock.o
+    0x000302dc   0x000302dc   0x00000008   Data   RO         8674    sdh_soc_observers0  nrf_fstorage_sd.o
     0x000302e4   0x000302e4   0x00000008   Data   RO          878    sdh_soc_observers1  juno_ble.o
-    0x000302ec   0x000302ec   0x00000008   Data   RO         4948    sdh_soc_observers1  ble_dfu_unbonded.o
-    0x000302f4   0x000302f4   0x00000008   Data   RO         9826    sdh_stack_observers0  nrf_sdh_ble.o
-    0x000302fc   0x000302fc   0x00000008   Data   RO         9880    sdh_stack_observers0  nrf_sdh_soc.o
-    0x00030304   0x00030304   0x00000008   Data   RO         5031    sdh_state_observers0  nrf_drv_clock.o
-    0x0003030c   0x0003030c   0x00000008   Data   RO         8653    sdh_state_observers0  nrf_fstorage_sd.o
+    0x000302ec   0x000302ec   0x00000008   Data   RO         4970    sdh_soc_observers1  ble_dfu_unbonded.o
+    0x000302f4   0x000302f4   0x00000008   Data   RO         9848    sdh_stack_observers0  nrf_sdh_ble.o
+    0x000302fc   0x000302fc   0x00000008   Data   RO         9902    sdh_stack_observers0  nrf_sdh_soc.o
+    0x00030304   0x00030304   0x00000008   Data   RO         5053    sdh_state_observers0  nrf_drv_clock.o
+    0x0003030c   0x0003030c   0x00000008   Data   RO         8675    sdh_state_observers0  nrf_fstorage_sd.o
 
 
     Execution Region RW_IRAM1 (Exec base: 0x20002a98, Load base: 0x00030314, Size: 0x00003088, Max: 0x00020000, ABSOLUTE, COMPRESSED[0x0000005c])
@@ -6375,66 +6557,66 @@ Memory Map of the image
     0x20002ab8   COMPRESSED   0x00000038   Data   RW          874    .data               juno_ble.o
     0x20002af0   COMPRESSED   0x0000004c   Data   RW         1179    .data               spi1_led.o
     0x20002b3c   COMPRESSED   0x0000000c   Data   RW         1285    .data               led1642gw.o
-    0x20002b48   COMPRESSED   0x00000015   Data   RW         2046    .data               bsp.o
+    0x20002b48   COMPRESSED   0x00000015   Data   RW         2068    .data               bsp.o
     0x20002b5d   COMPRESSED   0x00000003   PAD
-    0x20002b60   COMPRESSED   0x00000008   Data   RW         2152    .data               bsp_btn_ble.o
-    0x20002b68   COMPRESSED   0x00000008   Data   RW         2521    .data               ble_conn_params.o
-    0x20002b70   COMPRESSED   0x00000013   Data   RW         2916    .data               gatt_cache_manager.o
+    0x20002b60   COMPRESSED   0x00000008   Data   RW         2174    .data               bsp_btn_ble.o
+    0x20002b68   COMPRESSED   0x00000008   Data   RW         2543    .data               ble_conn_params.o
+    0x20002b70   COMPRESSED   0x00000013   Data   RW         2938    .data               gatt_cache_manager.o
     0x20002b83   COMPRESSED   0x00000001   PAD
-    0x20002b84   COMPRESSED   0x0000000a   Data   RW         3098    .data               gatts_cache_manager.o
+    0x20002b84   COMPRESSED   0x0000000a   Data   RW         3120    .data               gatts_cache_manager.o
     0x20002b8e   COMPRESSED   0x00000002   PAD
-    0x20002b90   COMPRESSED   0x0000000c   Data   RW         3557    .data               peer_data_storage.o
-    0x20002b9c   COMPRESSED   0x00000008   Data   RW         3728    .data               peer_database.o
-    0x20002ba4   COMPRESSED   0x0000000f   Data   RW         3998    .data               peer_manager.o
-    0x20002bb3   COMPRESSED   0x00000005   Data   RW         4439    .data               security_dispatcher.o
-    0x20002bb8   COMPRESSED   0x00000018   Data   RW         4617    .data               security_manager.o
-    0x20002bd0   COMPRESSED   0x00000004   Data   RW         4947    .data               ble_dfu_unbonded.o
-    0x20002bd4   COMPRESSED   0x00000009   Data   RW         5209    .data               nrf_drv_uart.o
+    0x20002b90   COMPRESSED   0x0000000c   Data   RW         3579    .data               peer_data_storage.o
+    0x20002b9c   COMPRESSED   0x00000008   Data   RW         3750    .data               peer_database.o
+    0x20002ba4   COMPRESSED   0x0000000f   Data   RW         4020    .data               peer_manager.o
+    0x20002bb3   COMPRESSED   0x00000005   Data   RW         4461    .data               security_dispatcher.o
+    0x20002bb8   COMPRESSED   0x00000018   Data   RW         4639    .data               security_manager.o
+    0x20002bd0   COMPRESSED   0x00000004   Data   RW         4969    .data               ble_dfu_unbonded.o
+    0x20002bd4   COMPRESSED   0x00000009   Data   RW         5231    .data               nrf_drv_uart.o
     0x20002bdd   COMPRESSED   0x00000003   PAD
-    0x20002be0   COMPRESSED   0x00000008   Data   RW         5763    .data               nrfx_clock.o
-    0x20002be8   COMPRESSED   0x00000008   Data   RW         6219    .data               nrfx_prs.o
-    0x20002bf0   COMPRESSED   0x00000014   Data   RW         7156    .data               app_timer.o
-    0x20002c04   COMPRESSED   0x00000013   Data   RW         7532    .data               app_uart_fifo.o
+    0x20002be0   COMPRESSED   0x00000008   Data   RW         5785    .data               nrfx_clock.o
+    0x20002be8   COMPRESSED   0x00000008   Data   RW         6241    .data               nrfx_prs.o
+    0x20002bf0   COMPRESSED   0x00000014   Data   RW         7178    .data               app_timer.o
+    0x20002c04   COMPRESSED   0x00000013   Data   RW         7554    .data               app_uart_fifo.o
     0x20002c17   COMPRESSED   0x00000001   PAD
-    0x20002c18   COMPRESSED   0x00000030   Data   RW         7706    .data               fds.o
-    0x20002c48   COMPRESSED   0x00000008   Data   RW         8650    .data               nrf_fstorage_sd.o
-    0x20002c50   COMPRESSED   0x00000009   Data   RW         8856    .data               nrf_pwr_mgmt.o
-    0x20002c59   COMPRESSED   0x00000003   Data   RW         9710    .data               nrf_sdh.o
-    0x20002c5c   COMPRESSED   0x00000001   Data   RW         9825    .data               nrf_sdh_ble.o
+    0x20002c18   COMPRESSED   0x00000030   Data   RW         7728    .data               fds.o
+    0x20002c48   COMPRESSED   0x00000008   Data   RW         8672    .data               nrf_fstorage_sd.o
+    0x20002c50   COMPRESSED   0x00000009   Data   RW         8878    .data               nrf_pwr_mgmt.o
+    0x20002c59   COMPRESSED   0x00000003   Data   RW         9732    .data               nrf_sdh.o
+    0x20002c5c   COMPRESSED   0x00000001   Data   RW         9847    .data               nrf_sdh_ble.o
     0x20002c5d   COMPRESSED   0x00000003   PAD
-    0x20002c60   COMPRESSED   0x00000004   Data   RW         9932    .data               system_nrf52.o
-    0x20002c64   COMPRESSED   0x00000014   Data   RW         7707    fs_data             fds.o
+    0x20002c60   COMPRESSED   0x00000004   Data   RW         9954    .data               system_nrf52.o
+    0x20002c64   COMPRESSED   0x00000014   Data   RW         7729    fs_data             fds.o
     0x20002c78        -       0x00000020   Zero   RW          657    .bss                pwm.o
     0x20002c98        -       0x00000040   Zero   RW          819    .bss                uart.o
     0x20002cd8        -       0x00000278   Zero   RW          873    .bss                juno_ble.o
     0x20002f50        -       0x0000005c   Zero   RW         1075    .bss                spi0_imu.o
     0x20002fac        -       0x00000048   Zero   RW         1177    .bss                spi1_led.o
     0x20002ff4        -       0x00000120   Zero   RW         1283    .bss                led1642gw.o
-    0x20003114        -       0x0000006c   Zero   RW         2044    .bss                bsp.o
-    0x20003180        -       0x00000050   Zero   RW         2520    .bss                ble_conn_params.o
-    0x200031d0        -       0x00000078   Zero   RW         2638    .bss                ble_conn_state.o
-    0x20003248        -       0x000000d8   Zero   RW         3204    .bss                id_manager.o
-    0x20003320        -       0x00000180   Zero   RW         3726    .bss                peer_database.o
-    0x200034a0        -       0x00000040   Zero   RW         3867    .bss                peer_id.o
-    0x200034e0        -       0x0000000c   Zero   RW         3996    .bss                peer_manager.o
-    0x200034ec        -       0x00000040   Zero   RW         4437    .bss                security_dispatcher.o
-    0x2000352c        -       0x0000001c   Zero   RW         4823    .bss                ble_dfu.o
-    0x20003548        -       0x00000028   Zero   RW         4946    .bss                ble_dfu_unbonded.o
-    0x20003570        -       0x00000014   Zero   RW         5028    .bss                nrf_drv_clock.o
-    0x20003584        -       0x00000018   Zero   RW         5170    .bss                nrf_drv_spi.o
-    0x2000359c        -       0x00000030   Zero   RW         5275    .bss                nrfx_timer.o
-    0x200035cc        -       0x00000030   Zero   RW         5467    .bss                nrfx_saadc.o
-    0x200035fc        -       0x0000004c   Zero   RW         5946    .bss                nrfx_gpiote.o
-    0x20003648        -       0x0000002c   Zero   RW         6303    .bss                nrfx_uart.o
-    0x20003674        -       0x00000010   Zero   RW         6559    .bss                nrfx_pwm.o
-    0x20003684        -       0x00000048   Zero   RW         6699    .bss                nrfx_spim.o
-    0x200036cc        -       0x0000010c   Zero   RW         7154    .bss                app_timer.o
-    0x200037d8        -       0x0000000c   Zero   RW         7350    .bss                app_util_platform.o
-    0x200037e4        -       0x00000020   Zero   RW         7530    .bss                app_uart_fifo.o
-    0x20003804        -       0x000000f0   Zero   RW         7704    .bss                fds.o
-    0x200038f4        -       0x00000200   Zero   RW         8648    .bss                nrf_fstorage_sd.o
-    0x20003af4        -       0x0000002c   Zero   RW         8854    .bss                nrf_pwr_mgmt.o
-    0x20003b20        -       0x00002000   Zero   RW         9909    STACK               arm_startup_nrf52.o
+    0x20003114        -       0x0000006c   Zero   RW         2066    .bss                bsp.o
+    0x20003180        -       0x00000050   Zero   RW         2542    .bss                ble_conn_params.o
+    0x200031d0        -       0x00000078   Zero   RW         2660    .bss                ble_conn_state.o
+    0x20003248        -       0x000000d8   Zero   RW         3226    .bss                id_manager.o
+    0x20003320        -       0x00000180   Zero   RW         3748    .bss                peer_database.o
+    0x200034a0        -       0x00000040   Zero   RW         3889    .bss                peer_id.o
+    0x200034e0        -       0x0000000c   Zero   RW         4018    .bss                peer_manager.o
+    0x200034ec        -       0x00000040   Zero   RW         4459    .bss                security_dispatcher.o
+    0x2000352c        -       0x0000001c   Zero   RW         4845    .bss                ble_dfu.o
+    0x20003548        -       0x00000028   Zero   RW         4968    .bss                ble_dfu_unbonded.o
+    0x20003570        -       0x00000014   Zero   RW         5050    .bss                nrf_drv_clock.o
+    0x20003584        -       0x00000018   Zero   RW         5192    .bss                nrf_drv_spi.o
+    0x2000359c        -       0x00000030   Zero   RW         5297    .bss                nrfx_timer.o
+    0x200035cc        -       0x00000030   Zero   RW         5489    .bss                nrfx_saadc.o
+    0x200035fc        -       0x0000004c   Zero   RW         5968    .bss                nrfx_gpiote.o
+    0x20003648        -       0x0000002c   Zero   RW         6325    .bss                nrfx_uart.o
+    0x20003674        -       0x00000010   Zero   RW         6581    .bss                nrfx_pwm.o
+    0x20003684        -       0x00000048   Zero   RW         6721    .bss                nrfx_spim.o
+    0x200036cc        -       0x0000010c   Zero   RW         7176    .bss                app_timer.o
+    0x200037d8        -       0x0000000c   Zero   RW         7372    .bss                app_util_platform.o
+    0x200037e4        -       0x00000020   Zero   RW         7552    .bss                app_uart_fifo.o
+    0x20003804        -       0x000000f0   Zero   RW         7726    .bss                fds.o
+    0x200038f4        -       0x00000200   Zero   RW         8670    .bss                nrf_fstorage_sd.o
+    0x20003af4        -       0x0000002c   Zero   RW         8876    .bss                nrf_pwr_mgmt.o
+    0x20003b20        -       0x00002000   Zero   RW         9931    STACK               arm_startup_nrf52.o
 
 
 ==============================================================================
@@ -6447,74 +6629,74 @@ Image component sizes
         28          0          0          0          0       4381   app_error.o
         96         10          0          0          0       1394   app_error_weak.o
        170          0          0          0          0       5166   app_fifo.o
-         0          0          0          0          0      37086   app_scheduler.o
+         0          0          0          0          0      37082   app_scheduler.o
       2008        238          6         20        268      50364   app_timer.o
-       502         60         32         19         32      15580   app_uart_fifo.o
-       200         24          0          0         12       9826   app_util_platform.o
-        36          8        512          0       8192        884   arm_startup_nrf52.o
-       104          0          0          0          0      49039   ble_advdata.o
+       502         60         32         19         32      15560   app_uart_fifo.o
+       200         24          0          0         12       9822   app_util_platform.o
+        36          8        512          0       8192        880   arm_startup_nrf52.o
+       104          0          0          0          0      49035   ble_advdata.o
       1064          6          0          0          0      15030   ble_advertising.o
        628         30          8          8         80      10744   ble_conn_params.o
-       742         64          8          0        120      12399   ble_conn_state.o
-       524         34          8          0         28       8322   ble_dfu.o
-         0          0          0          0          0       5292   ble_dfu_bonded.o
-       424         32          8          4         40       5881   ble_dfu_unbonded.o
+       742         64          8          0        120      12391   ble_conn_state.o
+       524         34          8          0         28       8270   ble_dfu.o
+         0          0          0          0          0       5280   ble_dfu_bonded.o
+       424         32          8          4         40       5849   ble_dfu_unbonded.o
        108          0          0          0          0       2456   ble_link_ctx_manager.o
        400          0          0          0          0       6001   ble_nus.o
-        48          0          0          0          0      39520   ble_srv_common.o
-       270         20          8          0          0       9299   boards.o
-      1264         80         44         21        108      12377   bsp.o
+        48          0          0          0          0      39516   ble_srv_common.o
+       270         20          8          0          0       9295   boards.o
+      1264         80         44         21        108      12369   bsp.o
        288          8          8          8          0       3760   bsp_btn_ble.o
-         0          0          0          0          0      31772   command_handling.o
-      3730        374         24         68        240      52392   fds.o
-      1658        156        124         19          0      34767   gatt_cache_manager.o
-       628         32         24         10          0      15137   gatts_cache_manager.o
-       152         10          3          0          0      10519   gpio.o
-      1080         34          8          0        216      21174   id_manager.o
-       288          8         48         56        632      16926   juno_ble.o
-       816         30          6         12        288       7955   led1642gw.o
-       362         14          6          0          0     233387   main.o
-       374          0          0          0          0       7888   nrf_atfifo.o
+         0          0          0          0          0      31756   command_handling.o
+      3730        374         24         68        240      52084   fds.o
+      1658        156        124         19          0      34619   gatt_cache_manager.o
+       628         32         24         10          0      15085   gatts_cache_manager.o
+       152         10          3          0          0      10491   gpio.o
+      1080         34          8          0        216      21070   id_manager.o
+       288          8         48         56        632      16886   juno_ble.o
+       816         30          6         12        288       7895   led1642gw.o
+       362         14          6          0          0     233151   main.o
+       374          0          0          0          0       7884   nrf_atfifo.o
        232          0          0          0          0       5076   nrf_atflags.o
-       394          0          0          0          0       7549   nrf_atomic.o
-       704         16         22          0          0      36082   nrf_ble_gatt.o
+       394          0          0          0          0       7545   nrf_atomic.o
+       704         16         22          0          0      36070   nrf_ble_gatt.o
        340          0          0          0          0       6154   nrf_ble_qwr.o
-       364         48         16          0         20      37382   nrf_drv_clock.o
-       200         24         16          0         24       6283   nrf_drv_spi.o
-       140         22          0          9          0      10756   nrf_drv_uart.o
-       234          0          0          0          0       3918   nrf_fstorage.o
-      1114        120         72          8        512      18647   nrf_fstorage_sd.o
-       302         32          0          9         44      40630   nrf_pwr_mgmt.o
-       458          0          0          0          0       5749   nrf_queue.o
-       804         86         88          3          0      41738   nrf_sdh.o
+       364         48         16          0         20      37374   nrf_drv_clock.o
+       200         24         16          0         24       6263   nrf_drv_spi.o
+       140         22          0          9          0      10744   nrf_drv_uart.o
+       234          0          0          0          0       3890   nrf_fstorage.o
+      1114        120         72          8        512      18539   nrf_fstorage_sd.o
+       302         32          0          9         44      40622   nrf_pwr_mgmt.o
+       458          0          0          0          0       5721   nrf_queue.o
+       804         86         88          3          0      41734   nrf_sdh.o
        116          8         56          1          0       4610   nrf_sdh_ble.o
         84          4         36          0          0       3792   nrf_sdh_soc.o
        112          0          0          0          0       3980   nrf_section_iter.o
-       494         12          0          0          0      13520   nrf_spi_mngr.o
-       400         34          0          8          0      14455   nrfx_clock.o
-      1708        110         62          0         76      60301   nrfx_gpiote.o
+       494         12          0          0          0      13476   nrf_spi_mngr.o
+       400         34          0          8          0      14435   nrfx_clock.o
+      1708        110         62          0         76      60277   nrfx_gpiote.o
        140         14          0          8          0       3844   nrfx_prs.o
-      1020         32          0          0         16      23463   nrfx_pwm.o
-       532         24          0          0         48      13031   nrfx_saadc.o
-      1314         48         49          0         72      28611   nrfx_spim.o
-       226         40          0          0         48      45151   nrfx_timer.o
-      1680         46         46          0         44      28244   nrfx_uart.o
-       842         22         28         12          0      17082   peer_data_storage.o
-      1324         48         16          8        384      21337   peer_database.o
-       372         40          0          0         64       8232   peer_id.o
-       798         56          8         15         12      12176   peer_manager.o
-       288          0          0          0          0       5406   pm_buffer.o
-       204         46         24         32         32       2931   pwm.o
-      1802         94        140          5         64      29575   security_dispatcher.o
-       920         92          4         24          0      46411   security_manager.o
-         0          0         20          0         92        863   spi0_imu.o
-       364         82         60         76         72       7911   spi1_led.o
-        28          0          0          0          0      10070   system.o
-      1352        144          0          4          0       7935   system_nrf52.o
-        98         16         24          0         64       1572   uart.o
+      1020         32          0          0         16      23363   nrfx_pwm.o
+       532         24          0          0         48      12979   nrfx_saadc.o
+      1314         48         49          0         72      28483   nrfx_spim.o
+       226         40          0          0         48      45071   nrfx_timer.o
+      1680         46         46          0         44      28228   nrfx_uart.o
+       842         22         28         12          0      16978   peer_data_storage.o
+      1324         48         16          8        384      21209   peer_database.o
+       372         40          0          0         64       8172   peer_id.o
+       798         56          8         15         12      12116   peer_manager.o
+       288          0          0          0          0       5362   pm_buffer.o
+       204         46         24         32         32       2903   pwm.o
+      1802         94        140          5         64      29415   security_dispatcher.o
+       920         92          4         24          0      46303   security_manager.o
+         0          0         20          0         92        855   spi0_imu.o
+       364         82         60         76         72       7839   spi1_led.o
+        28          0          0          0          0      10038   system.o
+      1352        144          0          4          0       7875   system_nrf52.o
+        98         16         24          0         64       1556   uart.o
 
     ----------------------------------------------------------------------
-     39580       2636       1732        480      11944    1371185   Object Totals
+     39580       2636       1732        480      11944    1368457   Object Totals
          0          0         32          0          0          0   (incl. Generated)
         84          4         28         13          0          0   (incl. Padding)
 
@@ -6560,8 +6742,8 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     40016       2652       1732        480      11944    1311913   Grand Totals
-     40016       2652       1732         92      11944    1311913   ELF Image Totals (compressed)
+     40016       2652       1732        480      11944    1309185   Grand Totals
+     40016       2652       1732         92      11944    1309185   ELF Image Totals (compressed)
      40016       2652       1732         92          0          0   ROM Totals
 
 ==============================================================================

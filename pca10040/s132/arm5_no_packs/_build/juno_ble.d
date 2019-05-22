@@ -86,7 +86,7 @@
 .\_build\juno_ble.o: ..\..\..\Inc\Command_Handling.h
 .\_build\juno_ble.o: ..\..\..\..\..\NRF5_SDK\components\libraries\uart\app_uart.h
 .\_build\juno_ble.o: ..\..\..\Inc\PWM.h
-.\_build\juno_ble.o: ..\..\..\..\Juno_Light_Central_Code\Juno_Light_Central_Pin_Map.h
+.\_build\juno_ble.o: ..\..\..\..\Juno_Light_Central\Juno_Light_Central_Pin_Map.h
 .\_build\juno_ble.o: ..\..\..\..\..\NRF5_SDK\integration\nrfx\legacy\nrf_drv_pwm.h
 .\_build\juno_ble.o: ..\..\..\..\..\NRF5_SDK\modules\nrfx\drivers\include\nrfx_pwm.h
 .\_build\juno_ble.o: ..\..\..\..\..\NRF5_SDK\modules\nrfx\hal/nrf_pwm.h
@@ -95,7 +95,7 @@
 .\_build\juno_ble.o: ..\..\..\..\..\NRF5_SDK\components\libraries\bootloader\nrf_bootloader_info.h
 .\_build\juno_ble.o: ..\..\..\..\..\NRF5_SDK\components\ble\ble_services\ble_dfu\ble_dfu.h
 .\_build\juno_ble.o: ..\..\..\Inc\GPIO.h
-.\_build\juno_ble.o: ..\..\..\..\Juno_Light_Central_Code\Juno_Light_Central_Config.h
+.\_build\juno_ble.o: ..\..\..\..\Juno_Light_Central\Juno_Light_Central_Config.h
 .\_build\juno_ble.o: ..\..\..\..\..\NRF5_SDK\integration\nrfx\legacy\nrf_drv_gpiote.h
 .\_build\juno_ble.o: ..\..\..\..\..\NRF5_SDK\modules\nrfx\drivers\include\nrfx_gpiote.h
 .\_build\juno_ble.o: ..\..\..\..\..\NRF5_SDK\modules\nrfx\hal/nrf_gpiote.h
