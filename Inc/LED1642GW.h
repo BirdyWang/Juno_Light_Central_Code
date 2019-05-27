@@ -30,6 +30,12 @@ typedef struct rgb_led
     uint8_t r, g, b;
 }rgb_led;
 
+typedef struct rgb_led_channel
+{
+    uint8_t channel;
+    rgb_led RGB_Color;
+}rgb_led_channel;
+
 void LED1642GW_Test_WaveFormGeneration(nrf_pwm_values_common_t duty_cycle);
 void LED1642GW_Driver_Count(void);
 void LED1642_LED_All_On(void);

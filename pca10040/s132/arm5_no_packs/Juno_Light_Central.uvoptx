@@ -118,7 +118,7 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>DLGUARM</Key>
-          <Name>/</Name>
+          <Name>\óO</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -152,7 +152,7 @@
           <Type>0</Type>
           <LineNumber>392</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>158074</Address>
+          <Address>160298</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -162,22 +162,6 @@
           <Filename>..\..\..\Src\LED1642GW.c</Filename>
           <ExecCommand></ExecCommand>
           <Expression>\\Juno_Light_Central\../../../Src/LED1642GW.c\392</Expression>
-        </Bp>
-        <Bp>
-          <Number>1</Number>
-          <Type>0</Type>
-          <LineNumber>85</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>175052</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>..\..\..\main.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\Juno_Light_Central\../../../main.c\85</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
@@ -195,6 +179,11 @@
           <count>2</count>
           <WinNumber>1</WinNumber>
           <ItemText>ledArrayBuffer[0]</ItemText>
+        </Ww>
+        <Ww>
+          <count>3</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>imu_new_gyro</ItemText>
         </Ww>
       </WatchWindow1>
       <MemoryWindow1>
@@ -1885,7 +1874,7 @@
 
   <Group>
     <GroupName>Juno_LED_Driver</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -1905,7 +1894,7 @@
 
   <Group>
     <GroupName>Juno IMU_Sensor</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>

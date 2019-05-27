@@ -295,7 +295,7 @@ void LED1642GW_RGB_Translation_Individual_Channel(uint8_t channel, rgb_led RGB_C
     int i;
     int tempBrighnessBufferCount = 0;
     /* Setting the brightness. */
-    LED1642_Set_Brightness(0x0040);
+    LED1642_Set_Brightness(0x0001);
     for(i = 0; i < SPI_BUFFER_SIZE - DRIVER_NUM; i++)
     {
         if(i == ((14 - channel) * 3))
@@ -368,7 +368,7 @@ void LED1642GW_RGB_Translation_Individual_Channel(uint8_t channel, rgb_led RGB_C
         {
             LED_SPI_Transmit_16(ledConfigBuffer[i]);
         }
-        
+        nrf_delay_ms(5);
     }
 }
 
@@ -377,7 +377,7 @@ void LED1642GW_RGB_Translation_Array(rgb_led * RGB_Color)
 {
     int i, j;
     /* Setting the brightness. */
-    LED1642_Set_Brightness(0x0010);
+    LED1642_Set_Brightness(0x0001);
     
     for(i = 0; i < CHANNEL_PER_DRIVER_NUM - 1; i++)
     {
@@ -427,7 +427,7 @@ void LED1642GW_RGB_Translation_Array(rgb_led * RGB_Color)
         {
             LED_SPI_Transmit_16(ledConfigBuffer[i]);
         }
-        nrf_delay_us(1000);
+        //nrf_delay_ms(2);
     }
 }
 

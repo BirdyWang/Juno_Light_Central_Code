@@ -1,6 +1,6 @@
 .\_build\gpio.o: ..\..\..\Src\GPIO.c
 .\_build\gpio.o: ..\..\..\Inc\GPIO.h
-.\_build\gpio.o: ..\..\..\..\Juno_Light_Central\Juno_Light_Central_Pin_Map.h
+.\_build\gpio.o: ..\..\..\..\Juno_Light_Central_Code\Juno_Light_Central_Pin_Map.h
 .\_build\gpio.o: ..\..\..\..\..\NRF5_SDK\modules\nrfx\hal\nrf_gpio.h
 .\_build\gpio.o: ..\..\..\..\..\NRF5_SDK\modules\nrfx\nrfx.h
 .\_build\gpio.o: ..\..\..\..\..\NRF5_SDK\integration\nrfx\nrfx_config.h
@@ -47,7 +47,7 @@
 .\_build\gpio.o: ..\..\..\..\..\NRF5_SDK\components\libraries\util\sdk_resources.h
 .\_build\gpio.o: ..\..\..\..\..\NRF5_SDK\components\softdevice\s132\headers\nrf_sd_def.h
 .\_build\gpio.o: ..\..\..\..\..\NRF5_SDK\modules\nrfx\drivers/nrfx_errors.h
-.\_build\gpio.o: ..\..\..\..\Juno_Light_Central\Juno_Light_Central_Config.h
+.\_build\gpio.o: ..\..\..\..\Juno_Light_Central_Code\Juno_Light_Central_Config.h
 .\_build\gpio.o: ..\..\..\..\..\NRF5_SDK\integration\nrfx\legacy\nrf_drv_gpiote.h
 .\_build\gpio.o: ..\..\..\..\..\NRF5_SDK\modules\nrfx\drivers\include\nrfx_gpiote.h
 .\_build\gpio.o: ..\..\..\..\..\NRF5_SDK\modules\nrfx\hal/nrf_gpiote.h

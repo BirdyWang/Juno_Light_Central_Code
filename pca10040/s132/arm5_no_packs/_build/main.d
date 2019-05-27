@@ -139,3 +139,5 @@
 .\_build\main.o: ..\..\..\Inc\MPU6500_DMP_Key.h
 .\_build\main.o: ..\..\..\Inc\UART.h
 .\_build\main.o: ..\..\..\..\..\NRF5_SDK\modules\nrfx\hal\nrf_uart.h
+.\_build\main.o: ..\..\..\Inc\Euler_Angle.h
+.\_build\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h

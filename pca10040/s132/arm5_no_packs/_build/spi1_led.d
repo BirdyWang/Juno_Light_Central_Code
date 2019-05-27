@@ -1,6 +1,6 @@
 .\_build\spi1_led.o: ..\..\..\Src\SPI1_LED.c
 .\_build\spi1_led.o: ..\..\..\Inc\SPI1_LED.h
-.\_build\spi1_led.o: ..\..\..\..\Juno_Light_Central\Juno_Light_Central_Pin_Map.h
+.\_build\spi1_led.o: ..\..\..\..\Juno_Light_Central_Code\Juno_Light_Central_Pin_Map.h
 .\_build\spi1_led.o: ..\..\..\..\..\NRF5_SDK\modules\nrfx\hal\nrf_gpio.h
 .\_build\spi1_led.o: ..\..\..\..\..\NRF5_SDK\modules\nrfx\nrfx.h
 .\_build\spi1_led.o: ..\..\..\..\..\NRF5_SDK\integration\nrfx\nrfx_config.h

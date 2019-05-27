@@ -8,12 +8,13 @@
 #include "MPU6500.h"
 #include "LED1642GW.h"
 #include "ble_dfu.h"
+#include "Euler_Angle.h"
 #define INJECT_I2C_COMMANDS
 
 #define SLEEP_TIMEOUT_VALUE 2000
 
-#define MPU6500_TEST        0
-#define LED_TEST            1
+#define MPU6500_TEST        1
+#define LED_TEST            0
 #define INTERRUPT_TEST      0
 unsigned int led_ts = 0;
 
@@ -59,18 +60,114 @@ int main(void)
     rgb_led rgbTestArray[16];
     nrf_saadc_value_t touchInValue;
     volatile ret_code_t err_code;
+    Quaternion convertedQuat;
+    EulerAngle eulerAngle;
     //err_code = ble_dfu_buttonless_async_svci_init();
     //APP_ERROR_CHECK(err_code);
     //uint8_t result;
     timers_init();
     /*Initialize peripherals*/
     
-    GPIO_Init();
+    //GPIO_Init();
     
     PWM_init();
     PWM_PWCLK_init();
     UART_Init();
+    LED_SPI_Init();
+    nrf_delay_ms(10);
+    PWM_PWCLK_play();
+    nrf_delay_ms(10);
+    LED1642GW_Driver_Count();
+    for(int i = 0; i < 16; i++)
+    {
+        rgbTestArray[i] = (rgb_led){.r = 0, .g = 0, .b = 0};
+    }
+    LED1642GW_RGB_Translation_Array(rgbTestArray);
     //SAADC_Init();
+
+    
+    /*
+    nrf_gpio_pin_write(BOOT_CH3, 1);
+    power_management_init();
+    ble_stack_init();
+    gap_params_init();
+    gatt_init();
+    services_init();
+    advertising_init();
+    conn_params_init();
+    advertising_start();
+    */
+    
+#if (MPU6500_TEST == 1)
+    IMU_SPI_Init();
+    __asm{NOP};
+    //MPU6500_Connection_Test();
+    __asm{NOP};
+    MPU6500_Setup();
+    __asm{NOP};
+    //mpu_lp_motion_interrupt(500, 1, 5);
+    short gyro[3], accel[3], sensors;
+    unsigned char more;
+    long quat[4];
+    uint8_t channel;
+    rgb_led color;
+    uint8_t channel_history;
+    rgb_led color_history;
+    while(1)
+    {
+        if(imu_new_gyro == 1)
+        {
+            dmp_read_fifo(gyro, accel, quat, &sensors, &more);
+            //if (sensors & INV_XYZ_GYRO)
+                //send_packet(PACKET_TYPE_GYRO, gyro);
+            //if (sensors & INV_XYZ_ACCEL)
+                //send_packet(PACKET_TYPE_ACCEL, accel);
+            //if (sensors & INV_WXYZ_QUAT)
+                //send_packet(PACKET_TYPE_QUAT, quat);
+            //__asm{NOP};
+            ConvertQuaternion(quat, &convertedQuat);
+            QuatToEulerAngle(&convertedQuat, &eulerAngle);
+            channel_history = channel;
+            color_history = color;
+            EulerAngleToLED(&eulerAngle, &channel, &color);
+            if((channel != channel_history) || (color.r != color_history.r) || (color.g != color_history.g))
+            {
+                for(int i = 0; i < 16; i++)
+                {
+                    rgbTestArray[i] = (rgb_led){.r = 0, .g = 0, .b = 0};
+                }
+                rgbTestArray[channel] = (rgb_led){.r = color.r, .g = color.g, .b = color.b};
+                if(channel == 0)
+                {
+                    rgbTestArray[1] = (rgb_led){.r = color.r/4, .g = color.g/4, .b = color.b/4};
+                    rgbTestArray[15] = (rgb_led){.r = color.r/4, .g = color.g/4, .b = color.b/4};
+                }
+                else if(channel == 15)
+                {
+                    rgbTestArray[0] = (rgb_led){.r = color.r/4, .g = color.g/4, .b = color.b/4};
+                    rgbTestArray[14] = (rgb_led){.r = color.r/4, .g = color.g/4, .b = color.b/4};            
+                }
+                else
+                {
+                    rgbTestArray[channel+1] = (rgb_led){.r = color.r/4, .g = color.g/4, .b = color.b/4};
+                    rgbTestArray[channel-1] = (rgb_led){.r = color.r/4, .g = color.g/4, .b = color.b/4};
+                }
+                LED1642GW_RGB_Translation_Array(rgbTestArray);
+            }
+            else
+            {
+                
+            }
+            //LED1642GW_RGB_Translation_Individual_Channel(channel, color);
+            printf("Euler Angles: roll: %f, red: %u, pitch: %f, green: %u\r",eulerAngle.roll*180/PI, color.r, eulerAngle.pitch*180/PI, color.g);
+            imu_new_gyro = 0;
+        }
+        
+        //
+        
+    }
+#endif
+#if(LED_TEST)
     LED_SPI_Init();
     nrf_delay_ms(10);
     PWM_PWCLK_play();
@@ -102,53 +199,6 @@ int main(void)
         }
         
     }
-    
-    /*
-    nrf_gpio_pin_write(BOOT_CH3, 1);
-    power_management_init();
-    ble_stack_init();
-    gap_params_init();
-    gatt_init();
-    services_init();
-    advertising_init();
-    conn_params_init();
-    advertising_start();
-    */
-#if (MPU6500_TEST == 1)
-    IMU_SPI_Init();
-    __asm{NOP};
-    MPU6500_Connection_Test();
-    __asm{NOP};
-    MPU6500_Setup();
-    __asm{NOP};
-    //mpu_lp_motion_interrupt(500, 1, 5);
-    short gyro[3], accel[3], sensors;
-    unsigned char more;
-    long quat[4];
-    while(1)
-    {
-        if(imu_new_gyro == 1)
-        {
-            dmp_read_fifo(gyro, accel, quat, &sensors, &more);
-            //if (sensors & INV_XYZ_GYRO)
-                //send_packet(PACKET_TYPE_GYRO, gyro);
-            //if (sensors & INV_XYZ_ACCEL)
-                //send_packet(PACKET_TYPE_ACCEL, accel);
-            if (sensors & INV_WXYZ_QUAT)
-                send_packet(PACKET_TYPE_QUAT, quat);
-            __asm{NOP};
-            imu_new_gyro = 0;
-        }
-        /*
-        Channel_Write(0, 0, 0);
-        nrf_delay_ms(100);
-        Channel_Write(0, 1, 0);
-        nrf_delay_ms(100);
-        */
-    }
-#endif
-#if(LED_TEST)
-    
     //
     //rgb_led rgbTestColor = {.r = 255, .g = 0, .b = 0};
     

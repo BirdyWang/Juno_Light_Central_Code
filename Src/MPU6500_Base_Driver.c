@@ -292,7 +292,7 @@ static struct gyro_state_s st = {
 };
 
 uint8_t SPI_command;
-volatile uint8_t imu_new_gyro = 0;
+
 /**
  *  Enable the DMP data ready interrupt.
  */
@@ -357,7 +357,6 @@ int mpu_read_reg(uint8_t reg, uint8_t *data)
 int mpu_init(void)
 {
     uint8_t data[6];
-    uint32_t err_code;
     
     /* Reset device. */
     data[1] = BIT_RESET;
@@ -410,23 +409,10 @@ int mpu_init(void)
         return -1;
 
     //TODO: ENABLE INTERRUPT ON THE INT PIN. 
-    err_code = nrf_drv_gpiote_init();
-    APP_ERROR_CHECK(err_code);
-    
-    nrf_drv_gpiote_in_config_t imu_int_config = GPIOTE_CONFIG_IN_SENSE_LOTOHI(true); 
-    imu_int_config.pull = NRF_GPIO_PIN_NOPULL;
-    
-	err_code = nrf_drv_gpiote_in_init(IMU_INT, &imu_int_config, IMU_Interrupt_Handler);
-	APP_ERROR_CHECK(err_code);
 	nrf_drv_gpiote_in_event_enable(IMU_INT, true);
     
     mpu_set_sensors(0);
     return 0;
-}
-
-void IMU_Interrupt_Handler(nrf_drv_gpiote_pin_t pin, nrf_gpiote_polarity_t action)
-{
-    imu_new_gyro = 1;
 }
 
 /**

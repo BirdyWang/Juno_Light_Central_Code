@@ -1,7 +1,7 @@
 .\_build\led1642gw.o: ..\..\..\Src\LED1642GW.c
 .\_build\led1642gw.o: ..\..\..\Inc\LED1642GW.h
 .\_build\led1642gw.o: ..\..\..\Inc\SPI1_LED.h
-.\_build\led1642gw.o: ..\..\..\..\Juno_Light_Central\Juno_Light_Central_Pin_Map.h
+.\_build\led1642gw.o: ..\..\..\..\Juno_Light_Central_Code\Juno_Light_Central_Pin_Map.h
 .\_build\led1642gw.o: ..\..\..\..\..\NRF5_SDK\modules\nrfx\hal\nrf_gpio.h
 .\_build\led1642gw.o: ..\..\..\..\..\NRF5_SDK\modules\nrfx\nrfx.h
 .\_build\led1642gw.o: ..\..\..\..\..\NRF5_SDK\integration\nrfx\nrfx_config.h

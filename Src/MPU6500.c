@@ -1,6 +1,6 @@
 #include "MPU6500.h"
 
-#define DEFAULT_MPU_HZ  (100)
+#define DEFAULT_MPU_HZ  (20)
 
 extern uint8_t SPI_command; 
 extern uint8_t spi_complete;
@@ -25,8 +25,8 @@ uint8_t MPU6500_Connection_Test(void)
  * chip-to-body matrix for your particular set up.
  */
 
-static signed char gyro_orientation[9] = {-1, 0, 0,
-                                          0, -1, 0,
+static signed char gyro_orientation[9] = {1, 0, 0,
+                                          0, 1, 0,
                                           0, 0, 1};
 
 enum packet_type_e {

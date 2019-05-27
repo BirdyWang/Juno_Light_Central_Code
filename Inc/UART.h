@@ -14,8 +14,8 @@
 #include "nrf_uart.h"
 #include "app_uart.h"
 
-#define UART_TX_BUF_SIZE                32                                         /**< UART TX buffer size. */
-#define UART_RX_BUF_SIZE                32                                         /**< UART RX buffer size. */
+#define UART_TX_BUF_SIZE                512                                         /**< UART TX buffer size. */
+#define UART_RX_BUF_SIZE                512                                         /**< UART RX buffer size. */
 
 void UART_Init(void);
 void uart_error_handle(app_uart_evt_t * p_event);
