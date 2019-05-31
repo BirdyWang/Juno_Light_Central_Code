@@ -37,6 +37,8 @@
 void set_int_enable(uint8_t enable);
 void mpu_reg_dump(void);
 int mpu_read_reg(uint8_t reg, uint8_t *data);
+void mpu_reset(void);
+void mpu_sleep(void);
 int mpu_init(void);
 int mpu_lp_accel_mode(uint16_t rate);
 int mpu_get_gyro_reg(short *data);

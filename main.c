@@ -13,13 +13,30 @@
 
 #define SLEEP_TIMEOUT_VALUE 2000
 
-#define MPU6500_TEST        1
+#define MAIN_CODE           1
+#define MPU6500_TEST        0
 #define LED_TEST            0
 #define INTERRUPT_TEST      0
+#define BLE_ENABLE          0
+#define UART_DEBUGGING      0
+
 unsigned int led_ts = 0;
 
 extern uint8_t BLE_cmd[3];
-extern volatile uint8_t imu_new_gyro;
+extern volatile uint8_t imuNewGyroFlag;
+extern volatile uint8_t powerOnFlag;
+extern volatile uint8_t batteryChargingFlag;
+uint8_t deviceInitFlag = 0;
+uint8_t ledDisplayMode = 0;
+
+enum LED_display_modes {
+    SINGLE_COLOR_DISPLAY,
+    MOTION_MAP_DISPLAY,
+    COLOR_TRANSITION,
+    INCREASE_BRIGHTNESS,
+    DECREASE_BRIGHTNESS
+};
+    
 enum packet_type_e {
     PACKET_TYPE_ACCEL,
     PACKET_TYPE_GYRO,
@@ -46,6 +63,11 @@ static void power_manage(void)
 }
 #endif
 
+static void Enter_Low_Power_Mode(void)
+{
+    mpu_sleep();
+    LED1642GW_Enter_LPM();
+}
 /*
  * APP_ADV_TIMEOUT_IN_SECONDS is the reason why the NRF chip reboot itself.
  * When the timeout is triggered, on_adv_evt is called with BLE_ADV_EVT_IDLE case.
@@ -57,80 +79,152 @@ static void power_manage(void)
 int main(void)
 {
     __asm{NOP};
+    /* Define private variables. */
     rgb_led rgbTestArray[16];
-    nrf_saadc_value_t touchInValue;
-    volatile ret_code_t err_code;
+    uint8_t channel;
+    uint8_t channelHistory;
+    rgb_led colorHistory;
+    short gyro[3], accel[3], sensors;
+    unsigned char more;
+    long quat[4];
+    rgb_led color;
     Quaternion convertedQuat;
     EulerAngle eulerAngle;
+    
+    volatile ret_code_t err_code;
     //err_code = ble_dfu_buttonless_async_svci_init();
     //APP_ERROR_CHECK(err_code);
-    //uint8_t result;
-    timers_init();
+    
     /*Initialize peripherals*/
-    
-    //GPIO_Init();
-    
+    timers_init();
+    GPIO_Init();
     PWM_init();
     PWM_PWCLK_init();
-    UART_Init();
-    LED_SPI_Init();
-    nrf_delay_ms(10);
     PWM_PWCLK_play();
-    nrf_delay_ms(10);
+#if (UART_DEBUGGING == 1)
+    UART_Init();
+#endif
+    LED_SPI_Init();
+    IMU_SPI_Init();
+    //SAADC_Init();
+    
+    LED1642GW_Init();
     LED1642GW_Driver_Count();
+    
     for(int i = 0; i < 16; i++)
     {
         rgbTestArray[i] = (rgb_led){.r = 0, .g = 0, .b = 0};
     }
     LED1642GW_RGB_Translation_Array(rgbTestArray);
-    //SAADC_Init();
+    SAADC_Init();
 
+#if (BLE_ENABLE == 1)    
+    BLE_Init();
+    //advertising_start();
+#endif    
     
-    /*
-    nrf_gpio_pin_write(BOOT_CH3, 1);
-    power_management_init();
-    ble_stack_init();
-    gap_params_init();
-    gatt_init();
-    services_init();
-    advertising_init();
-    conn_params_init();
-    advertising_start();
-    */
+#if (MAIN_CODE == 1)
+    mpu_reset();
+    while(1)
+    {
+        if(powerOnFlag == 1)
+        {
+            if(deviceInitFlag == 0)
+            {
+                MPU6500_Setup();
+                MPU6500_Enable_DMP();
+                PWM_PWCLK_play();
+                nrf_delay_ms(10);
+                LED1642GW_Driver_Count();
+                ledDisplayMode = MOTION_MAP_DISPLAY;
+                deviceInitFlag = 1;
+            }
+            else
+            {
+                switch(ledDisplayMode)
+                {
+                    case SINGLE_COLOR_DISPLAY:
+                        LED1642_LED_All_On();
+                        break;
+                    case MOTION_MAP_DISPLAY:
+                        if(imuNewGyroFlag == 1)
+                        {
+                            dmp_read_fifo(gyro, accel, quat, &sensors, &more);
+                            ConvertQuaternion(quat, &convertedQuat);
+                            QuatToEulerAngle(&convertedQuat, &eulerAngle);
+                            channelHistory = channel;
+                            colorHistory = color;
+                            EulerAngleToLED(&eulerAngle, &channel, &color);
+                            if((channel != channelHistory) || (color.r != colorHistory.r) || (color.g != colorHistory.g))
+                            {
+                                for(int i = 0; i < 16; i++)
+                                {
+                                    rgbTestArray[i] = (rgb_led){.r = 0, .g = 0, .b = 0};
+                                }
+                                rgbTestArray[channel] = (rgb_led){.r = color.r, .g = color.g, .b = color.b};
+                                if(channel == 0)
+                                {
+                                    rgbTestArray[1] = (rgb_led){.r = color.r/4, .g = color.g/4, .b = color.b/4};
+                                    rgbTestArray[15] = (rgb_led){.r = color.r/4, .g = color.g/4, .b = color.b/4};
+                                }
+                                else if(channel == 15)
+                                {
+                                    rgbTestArray[0] = (rgb_led){.r = color.r/4, .g = color.g/4, .b = color.b/4};
+                                    rgbTestArray[14] = (rgb_led){.r = color.r/4, .g = color.g/4, .b = color.b/4};            
+                                }
+                                else
+                                {
+                                    rgbTestArray[channel+1] = (rgb_led){.r = color.r/4, .g = color.g/4, .b = color.b/4};
+                                    rgbTestArray[channel-1] = (rgb_led){.r = color.r/4, .g = color.g/4, .b = color.b/4};
+                                }
+                                LED1642GW_RGB_Translation_Array(rgbTestArray);
+                            }
+                            else
+                            {
+                                
+                            }
+                            //LED1642GW_RGB_Translation_Individual_Channel(channel, color);
+                #if (UART_DEBUGGING == 1)
+                            printf("Euler Angles: roll: %f, red: %u, pitch: %f, green: %u\r",eulerAngle.roll*180/PI, color.r, eulerAngle.pitch*180/PI, color.g);
+                #endif
+                            imuNewGyroFlag = 0;
+                        }
+                        break;
+                    case COLOR_TRANSITION:
+                        break;
+                    case INCREASE_BRIGHTNESS:
+                        break;
+                    case DECREASE_BRIGHTNESS:
+                        break;
+                    default:
+                        break;
+                    
+                }
+            }
+        }
+        else
+        {
+            Enter_Low_Power_Mode();
+            deviceInitFlag = 0;
+            __WFI();
+        }
+    }
+#endif
     
 #if (MPU6500_TEST == 1)
     IMU_SPI_Init();
-    __asm{NOP};
-    //MPU6500_Connection_Test();
-    __asm{NOP};
     MPU6500_Setup();
-    __asm{NOP};
-    //mpu_lp_motion_interrupt(500, 1, 5);
-    short gyro[3], accel[3], sensors;
-    unsigned char more;
-    long quat[4];
-    uint8_t channel;
-    rgb_led color;
-    uint8_t channel_history;
-    rgb_led color_history;
     while(1)
     {
-        if(imu_new_gyro == 1)
+        if(imuNewGyroFlag == 1)
         {
             dmp_read_fifo(gyro, accel, quat, &sensors, &more);
-            //if (sensors & INV_XYZ_GYRO)
-                //send_packet(PACKET_TYPE_GYRO, gyro);
-            //if (sensors & INV_XYZ_ACCEL)
-                //send_packet(PACKET_TYPE_ACCEL, accel);
-            //if (sensors & INV_WXYZ_QUAT)
-                //send_packet(PACKET_TYPE_QUAT, quat);
-            //__asm{NOP};
             ConvertQuaternion(quat, &convertedQuat);
             QuatToEulerAngle(&convertedQuat, &eulerAngle);
-            channel_history = channel;
-            color_history = color;
+            channelHistory = channel;
+            colorHistory = color;
             EulerAngleToLED(&eulerAngle, &channel, &color);
-            if((channel != channel_history) || (color.r != color_history.r) || (color.g != color_history.g))
+            if((channel != channelHistory) || (color.r != colorHistory.r) || (color.g != colorHistory.g))
             {
                 for(int i = 0; i < 16; i++)
                 {
@@ -159,12 +253,11 @@ int main(void)
                 
             }
             //LED1642GW_RGB_Translation_Individual_Channel(channel, color);
+#if (UART_DEBUGGING == 1)
             printf("Euler Angles: roll: %f, red: %u, pitch: %f, green: %u\r",eulerAngle.roll*180/PI, color.r, eulerAngle.pitch*180/PI, color.g);
-            imu_new_gyro = 0;
+#endif
+            imuNewGyroFlag = 0;
         }
-        
-        //
-        
     }
 #endif
 #if(LED_TEST)

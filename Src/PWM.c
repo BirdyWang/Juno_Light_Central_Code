@@ -94,3 +94,8 @@ void PWM_PWCLK_play(void)
     nrf_drv_pwm_simple_playback(&m_pwm1, &pwm_seq1, 10, NRF_DRV_PWM_FLAG_LOOP);
 }
 
+void PWM_PWCLK_stop(void)
+{
+    nrf_drv_pwm_simple_playback(&m_pwm1, &pwm_seq1, 1, NRF_DRV_PWM_FLAG_STOP);
+    nrf_drv_pwm_stop(&m_pwm1, true);
+}

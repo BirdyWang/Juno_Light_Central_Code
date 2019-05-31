@@ -4,7 +4,7 @@
 
 extern uint8_t SPI_command; 
 extern uint8_t spi_complete;
-extern volatile uint8_t imu_new_gyro;
+extern volatile uint8_t imuNewGyroFlag;
 uint8_t MPU6500_Connection_Test(void)
 {
     uint8_t SPI_data[2];
@@ -66,9 +66,14 @@ uint8_t MPU6500_Setup(void)
     dmp_enable_feature(dmp_features);
     dmp_set_fifo_rate(DEFAULT_MPU_HZ);
     //dmp_set_interrupt_mode(DMP_INT_GESTURE);
+
+    return 0;
+}
+
+void MPU6500_Enable_DMP(void)
+{
     //Enable DMP
     mpu_set_dmp_state(1);
-    return 0;
 }
 
 void getDMP_Data(void)
@@ -76,12 +81,12 @@ void getDMP_Data(void)
     int16_t gyro[3], accel[3], sensors;
     unsigned char more;
     long quat[4];
-    if(imu_new_gyro)
+    if(imuNewGyroFlag)
     {
         dmp_read_fifo(gyro, accel, quat, &sensors, &more);
         if(!more)
         {
-            imu_new_gyro = 0;
+            imuNewGyroFlag = 0;
         }
     }
 }

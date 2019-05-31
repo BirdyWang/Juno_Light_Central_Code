@@ -341,6 +341,24 @@ int mpu_read_reg(uint8_t reg, uint8_t *data)
     return 0;
 }
 
+void mpu_reset(void)
+{
+    uint8_t data[2];
+    /* Reset device. */
+    data[1] = BIT_RESET;
+    data[0] = st.reg->pwr_mgmt_1 + MPU6500_WRITE;
+    IMU_SPI_Transmit(data, 2);
+    nrf_delay_ms(1000);
+}
+
+void mpu_sleep(void)
+{
+    uint8_t data[2];
+    data[1] = BIT_SLEEP;
+    data[0] = st.reg->pwr_mgmt_1 + MPU6500_WRITE;
+    IMU_SPI_Transmit(data, 2);
+}
+
 /**
  *  @brief      Initialize hardware.
  *  Initial configuration:\n

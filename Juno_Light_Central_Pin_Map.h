@@ -27,7 +27,8 @@
 #define TOUCH_IN        28
 
 /**For Battery Charging Status**/
-#define BATT_CHRG_STAT  29
+#define VBAT_MON        29
+#define BATT_CHRG_STAT  30
 
 /**For UART Debugging**/
 #define UART_TX         0

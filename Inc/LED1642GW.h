@@ -16,10 +16,10 @@
 
 #define DUMMY_DATA_LED1642GW                            56  
 #define WRITE_SWITCH                                    172  // 1-2 rising edges
-#define BRIGHTNESS_DATA_LATCH                           156  // 3-4 rising edges
-#define BRIGHTNESS_GLOBAL_LATCH                         144  // 5-6 rising edges
-#define WRITE_CONFIGURATION_REGISTER                    132  // 7 rising edges
-#define READ_CONFIGURATION_REGISTER                     126  // 8 rising edges
+#define BRIGHTNESS_DATA_LATCH                           158  // 3-4 rising edges
+#define BRIGHTNESS_GLOBAL_LATCH                         140  // 5-6 rising edges
+#define WRITE_CONFIGURATION_REGISTER                    128  // 7 rising edges
+#define READ_CONFIGURATION_REGISTER                     124  // 8 rising edges
 #define START_OPEN_ERROR_DETECTION_MODE                 118  // 9 rising edges
 #define START_SHORT_ERROR_DETECTION_MODE                110  // 10 rising edges
 #define START_COMBINED_ERROR_DETECTION_MODE             102  // 11 rising edges
@@ -36,8 +36,10 @@ typedef struct rgb_led_channel
     rgb_led RGB_Color;
 }rgb_led_channel;
 
+uint8_t LED1642GW_Init(void);
+uint8_t LED1642GW_Enter_LPM(void);
 void LED1642GW_Test_WaveFormGeneration(nrf_pwm_values_common_t duty_cycle);
-void LED1642GW_Driver_Count(void);
+uint8_t LED1642GW_Driver_Count(void);
 void LED1642_LED_All_On(void);
 void LED1642_LED_RGB_Train_Forward(void);
 void LED1642_LED_Different_Color_Same_Time(void);

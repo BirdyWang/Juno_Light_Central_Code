@@ -14,12 +14,67 @@ uint16_t rxBuffer[SPI_BUFFER_SIZE];
 uint16_t ledConfigBuffer[DRIVER_NUM];
 uint16_t ledArrayBuffer[CHANNEL_PER_DRIVER_NUM][DRIVER_NUM];
 
+
+uint8_t LED1642GW_Init(void)
+{
+    uint8_t error_code;
+    PWM_PWCLK_play(); //starts generating the brightness clock. 
+    nrf_delay_ms(100);
+    error_code = LED1642GW_Driver_Count();
+    return error_code;
+}
+
+/* OMG I CAN SET THE RISE AND FALL TIME IN THE DRIVER!?? IM SO IN LOVE RN! */
+
+/*
+ * To Enter Low Power Mode(LPM), one needs to confgure out 0 to 15 to 0x0000.
+ * configure CFG0...CFG5 = '111111'. 
+ * configure CFG6 = '1'.
+ * In this case, we also want to turn off the PWCLK.
+ */
+uint8_t LED1642GW_Enter_LPM(void)
+{
+    PWM_PWCLK_stop();
+    int i;
+    int tempBrighnessBufferCount = 0;
+    /* Configure CFG0...CFG5 = '111111'. */
+    for(i = 0; i < DRIVER_NUM; i++)
+    {
+        ledConfigBuffer[i] = 0x1400;   // 0b0000110001111111;
+        if(i == DRIVER_NUM - 1)
+        {
+            LED1642GW_Write_Configuration_Register(ledConfigBuffer[i]);
+        }
+        else
+        {
+            LED_SPI_Transmit_16(ledConfigBuffer[i]);
+        }
+    }
+    
+    
+    for(int i = 0; i < DRIVER_NUM; i++)
+    {
+        ledConfigBuffer[i] = 0x0000;
+        if(i == DRIVER_NUM - 1)
+        {
+            LED1642GW_Switch(ledConfigBuffer[i]);
+        }
+        else
+        {
+            LED_SPI_Transmit_16(ledConfigBuffer[i]);
+        }
+        nrf_delay_ms(5);
+    }
+    
+    return 1;
+}
+
 void LED1642GW_Test_WaveFormGeneration(nrf_pwm_values_common_t duty_cycle)
 {
     LED_SPI_Transmit_LE_16(duty_cycle, 0xFFFF);
 }
 
-void LED1642GW_Driver_Count(void)
+uint8_t LED1642GW_Driver_Count(void)
 {
     uint8_t driverCount = 0;
     spiTxBuffer[0] = 0x00;
@@ -44,8 +99,9 @@ void LED1642GW_Driver_Count(void)
     }
     if(driverCount == DRIVER_NUM)
     {
-            __asm{NOP};
+        return 1;
     }
+    return 0;
 }
 
 void LED1642_LED_All_On(void)
@@ -91,7 +147,6 @@ void LED1642_LED_All_On(void)
         {
             LED_SPI_Transmit_16(txBuffer[i]);
         }
-        nrf_delay_ms(2);
     }
 }
 

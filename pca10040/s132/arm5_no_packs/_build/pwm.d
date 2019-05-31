@@ -1,6 +1,6 @@
 .\_build\pwm.o: ..\..\..\Src\PWM.c
 .\_build\pwm.o: ..\..\..\Inc\PWM.h
-.\_build\pwm.o: ..\..\..\..\Juno_Light_Central_Code\Juno_Light_Central_Pin_Map.h
+.\_build\pwm.o: ..\..\..\Juno_Light_Central_Pin_Map.h
 .\_build\pwm.o: ..\..\..\..\..\NRF5_SDK\modules\nrfx\hal\nrf_gpio.h
 .\_build\pwm.o: ..\..\..\..\..\NRF5_SDK\modules\nrfx\nrfx.h
 .\_build\pwm.o: ..\..\..\..\..\NRF5_SDK\integration\nrfx\nrfx_config.h

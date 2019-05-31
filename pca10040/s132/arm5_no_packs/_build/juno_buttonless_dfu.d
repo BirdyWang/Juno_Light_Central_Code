@@ -87,14 +87,14 @@
 .\_build\juno_buttonless_dfu.o: ..\..\..\Inc\Command_Handling.h
 .\_build\juno_buttonless_dfu.o: ..\..\..\..\..\NRF5_SDK\components\libraries\uart\app_uart.h
 .\_build\juno_buttonless_dfu.o: ..\..\..\Inc\PWM.h
-.\_build\juno_buttonless_dfu.o: ..\..\..\..\Juno_Light_Central_Code\Juno_Light_Central_Pin_Map.h
+.\_build\juno_buttonless_dfu.o: ..\..\..\Juno_Light_Central_Pin_Map.h
 .\_build\juno_buttonless_dfu.o: ..\..\..\..\..\NRF5_SDK\integration\nrfx\legacy\nrf_drv_pwm.h
 .\_build\juno_buttonless_dfu.o: ..\..\..\..\..\NRF5_SDK\modules\nrfx\drivers\include\nrfx_pwm.h
 .\_build\juno_buttonless_dfu.o: ..\..\..\..\..\NRF5_SDK\modules\nrfx\hal/nrf_pwm.h
 .\_build\juno_buttonless_dfu.o: ..\..\..\Inc\Juno_BLE.h
 .\_build\juno_buttonless_dfu.o: ..\..\..\Inc\Juno_Buttonless_DFU.h
 .\_build\juno_buttonless_dfu.o: ..\..\..\Inc\GPIO.h
-.\_build\juno_buttonless_dfu.o: ..\..\..\..\Juno_Light_Central_Code\Juno_Light_Central_Config.h
+.\_build\juno_buttonless_dfu.o: ..\..\..\Juno_Light_Central_Config.h
 .\_build\juno_buttonless_dfu.o: ..\..\..\..\..\NRF5_SDK\integration\nrfx\legacy\nrf_drv_gpiote.h
 .\_build\juno_buttonless_dfu.o: ..\..\..\..\..\NRF5_SDK\modules\nrfx\drivers\include\nrfx_gpiote.h
 .\_build\juno_buttonless_dfu.o: ..\..\..\..\..\NRF5_SDK\modules\nrfx\hal/nrf_gpiote.h

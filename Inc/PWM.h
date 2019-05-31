@@ -15,5 +15,6 @@ void PWM_init(void);
 void PWM_play(nrf_pwm_values_common_t duty_cycle);
 void PWM_PWCLK_init(void);
 void PWM_PWCLK_play(void);
+void PWM_PWCLK_stop(void);
 
 #endif

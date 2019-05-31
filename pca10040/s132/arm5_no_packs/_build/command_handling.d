@@ -28,7 +28,7 @@
 .\_build\command_handling.o: ..\..\..\..\..\NRF5_SDK\components\libraries\util\nordic_common.h
 .\_build\command_handling.o: ..\..\..\..\..\NRF5_SDK\components\libraries\util\app_error_weak.h
 .\_build\command_handling.o: ..\..\..\Inc\PWM.h
-.\_build\command_handling.o: ..\..\..\..\Juno_Light_Central_Code\Juno_Light_Central_Pin_Map.h
+.\_build\command_handling.o: ..\..\..\Juno_Light_Central_Pin_Map.h
 .\_build\command_handling.o: ..\..\..\..\..\NRF5_SDK\modules\nrfx\hal\nrf_gpio.h
 .\_build\command_handling.o: ..\..\..\..\..\NRF5_SDK\modules\nrfx\nrfx.h
 .\_build\command_handling.o: ..\..\..\..\..\NRF5_SDK\integration\nrfx\nrfx_config.h
@@ -100,7 +100,7 @@
 .\_build\command_handling.o: ..\..\..\..\..\NRF5_SDK\components\libraries\log\nrf_log_backend_interface.h
 .\_build\command_handling.o: ..\..\..\..\..\NRF5_SDK\components\libraries\log\nrf_log_default_backends.h
 .\_build\command_handling.o: ..\..\..\Inc\System.h
-.\_build\command_handling.o: ..\..\..\..\Juno_Light_Central_Code\Juno_Light_Central_Config.h
+.\_build\command_handling.o: ..\..\..\Juno_Light_Central_Config.h
 .\_build\command_handling.o: ..\..\..\..\..\NRF5_SDK\integration\nrfx\legacy\nrf_drv_clock.h
 .\_build\command_handling.o: ..\..\..\..\..\NRF5_SDK\modules\nrfx\drivers\include\nrfx_clock.h
 .\_build\command_handling.o: ..\..\..\..\..\NRF5_SDK\modules\nrfx\hal/nrf_clock.h
