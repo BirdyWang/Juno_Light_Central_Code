@@ -26,6 +26,9 @@
 uint8_t MPU6500_Connection_Test(void);
 uint8_t MPU6500_Setup(void);
 void MPU6500_Enable_DMP(void);
+void MPU6500_Disable_DMP(void);
+void MPU6500_Enable_Tap_Feature(void);
+void MPU6500_Enable_Full_Features(void);
 void getDMP_Data(void);
 static void MPU6500_tap_cb(uint8_t direction, uint8_t count);
 static void MPU6500_orient_cb(uint8_t orientation);

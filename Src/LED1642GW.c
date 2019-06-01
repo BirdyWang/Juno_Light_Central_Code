@@ -9,11 +9,11 @@
 
 uint8_t spiTxBuffer[4];
 uint8_t spiRxBuffer[2];
+uint8_t brightness = 0x00;
 uint16_t txBuffer[SPI_BUFFER_SIZE];
 uint16_t rxBuffer[SPI_BUFFER_SIZE];
 uint16_t ledConfigBuffer[DRIVER_NUM];
 uint16_t ledArrayBuffer[CHANNEL_PER_DRIVER_NUM][DRIVER_NUM];
-
 
 uint8_t LED1642GW_Init(void)
 {
@@ -36,7 +36,6 @@ uint8_t LED1642GW_Enter_LPM(void)
 {
     PWM_PWCLK_stop();
     int i;
-    int tempBrighnessBufferCount = 0;
     /* Configure CFG0...CFG5 = '111111'. */
     for(i = 0; i < DRIVER_NUM; i++)
     {
@@ -69,9 +68,9 @@ uint8_t LED1642GW_Enter_LPM(void)
     return 1;
 }
 
-void LED1642GW_Test_WaveFormGeneration(nrf_pwm_values_common_t duty_cycle)
+void LED1642GW_Brightness_Control(uint8_t mode)
 {
-    LED_SPI_Transmit_LE_16(duty_cycle, 0xFFFF);
+    
 }
 
 uint8_t LED1642GW_Driver_Count(void)
@@ -108,7 +107,7 @@ void LED1642_LED_All_On(void)
 {
     int i;
     int tempBrighnessBufferCount = 0;
-    LED1642_Set_Brightness(0x0010);
+    LED1642_Set_Brightness(0x1410);
     for(i = 0; i < SPI_BUFFER_SIZE; i++)
     {
         txBuffer[i] = 0xFFFF;
@@ -432,7 +431,7 @@ void LED1642GW_RGB_Translation_Array(rgb_led * RGB_Color)
 {
     int i, j;
     /* Setting the brightness. */
-    LED1642_Set_Brightness(0x0001);
+    LED1642_Set_Brightness(0x1410);
     
     for(i = 0; i < CHANNEL_PER_DRIVER_NUM - 1; i++)
     {

@@ -27,7 +27,7 @@ extern volatile uint8_t imuNewGyroFlag;
 extern volatile uint8_t powerOnFlag;
 extern volatile uint8_t batteryChargingFlag;
 uint8_t deviceInitFlag = 0;
-uint8_t ledDisplayMode = 0;
+extern uint8_t ledDisplayMode;
 
 enum LED_display_modes {
     SINGLE_COLOR_DISPLAY,
@@ -80,7 +80,10 @@ int main(void)
 {
     __asm{NOP};
     /* Define private variables. */
-    rgb_led rgbTestArray[16];
+    rgb_led rgbSingleColorDisplay[16];
+    rgb_led rgbDmpMappingDisplay[16];
+    rgb_led rgbTrainForwardDisplay[16];
+    rgb_led rgbBatteryDisplay[16];
     uint8_t channel;
     uint8_t channelHistory;
     rgb_led colorHistory;
@@ -113,9 +116,12 @@ int main(void)
     
     for(int i = 0; i < 16; i++)
     {
-        rgbTestArray[i] = (rgb_led){.r = 0, .g = 0, .b = 0};
+        rgbSingleColorDisplay[i] = (rgb_led){.r = 0, .g = 0, .b = 0};
+        rgbDmpMappingDisplay[i] = (rgb_led){.r = 0, .g = 0, .b = 0};
+        rgbTrainForwardDisplay[i] = (rgb_led){.r = 0, .g = 0, .b = 0};
+        rgbBatteryDisplay[i] = (rgb_led){.r = 0, .g = 0, .b = 0};
     }
-    LED1642GW_RGB_Translation_Array(rgbTestArray);
+    LED1642GW_RGB_Translation_Array(rgbSingleColorDisplay);
     SAADC_Init();
 
 #if (BLE_ENABLE == 1)    
@@ -131,12 +137,22 @@ int main(void)
         {
             if(deviceInitFlag == 0)
             {
-                MPU6500_Setup();
+                for(int i = 0; i < 16; i++)
+                {
+                    rgbSingleColorDisplay[i] = (rgb_led){.r = 50, .g = 50, .b = 50};
+                }
+                LED1642GW_RGB_Translation_Array(rgbSingleColorDisplay);
+                MPU6500_Setup(); // Right now it only has tapping interrupt enabled. 
                 MPU6500_Enable_DMP();
                 PWM_PWCLK_play();
                 nrf_delay_ms(10);
                 LED1642GW_Driver_Count();
-                ledDisplayMode = MOTION_MAP_DISPLAY;
+                ledDisplayMode = SINGLE_COLOR_DISPLAY;
+                for(int i = 0; i < 16; i++)
+                {
+                    rgbSingleColorDisplay[i] = (rgb_led){.r = 0, .g = 0, .b = 0};
+                }
+                LED1642GW_RGB_Translation_Array(rgbSingleColorDisplay);
                 deviceInitFlag = 1;
             }
             else
@@ -145,6 +161,11 @@ int main(void)
                 {
                     case SINGLE_COLOR_DISPLAY:
                         LED1642_LED_All_On();
+                        if(imuNewGyroFlag == 1)
+                        {
+                            dmp_read_fifo(gyro, accel, quat, &sensors, &more);
+                            imuNewGyroFlag = 0;
+                        }
                         break;
                     case MOTION_MAP_DISPLAY:
                         if(imuNewGyroFlag == 1)
@@ -159,25 +180,25 @@ int main(void)
                             {
                                 for(int i = 0; i < 16; i++)
                                 {
-                                    rgbTestArray[i] = (rgb_led){.r = 0, .g = 0, .b = 0};
+                                    rgbDmpMappingDisplay[i] = (rgb_led){.r = 0, .g = 0, .b = 0};
                                 }
-                                rgbTestArray[channel] = (rgb_led){.r = color.r, .g = color.g, .b = color.b};
+                                rgbDmpMappingDisplay[channel] = (rgb_led){.r = color.r, .g = color.g, .b = color.b};
                                 if(channel == 0)
                                 {
-                                    rgbTestArray[1] = (rgb_led){.r = color.r/4, .g = color.g/4, .b = color.b/4};
-                                    rgbTestArray[15] = (rgb_led){.r = color.r/4, .g = color.g/4, .b = color.b/4};
+                                    rgbDmpMappingDisplay[1] = (rgb_led){.r = color.r/4, .g = color.g/4, .b = color.b/4};
+                                    rgbDmpMappingDisplay[15] = (rgb_led){.r = color.r/4, .g = color.g/4, .b = color.b/4};
                                 }
                                 else if(channel == 15)
                                 {
-                                    rgbTestArray[0] = (rgb_led){.r = color.r/4, .g = color.g/4, .b = color.b/4};
-                                    rgbTestArray[14] = (rgb_led){.r = color.r/4, .g = color.g/4, .b = color.b/4};            
+                                    rgbDmpMappingDisplay[0] = (rgb_led){.r = color.r/4, .g = color.g/4, .b = color.b/4};
+                                    rgbDmpMappingDisplay[14] = (rgb_led){.r = color.r/4, .g = color.g/4, .b = color.b/4};            
                                 }
                                 else
                                 {
-                                    rgbTestArray[channel+1] = (rgb_led){.r = color.r/4, .g = color.g/4, .b = color.b/4};
-                                    rgbTestArray[channel-1] = (rgb_led){.r = color.r/4, .g = color.g/4, .b = color.b/4};
+                                    rgbDmpMappingDisplay[channel+1] = (rgb_led){.r = color.r/4, .g = color.g/4, .b = color.b/4};
+                                    rgbDmpMappingDisplay[channel-1] = (rgb_led){.r = color.r/4, .g = color.g/4, .b = color.b/4};
                                 }
-                                LED1642GW_RGB_Translation_Array(rgbTestArray);
+                                LED1642GW_RGB_Translation_Array(rgbDmpMappingDisplay);
                             }
                             else
                             {
@@ -191,6 +212,27 @@ int main(void)
                         }
                         break;
                     case COLOR_TRANSITION:
+                        for(int j = 0; j < 16; j++)
+                        {
+                            for(int i = 0; i < 16; i++)
+                            {
+                                if(i <= j)
+                                {
+                                    rgbTrainForwardDisplay[j-i] = (rgb_led){.r = 0 + (15-i)*15, .g = 150-(15-i)*10, .b = 0};
+                                }
+                                else
+                                {
+                                    rgbTrainForwardDisplay[i+j] = (rgb_led){.r = 0 + i*15, .g = 150-i*10, .b = 0};
+                                }
+                            }
+                            LED1642GW_RGB_Translation_Array(rgbTrainForwardDisplay);
+                            nrf_delay_ms(500);
+                        }
+                        if(imuNewGyroFlag == 1)
+                        {
+                            dmp_read_fifo(gyro, accel, quat, &sensors, &more);
+                            imuNewGyroFlag = 0;
+                        }
                         break;
                     case INCREASE_BRIGHTNESS:
                         break;
@@ -198,9 +240,16 @@ int main(void)
                         break;
                     default:
                         break;
-                    
                 }
             }
+        }
+        else if(batteryChargingFlag == 1)
+        {
+            for(int i = 0; i < 16; i++)
+            {
+                rgbBatteryDisplay[i] = (rgb_led){.r = 10, .g = 0, .b = 0};
+            }
+            LED1642GW_RGB_Translation_Array(rgbBatteryDisplay);
         }
         else
         {
@@ -228,25 +277,25 @@ int main(void)
             {
                 for(int i = 0; i < 16; i++)
                 {
-                    rgbTestArray[i] = (rgb_led){.r = 0, .g = 0, .b = 0};
+                    rgbArrayDisplay[i] = (rgb_led){.r = 0, .g = 0, .b = 0};
                 }
-                rgbTestArray[channel] = (rgb_led){.r = color.r, .g = color.g, .b = color.b};
+                rgbArrayDisplay[channel] = (rgb_led){.r = color.r, .g = color.g, .b = color.b};
                 if(channel == 0)
                 {
-                    rgbTestArray[1] = (rgb_led){.r = color.r/4, .g = color.g/4, .b = color.b/4};
-                    rgbTestArray[15] = (rgb_led){.r = color.r/4, .g = color.g/4, .b = color.b/4};
+                    rgbArrayDisplay[1] = (rgb_led){.r = color.r/4, .g = color.g/4, .b = color.b/4};
+                    rgbArrayDisplay[15] = (rgb_led){.r = color.r/4, .g = color.g/4, .b = color.b/4};
                 }
                 else if(channel == 15)
                 {
-                    rgbTestArray[0] = (rgb_led){.r = color.r/4, .g = color.g/4, .b = color.b/4};
-                    rgbTestArray[14] = (rgb_led){.r = color.r/4, .g = color.g/4, .b = color.b/4};            
+                    rgbArrayDisplay[0] = (rgb_led){.r = color.r/4, .g = color.g/4, .b = color.b/4};
+                    rgbArrayDisplay[14] = (rgb_led){.r = color.r/4, .g = color.g/4, .b = color.b/4};            
                 }
                 else
                 {
-                    rgbTestArray[channel+1] = (rgb_led){.r = color.r/4, .g = color.g/4, .b = color.b/4};
-                    rgbTestArray[channel-1] = (rgb_led){.r = color.r/4, .g = color.g/4, .b = color.b/4};
+                    rgbArrayDisplay[channel+1] = (rgb_led){.r = color.r/4, .g = color.g/4, .b = color.b/4};
+                    rgbArrayDisplay[channel-1] = (rgb_led){.r = color.r/4, .g = color.g/4, .b = color.b/4};
                 }
-                LED1642GW_RGB_Translation_Array(rgbTestArray);
+                LED1642GW_RGB_Translation_Array(rgbArrayDisplay);
             }
             else
             {
@@ -268,9 +317,9 @@ int main(void)
     LED1642GW_Driver_Count();
     for(int i = 0; i < 16; i++)
     {
-        rgbTestArray[i] = (rgb_led){.r = 0, .g = 0, .b = 0};
+        rgbArrayDisplay[i] = (rgb_led){.r = 0, .g = 0, .b = 0};
     }
-    LED1642GW_RGB_Translation_Array(rgbTestArray);
+    LED1642GW_RGB_Translation_Array(rgbArrayDisplay);
     
     while(1)
     {
@@ -280,14 +329,14 @@ int main(void)
             {
                 if(i <= j)
                 {
-                    rgbTestArray[j-i] = (rgb_led){.r = 0 + (15-i)*15, .g = 150-(15-i)*10, .b = 0};
+                    rgbArrayDisplay[j-i] = (rgb_led){.r = 0 + (15-i)*15, .g = 150-(15-i)*10, .b = 0};
                 }
                 else
                 {
-                    rgbTestArray[i+j] = (rgb_led){.r = 0 + i*15, .g = 150-i*10, .b = 0};
+                    rgbArrayDisplay[i+j] = (rgb_led){.r = 0 + i*15, .g = 150-i*10, .b = 0};
                 }
             }
-            LED1642GW_RGB_Translation_Array(rgbTestArray);
+            LED1642GW_RGB_Translation_Array(rgbArrayDisplay);
             nrf_delay_ms(500);
         }
         
@@ -296,8 +345,8 @@ int main(void)
     //rgb_led rgbTestColor = {.r = 255, .g = 0, .b = 0};
     
     
-    LED1642GW_RGB_Translation_Array(rgbTestArray);
-    LED1642GW_RGB_Translation_Array(rgbTestArray);
+    LED1642GW_RGB_Translation_Array(rgbArrayDisplay);
+    LED1642GW_RGB_Translation_Array(rgbArrayDisplay);
     while(1)
     {
         

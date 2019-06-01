@@ -38,7 +38,6 @@ typedef struct rgb_led_channel
 
 uint8_t LED1642GW_Init(void);
 uint8_t LED1642GW_Enter_LPM(void);
-void LED1642GW_Test_WaveFormGeneration(nrf_pwm_values_common_t duty_cycle);
 uint8_t LED1642GW_Driver_Count(void);
 void LED1642_LED_All_On(void);
 void LED1642_LED_RGB_Train_Forward(void);

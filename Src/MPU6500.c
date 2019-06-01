@@ -4,7 +4,9 @@
 
 extern uint8_t SPI_command; 
 extern uint8_t spi_complete;
+extern uint8_t brightness;
 extern volatile uint8_t imuNewGyroFlag;
+uint8_t ledDisplayMode = 0;
 uint8_t MPU6500_Connection_Test(void)
 {
     uint8_t SPI_data[2];
@@ -62,8 +64,7 @@ uint8_t MPU6500_Setup(void)
     dmp_set_orientation(inv_orientation_matrix_to_scalar(gyro_orientation));
     dmp_register_tap_cb(MPU6500_tap_cb);
     dmp_register_android_orient_cb(MPU6500_orient_cb);
-    uint16_t dmp_features = DMP_FEATURE_6X_LP_QUAT | DMP_FEATURE_TAP | DMP_FEATURE_SEND_RAW_ACCEL | DMP_FEATURE_SEND_CAL_GYRO | DMP_FEATURE_GYRO_CAL;
-    dmp_enable_feature(dmp_features);
+    MPU6500_Enable_Full_Features();
     dmp_set_fifo_rate(DEFAULT_MPU_HZ);
     //dmp_set_interrupt_mode(DMP_INT_GESTURE);
 
@@ -74,6 +75,24 @@ void MPU6500_Enable_DMP(void)
 {
     //Enable DMP
     mpu_set_dmp_state(1);
+}
+
+void MPU6500_Disable_DMP(void)
+{
+    //Enable DMP
+    mpu_set_dmp_state(0);
+}
+
+void MPU6500_Enable_Tap_Feature(void)
+{
+    uint16_t dmp_features = DMP_FEATURE_TAP;
+    dmp_enable_feature(dmp_features);
+}
+
+void MPU6500_Enable_Full_Features(void)
+{
+    uint16_t dmp_features = DMP_FEATURE_6X_LP_QUAT | DMP_FEATURE_TAP | DMP_FEATURE_SEND_RAW_ACCEL | DMP_FEATURE_SEND_CAL_GYRO | DMP_FEATURE_GYRO_CAL;
+    dmp_enable_feature(dmp_features);
 }
 
 void getDMP_Data(void)
@@ -93,9 +112,33 @@ void getDMP_Data(void)
 
 static void MPU6500_tap_cb(uint8_t direction, uint8_t count)
 {
-    uint8_t data[2];
-    data[0] = direction;
-    data[1] = count;
+    if(direction == TAP_Z_DOWN)
+    {
+        ledDisplayMode ++;
+        if(ledDisplayMode == 3)
+        {
+            ledDisplayMode = 0;
+        }
+        if(ledDisplayMode == 1)
+        {
+            MPU6500_Disable_DMP();
+            dmp_set_interrupt_mode(DMP_INT_CONTINUOUS);
+            MPU6500_Enable_DMP();
+        }
+        else if(ledDisplayMode == 2)
+        {
+            MPU6500_Disable_DMP();
+            dmp_set_interrupt_mode(DMP_INT_GESTURE);
+            MPU6500_Enable_DMP();
+        }
+    }
+    if(direction == TAP_X_UP)
+    {
+        
+    }
+    
+    
+    
     //send_packet(PACKET_TYPE_TAP, data);
 }
 
