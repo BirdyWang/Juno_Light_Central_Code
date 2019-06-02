@@ -3,7 +3,9 @@
 
 #include "MPU6500_DMP_Motion_Driver.h"
 #include "UART.h"
+#include "LED1642GW.h"
 
+#define LED_MODE_NUM             7
 #define MPU6500_READ             0x80
 #define MPU6500_WRITE            0x00
 

@@ -39,7 +39,7 @@ uint8_t LED1642GW_Enter_LPM(void)
     /* Configure CFG0...CFG5 = '111111'. */
     for(i = 0; i < DRIVER_NUM; i++)
     {
-        ledConfigBuffer[i] = 0x1400;   // 0b0000110001111111;
+        ledConfigBuffer[i] = CFG_AUTOSHUTOFF_60_RISETIME + 0x00;
         if(i == DRIVER_NUM - 1)
         {
             LED1642GW_Write_Configuration_Register(ledConfigBuffer[i]);
@@ -70,7 +70,23 @@ uint8_t LED1642GW_Enter_LPM(void)
 
 void LED1642GW_Brightness_Control(uint8_t mode)
 {
-    
+    if(mode == BRIGHTNESS_INCREASE)
+    {
+        brightness += 20;
+        if(brightness >= 0x30)
+        {
+            brightness = 0x30;
+        }
+    }
+    else if(mode == BRIGHTNESS_DECREASE)
+    {
+        if(brightness <= 21)
+        {
+            brightness = 21;
+        }
+        brightness -= 20;
+        
+    }
 }
 
 uint8_t LED1642GW_Driver_Count(void)
@@ -107,7 +123,7 @@ void LED1642_LED_All_On(void)
 {
     int i;
     int tempBrighnessBufferCount = 0;
-    LED1642_Set_Brightness(0x1410);
+    LED1642_Set_Brightness(CFG_AUTOSHUTOFF_60_RISETIME + brightness);
     for(i = 0; i < SPI_BUFFER_SIZE; i++)
     {
         txBuffer[i] = 0xFFFF;
@@ -349,7 +365,7 @@ void LED1642GW_RGB_Translation_Individual_Channel(uint8_t channel, rgb_led RGB_C
     int i;
     int tempBrighnessBufferCount = 0;
     /* Setting the brightness. */
-    LED1642_Set_Brightness(0x0001);
+    LED1642_Set_Brightness(CFG_AUTOSHUTOFF_60_RISETIME + brightness);
     for(i = 0; i < SPI_BUFFER_SIZE - DRIVER_NUM; i++)
     {
         if(i == ((14 - channel) * 3))
@@ -431,7 +447,7 @@ void LED1642GW_RGB_Translation_Array(rgb_led * RGB_Color)
 {
     int i, j;
     /* Setting the brightness. */
-    LED1642_Set_Brightness(0x1410);
+    LED1642_Set_Brightness(CFG_AUTOSHUTOFF_60_RISETIME + brightness);
     
     for(i = 0; i < CHANNEL_PER_DRIVER_NUM - 1; i++)
     {

@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\_build\Juno_Light_Central.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\_build\Juno_Light_Central.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Fri May 31 17:52:56 2019
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Sat Jun 01 22:17:39 2019
 <BR><P>
 <H3>Maximum Stack Usage =        704 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -709,9 +709,9 @@ Global Symbols
 <P><STRONG><a name="[a1]"></a>IMU_SPI_Init</STRONG> (Thumb, 38 bytes, Stack size 16 bytes, spi0_imu.o(i.IMU_SPI_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 232<LI>Call Chain = IMU_SPI_Init &rArr; IMU_SPI_Manager_Init &rArr; nrf_spi_mngr_init &rArr; nrf_drv_spi_init &rArr; nrfx_spim_init &rArr; nrfx_prs_acquire &rArr; app_util_critical_region_enter &rArr; sd_nvic_critical_region_enter
 </UL>
-<BR>[Calls]<UL><LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_gpio_pin_write
+<BR>[Calls]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IMU_SPI_Manager_Init
+<LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_gpio_pin_write
 <LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_gpio_cfg
-<LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IMU_SPI_Manager_Init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -743,18 +743,18 @@ Global Symbols
 <LI><a href="#[206]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_reset
 <LI><a href="#[209]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_int_enable
 <LI><a href="#[190]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_write_mem
-<LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_set_sensors
-<LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_set_sample_rate
+<LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_set_sensors
+<LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_set_sample_rate
 <LI><a href="#[20d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_set_lpf
 <LI><a href="#[210]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_set_int_latched
 <LI><a href="#[20b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_set_gyro_fsr
-<LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_set_dmp_state
+<LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_set_dmp_state
 <LI><a href="#[20c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_set_accel_fsr
 <LI><a href="#[191]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_reset_fifo
 <LI><a href="#[20e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_read_mem
 <LI><a href="#[20f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_lp_accel_mode
 <LI><a href="#[19c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_load_firmware
-<LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_init
+<LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_init
 </UL>
 
 <P><STRONG><a name="[aa]"></a>IMU_SPI_Transmit_DMP_Write</STRONG> (Thumb, 124 bytes, Stack size 64 bytes, spi0_imu.o(i.IMU_SPI_Transmit_DMP_Write))
@@ -785,13 +785,16 @@ Global Symbols
 <P><STRONG><a name="[4c]"></a>IMU_Stop_Transaction_DMP</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, spi0_imu.o(i.IMU_Stop_Transaction_DMP))
 <BR>[Address Reference Count : 1]<UL><LI> spi0_imu.o(.constdata)
 </UL>
+<P><STRONG><a name="[d2]"></a>LED1642GW_Brightness_Control</STRONG> (Thumb, 58 bytes, Stack size 0 bytes, led1642gw.o(i.LED1642GW_Brightness_Control))
+<BR><BR>[Called By]<UL><LI><a href="#[3f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6500_tap_cb
+</UL>
+
 <P><STRONG><a name="[ab]"></a>LED1642GW_Data_Latch</STRONG> (Thumb, 14 bytes, Stack size 8 bytes, led1642gw.o(i.LED1642GW_Data_Latch))
 <BR><BR>[Stack]<UL><LI>Max Depth = 264<LI>Call Chain = LED1642GW_Data_Latch &rArr; LED_SPI_Transmit_LE_16 &rArr; LED_SPI_Transmit_LE &rArr; nrf_spi_mngr_schedule &rArr; start_pending_transaction &rArr; nrf_drv_spi_init &rArr; nrfx_spim_init &rArr; nrfx_prs_acquire &rArr; app_util_critical_region_enter &rArr; sd_nvic_critical_region_enter
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_SPI_Transmit_LE_16
 </UL>
-<BR>[Called By]<UL><LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED1642_LED_All_On
-<LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED1642GW_RGB_Translation_Array
+<BR>[Called By]<UL><LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED1642GW_RGB_Translation_Array
 </UL>
 
 <P><STRONG><a name="[ad]"></a>LED1642GW_Driver_Count</STRONG> (Thumb, 102 bytes, Stack size 16 bytes, led1642gw.o(i.LED1642GW_Driver_Count))
@@ -821,8 +824,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_SPI_Transmit_LE_16
 </UL>
-<BR>[Called By]<UL><LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED1642_LED_All_On
-<LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED1642GW_RGB_Translation_Array
+<BR>[Called By]<UL><LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED1642GW_RGB_Translation_Array
 </UL>
 
 <P><STRONG><a name="[b6]"></a>LED1642GW_Init</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, led1642gw.o(i.LED1642GW_Init))
@@ -835,7 +837,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[b8]"></a>LED1642GW_RGB_Translation_Array</STRONG> (Thumb, 314 bytes, Stack size 24 bytes, led1642gw.o(i.LED1642GW_RGB_Translation_Array))
+<P><STRONG><a name="[b8]"></a>LED1642GW_RGB_Translation_Array</STRONG> (Thumb, 318 bytes, Stack size 24 bytes, led1642gw.o(i.LED1642GW_RGB_Translation_Array))
 <BR><BR>[Stack]<UL><LI>Max Depth = 304<LI>Call Chain = LED1642GW_RGB_Translation_Array &rArr; LED1642_Set_Brightness &rArr; LED1642GW_Write_Configuration_Register &rArr; LED_SPI_Transmit_LE_16 &rArr; LED_SPI_Transmit_LE &rArr; nrf_spi_mngr_schedule &rArr; start_pending_transaction &rArr; nrf_drv_spi_init &rArr; nrfx_spim_init &rArr; nrfx_prs_acquire &rArr; app_util_critical_region_enter &rArr; sd_nvic_critical_region_enter
 </UL>
 <BR>[Calls]<UL><LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED1642_Set_Brightness
@@ -852,8 +854,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_SPI_Transmit_LE_16
 </UL>
-<BR>[Called By]<UL><LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED1642_LED_All_On
-<LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED1642GW_RGB_Translation_Array
+<BR>[Called By]<UL><LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED1642GW_RGB_Translation_Array
 <LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED1642GW_Enter_LPM
 </UL>
 
@@ -866,42 +867,29 @@ Global Symbols
 <LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED1642_Set_Brightness
 </UL>
 
-<P><STRONG><a name="[ba]"></a>LED1642_LED_All_On</STRONG> (Thumb, 150 bytes, Stack size 16 bytes, led1642gw.o(i.LED1642_LED_All_On))
-<BR><BR>[Stack]<UL><LI>Max Depth = 296<LI>Call Chain = LED1642_LED_All_On &rArr; LED1642_Set_Brightness &rArr; LED1642GW_Write_Configuration_Register &rArr; LED_SPI_Transmit_LE_16 &rArr; LED_SPI_Transmit_LE &rArr; nrf_spi_mngr_schedule &rArr; start_pending_transaction &rArr; nrf_drv_spi_init &rArr; nrfx_spim_init &rArr; nrfx_prs_acquire &rArr; app_util_critical_region_enter &rArr; sd_nvic_critical_region_enter
-</UL>
-<BR>[Calls]<UL><LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED1642_Set_Brightness
-<LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED1642GW_Switch
-<LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED1642GW_Global_Latch
-<LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED1642GW_Data_Latch
-<LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_SPI_Transmit_16
-</UL>
-<BR>[Called By]<UL><LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-</UL>
-
 <P><STRONG><a name="[b9]"></a>LED1642_Set_Brightness</STRONG> (Thumb, 48 bytes, Stack size 16 bytes, led1642gw.o(i.LED1642_Set_Brightness))
 <BR><BR>[Stack]<UL><LI>Max Depth = 280<LI>Call Chain = LED1642_Set_Brightness &rArr; LED1642GW_Write_Configuration_Register &rArr; LED_SPI_Transmit_LE_16 &rArr; LED_SPI_Transmit_LE &rArr; nrf_spi_mngr_schedule &rArr; start_pending_transaction &rArr; nrf_drv_spi_init &rArr; nrfx_spim_init &rArr; nrfx_prs_acquire &rArr; app_util_critical_region_enter &rArr; sd_nvic_critical_region_enter
 </UL>
 <BR>[Calls]<UL><LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED1642GW_Write_Configuration_Register
 <LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_SPI_Transmit_16
 </UL>
-<BR>[Called By]<UL><LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED1642_LED_All_On
-<LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED1642GW_RGB_Translation_Array
+<BR>[Called By]<UL><LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED1642GW_RGB_Translation_Array
 </UL>
 
-<P><STRONG><a name="[bb]"></a>LED_SPI_Init</STRONG> (Thumb, 8 bytes, Stack size 8 bytes, spi1_led.o(i.LED_SPI_Init))
+<P><STRONG><a name="[ba]"></a>LED_SPI_Init</STRONG> (Thumb, 8 bytes, Stack size 8 bytes, spi1_led.o(i.LED_SPI_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 224<LI>Call Chain = LED_SPI_Init &rArr; LED_SPI_Manager_Init &rArr; nrf_spi_mngr_init &rArr; nrf_drv_spi_init &rArr; nrfx_spim_init &rArr; nrfx_prs_acquire &rArr; app_util_critical_region_enter &rArr; sd_nvic_critical_region_enter
 </UL>
-<BR>[Calls]<UL><LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_SPI_Manager_Init
+<BR>[Calls]<UL><LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_SPI_Manager_Init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[bc]"></a>LED_SPI_Manager_Init</STRONG> (Thumb, 20 bytes, Stack size 24 bytes, spi1_led.o(i.LED_SPI_Manager_Init))
+<P><STRONG><a name="[bb]"></a>LED_SPI_Manager_Init</STRONG> (Thumb, 20 bytes, Stack size 24 bytes, spi1_led.o(i.LED_SPI_Manager_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 216<LI>Call Chain = LED_SPI_Manager_Init &rArr; nrf_spi_mngr_init &rArr; nrf_drv_spi_init &rArr; nrfx_spim_init &rArr; nrfx_prs_acquire &rArr; app_util_critical_region_enter &rArr; sd_nvic_critical_region_enter
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_spi_mngr_init
 </UL>
-<BR>[Called By]<UL><LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_SPI_Init
+<BR>[Called By]<UL><LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_SPI_Init
 </UL>
 
 <P><STRONG><a name="[af]"></a>LED_SPI_Receive</STRONG> (Thumb, 52 bytes, Stack size 24 bytes, spi1_led.o(i.LED_SPI_Receive))
@@ -926,13 +914,12 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_SPI_Transmit
 </UL>
-<BR>[Called By]<UL><LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED1642_LED_All_On
-<LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED1642GW_RGB_Translation_Array
+<BR>[Called By]<UL><LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED1642GW_RGB_Translation_Array
 <LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED1642GW_Enter_LPM
 <LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED1642_Set_Brightness
 </UL>
 
-<P><STRONG><a name="[bd]"></a>LED_SPI_Transmit_LE</STRONG> (Thumb, 54 bytes, Stack size 16 bytes, spi1_led.o(i.LED_SPI_Transmit_LE))
+<P><STRONG><a name="[bc]"></a>LED_SPI_Transmit_LE</STRONG> (Thumb, 54 bytes, Stack size 16 bytes, spi1_led.o(i.LED_SPI_Transmit_LE))
 <BR><BR>[Stack]<UL><LI>Max Depth = 240<LI>Call Chain = LED_SPI_Transmit_LE &rArr; nrf_spi_mngr_schedule &rArr; start_pending_transaction &rArr; nrf_drv_spi_init &rArr; nrfx_spim_init &rArr; nrfx_prs_acquire &rArr; app_util_critical_region_enter &rArr; sd_nvic_critical_region_enter
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_spi_mngr_schedule
@@ -943,7 +930,7 @@ Global Symbols
 <P><STRONG><a name="[ac]"></a>LED_SPI_Transmit_LE_16</STRONG> (Thumb, 30 bytes, Stack size 16 bytes, spi1_led.o(i.LED_SPI_Transmit_LE_16))
 <BR><BR>[Stack]<UL><LI>Max Depth = 256<LI>Call Chain = LED_SPI_Transmit_LE_16 &rArr; LED_SPI_Transmit_LE &rArr; nrf_spi_mngr_schedule &rArr; start_pending_transaction &rArr; nrf_drv_spi_init &rArr; nrfx_spim_init &rArr; nrfx_prs_acquire &rArr; app_util_critical_region_enter &rArr; sd_nvic_critical_region_enter
 </UL>
-<BR>[Calls]<UL><LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_SPI_Transmit_LE
+<BR>[Calls]<UL><LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_SPI_Transmit_LE
 </UL>
 <BR>[Called By]<UL><LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED1642GW_Write_Configuration_Register
 <LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED1642GW_Switch
@@ -957,7 +944,7 @@ Global Symbols
 <P><STRONG><a name="[5]"></a>LED_Start_Transaction_LE</STRONG> (Thumb, 20 bytes, Stack size 8 bytes, spi1_led.o(i.LED_Start_Transaction_LE))
 <BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = LED_Start_Transaction_LE &rArr; PWM_play &rArr; nrfx_pwm_simple_playback &rArr; start_playback &rArr; nrf_pwm_event_clear
 </UL>
-<BR>[Calls]<UL><LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PWM_play
+<BR>[Calls]<UL><LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PWM_play
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> spi1_led.o(.data)
 </UL>
@@ -967,48 +954,48 @@ Global Symbols
 <P><STRONG><a name="[6]"></a>LED_Stop_Transaction_LE</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, spi1_led.o(i.LED_Stop_Transaction_LE))
 <BR>[Address Reference Count : 1]<UL><LI> spi1_led.o(.data)
 </UL>
-<P><STRONG><a name="[bf]"></a>MPU6500_Disable_DMP</STRONG> (Thumb, 10 bytes, Stack size 8 bytes, mpu6500.o(i.MPU6500_Disable_DMP))
+<P><STRONG><a name="[be]"></a>MPU6500_Disable_DMP</STRONG> (Thumb, 10 bytes, Stack size 8 bytes, mpu6500.o(i.MPU6500_Disable_DMP))
 <BR><BR>[Stack]<UL><LI>Max Depth = 328<LI>Call Chain = MPU6500_Disable_DMP &rArr; mpu_set_dmp_state &rArr; mpu_set_sample_rate &rArr; mpu_lp_accel_mode &rArr; mpu_configure_fifo &rArr; set_int_enable &rArr; IMU_SPI_Transmit &rArr; nrf_spi_mngr_schedule &rArr; start_pending_transaction &rArr; nrf_drv_spi_init &rArr; nrfx_spim_init &rArr; nrfx_prs_acquire &rArr; app_util_critical_region_enter &rArr; sd_nvic_critical_region_enter
 </UL>
-<BR>[Calls]<UL><LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_set_dmp_state
+<BR>[Calls]<UL><LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_set_dmp_state
 </UL>
 <BR>[Called By]<UL><LI><a href="#[3f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6500_tap_cb
 </UL>
 
-<P><STRONG><a name="[c1]"></a>MPU6500_Enable_DMP</STRONG> (Thumb, 10 bytes, Stack size 8 bytes, mpu6500.o(i.MPU6500_Enable_DMP))
+<P><STRONG><a name="[c0]"></a>MPU6500_Enable_DMP</STRONG> (Thumb, 10 bytes, Stack size 8 bytes, mpu6500.o(i.MPU6500_Enable_DMP))
 <BR><BR>[Stack]<UL><LI>Max Depth = 328<LI>Call Chain = MPU6500_Enable_DMP &rArr; mpu_set_dmp_state &rArr; mpu_set_sample_rate &rArr; mpu_lp_accel_mode &rArr; mpu_configure_fifo &rArr; set_int_enable &rArr; IMU_SPI_Transmit &rArr; nrf_spi_mngr_schedule &rArr; start_pending_transaction &rArr; nrf_drv_spi_init &rArr; nrfx_spim_init &rArr; nrfx_prs_acquire &rArr; app_util_critical_region_enter &rArr; sd_nvic_critical_region_enter
 </UL>
-<BR>[Calls]<UL><LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_set_dmp_state
+<BR>[Calls]<UL><LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_set_dmp_state
 </UL>
 <BR>[Called By]<UL><LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 <LI><a href="#[3f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6500_tap_cb
 </UL>
 
-<P><STRONG><a name="[c2]"></a>MPU6500_Enable_Full_Features</STRONG> (Thumb, 14 bytes, Stack size 8 bytes, mpu6500.o(i.MPU6500_Enable_Full_Features))
+<P><STRONG><a name="[c1]"></a>MPU6500_Enable_Full_Features</STRONG> (Thumb, 14 bytes, Stack size 8 bytes, mpu6500.o(i.MPU6500_Enable_Full_Features))
 <BR><BR>[Stack]<UL><LI>Max Depth = 384<LI>Call Chain = MPU6500_Enable_Full_Features &rArr; dmp_enable_feature &rArr; dmp_set_tap_thresh &rArr; mpu_write_mem &rArr; IMU_SPI_Transmit_DMP_Write &rArr; nrf_spi_mngr_schedule &rArr; start_pending_transaction &rArr; nrf_drv_spi_init &rArr; nrfx_spim_init &rArr; nrfx_prs_acquire &rArr; app_util_critical_region_enter &rArr; sd_nvic_critical_region_enter
 </UL>
-<BR>[Calls]<UL><LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_enable_feature
+<BR>[Calls]<UL><LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_enable_feature
 </UL>
-<BR>[Called By]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6500_Setup
+<BR>[Called By]<UL><LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6500_Setup
 </UL>
 
-<P><STRONG><a name="[c4]"></a>MPU6500_Setup</STRONG> (Thumb, 124 bytes, Stack size 32 bytes, mpu6500.o(i.MPU6500_Setup))
+<P><STRONG><a name="[c3]"></a>MPU6500_Setup</STRONG> (Thumb, 124 bytes, Stack size 32 bytes, mpu6500.o(i.MPU6500_Setup))
 <BR><BR>[Stack]<UL><LI>Max Depth = 416<LI>Call Chain = MPU6500_Setup &rArr; MPU6500_Enable_Full_Features &rArr; dmp_enable_feature &rArr; dmp_set_tap_thresh &rArr; mpu_write_mem &rArr; IMU_SPI_Transmit_DMP_Write &rArr; nrf_spi_mngr_schedule &rArr; start_pending_transaction &rArr; nrf_drv_spi_init &rArr; nrfx_spim_init &rArr; nrfx_prs_acquire &rArr; app_util_critical_region_enter &rArr; sd_nvic_critical_region_enter
 </UL>
-<BR>[Calls]<UL><LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6500_Enable_Full_Features
-<LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_row_2_scale
-<LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_set_orientation
-<LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_set_fifo_rate
-<LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_register_tap_cb
-<LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_register_android_orient_cb
-<LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_load_motion_driver_firmware
-<LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_set_sensors
-<LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_set_sample_rate
-<LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_init
-<LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_get_sample_rate
-<LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_get_gyro_fsr
-<LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_get_accel_fsr
-<LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_configure_fifo
+<BR>[Calls]<UL><LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6500_Enable_Full_Features
+<LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_row_2_scale
+<LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_set_orientation
+<LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_set_fifo_rate
+<LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_register_tap_cb
+<LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_register_android_orient_cb
+<LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_load_motion_driver_firmware
+<LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_set_sensors
+<LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_set_sample_rate
+<LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_init
+<LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_get_sample_rate
+<LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_get_gyro_fsr
+<LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_get_accel_fsr
+<LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_configure_fifo
 </UL>
 <BR>[Called By]<UL><LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -1072,7 +1059,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[be]"></a>PWM_play</STRONG> (Thumb, 36 bytes, Stack size 8 bytes, pwm.o(i.PWM_play))
+<P><STRONG><a name="[bd]"></a>PWM_play</STRONG> (Thumb, 36 bytes, Stack size 8 bytes, pwm.o(i.PWM_play))
 <BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = PWM_play &rArr; nrfx_pwm_simple_playback &rArr; start_playback &rArr; nrf_pwm_event_clear
 </UL>
 <BR>[Calls]<UL><LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrfx_pwm_simple_playback
@@ -1839,10 +1826,10 @@ Global Symbols
 <LI><a href="#[191]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_reset_fifo
 <LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memset
 </UL>
-<BR>[Called By]<UL><LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_enable_feature
+<BR>[Called By]<UL><LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_enable_feature
 </UL>
 
-<P><STRONG><a name="[c3]"></a>dmp_enable_feature</STRONG> (Thumb, 530 bytes, Stack size 24 bytes, mpu6500_dmp_motion_driver.o(i.dmp_enable_feature))
+<P><STRONG><a name="[c2]"></a>dmp_enable_feature</STRONG> (Thumb, 530 bytes, Stack size 24 bytes, mpu6500_dmp_motion_driver.o(i.dmp_enable_feature))
 <BR><BR>[Stack]<UL><LI>Max Depth = 376<LI>Call Chain = dmp_enable_feature &rArr; dmp_set_tap_thresh &rArr; mpu_write_mem &rArr; IMU_SPI_Transmit_DMP_Write &rArr; nrf_spi_mngr_schedule &rArr; start_pending_transaction &rArr; nrf_drv_spi_init &rArr; nrfx_spim_init &rArr; nrfx_prs_acquire &rArr; app_util_critical_region_enter &rArr; sd_nvic_critical_region_enter
 </UL>
 <BR>[Calls]<UL><LI><a href="#[197]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_set_tap_time_multi
@@ -1859,7 +1846,7 @@ Global Symbols
 <LI><a href="#[190]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_write_mem
 <LI><a href="#[191]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_reset_fifo
 </UL>
-<BR>[Called By]<UL><LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6500_Enable_Full_Features
+<BR>[Called By]<UL><LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6500_Enable_Full_Features
 </UL>
 
 <P><STRONG><a name="[192]"></a>dmp_enable_gyro_cal</STRONG> (Thumb, 62 bytes, Stack size 24 bytes, mpu6500_dmp_motion_driver.o(i.dmp_enable_gyro_cal))
@@ -1867,7 +1854,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[190]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_write_mem
 </UL>
-<BR>[Called By]<UL><LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_enable_feature
+<BR>[Called By]<UL><LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_enable_feature
 </UL>
 
 <P><STRONG><a name="[19b]"></a>dmp_enable_lp_quat</STRONG> (Thumb, 60 bytes, Stack size 16 bytes, mpu6500_dmp_motion_driver.o(i.dmp_enable_lp_quat))
@@ -1877,15 +1864,15 @@ Global Symbols
 <LI><a href="#[191]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_reset_fifo
 <LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memset
 </UL>
-<BR>[Called By]<UL><LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_enable_feature
+<BR>[Called By]<UL><LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_enable_feature
 </UL>
 
-<P><STRONG><a name="[cc]"></a>dmp_load_motion_driver_firmware</STRONG> (Thumb, 20 bytes, Stack size 8 bytes, mpu6500_dmp_motion_driver.o(i.dmp_load_motion_driver_firmware))
+<P><STRONG><a name="[cb]"></a>dmp_load_motion_driver_firmware</STRONG> (Thumb, 20 bytes, Stack size 8 bytes, mpu6500_dmp_motion_driver.o(i.dmp_load_motion_driver_firmware))
 <BR><BR>[Stack]<UL><LI>Max Depth = 376<LI>Call Chain = dmp_load_motion_driver_firmware &rArr; mpu_load_firmware &rArr; mpu_read_mem &rArr; IMU_SPI_Receive_DMP_Read &rArr; nrf_spi_mngr_schedule &rArr; start_pending_transaction &rArr; nrf_drv_spi_init &rArr; nrfx_spim_init &rArr; nrfx_prs_acquire &rArr; app_util_critical_region_enter &rArr; sd_nvic_critical_region_enter
 </UL>
 <BR>[Calls]<UL><LI><a href="#[19c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_load_firmware
 </UL>
-<BR>[Called By]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6500_Setup
+<BR>[Called By]<UL><LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6500_Setup
 </UL>
 
 <P><STRONG><a name="[19d]"></a>dmp_read_fifo</STRONG> (Thumb, 450 bytes, Stack size 80 bytes, mpu6500_dmp_motion_driver.o(i.dmp_read_fifo))
@@ -1898,23 +1885,23 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[d0]"></a>dmp_register_android_orient_cb</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, mpu6500_dmp_motion_driver.o(i.dmp_register_android_orient_cb))
-<BR><BR>[Called By]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6500_Setup
+<P><STRONG><a name="[cf]"></a>dmp_register_android_orient_cb</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, mpu6500_dmp_motion_driver.o(i.dmp_register_android_orient_cb))
+<BR><BR>[Called By]<UL><LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6500_Setup
 </UL>
 
-<P><STRONG><a name="[cf]"></a>dmp_register_tap_cb</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, mpu6500_dmp_motion_driver.o(i.dmp_register_tap_cb))
-<BR><BR>[Called By]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6500_Setup
+<P><STRONG><a name="[ce]"></a>dmp_register_tap_cb</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, mpu6500_dmp_motion_driver.o(i.dmp_register_tap_cb))
+<BR><BR>[Called By]<UL><LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6500_Setup
 </UL>
 
-<P><STRONG><a name="[d1]"></a>dmp_set_fifo_rate</STRONG> (Thumb, 96 bytes, Stack size 32 bytes, mpu6500_dmp_motion_driver.o(i.dmp_set_fifo_rate))
+<P><STRONG><a name="[d0]"></a>dmp_set_fifo_rate</STRONG> (Thumb, 96 bytes, Stack size 32 bytes, mpu6500_dmp_motion_driver.o(i.dmp_set_fifo_rate))
 <BR><BR>[Stack]<UL><LI>Max Depth = 344<LI>Call Chain = dmp_set_fifo_rate &rArr; mpu_write_mem &rArr; IMU_SPI_Transmit_DMP_Write &rArr; nrf_spi_mngr_schedule &rArr; start_pending_transaction &rArr; nrf_drv_spi_init &rArr; nrfx_spim_init &rArr; nrfx_prs_acquire &rArr; app_util_critical_region_enter &rArr; sd_nvic_critical_region_enter
 </UL>
 <BR>[Calls]<UL><LI><a href="#[190]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_write_mem
 </UL>
-<BR>[Called By]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6500_Setup
+<BR>[Called By]<UL><LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6500_Setup
 </UL>
 
-<P><STRONG><a name="[d2]"></a>dmp_set_interrupt_mode</STRONG> (Thumb, 66 bytes, Stack size 32 bytes, mpu6500_dmp_motion_driver.o(i.dmp_set_interrupt_mode))
+<P><STRONG><a name="[d1]"></a>dmp_set_interrupt_mode</STRONG> (Thumb, 66 bytes, Stack size 32 bytes, mpu6500_dmp_motion_driver.o(i.dmp_set_interrupt_mode))
 <BR><BR>[Stack]<UL><LI>Max Depth = 344<LI>Call Chain = dmp_set_interrupt_mode &rArr; mpu_write_mem &rArr; IMU_SPI_Transmit_DMP_Write &rArr; nrf_spi_mngr_schedule &rArr; start_pending_transaction &rArr; nrf_drv_spi_init &rArr; nrfx_spim_init &rArr; nrfx_prs_acquire &rArr; app_util_critical_region_enter &rArr; sd_nvic_critical_region_enter
 </UL>
 <BR>[Calls]<UL><LI><a href="#[190]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_write_mem
@@ -1922,12 +1909,12 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[3f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6500_tap_cb
 </UL>
 
-<P><STRONG><a name="[ce]"></a>dmp_set_orientation</STRONG> (Thumb, 290 bytes, Stack size 32 bytes, mpu6500_dmp_motion_driver.o(i.dmp_set_orientation))
+<P><STRONG><a name="[cd]"></a>dmp_set_orientation</STRONG> (Thumb, 290 bytes, Stack size 32 bytes, mpu6500_dmp_motion_driver.o(i.dmp_set_orientation))
 <BR><BR>[Stack]<UL><LI>Max Depth = 344<LI>Call Chain = dmp_set_orientation &rArr; mpu_write_mem &rArr; IMU_SPI_Transmit_DMP_Write &rArr; nrf_spi_mngr_schedule &rArr; start_pending_transaction &rArr; nrf_drv_spi_init &rArr; nrfx_spim_init &rArr; nrfx_prs_acquire &rArr; app_util_critical_region_enter &rArr; sd_nvic_critical_region_enter
 </UL>
 <BR>[Calls]<UL><LI><a href="#[190]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_write_mem
 </UL>
-<BR>[Called By]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6500_Setup
+<BR>[Called By]<UL><LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6500_Setup
 </UL>
 
 <P><STRONG><a name="[198]"></a>dmp_set_shake_reject_thresh</STRONG> (Thumb, 56 bytes, Stack size 24 bytes, mpu6500_dmp_motion_driver.o(i.dmp_set_shake_reject_thresh))
@@ -1935,7 +1922,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[190]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_write_mem
 </UL>
-<BR>[Called By]<UL><LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_enable_feature
+<BR>[Called By]<UL><LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_enable_feature
 </UL>
 
 <P><STRONG><a name="[199]"></a>dmp_set_shake_reject_time</STRONG> (Thumb, 38 bytes, Stack size 16 bytes, mpu6500_dmp_motion_driver.o(i.dmp_set_shake_reject_time))
@@ -1943,7 +1930,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[190]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_write_mem
 </UL>
-<BR>[Called By]<UL><LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_enable_feature
+<BR>[Called By]<UL><LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_enable_feature
 </UL>
 
 <P><STRONG><a name="[19a]"></a>dmp_set_shake_reject_timeout</STRONG> (Thumb, 38 bytes, Stack size 16 bytes, mpu6500_dmp_motion_driver.o(i.dmp_set_shake_reject_timeout))
@@ -1951,7 +1938,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[190]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_write_mem
 </UL>
-<BR>[Called By]<UL><LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_enable_feature
+<BR>[Called By]<UL><LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_enable_feature
 </UL>
 
 <P><STRONG><a name="[194]"></a>dmp_set_tap_axes</STRONG> (Thumb, 70 bytes, Stack size 16 bytes, mpu6500_dmp_motion_driver.o(i.dmp_set_tap_axes))
@@ -1959,7 +1946,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[190]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_write_mem
 </UL>
-<BR>[Called By]<UL><LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_enable_feature
+<BR>[Called By]<UL><LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_enable_feature
 </UL>
 
 <P><STRONG><a name="[195]"></a>dmp_set_tap_count</STRONG> (Thumb, 38 bytes, Stack size 16 bytes, mpu6500_dmp_motion_driver.o(i.dmp_set_tap_count))
@@ -1967,16 +1954,16 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[190]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_write_mem
 </UL>
-<BR>[Called By]<UL><LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_enable_feature
+<BR>[Called By]<UL><LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_enable_feature
 </UL>
 
 <P><STRONG><a name="[193]"></a>dmp_set_tap_thresh</STRONG> (Thumb, 412 bytes, Stack size 40 bytes, mpu6500_dmp_motion_driver.o(i.dmp_set_tap_thresh))
 <BR><BR>[Stack]<UL><LI>Max Depth = 352<LI>Call Chain = dmp_set_tap_thresh &rArr; mpu_write_mem &rArr; IMU_SPI_Transmit_DMP_Write &rArr; nrf_spi_mngr_schedule &rArr; start_pending_transaction &rArr; nrf_drv_spi_init &rArr; nrfx_spim_init &rArr; nrfx_prs_acquire &rArr; app_util_critical_region_enter &rArr; sd_nvic_critical_region_enter
 </UL>
 <BR>[Calls]<UL><LI><a href="#[190]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_write_mem
-<LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_get_accel_fsr
+<LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_get_accel_fsr
 </UL>
-<BR>[Called By]<UL><LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_enable_feature
+<BR>[Called By]<UL><LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_enable_feature
 </UL>
 
 <P><STRONG><a name="[196]"></a>dmp_set_tap_time</STRONG> (Thumb, 38 bytes, Stack size 16 bytes, mpu6500_dmp_motion_driver.o(i.dmp_set_tap_time))
@@ -1984,7 +1971,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[190]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_write_mem
 </UL>
-<BR>[Called By]<UL><LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_enable_feature
+<BR>[Called By]<UL><LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_enable_feature
 </UL>
 
 <P><STRONG><a name="[197]"></a>dmp_set_tap_time_multi</STRONG> (Thumb, 38 bytes, Stack size 16 bytes, mpu6500_dmp_motion_driver.o(i.dmp_set_tap_time_multi))
@@ -1992,7 +1979,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[190]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_write_mem
 </UL>
-<BR>[Called By]<UL><LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_enable_feature
+<BR>[Called By]<UL><LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_enable_feature
 </UL>
 
 <P><STRONG><a name="[ff]"></a>fabs</STRONG> (Thumb, 24 bytes, Stack size 8 bytes, fabs.o(i.fabs))
@@ -2296,7 +2283,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[1e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;im_is_duplicate_bonding_data
 </UL>
 
-<P><STRONG><a name="[39]"></a>main</STRONG> (Thumb, 1266 bytes, Stack size 288 bytes, main.o(i.main))
+<P><STRONG><a name="[39]"></a>main</STRONG> (Thumb, 1616 bytes, Stack size 288 bytes, main.o(i.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 704<LI>Call Chain = main &rArr; MPU6500_Setup &rArr; MPU6500_Enable_Full_Features &rArr; dmp_enable_feature &rArr; dmp_set_tap_thresh &rArr; mpu_write_mem &rArr; IMU_SPI_Transmit_DMP_Write &rArr; nrf_spi_mngr_schedule &rArr; start_pending_transaction &rArr; nrf_drv_spi_init &rArr; nrfx_spim_init &rArr; nrfx_prs_acquire &rArr; app_util_critical_region_enter &rArr; sd_nvic_critical_region_enter
 </UL>
 <BR>[Calls]<UL><LI><a href="#[205]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timers_init
@@ -2307,10 +2294,9 @@ Global Symbols
 <LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PWM_init
 <LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PWM_PWCLK_play
 <LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PWM_PWCLK_init
-<LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6500_Setup
-<LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6500_Enable_DMP
-<LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_SPI_Init
-<LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED1642_LED_All_On
+<LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6500_Setup
+<LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6500_Enable_DMP
+<LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_SPI_Init
 <LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED1642GW_RGB_Translation_Array
 <LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED1642GW_Init
 <LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED1642GW_Driver_Count
@@ -2323,72 +2309,72 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> entry9a.o(.ARM.Collect$$$$0000000B)
 </UL>
-<P><STRONG><a name="[c7]"></a>mpu_configure_fifo</STRONG> (Thumb, 106 bytes, Stack size 16 bytes, mpu6500_base_driver.o(i.mpu_configure_fifo))
+<P><STRONG><a name="[c6]"></a>mpu_configure_fifo</STRONG> (Thumb, 106 bytes, Stack size 16 bytes, mpu6500_base_driver.o(i.mpu_configure_fifo))
 <BR><BR>[Stack]<UL><LI>Max Depth = 272<LI>Call Chain = mpu_configure_fifo &rArr; set_int_enable &rArr; IMU_SPI_Transmit &rArr; nrf_spi_mngr_schedule &rArr; start_pending_transaction &rArr; nrf_drv_spi_init &rArr; nrfx_spim_init &rArr; nrfx_prs_acquire &rArr; app_util_critical_region_enter &rArr; sd_nvic_critical_region_enter
 </UL>
 <BR>[Calls]<UL><LI><a href="#[209]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_int_enable
 <LI><a href="#[191]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_reset_fifo
 </UL>
-<BR>[Called By]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6500_Setup
+<BR>[Called By]<UL><LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6500_Setup
 <LI><a href="#[20f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_lp_accel_mode
-<LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_init
+<LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_init
 </UL>
 
-<P><STRONG><a name="[cb]"></a>mpu_get_accel_fsr</STRONG> (Thumb, 72 bytes, Stack size 0 bytes, mpu6500_base_driver.o(i.mpu_get_accel_fsr))
-<BR><BR>[Called By]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6500_Setup
+<P><STRONG><a name="[ca]"></a>mpu_get_accel_fsr</STRONG> (Thumb, 72 bytes, Stack size 0 bytes, mpu6500_base_driver.o(i.mpu_get_accel_fsr))
+<BR><BR>[Called By]<UL><LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6500_Setup
 <LI><a href="#[193]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_set_tap_thresh
 </UL>
 
-<P><STRONG><a name="[ca]"></a>mpu_get_gyro_fsr</STRONG> (Thumb, 64 bytes, Stack size 0 bytes, mpu6500_base_driver.o(i.mpu_get_gyro_fsr))
-<BR><BR>[Called By]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6500_Setup
+<P><STRONG><a name="[c9]"></a>mpu_get_gyro_fsr</STRONG> (Thumb, 64 bytes, Stack size 0 bytes, mpu6500_base_driver.o(i.mpu_get_gyro_fsr))
+<BR><BR>[Called By]<UL><LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6500_Setup
 </UL>
 
-<P><STRONG><a name="[c9]"></a>mpu_get_sample_rate</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, mpu6500_base_driver.o(i.mpu_get_sample_rate))
-<BR><BR>[Called By]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6500_Setup
+<P><STRONG><a name="[c8]"></a>mpu_get_sample_rate</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, mpu6500_base_driver.o(i.mpu_get_sample_rate))
+<BR><BR>[Called By]<UL><LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6500_Setup
 </UL>
 
-<P><STRONG><a name="[c5]"></a>mpu_init</STRONG> (Thumb, 238 bytes, Stack size 16 bytes, mpu6500_base_driver.o(i.mpu_init))
+<P><STRONG><a name="[c4]"></a>mpu_init</STRONG> (Thumb, 238 bytes, Stack size 16 bytes, mpu6500_base_driver.o(i.mpu_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 320<LI>Call Chain = mpu_init &rArr; mpu_set_sample_rate &rArr; mpu_lp_accel_mode &rArr; mpu_configure_fifo &rArr; set_int_enable &rArr; IMU_SPI_Transmit &rArr; nrf_spi_mngr_schedule &rArr; start_pending_transaction &rArr; nrf_drv_spi_init &rArr; nrfx_spim_init &rArr; nrfx_prs_acquire &rArr; app_util_critical_region_enter &rArr; sd_nvic_critical_region_enter
 </UL>
-<BR>[Calls]<UL><LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrfx_gpiote_in_event_enable
-<LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_set_sensors
-<LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_set_sample_rate
+<BR>[Calls]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IMU_SPI_Transmit
+<LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrfx_gpiote_in_event_enable
+<LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_set_sensors
+<LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_set_sample_rate
 <LI><a href="#[20d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_set_lpf
 <LI><a href="#[20b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_set_gyro_fsr
 <LI><a href="#[20c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_set_accel_fsr
-<LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_configure_fifo
+<LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_configure_fifo
 <LI><a href="#[20a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_delay_ms
-<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IMU_SPI_Transmit
 </UL>
-<BR>[Called By]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6500_Setup
+<BR>[Called By]<UL><LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6500_Setup
 </UL>
 
 <P><STRONG><a name="[19c]"></a>mpu_load_firmware</STRONG> (Thumb, 172 bytes, Stack size 48 bytes, mpu6500_base_driver.o(i.mpu_load_firmware))
 <BR><BR>[Stack]<UL><LI>Max Depth = 368<LI>Call Chain = mpu_load_firmware &rArr; mpu_read_mem &rArr; IMU_SPI_Receive_DMP_Read &rArr; nrf_spi_mngr_schedule &rArr; start_pending_transaction &rArr; nrf_drv_spi_init &rArr; nrfx_spim_init &rArr; nrfx_prs_acquire &rArr; app_util_critical_region_enter &rArr; sd_nvic_critical_region_enter
 </UL>
-<BR>[Calls]<UL><LI><a href="#[190]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_write_mem
+<BR>[Calls]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IMU_SPI_Transmit
+<LI><a href="#[190]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_write_mem
 <LI><a href="#[20e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_read_mem
-<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IMU_SPI_Transmit
 <LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;memcmp
 </UL>
-<BR>[Called By]<UL><LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_load_motion_driver_firmware
+<BR>[Called By]<UL><LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_load_motion_driver_firmware
 </UL>
 
 <P><STRONG><a name="[20f]"></a>mpu_lp_accel_mode</STRONG> (Thumb, 250 bytes, Stack size 16 bytes, mpu6500_base_driver.o(i.mpu_lp_accel_mode))
 <BR><BR>[Stack]<UL><LI>Max Depth = 288<LI>Call Chain = mpu_lp_accel_mode &rArr; mpu_configure_fifo &rArr; set_int_enable &rArr; IMU_SPI_Transmit &rArr; nrf_spi_mngr_schedule &rArr; start_pending_transaction &rArr; nrf_drv_spi_init &rArr; nrfx_spim_init &rArr; nrfx_prs_acquire &rArr; app_util_critical_region_enter &rArr; sd_nvic_critical_region_enter
 </UL>
-<BR>[Calls]<UL><LI><a href="#[210]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_set_int_latched
-<LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_configure_fifo
-<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IMU_SPI_Transmit
+<BR>[Calls]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IMU_SPI_Transmit
+<LI><a href="#[210]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_set_int_latched
+<LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_configure_fifo
 </UL>
-<BR>[Called By]<UL><LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_set_sample_rate
+<BR>[Called By]<UL><LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_set_sample_rate
 </UL>
 
 <P><STRONG><a name="[19e]"></a>mpu_read_fifo_stream</STRONG> (Thumb, 198 bytes, Stack size 24 bytes, mpu6500_base_driver.o(i.mpu_read_fifo_stream))
 <BR><BR>[Stack]<UL><LI>Max Depth = 320<LI>Call Chain = mpu_read_fifo_stream &rArr; IMU_SPI_Receive_DMP_Read &rArr; nrf_spi_mngr_schedule &rArr; start_pending_transaction &rArr; nrf_drv_spi_init &rArr; nrfx_spim_init &rArr; nrfx_prs_acquire &rArr; app_util_critical_region_enter &rArr; sd_nvic_critical_region_enter
 </UL>
-<BR>[Calls]<UL><LI><a href="#[191]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_reset_fifo
-<LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IMU_SPI_Receive_DMP_Read
+<BR>[Calls]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IMU_SPI_Receive_DMP_Read
+<LI><a href="#[191]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_reset_fifo
 </UL>
 <BR>[Called By]<UL><LI><a href="#[19d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_read_fifo
 </UL>
@@ -2405,8 +2391,8 @@ Global Symbols
 <P><STRONG><a name="[206]"></a>mpu_reset</STRONG> (Thumb, 36 bytes, Stack size 8 bytes, mpu6500_base_driver.o(i.mpu_reset))
 <BR><BR>[Stack]<UL><LI>Max Depth = 248<LI>Call Chain = mpu_reset &rArr; IMU_SPI_Transmit &rArr; nrf_spi_mngr_schedule &rArr; start_pending_transaction &rArr; nrf_drv_spi_init &rArr; nrfx_spim_init &rArr; nrfx_prs_acquire &rArr; app_util_critical_region_enter &rArr; sd_nvic_critical_region_enter
 </UL>
-<BR>[Calls]<UL><LI><a href="#[20a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_delay_ms
-<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IMU_SPI_Transmit
+<BR>[Calls]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IMU_SPI_Transmit
+<LI><a href="#[20a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_delay_ms
 </UL>
 <BR>[Called By]<UL><LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -2414,16 +2400,16 @@ Global Symbols
 <P><STRONG><a name="[191]"></a>mpu_reset_fifo</STRONG> (Thumb, 362 bytes, Stack size 8 bytes, mpu6500_base_driver.o(i.mpu_reset_fifo))
 <BR><BR>[Stack]<UL><LI>Max Depth = 248<LI>Call Chain = mpu_reset_fifo &rArr; IMU_SPI_Transmit &rArr; nrf_spi_mngr_schedule &rArr; start_pending_transaction &rArr; nrf_drv_spi_init &rArr; nrfx_spim_init &rArr; nrfx_prs_acquire &rArr; app_util_critical_region_enter &rArr; sd_nvic_critical_region_enter
 </UL>
-<BR>[Calls]<UL><LI><a href="#[20a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_delay_ms
-<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IMU_SPI_Transmit
+<BR>[Calls]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IMU_SPI_Transmit
+<LI><a href="#[20a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_delay_ms
 </UL>
 <BR>[Called By]<UL><LI><a href="#[19d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_read_fifo
 <LI><a href="#[19b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_enable_lp_quat
-<LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_enable_feature
+<LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_enable_feature
 <LI><a href="#[18f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_enable_6x_lp_quat
-<LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_set_dmp_state
+<LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_set_dmp_state
 <LI><a href="#[19e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_read_fifo_stream
-<LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_configure_fifo
+<LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_configure_fifo
 </UL>
 
 <P><STRONG><a name="[20c]"></a>mpu_set_accel_fsr</STRONG> (Thumb, 124 bytes, Stack size 16 bytes, mpu6500_base_driver.o(i.mpu_set_accel_fsr))
@@ -2431,19 +2417,19 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IMU_SPI_Transmit
 </UL>
-<BR>[Called By]<UL><LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_init
+<BR>[Called By]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_init
 </UL>
 
-<P><STRONG><a name="[c0]"></a>mpu_set_dmp_state</STRONG> (Thumb, 132 bytes, Stack size 16 bytes, mpu6500_base_driver.o(i.mpu_set_dmp_state))
+<P><STRONG><a name="[bf]"></a>mpu_set_dmp_state</STRONG> (Thumb, 132 bytes, Stack size 16 bytes, mpu6500_base_driver.o(i.mpu_set_dmp_state))
 <BR><BR>[Stack]<UL><LI>Max Depth = 320<LI>Call Chain = mpu_set_dmp_state &rArr; mpu_set_sample_rate &rArr; mpu_lp_accel_mode &rArr; mpu_configure_fifo &rArr; set_int_enable &rArr; IMU_SPI_Transmit &rArr; nrf_spi_mngr_schedule &rArr; start_pending_transaction &rArr; nrf_drv_spi_init &rArr; nrfx_spim_init &rArr; nrfx_prs_acquire &rArr; app_util_critical_region_enter &rArr; sd_nvic_critical_region_enter
 </UL>
-<BR>[Calls]<UL><LI><a href="#[209]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_int_enable
-<LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_set_sample_rate
+<BR>[Calls]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IMU_SPI_Transmit
+<LI><a href="#[209]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_int_enable
+<LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_set_sample_rate
 <LI><a href="#[191]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_reset_fifo
-<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IMU_SPI_Transmit
 </UL>
-<BR>[Called By]<UL><LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6500_Enable_DMP
-<LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6500_Disable_DMP
+<BR>[Called By]<UL><LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6500_Enable_DMP
+<LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6500_Disable_DMP
 </UL>
 
 <P><STRONG><a name="[20b]"></a>mpu_set_gyro_fsr</STRONG> (Thumb, 130 bytes, Stack size 16 bytes, mpu6500_base_driver.o(i.mpu_set_gyro_fsr))
@@ -2451,7 +2437,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IMU_SPI_Transmit
 </UL>
-<BR>[Called By]<UL><LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_init
+<BR>[Called By]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_init
 </UL>
 
 <P><STRONG><a name="[210]"></a>mpu_set_int_latched</STRONG> (Thumb, 100 bytes, Stack size 16 bytes, mpu6500_base_driver.o(i.mpu_set_int_latched))
@@ -2459,7 +2445,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IMU_SPI_Transmit
 </UL>
-<BR>[Called By]<UL><LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_set_sensors
+<BR>[Called By]<UL><LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_set_sensors
 <LI><a href="#[20f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_lp_accel_mode
 </UL>
 
@@ -2468,31 +2454,31 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IMU_SPI_Transmit
 </UL>
-<BR>[Called By]<UL><LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_set_sample_rate
-<LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_init
+<BR>[Called By]<UL><LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_set_sample_rate
+<LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_init
 </UL>
 
-<P><STRONG><a name="[c8]"></a>mpu_set_sample_rate</STRONG> (Thumb, 144 bytes, Stack size 16 bytes, mpu6500_base_driver.o(i.mpu_set_sample_rate))
+<P><STRONG><a name="[c7]"></a>mpu_set_sample_rate</STRONG> (Thumb, 144 bytes, Stack size 16 bytes, mpu6500_base_driver.o(i.mpu_set_sample_rate))
 <BR><BR>[Stack]<UL><LI>Max Depth = 304<LI>Call Chain = mpu_set_sample_rate &rArr; mpu_lp_accel_mode &rArr; mpu_configure_fifo &rArr; set_int_enable &rArr; IMU_SPI_Transmit &rArr; nrf_spi_mngr_schedule &rArr; start_pending_transaction &rArr; nrf_drv_spi_init &rArr; nrfx_spim_init &rArr; nrfx_prs_acquire &rArr; app_util_critical_region_enter &rArr; sd_nvic_critical_region_enter
 </UL>
-<BR>[Calls]<UL><LI><a href="#[20d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_set_lpf
+<BR>[Calls]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IMU_SPI_Transmit
+<LI><a href="#[20d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_set_lpf
 <LI><a href="#[20f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_lp_accel_mode
-<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IMU_SPI_Transmit
 </UL>
-<BR>[Called By]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6500_Setup
-<LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_set_dmp_state
-<LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_init
+<BR>[Called By]<UL><LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6500_Setup
+<LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_set_dmp_state
+<LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_init
 </UL>
 
-<P><STRONG><a name="[c6]"></a>mpu_set_sensors</STRONG> (Thumb, 202 bytes, Stack size 16 bytes, mpu6500_base_driver.o(i.mpu_set_sensors))
+<P><STRONG><a name="[c5]"></a>mpu_set_sensors</STRONG> (Thumb, 202 bytes, Stack size 16 bytes, mpu6500_base_driver.o(i.mpu_set_sensors))
 <BR><BR>[Stack]<UL><LI>Max Depth = 272<LI>Call Chain = mpu_set_sensors &rArr; mpu_set_int_latched &rArr; IMU_SPI_Transmit &rArr; nrf_spi_mngr_schedule &rArr; start_pending_transaction &rArr; nrf_drv_spi_init &rArr; nrfx_spim_init &rArr; nrfx_prs_acquire &rArr; app_util_critical_region_enter &rArr; sd_nvic_critical_region_enter
 </UL>
-<BR>[Calls]<UL><LI><a href="#[210]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_set_int_latched
+<BR>[Calls]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IMU_SPI_Transmit
+<LI><a href="#[210]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_set_int_latched
 <LI><a href="#[20a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_delay_ms
-<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IMU_SPI_Transmit
 </UL>
-<BR>[Called By]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6500_Setup
-<LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_init
+<BR>[Called By]<UL><LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6500_Setup
+<LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_init
 </UL>
 
 <P><STRONG><a name="[8e]"></a>mpu_sleep</STRONG> (Thumb, 28 bytes, Stack size 8 bytes, mpu6500_base_driver.o(i.mpu_sleep))
@@ -2517,12 +2503,12 @@ Global Symbols
 <LI><a href="#[19a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_set_shake_reject_timeout
 <LI><a href="#[199]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_set_shake_reject_time
 <LI><a href="#[198]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_set_shake_reject_thresh
-<LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_set_orientation
-<LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_set_interrupt_mode
-<LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_set_fifo_rate
+<LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_set_orientation
+<LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_set_interrupt_mode
+<LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_set_fifo_rate
 <LI><a href="#[19b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_enable_lp_quat
 <LI><a href="#[192]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_enable_gyro_cal
-<LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_enable_feature
+<LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_enable_feature
 <LI><a href="#[18f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_enable_6x_lp_quat
 <LI><a href="#[19c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_load_firmware
 </UL>
@@ -2947,8 +2933,8 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[233]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_spi_init
 </UL>
-<BR>[Called By]<UL><LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_SPI_Manager_Init
-<LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IMU_SPI_Manager_Init
+<BR>[Called By]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IMU_SPI_Manager_Init
+<LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_SPI_Manager_Init
 </UL>
 
 <P><STRONG><a name="[a8]"></a>nrf_spi_mngr_schedule</STRONG> (Thumb, 28 bytes, Stack size 24 bytes, nrf_spi_mngr.o(i.nrf_spi_mngr_schedule))
@@ -2957,12 +2943,12 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[254]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;start_pending_transaction
 <LI><a href="#[248]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_queue_push
 </UL>
-<BR>[Called By]<UL><LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_SPI_Transmit_LE
-<LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_SPI_Transmit
-<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_SPI_Receive
-<LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IMU_SPI_Transmit_DMP_Write
+<BR>[Called By]<UL><LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IMU_SPI_Transmit_DMP_Write
 <LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IMU_SPI_Transmit
 <LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IMU_SPI_Receive_DMP_Read
+<LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_SPI_Transmit_LE
+<LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_SPI_Transmit
+<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_SPI_Receive
 </UL>
 
 <P><STRONG><a name="[231]"></a>nrfx_clock_enable</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, nrfx_clock.o(i.nrfx_clock_enable))
@@ -2999,7 +2985,7 @@ Global Symbols
 <LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;channel_handler_get
 </UL>
 <BR>[Called By]<UL><LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_Init
-<LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_init
+<LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_init
 </UL>
 
 <P><STRONG><a name="[9f]"></a>nrfx_gpiote_in_init</STRONG> (Thumb, 232 bytes, Stack size 40 bytes, nrfx_gpiote.o(i.nrfx_gpiote_in_init))
@@ -3071,7 +3057,7 @@ Global Symbols
 <LI><a href="#[26a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_pwm_sequence_set
 <LI><a href="#[26b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_pwm_loop_set
 </UL>
-<BR>[Called By]<UL><LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PWM_play
+<BR>[Called By]<UL><LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PWM_play
 <LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PWM_PWCLK_stop
 <LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PWM_PWCLK_play
 </UL>
@@ -3446,8 +3432,8 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IMU_SPI_Transmit
 </UL>
-<BR>[Called By]<UL><LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_set_dmp_state
-<LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_configure_fifo
+<BR>[Called By]<UL><LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_set_dmp_state
+<LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_configure_fifo
 </UL>
 
 <P><STRONG><a name="[161]"></a>sm_ble_evt_handler</STRONG> (Thumb, 36 bytes, Stack size 8 bytes, security_manager.o(i.sm_ble_evt_handler))
@@ -3582,9 +3568,9 @@ Local Symbols
 <P><STRONG><a name="[a4]"></a>nrf_gpio_pin_write</STRONG> (Thumb, 58 bytes, Stack size 8 bytes, spi0_imu.o(i.nrf_gpio_pin_write))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = nrf_gpio_pin_write
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IMU_SPI_Init
-<LI><a href="#[2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IMU_Stop_Transaction
+<BR>[Called By]<UL><LI><a href="#[2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IMU_Stop_Transaction
 <LI><a href="#[1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IMU_Start_Transaction
+<LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IMU_SPI_Init
 </UL>
 
 <P><STRONG><a name="[b4]"></a>nrf_delay_ms</STRONG> (Thumb, 42 bytes, Stack size 24 bytes, led1642gw.o(i.nrf_delay_ms))
@@ -3598,9 +3584,9 @@ Local Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = nrf_delay_ms
 </UL>
 <BR>[Called By]<UL><LI><a href="#[206]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_reset
-<LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_set_sensors
+<LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_set_sensors
 <LI><a href="#[191]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_reset_fifo
-<LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_init
+<LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_init
 </UL>
 
 <P><STRONG><a name="[19f]"></a>decode_gesture</STRONG> (Thumb, 94 bytes, Stack size 24 bytes, mpu6500_dmp_motion_driver.o(i.decode_gesture))
@@ -3612,17 +3598,18 @@ Local Symbols
 <P><STRONG><a name="[40]"></a>MPU6500_orient_cb</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, mpu6500.o(i.MPU6500_orient_cb))
 <BR>[Address Reference Count : 1]<UL><LI> mpu6500.o(i.MPU6500_Setup)
 </UL>
-<P><STRONG><a name="[3f]"></a>MPU6500_tap_cb</STRONG> (Thumb, 82 bytes, Stack size 16 bytes, mpu6500.o(i.MPU6500_tap_cb))
+<P><STRONG><a name="[3f]"></a>MPU6500_tap_cb</STRONG> (Thumb, 104 bytes, Stack size 16 bytes, mpu6500.o(i.MPU6500_tap_cb))
 <BR><BR>[Stack]<UL><LI>Max Depth = 360<LI>Call Chain = MPU6500_tap_cb &rArr; dmp_set_interrupt_mode &rArr; mpu_write_mem &rArr; IMU_SPI_Transmit_DMP_Write &rArr; nrf_spi_mngr_schedule &rArr; start_pending_transaction &rArr; nrf_drv_spi_init &rArr; nrfx_spim_init &rArr; nrfx_prs_acquire &rArr; app_util_critical_region_enter &rArr; sd_nvic_critical_region_enter
 </UL>
-<BR>[Calls]<UL><LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6500_Enable_DMP
-<LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6500_Disable_DMP
-<LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_set_interrupt_mode
+<BR>[Calls]<UL><LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6500_Enable_DMP
+<LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6500_Disable_DMP
+<LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_set_interrupt_mode
+<LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED1642GW_Brightness_Control
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> mpu6500.o(i.MPU6500_Setup)
 </UL>
-<P><STRONG><a name="[cd]"></a>inv_row_2_scale</STRONG> (Thumb, 78 bytes, Stack size 0 bytes, mpu6500.o(i.inv_row_2_scale))
-<BR><BR>[Called By]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6500_Setup
+<P><STRONG><a name="[cc]"></a>inv_row_2_scale</STRONG> (Thumb, 78 bytes, Stack size 0 bytes, mpu6500.o(i.inv_row_2_scale))
+<BR><BR>[Called By]<UL><LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6500_Setup
 </UL>
 
 <P><STRONG><a name="[16a]"></a>nrf_gpio_pin_write</STRONG> (Thumb, 58 bytes, Stack size 8 bytes, boards.o(i.nrf_gpio_pin_write))

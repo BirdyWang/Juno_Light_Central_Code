@@ -986,7 +986,7 @@ int dmp_enable_feature(unsigned short mask)
         /* Enable tap. */
         tmp[0] = 0xF8;
         mpu_write_mem(CFG_20, 1, tmp);
-        dmp_set_tap_thresh(TAP_XYZ, 100);
+        dmp_set_tap_thresh(TAP_XYZ, 150);
         dmp_set_tap_axes(TAP_XYZ);
         dmp_set_tap_count(1);
         dmp_set_tap_time(100);

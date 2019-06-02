@@ -446,11 +446,6 @@
               <FilePath>..\..\..\Src\Juno_BLE.c</FilePath>
             </File>
             <File>
-              <FileName>Juno_Buttonless_DFU.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\Src\Juno_Buttonless_DFU.c</FilePath>
-            </File>
-            <File>
               <FileName>SPI0_IMU.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\Src\SPI0_IMU.c</FilePath>
@@ -459,6 +454,16 @@
               <FileName>SPI1_LED.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\Src\SPI1_LED.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Juno_OTA</GroupName>
+          <Files>
+            <File>
+              <FileName>Juno_Buttonless_DFU.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\Src\Juno_Buttonless_DFU.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -3675,11 +3680,6 @@
               <FilePath>..\..\..\Src\Juno_BLE.c</FilePath>
             </File>
             <File>
-              <FileName>Juno_Buttonless_DFU.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\Src\Juno_Buttonless_DFU.c</FilePath>
-            </File>
-            <File>
               <FileName>SPI0_IMU.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\Src\SPI0_IMU.c</FilePath>
@@ -3688,6 +3688,16 @@
               <FileName>SPI1_LED.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\Src\SPI1_LED.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Juno_OTA</GroupName>
+          <Files>
+            <File>
+              <FileName>Juno_Buttonless_DFU.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\Src\Juno_Buttonless_DFU.c</FilePath>
             </File>
           </Files>
         </Group>

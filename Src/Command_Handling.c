@@ -18,18 +18,8 @@ void command_handling_ble(const uint8_t * cmd)
 {
     switch(cmd[0])
     {
-        case 'A':
-            break;
-        case 'B':
-            break;
-        case 'H':
-            shutdown_dfu_routine();
         case 'O':
-            break;
-        case 'a':
-            break;
-        case 'z':
-            break;
+            shutdown_dfu_routine();
         default: 
             break;
         

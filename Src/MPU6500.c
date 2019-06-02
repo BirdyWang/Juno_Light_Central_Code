@@ -115,30 +115,31 @@ static void MPU6500_tap_cb(uint8_t direction, uint8_t count)
     if(direction == TAP_Z_DOWN)
     {
         ledDisplayMode ++;
-        if(ledDisplayMode == 3)
+        if(ledDisplayMode == LED_MODE_NUM)
         {
             ledDisplayMode = 0;
         }
-        if(ledDisplayMode == 1)
+        if(ledDisplayMode == 5)
         {
             MPU6500_Disable_DMP();
             dmp_set_interrupt_mode(DMP_INT_CONTINUOUS);
             MPU6500_Enable_DMP();
         }
-        else if(ledDisplayMode == 2)
+        else if(ledDisplayMode == 6)
         {
             MPU6500_Disable_DMP();
             dmp_set_interrupt_mode(DMP_INT_GESTURE);
             MPU6500_Enable_DMP();
         }
     }
-    if(direction == TAP_X_UP)
+    else if(direction == TAP_X_UP)
     {
-        
+        LED1642GW_Brightness_Control(BRIGHTNESS_INCREASE);
     }
-    
-    
-    
+    else if(direction == TAP_X_DOWN)
+    {
+        LED1642GW_Brightness_Control(BRIGHTNESS_DECREASE);
+    }
     //send_packet(PACKET_TYPE_TAP, data);
 }
 

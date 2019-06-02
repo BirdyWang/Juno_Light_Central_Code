@@ -13,6 +13,8 @@
 #define CHANNEL_PER_DRIVER_NUM                          16
 #define SPI_BUFFER_SIZE                                 CHANNEL_PER_DRIVER_NUM * DRIVER_NUM
 
+#define BRIGHTNESS_INCREASE                             1
+#define BRIGHTNESS_DECREASE                             2
 
 #define DUMMY_DATA_LED1642GW                            56  
 #define WRITE_SWITCH                                    172  // 1-2 rising edges
@@ -24,6 +26,8 @@
 #define START_SHORT_ERROR_DETECTION_MODE                110  // 10 rising edges
 #define START_COMBINED_ERROR_DETECTION_MODE             102  // 11 rising edges
 #define END_ERROR_DETECTON_MODE                         94  // 12 rising edges
+
+#define CFG_AUTOSHUTOFF_60_RISETIME                     0x1400                                 
 
 typedef struct rgb_led
 {
@@ -39,6 +43,7 @@ typedef struct rgb_led_channel
 uint8_t LED1642GW_Init(void);
 uint8_t LED1642GW_Enter_LPM(void);
 uint8_t LED1642GW_Driver_Count(void);
+void LED1642GW_Brightness_Control(uint8_t mode);
 void LED1642_LED_All_On(void);
 void LED1642_LED_RGB_Train_Forward(void);
 void LED1642_LED_Different_Color_Same_Time(void);

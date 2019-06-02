@@ -70,3 +70,9 @@
 .\_build\mpu6500.o: ..\..\..\Inc\UART.h
 .\_build\mpu6500.o: ..\..\..\..\..\NRF5_SDK\modules\nrfx\hal\nrf_uart.h
 .\_build\mpu6500.o: ..\..\..\..\..\NRF5_SDK\components\libraries\uart\app_uart.h
+.\_build\mpu6500.o: ..\..\..\Inc\LED1642GW.h
+.\_build\mpu6500.o: ..\..\..\Inc\SPI1_LED.h
+.\_build\mpu6500.o: ..\..\..\Inc\PWM.h
+.\_build\mpu6500.o: ..\..\..\..\..\NRF5_SDK\integration\nrfx\legacy\nrf_drv_pwm.h
+.\_build\mpu6500.o: ..\..\..\..\..\NRF5_SDK\modules\nrfx\drivers\include\nrfx_pwm.h
+.\_build\mpu6500.o: ..\..\..\..\..\NRF5_SDK\modules\nrfx\hal/nrf_pwm.h

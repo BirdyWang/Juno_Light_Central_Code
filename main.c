@@ -30,11 +30,13 @@ uint8_t deviceInitFlag = 0;
 extern uint8_t ledDisplayMode;
 
 enum LED_display_modes {
-    SINGLE_COLOR_DISPLAY,
+    SINGLE_COLOR_DISPLAY_WHITE,
+    SINGLE_COLOR_DISPLAY_YELLOW,
+    SINGLE_COLOR_DISPLAY_RED,
+    SINGLE_COLOR_DISPLAY_GREEN,
+    SINGLE_COLOR_DISPALY_BLUE,
     MOTION_MAP_DISPLAY,
     COLOR_TRANSITION,
-    INCREASE_BRIGHTNESS,
-    DECREASE_BRIGHTNESS
 };
     
 enum packet_type_e {
@@ -147,7 +149,7 @@ int main(void)
                 PWM_PWCLK_play();
                 nrf_delay_ms(10);
                 LED1642GW_Driver_Count();
-                ledDisplayMode = SINGLE_COLOR_DISPLAY;
+                ledDisplayMode = SINGLE_COLOR_DISPLAY_WHITE;
                 for(int i = 0; i < 16; i++)
                 {
                     rgbSingleColorDisplay[i] = (rgb_led){.r = 0, .g = 0, .b = 0};
@@ -159,8 +161,60 @@ int main(void)
             {
                 switch(ledDisplayMode)
                 {
-                    case SINGLE_COLOR_DISPLAY:
-                        LED1642_LED_All_On();
+                    case SINGLE_COLOR_DISPLAY_WHITE:
+                        for(int i = 0; i < 16; i++)
+                        {
+                            rgbSingleColorDisplay[i] = (rgb_led){.r = 255, .g = 255, .b = 255};
+                        }
+                        LED1642GW_RGB_Translation_Array(rgbSingleColorDisplay);
+                        if(imuNewGyroFlag == 1)
+                        {
+                            dmp_read_fifo(gyro, accel, quat, &sensors, &more);
+                            imuNewGyroFlag = 0;
+                        }
+                        break;
+                    case SINGLE_COLOR_DISPLAY_YELLOW:
+                        for(int i = 0; i < 16; i++)
+                        {
+                            rgbSingleColorDisplay[i] = (rgb_led){.r = 255, .g = 255, .b = 0};
+                        }
+                        LED1642GW_RGB_Translation_Array(rgbSingleColorDisplay);
+                        if(imuNewGyroFlag == 1)
+                        {
+                            dmp_read_fifo(gyro, accel, quat, &sensors, &more);
+                            imuNewGyroFlag = 0;
+                        }
+                        break;
+                    case SINGLE_COLOR_DISPLAY_RED:
+                        for(int i = 0; i < 16; i++)
+                        {
+                            rgbSingleColorDisplay[i] = (rgb_led){.r = 255, .g = 0, .b = 0};
+                        }
+                        LED1642GW_RGB_Translation_Array(rgbSingleColorDisplay);
+                        if(imuNewGyroFlag == 1)
+                        {
+                            dmp_read_fifo(gyro, accel, quat, &sensors, &more);
+                            imuNewGyroFlag = 0;
+                        }
+                        break;
+                    case SINGLE_COLOR_DISPLAY_GREEN:
+                        for(int i = 0; i < 16; i++)
+                        {
+                            rgbSingleColorDisplay[i] = (rgb_led){.r = 0, .g = 255, .b = 0};
+                        }
+                        LED1642GW_RGB_Translation_Array(rgbSingleColorDisplay);
+                        if(imuNewGyroFlag == 1)
+                        {
+                            dmp_read_fifo(gyro, accel, quat, &sensors, &more);
+                            imuNewGyroFlag = 0;
+                        }
+                        break;
+                    case SINGLE_COLOR_DISPALY_BLUE:
+                        for(int i = 0; i < 16; i++)
+                        {
+                            rgbSingleColorDisplay[i] = (rgb_led){.r = 0, .g = 0, .b = 255};
+                        }
+                        LED1642GW_RGB_Translation_Array(rgbSingleColorDisplay);
                         if(imuNewGyroFlag == 1)
                         {
                             dmp_read_fifo(gyro, accel, quat, &sensors, &more);
@@ -216,27 +270,32 @@ int main(void)
                         {
                             for(int i = 0; i < 16; i++)
                             {
-                                if(i <= j)
+                                if(imuNewGyroFlag == 1)
                                 {
-                                    rgbTrainForwardDisplay[j-i] = (rgb_led){.r = 0 + (15-i)*15, .g = 150-(15-i)*10, .b = 0};
+                                    dmp_read_fifo(gyro, accel, quat, &sensors, &more);
+                                    imuNewGyroFlag = 0;
+                                    if(ledDisplayMode != COLOR_TRANSITION)
+                                    {
+                                        i = j = 100;
+                                        break;
+                                    }
                                 }
                                 else
                                 {
-                                    rgbTrainForwardDisplay[i+j] = (rgb_led){.r = 0 + i*15, .g = 150-i*10, .b = 0};
+                                    if(i <= j)
+                                    {
+                                        rgbTrainForwardDisplay[j-i] = (rgb_led){.r = 0 + (15-i)*15, .g = 150-(15-i)*10, .b = 0};
+                                    }
+                                    else
+                                    {
+                                        rgbTrainForwardDisplay[i+j] = (rgb_led){.r = 0 + i*15, .g = 150-i*10, .b = 0};
+                                    }
                                 }
                             }
                             LED1642GW_RGB_Translation_Array(rgbTrainForwardDisplay);
                             nrf_delay_ms(500);
                         }
-                        if(imuNewGyroFlag == 1)
-                        {
-                            dmp_read_fifo(gyro, accel, quat, &sensors, &more);
-                            imuNewGyroFlag = 0;
-                        }
-                        break;
-                    case INCREASE_BRIGHTNESS:
-                        break;
-                    case DECREASE_BRIGHTNESS:
+                        
                         break;
                     default:
                         break;
