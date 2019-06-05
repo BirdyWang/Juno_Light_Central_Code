@@ -39,9 +39,12 @@ enum LED_display_modes {
     SINGLE_COLOR_DISPLAY_RED,
     SINGLE_COLOR_DISPLAY_GREEN,
     SINGLE_COLOR_DISPALY_BLUE,
+    SINGLE_COLOR_DISPLAY_ORANGE,
     MOTION_MAP_DISPLAY,
     COLOR_TRANSITION,
-    OTA_UPDATE
+    OTA_UPDATE,
+    COS_DISPLAY,
+    SIN_PLUS_COS_DISPLAY
 };
     
 enum packet_type_e {
@@ -141,6 +144,9 @@ int main(void)
     GPIO_Init();
     
     mpu_reset();
+    nrf_delay_ms(5000);
+    /*Say when the battery is depleted and user to recharge the chip, It will wake up and display the light. */
+    powerOnFlag = 1;
     while(1)
     {
         if(powerOnFlag == 1)
@@ -185,14 +191,13 @@ int main(void)
                         batteryVoltageFloat = floor(batteryVoltageFloat*10)/50.0f;
                         for(i = 0; i < 16; i++)
                         {
-                            if((batteryVoltageFloat >= 4.15f))
+                            if((batteryVoltageFloat >= 4.19f))
                             {
                                 rgbBatteryDisplay[i] = (rgb_led){.r = 0, .g = 255, .b = 0};
                             }
-                            else
+                            else if(batteryVoltageFloat <= 4.15f)
                             {
                                 ledBrightnessOffset = 125 * batteryVoltageFloat - 425;
-                                LED1642GW_Brightness_Set(10);
                                 rgbBatteryDisplay[i] = (rgb_led){.r = 255 - ledBrightnessOffset, .g = ledBrightnessOffset, .b = 0};
                             }
                         }
@@ -279,6 +284,25 @@ int main(void)
                             setupCompleteFlag = 1;
                         }
                         break;
+                    case SINGLE_COLOR_DISPLAY_ORANGE:
+                        if(imuNewGyroFlag == 1)
+                        {
+                            dmp_read_fifo(gyro, accel, quat, &sensors, &more);
+                            imuNewGyroFlag = 0;
+                        }
+                        if(setupCompleteFlag == 0)
+                        {
+                            for(j = 0; j < 2; j++)
+                            {
+                                for(i = 0; i < 16; i++)
+                                {
+                                    rgbSingleColorDisplay[i] = (rgb_led){.r = 255, .g = 60, .b = 0};
+                                }
+                                LED1642GW_RGB_Translation_Array(rgbSingleColorDisplay);
+                            }
+                            setupCompleteFlag = 1;
+                        }
+                        break;
                     case MOTION_MAP_DISPLAY:
                         if(imuNewGyroFlag == 1)
                         {
@@ -292,23 +316,23 @@ int main(void)
                             {
                                 for(i = 0; i < 16; i++)
                                 {
-                                    rgbDmpMappingDisplay[i] = (rgb_led){.r = 0, .g = 0, .b = 0};
+                                    rgbDmpMappingDisplay[i] = (rgb_led){.r = 100, .g = 50, .b = 0};
                                 }
                                 rgbDmpMappingDisplay[channel] = (rgb_led){.r = color.r, .g = color.g, .b = color.b};
                                 if(channel == 0)
                                 {
-                                    rgbDmpMappingDisplay[1] = (rgb_led){.r = color.r/4, .g = color.g/4, .b = color.b/4};
-                                    rgbDmpMappingDisplay[15] = (rgb_led){.r = color.r/4, .g = color.g/4, .b = color.b/4};
+                                    rgbDmpMappingDisplay[1] = (rgb_led){.r = color.r, .g = color.g, .b = color.b};
+                                    rgbDmpMappingDisplay[15] = (rgb_led){.r = color.r, .g = color.g, .b = color.b};
                                 }
                                 else if(channel == 15)
                                 {
-                                    rgbDmpMappingDisplay[0] = (rgb_led){.r = color.r/4, .g = color.g/4, .b = color.b/4};
-                                    rgbDmpMappingDisplay[14] = (rgb_led){.r = color.r/4, .g = color.g/4, .b = color.b/4};            
+                                    rgbDmpMappingDisplay[0] = (rgb_led){.r = color.r, .g = color.g, .b = color.b};
+                                    rgbDmpMappingDisplay[14] = (rgb_led){.r = color.r, .g = color.g, .b = color.b};            
                                 }
                                 else
                                 {
-                                    rgbDmpMappingDisplay[channel+1] = (rgb_led){.r = color.r/4, .g = color.g/4, .b = color.b/4};
-                                    rgbDmpMappingDisplay[channel-1] = (rgb_led){.r = color.r/4, .g = color.g/4, .b = color.b/4};
+                                    rgbDmpMappingDisplay[channel+1] = (rgb_led){.r = color.r, .g = color.g, .b = color.b};
+                                    rgbDmpMappingDisplay[channel-1] = (rgb_led){.r = color.r, .g = color.g, .b = color.b};
                                 }
                                 LED1642GW_RGB_Translation_Array(rgbDmpMappingDisplay);
                             }
@@ -363,6 +387,40 @@ int main(void)
                         }
                         halTime = ((float)HAL_GetTick())*.0001f;
                         rgbOTAUpdateDisplay[0].g = (255.0f*(sin(halTime * TWO_PI + TWO_PI * .333333f) * .5f + .5f));
+                        rgbOTAUpdateDisplay[0].r = (255.0f*(sin(halTime * TWO_PI + TWO_PI * .666666f) * .5f + .5f));
+                        rgbOTAUpdateDisplay[0].b = (255.0f*(sin(halTime * TWO_PI) * .5f + .5f));;
+                        for(i = 1; i < 16; i++)
+                        {
+                            rgbOTAUpdateDisplay[i] = (rgb_led){.r = rgbOTAUpdateDisplay[0].r, .g = rgbOTAUpdateDisplay[0].g, .b = rgbOTAUpdateDisplay[0].b};
+                        }
+                        LED1642GW_RGB_Translation_Array(rgbOTAUpdateDisplay);
+                        nrf_delay_ms(100);
+                        break;
+                    case COS_DISPLAY:
+                        if(imuNewGyroFlag == 1)
+                        {
+                            dmp_read_fifo(gyro, accel, quat, &sensors, &more);
+                            imuNewGyroFlag = 0;
+                        }
+                        halTime = ((float)HAL_GetTick())*.0001f;
+                        rgbOTAUpdateDisplay[0].g = (255.0f*(cos(halTime * TWO_PI + TWO_PI * .333333f) * .5f + .5f));
+                        rgbOTAUpdateDisplay[0].r = (255.0f*(cos(halTime * TWO_PI + TWO_PI * .666666f) * .5f + .5f));
+                        rgbOTAUpdateDisplay[0].b = (255.0f*(cos(halTime * TWO_PI) * .5f + .5f));;
+                        for(i = 1; i < 16; i++)
+                        {
+                            rgbOTAUpdateDisplay[i] = (rgb_led){.r = rgbOTAUpdateDisplay[0].r, .g = rgbOTAUpdateDisplay[0].g, .b = rgbOTAUpdateDisplay[0].b};
+                        }
+                        LED1642GW_RGB_Translation_Array(rgbOTAUpdateDisplay);
+                        nrf_delay_ms(100);
+                        break;
+                    case SIN_PLUS_COS_DISPLAY:
+                        if(imuNewGyroFlag == 1)
+                        {
+                            dmp_read_fifo(gyro, accel, quat, &sensors, &more);
+                            imuNewGyroFlag = 0;
+                        }
+                        halTime = ((float)HAL_GetTick())*.0001f;
+                        rgbOTAUpdateDisplay[0].g = (255.0f*(cos(halTime * TWO_PI + TWO_PI * .333333f) * .5f + .5f));
                         rgbOTAUpdateDisplay[0].r = (255.0f*(sin(halTime * TWO_PI + TWO_PI * .666666f) * .5f + .5f));
                         rgbOTAUpdateDisplay[0].b = (255.0f*(sin(halTime * TWO_PI) * .5f + .5f));;
                         for(i = 1; i < 16; i++)

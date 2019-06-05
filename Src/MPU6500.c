@@ -1,6 +1,6 @@
 #include "MPU6500.h"
 
-#define DEFAULT_MPU_HZ  20
+#define DEFAULT_MPU_HZ  15
 
 extern uint8_t SPI_command; 
 extern uint8_t spi_complete;
@@ -116,52 +116,38 @@ void getDMP_Data(void)
 
 static void MPU6500_tap_cb(uint8_t direction, uint8_t count)
 {
-    if(powerOnFlag)
+    if(direction == TAP_Z_DOWN)
     {
-        if(direction == TAP_Z_DOWN)
+        setupCompleteFlag = 0;
+        ledDisplayMode ++;
+        if(ledDisplayMode == LED_MODE_NUM)
         {
-            setupCompleteFlag = 0;
-            ledDisplayMode ++;
-            if(ledDisplayMode == LED_MODE_NUM)
-            {
-                ledDisplayMode = 0;
-            }
-            if(ledDisplayMode == 5)
-            {
-                MPU6500_Disable_DMP();
-                dmp_set_interrupt_mode(DMP_INT_CONTINUOUS);
-                MPU6500_Enable_DMP();
-            }
-            else if(ledDisplayMode == 6)
-            {
-                MPU6500_Disable_DMP();
-                dmp_set_interrupt_mode(DMP_INT_GESTURE);
-                MPU6500_Enable_DMP();
-            }
-            else if(ledDisplayMode == 7)
-            {
-                advertising_start();
-            }
+            ledDisplayMode = 0;
         }
-        else if(direction == TAP_X_UP)
+        if(ledDisplayMode == 6)
         {
-            LED1642GW_Brightness_Control_PowerOn(BRIGHTNESS_INCREASE);
+            MPU6500_Disable_DMP();
+            dmp_set_interrupt_mode(DMP_INT_CONTINUOUS);
+            MPU6500_Enable_DMP();
         }
-        else if(direction == TAP_X_DOWN)
+        else if(ledDisplayMode == 7)
         {
-            LED1642GW_Brightness_Control_PowerOn(BRIGHTNESS_DECREASE);
+            MPU6500_Disable_DMP();
+            dmp_set_interrupt_mode(DMP_INT_GESTURE);
+            MPU6500_Enable_DMP();
+        }
+        else if(ledDisplayMode == 8)
+        {
+            advertising_start();
         }
     }
-    else if(batteryChargingFlag)
+    else if(direction == TAP_X_UP)
     {
-        if(direction == TAP_X_UP)
-        {
-            LED1642GW_Brightness_Control_Charging(BRIGHTNESS_INCREASE);
-        }
-        else if(direction == TAP_X_DOWN)
-        {
-            LED1642GW_Brightness_Control_Charging(BRIGHTNESS_DECREASE);
-        }
+        LED1642GW_Brightness_Control_PowerOn(BRIGHTNESS_INCREASE);
+    }
+    else if(direction == TAP_X_DOWN)
+    {
+        LED1642GW_Brightness_Control_PowerOn(BRIGHTNESS_DECREASE);
     }
     //send_packet(PACKET_TYPE_TAP, data);
 }
