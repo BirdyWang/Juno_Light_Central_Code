@@ -10,6 +10,10 @@ volatile uint8_t imuNewGyroFlag = 0;
 volatile uint8_t powerOnFlag = 0;
 volatile uint8_t batteryChargingFlag = 0;
 
+short gyro[3], accel[3], sensors;
+unsigned char more;
+long quat[4];
+
 void GPIO_Init(void) 
 {
     /* Initialize the GPIO interrupt. */
@@ -55,6 +59,7 @@ void Touch_In_handler(nrf_drv_gpiote_pin_t pin, nrf_gpiote_polarity_t action)
 
 void IMU_Interrupt_Handler(nrf_drv_gpiote_pin_t pin, nrf_gpiote_polarity_t action)
 {
+    dmp_read_fifo(gyro, accel, quat, &sensors, &more);
     imuNewGyroFlag = 1;
 }
 

@@ -358,8 +358,6 @@ void on_conn_params_evt(ble_conn_params_evt_t * p_evt)
  */
 void on_adv_evt(ble_adv_evt_t ble_adv_evt)
 {
-    uint32_t err_code;
-
     switch (ble_adv_evt)
     {
         case BLE_ADV_EVT_FAST:

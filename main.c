@@ -27,25 +27,17 @@ extern volatile uint8_t ledDisplayMode;
 extern volatile uint8_t setupCompleteFlag;
 uint8_t deviceInitFlag = 0;
 
+extern short gyro[3];
+extern short accel[3];
+extern short sensors;
+extern unsigned char more;
+extern long quat[4];
+
 rgb_led rgbSingleColorDisplay[16];
 rgb_led rgbDmpMappingDisplay[16];
 rgb_led rgbTrainForwardDisplay[16];
 rgb_led rgbBatteryDisplay[16];
 rgb_led rgbOTAUpdateDisplay[16];
-
-enum LED_display_modes {
-    SINGLE_COLOR_DISPLAY_BATTERY,
-    SINGLE_COLOR_DISPLAY_YELLOW,
-    SINGLE_COLOR_DISPLAY_RED,
-    SINGLE_COLOR_DISPLAY_GREEN,
-    SINGLE_COLOR_DISPALY_BLUE,
-    SINGLE_COLOR_DISPLAY_ORANGE,
-    MOTION_MAP_DISPLAY,
-    COLOR_TRANSITION,
-    OTA_UPDATE,
-    COS_DISPLAY,
-    SIN_PLUS_COS_DISPLAY
-};
     
 enum packet_type_e {
     PACKET_TYPE_ACCEL,
@@ -97,9 +89,6 @@ int main(void)
     rgb_led colorHistory;
     nrf_saadc_value_t batteryVoltageRaw;
     float batteryVoltageFloat;
-    short gyro[3], accel[3], sensors;
-    unsigned char more;
-    long quat[4];
     rgb_led color;
     Quaternion convertedQuat;
     EulerAngle eulerAngle;
@@ -178,11 +167,6 @@ int main(void)
                 {
                     case SINGLE_COLOR_DISPLAY_BATTERY:
                         batteryVoltageFloat = 0;
-                        if(imuNewGyroFlag == 1)
-                        {
-                            dmp_read_fifo(gyro, accel, quat, &sensors, &more);
-                            imuNewGyroFlag = 0;
-                        }
                         for(i = 0; i < 5; i++)
                         {
                             batteryVoltageRaw = SAADC_Convert();
@@ -209,11 +193,6 @@ int main(void)
                         nrf_delay_ms(10);
                         break;
                     case SINGLE_COLOR_DISPLAY_YELLOW:
-                        if(imuNewGyroFlag == 1)
-                        {
-                            dmp_read_fifo(gyro, accel, quat, &sensors, &more);
-                            imuNewGyroFlag = 0;
-                        }
                         if(setupCompleteFlag == 0)
                         {
                             for(j = 0; j < 2; j++)
@@ -228,11 +207,6 @@ int main(void)
                         }
                         break;
                     case SINGLE_COLOR_DISPLAY_RED:
-                        if(imuNewGyroFlag == 1)
-                        {
-                            dmp_read_fifo(gyro, accel, quat, &sensors, &more);
-                            imuNewGyroFlag = 0;
-                        }
                         if(setupCompleteFlag == 0)
                         {
                             for(j = 0; j < 2; j++)
@@ -247,11 +221,6 @@ int main(void)
                         }
                         break;
                     case SINGLE_COLOR_DISPLAY_GREEN:
-                        if(imuNewGyroFlag == 1)
-                        {
-                            dmp_read_fifo(gyro, accel, quat, &sensors, &more);
-                            imuNewGyroFlag = 0;
-                        }
                         if(setupCompleteFlag == 0)
                         {
                             for(j = 0; j < 2; j++)
@@ -266,11 +235,6 @@ int main(void)
                         }
                         break;
                     case SINGLE_COLOR_DISPALY_BLUE:
-                        if(imuNewGyroFlag == 1)
-                        {
-                            dmp_read_fifo(gyro, accel, quat, &sensors, &more);
-                            imuNewGyroFlag = 0;
-                        }
                         if(setupCompleteFlag == 0)
                         {
                             for(j = 0; j < 2; j++)
@@ -285,11 +249,6 @@ int main(void)
                         }
                         break;
                     case SINGLE_COLOR_DISPLAY_ORANGE:
-                        if(imuNewGyroFlag == 1)
-                        {
-                            dmp_read_fifo(gyro, accel, quat, &sensors, &more);
-                            imuNewGyroFlag = 0;
-                        }
                         if(setupCompleteFlag == 0)
                         {
                             for(j = 0; j < 2; j++)
@@ -306,7 +265,6 @@ int main(void)
                     case MOTION_MAP_DISPLAY:
                         if(imuNewGyroFlag == 1)
                         {
-                            dmp_read_fifo(gyro, accel, quat, &sensors, &more);
                             ConvertQuaternion(quat, &convertedQuat);
                             QuatToEulerAngle(&convertedQuat, &eulerAngle);
                             channelHistory = channel;
@@ -336,11 +294,6 @@ int main(void)
                                 }
                                 LED1642GW_RGB_Translation_Array(rgbDmpMappingDisplay);
                             }
-                            else
-                            {
-                                
-                            }
-                            //LED1642GW_RGB_Translation_Individual_Channel(channel, color);
 #if (UART_DEBUGGING == 1)
                             printf("Euler Angles: roll: %f, red: %u, pitch: %f, green: %u\r",eulerAngle.roll*180/PI, color.r, eulerAngle.pitch*180/PI, color.g);
 #endif
@@ -354,8 +307,6 @@ int main(void)
                             {
                                 if(imuNewGyroFlag == 1)
                                 {
-                                    dmp_read_fifo(gyro, accel, quat, &sensors, &more);
-                                    imuNewGyroFlag = 0;
                                     if(ledDisplayMode != COLOR_TRANSITION)
                                     {
                                         i = j = 100;
@@ -380,11 +331,6 @@ int main(void)
                         
                         break;
                     case OTA_UPDATE:
-                        if(imuNewGyroFlag == 1)
-                        {
-                            dmp_read_fifo(gyro, accel, quat, &sensors, &more);
-                            imuNewGyroFlag = 0;
-                        }
                         halTime = ((float)HAL_GetTick())*.0001f;
                         rgbOTAUpdateDisplay[0].g = (255.0f*(sin(halTime * TWO_PI + TWO_PI * .333333f) * .5f + .5f));
                         rgbOTAUpdateDisplay[0].r = (255.0f*(sin(halTime * TWO_PI + TWO_PI * .666666f) * .5f + .5f));
@@ -397,11 +343,6 @@ int main(void)
                         nrf_delay_ms(100);
                         break;
                     case COS_DISPLAY:
-                        if(imuNewGyroFlag == 1)
-                        {
-                            dmp_read_fifo(gyro, accel, quat, &sensors, &more);
-                            imuNewGyroFlag = 0;
-                        }
                         halTime = ((float)HAL_GetTick())*.0001f;
                         rgbOTAUpdateDisplay[0].g = (255.0f*(cos(halTime * TWO_PI + TWO_PI * .333333f) * .5f + .5f));
                         rgbOTAUpdateDisplay[0].r = (255.0f*(cos(halTime * TWO_PI + TWO_PI * .666666f) * .5f + .5f));
@@ -414,11 +355,6 @@ int main(void)
                         nrf_delay_ms(100);
                         break;
                     case SIN_PLUS_COS_DISPLAY:
-                        if(imuNewGyroFlag == 1)
-                        {
-                            dmp_read_fifo(gyro, accel, quat, &sensors, &more);
-                            imuNewGyroFlag = 0;
-                        }
                         halTime = ((float)HAL_GetTick())*.0001f;
                         rgbOTAUpdateDisplay[0].g = (255.0f*(cos(halTime * TWO_PI + TWO_PI * .333333f) * .5f + .5f));
                         rgbOTAUpdateDisplay[0].r = (255.0f*(sin(halTime * TWO_PI + TWO_PI * .666666f) * .5f + .5f));

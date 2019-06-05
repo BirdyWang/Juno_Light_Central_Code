@@ -124,14 +124,16 @@ static void MPU6500_tap_cb(uint8_t direction, uint8_t count)
         {
             ledDisplayMode = 0;
         }
-        if(ledDisplayMode == 6)
+        if(ledDisplayMode == MOTION_MAP_DISPLAY)
         {
+            imuNewGyroFlag = 0;
             MPU6500_Disable_DMP();
             dmp_set_interrupt_mode(DMP_INT_CONTINUOUS);
             MPU6500_Enable_DMP();
         }
-        else if(ledDisplayMode == 7)
+        else if(ledDisplayMode == COLOR_TRANSITION)
         {
+            imuNewGyroFlag = 0;
             MPU6500_Disable_DMP();
             dmp_set_interrupt_mode(DMP_INT_GESTURE);
             MPU6500_Enable_DMP();
