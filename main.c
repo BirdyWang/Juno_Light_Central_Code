@@ -17,21 +17,19 @@
 #define BLE_ENABLE          1
 #define UART_DEBUGGING      0
 
-unsigned int led_ts = 0;
-
 extern uint8_t BLE_cmd[3];
 extern volatile uint8_t imuNewGyroFlag;
 extern volatile uint8_t powerOnFlag;
 extern volatile uint8_t batteryChargingFlag;
 extern volatile uint8_t ledDisplayMode;
 extern volatile uint8_t setupCompleteFlag;
-uint8_t deviceInitFlag = 0;
-
 extern short gyro[3];
 extern short accel[3];
 extern short sensors;
 extern unsigned char more;
 extern long quat[4];
+
+uint8_t deviceInitFlag = 0;
 
 rgb_led rgbSingleColorDisplay[16];
 rgb_led rgbDmpMappingDisplay[16];
@@ -48,6 +46,7 @@ enum packet_type_e {
     PACKET_TYPE_PEDO,
     PACKET_TYPE_MISC
 };
+
 uint32_t uart_activity_ts;
 
 void HardFault_Handler(void)
@@ -186,10 +185,6 @@ int main(void)
                             }
                         }
                         LED1642GW_RGB_Translation_Array(rgbBatteryDisplay);
-                        if(batteryChargingFlag == 1)
-                        {
-                            powerOnFlag = 0;
-                        }
                         nrf_delay_ms(10);
                         break;
                     case SINGLE_COLOR_DISPLAY_YELLOW:
@@ -343,7 +338,7 @@ int main(void)
                         nrf_delay_ms(100);
                         break;
                     case COS_DISPLAY:
-                        halTime = ((float)HAL_GetTick())*.0001f;
+                        halTime = ((float)HAL_GetTick())*.0004f;
                         rgbOTAUpdateDisplay[0].g = (255.0f*(cos(halTime * TWO_PI + TWO_PI * .333333f) * .5f + .5f));
                         rgbOTAUpdateDisplay[0].r = (255.0f*(cos(halTime * TWO_PI + TWO_PI * .666666f) * .5f + .5f));
                         rgbOTAUpdateDisplay[0].b = (255.0f*(cos(halTime * TWO_PI) * .5f + .5f));;
@@ -355,7 +350,7 @@ int main(void)
                         nrf_delay_ms(100);
                         break;
                     case SIN_PLUS_COS_DISPLAY:
-                        halTime = ((float)HAL_GetTick())*.0001f;
+                        halTime = ((float)HAL_GetTick())*.0006f;
                         rgbOTAUpdateDisplay[0].g = (255.0f*(cos(halTime * TWO_PI + TWO_PI * .333333f) * .5f + .5f));
                         rgbOTAUpdateDisplay[0].r = (255.0f*(sin(halTime * TWO_PI + TWO_PI * .666666f) * .5f + .5f));
                         rgbOTAUpdateDisplay[0].b = (255.0f*(sin(halTime * TWO_PI) * .5f + .5f));;
@@ -368,6 +363,10 @@ int main(void)
                         break;
                     default:
                         break;
+                }
+                if(batteryChargingFlag == 1)
+                {
+                    powerOnFlag = 0;
                 }
             }
         }
