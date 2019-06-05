@@ -111,6 +111,14 @@
 .\_build\juno_ble.o: ..\..\..\..\..\NRF5_SDK\components\libraries\log\nrf_log_instance.h
 .\_build\juno_ble.o: ..\..\..\..\..\NRF5_SDK\components\libraries\log\nrf_log_types.h
 .\_build\juno_ble.o: ..\..\..\..\..\NRF5_SDK\components\libraries\delay\nrf_delay.h
+.\_build\juno_ble.o: ..\..\..\Inc\MPU6500.h
+.\_build\juno_ble.o: ..\..\..\Inc\MPU6500_DMP_Motion_Driver.h
+.\_build\juno_ble.o: ..\..\..\Inc\MPU6500_Base_Driver.h
+.\_build\juno_ble.o: ..\..\..\Inc\SPI0_IMU.h
+.\_build\juno_ble.o: ..\..\..\Inc\MPU6500_DMP_Map.h
+.\_build\juno_ble.o: ..\..\..\Inc\MPU6500_DMP_Key.h
+.\_build\juno_ble.o: ..\..\..\Inc\UART.h
+.\_build\juno_ble.o: ..\..\..\..\..\NRF5_SDK\modules\nrfx\hal\nrf_uart.h
 .\_build\juno_ble.o: ..\..\..\..\..\NRF5_SDK\modules\nrfx\hal\nrf_power.h
 .\_build\juno_ble.o: ..\..\..\..\..\NRF5_SDK\components\libraries\log\nrf_log.h
 .\_build\juno_ble.o: ..\..\..\..\..\NRF5_SDK\components\libraries\log\src\nrf_log_internal.h

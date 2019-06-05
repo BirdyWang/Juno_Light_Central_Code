@@ -126,4 +126,12 @@
 .\_build\command_handling.o: ..\..\..\..\..\NRF5_SDK\modules\nrfx\drivers\include\nrfx_spi.h
 .\_build\command_handling.o: ..\..\..\..\..\NRF5_SDK\modules\nrfx\hal/nrf_spi.h
 .\_build\command_handling.o: ..\..\..\..\..\NRF5_SDK\components\libraries\queue\nrf_queue.h
+.\_build\command_handling.o: ..\..\..\Inc\MPU6500.h
+.\_build\command_handling.o: ..\..\..\Inc\MPU6500_DMP_Motion_Driver.h
+.\_build\command_handling.o: ..\..\..\Inc\MPU6500_Base_Driver.h
+.\_build\command_handling.o: ..\..\..\Inc\SPI0_IMU.h
+.\_build\command_handling.o: ..\..\..\Inc\MPU6500_DMP_Map.h
+.\_build\command_handling.o: ..\..\..\Inc\MPU6500_DMP_Key.h
+.\_build\command_handling.o: ..\..\..\Inc\UART.h
+.\_build\command_handling.o: ..\..\..\..\..\NRF5_SDK\modules\nrfx\hal\nrf_uart.h
 .\_build\command_handling.o: ..\..\..\..\..\NRF5_SDK\modules\nrfx\hal\nrf_power.h

@@ -5,6 +5,7 @@
 #include "LED1642GW.h"
 
 #define PI						3.14159265359f
+#define TWO_PI              	6.28318530718f
 #define Q_COEFF                 1073741824.0f
 
 typedef struct Quaternion

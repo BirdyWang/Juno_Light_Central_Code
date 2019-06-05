@@ -31,6 +31,7 @@ void QuatToEulerAngle(Quaternion * q, EulerAngle * euler)
 
 void EulerAngleToLED(EulerAngle * euler, uint8_t * channel, rgb_led* color)
 {
+    float rollColor, pitchColor, yawColor;
     // mapping yaw to planer LED channel
     if(euler->yaw > 0)
     {
@@ -40,11 +41,11 @@ void EulerAngleToLED(EulerAngle * euler, uint8_t * channel, rgb_led* color)
     {
         *channel = 15 - floor((0 - euler->yaw) * 2.54f);
     }
-    
-    color->b = 0;    
+    yawColor = 1 + sin(euler->yaw);
+    color->b = ceil(yawColor * 127.5f);    
     //mapping roll to LED color:
-    float output1 = 1 + sin(PI/2 + euler->roll);
-    color->r = output1 * 127.5f;
-    float output2 = 1 + sin(euler->pitch);
-    color->g = output2 * 127.5f;
+    rollColor = 1 + sin(PI/2 + euler->roll);
+    color->g = ceil(rollColor * 127.5f);
+    pitchColor = 1 + sin(euler->pitch);
+    color->r = ceil(pitchColor * 127.5f);
 }

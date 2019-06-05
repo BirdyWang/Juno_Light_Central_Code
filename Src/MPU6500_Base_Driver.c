@@ -359,6 +359,14 @@ void mpu_sleep(void)
     IMU_SPI_Transmit(data, 2);
 }
 
+void mpu_wakeup(void)
+{
+    uint8_t data[2];
+    data[1] = 0x00;
+    data[0] = st.reg->pwr_mgmt_1 + MPU6500_WRITE;
+    IMU_SPI_Transmit(data, 2);
+}
+
 /**
  *  @brief      Initialize hardware.
  *  Initial configuration:\n

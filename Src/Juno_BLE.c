@@ -204,8 +204,7 @@ void sleep_mode_enter(void)
  */
 void advertising_start(void)
 {
-    uint32_t err_code = ble_advertising_start(&m_advertising, BLE_ADV_MODE_FAST);
-    APP_ERROR_CHECK(err_code);
+    ble_advertising_start(&m_advertising, BLE_ADV_MODE_FAST);
 }
 
 /**@brief Function for handling BLE events.
@@ -364,8 +363,6 @@ void on_adv_evt(ble_adv_evt_t ble_adv_evt)
     switch (ble_adv_evt)
     {
         case BLE_ADV_EVT_FAST:
-            err_code = bsp_indication_set(BSP_INDICATE_ADVERTISING);
-            APP_ERROR_CHECK(err_code);
             break;
         case BLE_ADV_EVT_IDLE:
             //sleep_mode_enter();

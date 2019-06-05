@@ -20,8 +20,10 @@
 void timers_init(void);
 void sleep(void);
 void Timer2_Init(void);
+void Timer2_Enable(void);
+void Timer2_Disable(void);
 void timer_ms_event_handler(nrf_timer_event_t event_type, void* p_context);
-uint32_t HAL_GetTick(void);
+uint64_t HAL_GetTick(void);
 void HAL_Delay(uint32_t Delay);
 
 #endif

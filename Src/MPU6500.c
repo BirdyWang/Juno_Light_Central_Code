@@ -1,12 +1,16 @@
 #include "MPU6500.h"
 
-#define DEFAULT_MPU_HZ  (20)
+#define DEFAULT_MPU_HZ  20
 
 extern uint8_t SPI_command; 
 extern uint8_t spi_complete;
 extern uint8_t brightness;
 extern volatile uint8_t imuNewGyroFlag;
-uint8_t ledDisplayMode = 0;
+extern volatile uint8_t powerOnFlag;
+extern volatile uint8_t batteryChargingFlag;
+volatile uint8_t ledDisplayMode = 0;
+volatile uint8_t setupCompleteFlag = 0;
+
 uint8_t MPU6500_Connection_Test(void)
 {
     uint8_t SPI_data[2];
@@ -66,7 +70,7 @@ uint8_t MPU6500_Setup(void)
     dmp_register_android_orient_cb(MPU6500_orient_cb);
     MPU6500_Enable_Full_Features();
     dmp_set_fifo_rate(DEFAULT_MPU_HZ);
-    //dmp_set_interrupt_mode(DMP_INT_GESTURE);
+    dmp_set_interrupt_mode(DMP_INT_GESTURE);
 
     return 0;
 }
@@ -112,33 +116,52 @@ void getDMP_Data(void)
 
 static void MPU6500_tap_cb(uint8_t direction, uint8_t count)
 {
-    if(direction == TAP_Z_DOWN)
+    if(powerOnFlag)
     {
-        ledDisplayMode ++;
-        if(ledDisplayMode == LED_MODE_NUM)
+        if(direction == TAP_Z_DOWN)
         {
-            ledDisplayMode = 0;
+            setupCompleteFlag = 0;
+            ledDisplayMode ++;
+            if(ledDisplayMode == LED_MODE_NUM)
+            {
+                ledDisplayMode = 0;
+            }
+            if(ledDisplayMode == 5)
+            {
+                MPU6500_Disable_DMP();
+                dmp_set_interrupt_mode(DMP_INT_CONTINUOUS);
+                MPU6500_Enable_DMP();
+            }
+            else if(ledDisplayMode == 6)
+            {
+                MPU6500_Disable_DMP();
+                dmp_set_interrupt_mode(DMP_INT_GESTURE);
+                MPU6500_Enable_DMP();
+            }
+            else if(ledDisplayMode == 7)
+            {
+                advertising_start();
+            }
         }
-        if(ledDisplayMode == 5)
+        else if(direction == TAP_X_UP)
         {
-            MPU6500_Disable_DMP();
-            dmp_set_interrupt_mode(DMP_INT_CONTINUOUS);
-            MPU6500_Enable_DMP();
+            LED1642GW_Brightness_Control_PowerOn(BRIGHTNESS_INCREASE);
         }
-        else if(ledDisplayMode == 6)
+        else if(direction == TAP_X_DOWN)
         {
-            MPU6500_Disable_DMP();
-            dmp_set_interrupt_mode(DMP_INT_GESTURE);
-            MPU6500_Enable_DMP();
+            LED1642GW_Brightness_Control_PowerOn(BRIGHTNESS_DECREASE);
         }
     }
-    else if(direction == TAP_X_UP)
+    else if(batteryChargingFlag)
     {
-        LED1642GW_Brightness_Control(BRIGHTNESS_INCREASE);
-    }
-    else if(direction == TAP_X_DOWN)
-    {
-        LED1642GW_Brightness_Control(BRIGHTNESS_DECREASE);
+        if(direction == TAP_X_UP)
+        {
+            LED1642GW_Brightness_Control_Charging(BRIGHTNESS_INCREASE);
+        }
+        else if(direction == TAP_X_DOWN)
+        {
+            LED1642GW_Brightness_Control_Charging(BRIGHTNESS_DECREASE);
+        }
     }
     //send_packet(PACKET_TYPE_TAP, data);
 }

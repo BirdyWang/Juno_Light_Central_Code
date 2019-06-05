@@ -68,7 +68,7 @@ uint8_t LED1642GW_Enter_LPM(void)
     return 1;
 }
 
-void LED1642GW_Brightness_Control(uint8_t mode)
+void LED1642GW_Brightness_Control_PowerOn(uint8_t mode)
 {
     if(mode == BRIGHTNESS_INCREASE)
     {
@@ -87,6 +87,32 @@ void LED1642GW_Brightness_Control(uint8_t mode)
         brightness -= 20;
         
     }
+}
+
+void LED1642GW_Brightness_Control_Charging(uint8_t mode)
+{
+    if(mode == BRIGHTNESS_INCREASE)
+    {
+        brightness += 20;
+        if(brightness >= 0x30)
+        {
+            brightness = 0x30;
+        }
+    }
+    else if(mode == BRIGHTNESS_DECREASE)
+    {
+        if(brightness <= 21)
+        {
+            brightness = 21;
+        }
+        brightness -= 20;
+        
+    }
+}
+
+void LED1642GW_Brightness_Set(uint8_t brightnessInput)
+{
+    brightness = brightnessInput;
 }
 
 uint8_t LED1642GW_Driver_Count(void)

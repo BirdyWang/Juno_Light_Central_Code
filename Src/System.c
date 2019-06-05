@@ -8,7 +8,7 @@
 #include "System.h"
 
 const nrf_drv_timer_t Timer_ms_Tick = NRF_DRV_TIMER_INSTANCE(2);
-uint32_t timerTicks;
+uint64_t timerTicks;
 
 /**@brief Function for initializing the timer module.
  */
@@ -43,7 +43,17 @@ void Timer2_Init(void)
     nrf_drv_timer_extended_compare(
          &Timer_ms_Tick, NRF_TIMER_CC_CHANNEL2, timer_ticks, NRF_TIMER_SHORT_COMPARE2_CLEAR_MASK, true);
     timerTicks = 0;
+    
+}
+
+void Timer2_Enable(void)
+{
     nrf_drv_timer_enable(&Timer_ms_Tick);
+}
+
+void Timer2_Disable(void)
+{
+    nrf_drv_timer_disable(&Timer_ms_Tick);
 }
 
 void timer_ms_event_handler(nrf_timer_event_t event_type, void* p_context)
@@ -55,7 +65,7 @@ void timer_ms_event_handler(nrf_timer_event_t event_type, void* p_context)
 #endif
 }
 
-uint32_t HAL_GetTick(void)
+uint64_t HAL_GetTick(void)
 {
     return timerTicks;
 }

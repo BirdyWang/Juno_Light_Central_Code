@@ -43,8 +43,12 @@ typedef struct rgb_led_channel
 uint8_t LED1642GW_Init(void);
 uint8_t LED1642GW_Enter_LPM(void);
 uint8_t LED1642GW_Driver_Count(void);
-void LED1642GW_Brightness_Control(uint8_t mode);
+void LED1642GW_Brightness_Control_PowerOn(uint8_t mode);
+void LED1642GW_Brightness_Control_Charging(uint8_t mode);
+void LED1642GW_Brightness_Set(uint8_t brightnessInput);
 void LED1642_LED_All_On(void);
+void LED1642_Switch_On(void);
+void LED1642_Switch_Off(void);
 void LED1642_LED_RGB_Train_Forward(void);
 void LED1642_LED_Different_Color_Same_Time(void);
 void LED1642GW_Brightness_Control_Test(void);

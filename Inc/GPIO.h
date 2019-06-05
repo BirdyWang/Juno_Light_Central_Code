@@ -10,6 +10,7 @@
 #include "nrf_gpio.h"
 #include "nrf_drv_gpiote.h"
 #include "LED1642GW.h"
+#include "MPU6500.h"
 
 void GPIO_Init(void);
 void Touch_In_handler(nrf_drv_gpiote_pin_t pin, nrf_gpiote_polarity_t action);

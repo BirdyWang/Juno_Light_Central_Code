@@ -13,11 +13,8 @@
 
 #define SLEEP_TIMEOUT_VALUE 2000
 
-#define MAIN_CODE           1
-#define MPU6500_TEST        0
-#define LED_TEST            0
 #define INTERRUPT_TEST      0
-#define BLE_ENABLE          0
+#define BLE_ENABLE          1
 #define UART_DEBUGGING      0
 
 unsigned int led_ts = 0;
@@ -26,17 +23,25 @@ extern uint8_t BLE_cmd[3];
 extern volatile uint8_t imuNewGyroFlag;
 extern volatile uint8_t powerOnFlag;
 extern volatile uint8_t batteryChargingFlag;
+extern volatile uint8_t ledDisplayMode;
+extern volatile uint8_t setupCompleteFlag;
 uint8_t deviceInitFlag = 0;
-extern uint8_t ledDisplayMode;
+
+rgb_led rgbSingleColorDisplay[16];
+rgb_led rgbDmpMappingDisplay[16];
+rgb_led rgbTrainForwardDisplay[16];
+rgb_led rgbBatteryDisplay[16];
+rgb_led rgbOTAUpdateDisplay[16];
 
 enum LED_display_modes {
-    SINGLE_COLOR_DISPLAY_WHITE,
+    SINGLE_COLOR_DISPLAY_BATTERY,
     SINGLE_COLOR_DISPLAY_YELLOW,
     SINGLE_COLOR_DISPLAY_RED,
     SINGLE_COLOR_DISPLAY_GREEN,
     SINGLE_COLOR_DISPALY_BLUE,
     MOTION_MAP_DISPLAY,
     COLOR_TRANSITION,
+    OTA_UPDATE
 };
     
 enum packet_type_e {
@@ -67,6 +72,7 @@ static void power_manage(void)
 
 static void Enter_Low_Power_Mode(void)
 {
+    Timer2_Disable();
     mpu_sleep();
     LED1642GW_Enter_LPM();
 }
@@ -82,27 +88,29 @@ int main(void)
 {
     __asm{NOP};
     /* Define private variables. */
-    rgb_led rgbSingleColorDisplay[16];
-    rgb_led rgbDmpMappingDisplay[16];
-    rgb_led rgbTrainForwardDisplay[16];
-    rgb_led rgbBatteryDisplay[16];
+    
     uint8_t channel;
     uint8_t channelHistory;
     rgb_led colorHistory;
+    nrf_saadc_value_t batteryVoltageRaw;
+    float batteryVoltageFloat;
     short gyro[3], accel[3], sensors;
     unsigned char more;
     long quat[4];
     rgb_led color;
     Quaternion convertedQuat;
     EulerAngle eulerAngle;
-    
+    int i,j;
+    uint8_t ledBrightnessOffset;
     volatile ret_code_t err_code;
+    float halTime;
     //err_code = ble_dfu_buttonless_async_svci_init();
     //APP_ERROR_CHECK(err_code);
     
     /*Initialize peripherals*/
     timers_init();
-    GPIO_Init();
+    Timer2_Init();
+    
     PWM_init();
     PWM_PWCLK_init();
     PWM_PWCLK_play();
@@ -111,27 +119,27 @@ int main(void)
 #endif
     LED_SPI_Init();
     IMU_SPI_Init();
-    //SAADC_Init();
+    SAADC_Init();
     
     LED1642GW_Init();
     LED1642GW_Driver_Count();
     
-    for(int i = 0; i < 16; i++)
+    for(i = 0; i < 16; i++)
     {
         rgbSingleColorDisplay[i] = (rgb_led){.r = 0, .g = 0, .b = 0};
         rgbDmpMappingDisplay[i] = (rgb_led){.r = 0, .g = 0, .b = 0};
         rgbTrainForwardDisplay[i] = (rgb_led){.r = 0, .g = 0, .b = 0};
         rgbBatteryDisplay[i] = (rgb_led){.r = 0, .g = 0, .b = 0};
+        rgbOTAUpdateDisplay[i] = (rgb_led){.r = 0, .g = 0, .b = 0};
     }
     LED1642GW_RGB_Translation_Array(rgbSingleColorDisplay);
-    SAADC_Init();
 
 #if (BLE_ENABLE == 1)    
     BLE_Init();
-    //advertising_start();
+    //
 #endif    
+    GPIO_Init();
     
-#if (MAIN_CODE == 1)
     mpu_reset();
     while(1)
     {
@@ -139,9 +147,9 @@ int main(void)
         {
             if(deviceInitFlag == 0)
             {
-                for(int i = 0; i < 16; i++)
+                for(i = 0; i < 16; i++)
                 {
-                    rgbSingleColorDisplay[i] = (rgb_led){.r = 50, .g = 50, .b = 50};
+                    rgbSingleColorDisplay[i] = (rgb_led){.r = 0, .g = 0, .b = 255};
                 }
                 LED1642GW_RGB_Translation_Array(rgbSingleColorDisplay);
                 MPU6500_Setup(); // Right now it only has tapping interrupt enabled. 
@@ -149,8 +157,9 @@ int main(void)
                 PWM_PWCLK_play();
                 nrf_delay_ms(10);
                 LED1642GW_Driver_Count();
-                ledDisplayMode = SINGLE_COLOR_DISPLAY_WHITE;
-                for(int i = 0; i < 16; i++)
+                ledDisplayMode = SINGLE_COLOR_DISPLAY_BATTERY;
+                Timer2_Enable();
+                for(i = 0; i < 16; i++)
                 {
                     rgbSingleColorDisplay[i] = (rgb_led){.r = 0, .g = 0, .b = 0};
                 }
@@ -161,64 +170,113 @@ int main(void)
             {
                 switch(ledDisplayMode)
                 {
-                    case SINGLE_COLOR_DISPLAY_WHITE:
-                        for(int i = 0; i < 16; i++)
-                        {
-                            rgbSingleColorDisplay[i] = (rgb_led){.r = 255, .g = 255, .b = 255};
-                        }
-                        LED1642GW_RGB_Translation_Array(rgbSingleColorDisplay);
+                    case SINGLE_COLOR_DISPLAY_BATTERY:
+                        batteryVoltageFloat = 0;
                         if(imuNewGyroFlag == 1)
                         {
                             dmp_read_fifo(gyro, accel, quat, &sensors, &more);
                             imuNewGyroFlag = 0;
                         }
+                        for(i = 0; i < 5; i++)
+                        {
+                            batteryVoltageRaw = SAADC_Convert();
+                            batteryVoltageFloat += batteryVoltageRaw * BATTERY_CONV_RATIO;
+                        }
+                        batteryVoltageFloat = floor(batteryVoltageFloat*10)/50.0f;
+                        for(i = 0; i < 16; i++)
+                        {
+                            if((batteryVoltageFloat >= 4.15f))
+                            {
+                                rgbBatteryDisplay[i] = (rgb_led){.r = 0, .g = 255, .b = 0};
+                            }
+                            else
+                            {
+                                ledBrightnessOffset = 125 * batteryVoltageFloat - 425;
+                                LED1642GW_Brightness_Set(10);
+                                rgbBatteryDisplay[i] = (rgb_led){.r = 255 - ledBrightnessOffset, .g = ledBrightnessOffset, .b = 0};
+                            }
+                        }
+                        LED1642GW_RGB_Translation_Array(rgbBatteryDisplay);
+                        if(batteryChargingFlag == 1)
+                        {
+                            powerOnFlag = 0;
+                        }
+                        nrf_delay_ms(10);
                         break;
                     case SINGLE_COLOR_DISPLAY_YELLOW:
-                        for(int i = 0; i < 16; i++)
-                        {
-                            rgbSingleColorDisplay[i] = (rgb_led){.r = 255, .g = 255, .b = 0};
-                        }
-                        LED1642GW_RGB_Translation_Array(rgbSingleColorDisplay);
                         if(imuNewGyroFlag == 1)
                         {
                             dmp_read_fifo(gyro, accel, quat, &sensors, &more);
                             imuNewGyroFlag = 0;
+                        }
+                        if(setupCompleteFlag == 0)
+                        {
+                            for(j = 0; j < 2; j++)
+                            {
+                                for(i = 0; i < 16; i++)
+                                {
+                                    rgbSingleColorDisplay[i] = (rgb_led){.r = 255, .g = 255, .b = 0};
+                                }
+                                LED1642GW_RGB_Translation_Array(rgbSingleColorDisplay);
+                            }
+                            setupCompleteFlag = 1;
                         }
                         break;
                     case SINGLE_COLOR_DISPLAY_RED:
-                        for(int i = 0; i < 16; i++)
-                        {
-                            rgbSingleColorDisplay[i] = (rgb_led){.r = 255, .g = 0, .b = 0};
-                        }
-                        LED1642GW_RGB_Translation_Array(rgbSingleColorDisplay);
                         if(imuNewGyroFlag == 1)
                         {
                             dmp_read_fifo(gyro, accel, quat, &sensors, &more);
                             imuNewGyroFlag = 0;
+                        }
+                        if(setupCompleteFlag == 0)
+                        {
+                            for(j = 0; j < 2; j++)
+                            {
+                                for(i = 0; i < 16; i++)
+                                {
+                                    rgbSingleColorDisplay[i] = (rgb_led){.r = 255, .g = 0, .b = 0};
+                                }
+                                LED1642GW_RGB_Translation_Array(rgbSingleColorDisplay);
+                            }
+                            setupCompleteFlag = 1;
                         }
                         break;
                     case SINGLE_COLOR_DISPLAY_GREEN:
-                        for(int i = 0; i < 16; i++)
-                        {
-                            rgbSingleColorDisplay[i] = (rgb_led){.r = 0, .g = 255, .b = 0};
-                        }
-                        LED1642GW_RGB_Translation_Array(rgbSingleColorDisplay);
                         if(imuNewGyroFlag == 1)
                         {
                             dmp_read_fifo(gyro, accel, quat, &sensors, &more);
                             imuNewGyroFlag = 0;
+                        }
+                        if(setupCompleteFlag == 0)
+                        {
+                            for(j = 0; j < 2; j++)
+                            {
+                                for(i = 0; i < 16; i++)
+                                {
+                                    rgbSingleColorDisplay[i] = (rgb_led){.r = 0, .g = 255, .b = 0};
+                                }
+                                LED1642GW_RGB_Translation_Array(rgbSingleColorDisplay);
+                            }
+                            setupCompleteFlag = 1;
                         }
                         break;
                     case SINGLE_COLOR_DISPALY_BLUE:
-                        for(int i = 0; i < 16; i++)
-                        {
-                            rgbSingleColorDisplay[i] = (rgb_led){.r = 0, .g = 0, .b = 255};
-                        }
-                        LED1642GW_RGB_Translation_Array(rgbSingleColorDisplay);
                         if(imuNewGyroFlag == 1)
                         {
                             dmp_read_fifo(gyro, accel, quat, &sensors, &more);
                             imuNewGyroFlag = 0;
+                        }
+                        if(setupCompleteFlag == 0)
+                        {
+                            for(j = 0; j < 2; j++)
+                            {
+                                for(i = 0; i < 16; i++)
+                                {
+                                    rgbSingleColorDisplay[i] = (rgb_led){.r = 0, .g = 0, .b = 255};
+                                }
+                                LED1642GW_RGB_Translation_Array(rgbSingleColorDisplay);
+                            }
+                            setupCompleteFlag = 1;
                         }
                         break;
                     case MOTION_MAP_DISPLAY:
@@ -232,7 +290,7 @@ int main(void)
                             EulerAngleToLED(&eulerAngle, &channel, &color);
                             if((channel != channelHistory) || (color.r != colorHistory.r) || (color.g != colorHistory.g))
                             {
-                                for(int i = 0; i < 16; i++)
+                                for(i = 0; i < 16; i++)
                                 {
                                     rgbDmpMappingDisplay[i] = (rgb_led){.r = 0, .g = 0, .b = 0};
                                 }
@@ -259,16 +317,16 @@ int main(void)
                                 
                             }
                             //LED1642GW_RGB_Translation_Individual_Channel(channel, color);
-                #if (UART_DEBUGGING == 1)
+#if (UART_DEBUGGING == 1)
                             printf("Euler Angles: roll: %f, red: %u, pitch: %f, green: %u\r",eulerAngle.roll*180/PI, color.r, eulerAngle.pitch*180/PI, color.g);
-                #endif
+#endif
                             imuNewGyroFlag = 0;
                         }
                         break;
                     case COLOR_TRANSITION:
-                        for(int j = 0; j < 16; j++)
+                        for(j = 0; j < 16; j++)
                         {
-                            for(int i = 0; i < 16; i++)
+                            for(i = 0; i < 16; i++)
                             {
                                 if(imuNewGyroFlag == 1)
                                 {
@@ -284,11 +342,11 @@ int main(void)
                                 {
                                     if(i <= j)
                                     {
-                                        rgbTrainForwardDisplay[j-i] = (rgb_led){.r = 0 + (15-i)*15, .g = 150-(15-i)*10, .b = 0};
+                                        rgbTrainForwardDisplay[j-i] = (rgb_led){.r = 0 + (15-i)*15, .g = 120-(15-i)*8, .b = 0};
                                     }
                                     else
                                     {
-                                        rgbTrainForwardDisplay[i+j] = (rgb_led){.r = 0 + i*15, .g = 150-i*10, .b = 0};
+                                        rgbTrainForwardDisplay[i+j] = (rgb_led){.r = 0 + i*15, .g = 120-i*8, .b = 0};
                                     }
                                 }
                             }
@@ -297,18 +355,39 @@ int main(void)
                         }
                         
                         break;
+                    case OTA_UPDATE:
+                        if(imuNewGyroFlag == 1)
+                        {
+                            dmp_read_fifo(gyro, accel, quat, &sensors, &more);
+                            imuNewGyroFlag = 0;
+                        }
+                        halTime = ((float)HAL_GetTick())*.0001f;
+                        rgbOTAUpdateDisplay[0].g = (255.0f*(sin(halTime * TWO_PI + TWO_PI * .333333f) * .5f + .5f));
+                        rgbOTAUpdateDisplay[0].r = (255.0f*(sin(halTime * TWO_PI + TWO_PI * .666666f) * .5f + .5f));
+                        rgbOTAUpdateDisplay[0].b = (255.0f*(sin(halTime * TWO_PI) * .5f + .5f));;
+                        for(i = 1; i < 16; i++)
+                        {
+                            rgbOTAUpdateDisplay[i] = (rgb_led){.r = rgbOTAUpdateDisplay[0].r, .g = rgbOTAUpdateDisplay[0].g, .b = rgbOTAUpdateDisplay[0].b};
+                        }
+                        LED1642GW_RGB_Translation_Array(rgbOTAUpdateDisplay);
+                        nrf_delay_ms(100);
+                        break;
                     default:
                         break;
                 }
             }
         }
+        /* For charging status: sample SAADC and based on charged voltage and batteryChargingFlag display color. */
         else if(batteryChargingFlag == 1)
         {
-            for(int i = 0; i < 16; i++)
+            for(i = 0; i < 16; i++)
             {
-                rgbBatteryDisplay[i] = (rgb_led){.r = 10, .g = 0, .b = 0};
+                rgbSingleColorDisplay[i] = (rgb_led){.r = 0, .g = 0, .b = 0};
             }
-            LED1642GW_RGB_Translation_Array(rgbBatteryDisplay);
+            LED1642GW_RGB_Translation_Array(rgbSingleColorDisplay);
+            Enter_Low_Power_Mode();
+            deviceInitFlag = 0;
+            __WFI();
         }
         else
         {
@@ -317,118 +396,4 @@ int main(void)
             __WFI();
         }
     }
-#endif
-    
-#if (MPU6500_TEST == 1)
-    IMU_SPI_Init();
-    MPU6500_Setup();
-    while(1)
-    {
-        if(imuNewGyroFlag == 1)
-        {
-            dmp_read_fifo(gyro, accel, quat, &sensors, &more);
-            ConvertQuaternion(quat, &convertedQuat);
-            QuatToEulerAngle(&convertedQuat, &eulerAngle);
-            channelHistory = channel;
-            colorHistory = color;
-            EulerAngleToLED(&eulerAngle, &channel, &color);
-            if((channel != channelHistory) || (color.r != colorHistory.r) || (color.g != colorHistory.g))
-            {
-                for(int i = 0; i < 16; i++)
-                {
-                    rgbArrayDisplay[i] = (rgb_led){.r = 0, .g = 0, .b = 0};
-                }
-                rgbArrayDisplay[channel] = (rgb_led){.r = color.r, .g = color.g, .b = color.b};
-                if(channel == 0)
-                {
-                    rgbArrayDisplay[1] = (rgb_led){.r = color.r/4, .g = color.g/4, .b = color.b/4};
-                    rgbArrayDisplay[15] = (rgb_led){.r = color.r/4, .g = color.g/4, .b = color.b/4};
-                }
-                else if(channel == 15)
-                {
-                    rgbArrayDisplay[0] = (rgb_led){.r = color.r/4, .g = color.g/4, .b = color.b/4};
-                    rgbArrayDisplay[14] = (rgb_led){.r = color.r/4, .g = color.g/4, .b = color.b/4};            
-                }
-                else
-                {
-                    rgbArrayDisplay[channel+1] = (rgb_led){.r = color.r/4, .g = color.g/4, .b = color.b/4};
-                    rgbArrayDisplay[channel-1] = (rgb_led){.r = color.r/4, .g = color.g/4, .b = color.b/4};
-                }
-                LED1642GW_RGB_Translation_Array(rgbArrayDisplay);
-            }
-            else
-            {
-                
-            }
-            //LED1642GW_RGB_Translation_Individual_Channel(channel, color);
-#if (UART_DEBUGGING == 1)
-            printf("Euler Angles: roll: %f, red: %u, pitch: %f, green: %u\r",eulerAngle.roll*180/PI, color.r, eulerAngle.pitch*180/PI, color.g);
-#endif
-            imuNewGyroFlag = 0;
-        }
-    }
-#endif
-#if(LED_TEST)
-    LED_SPI_Init();
-    nrf_delay_ms(10);
-    PWM_PWCLK_play();
-    nrf_delay_ms(10);
-    LED1642GW_Driver_Count();
-    for(int i = 0; i < 16; i++)
-    {
-        rgbArrayDisplay[i] = (rgb_led){.r = 0, .g = 0, .b = 0};
-    }
-    LED1642GW_RGB_Translation_Array(rgbArrayDisplay);
-    
-    while(1)
-    {
-        for(int j = 0; j < 16; j++)
-        {
-            for(int i = 0; i < 16; i++)
-            {
-                if(i <= j)
-                {
-                    rgbArrayDisplay[j-i] = (rgb_led){.r = 0 + (15-i)*15, .g = 150-(15-i)*10, .b = 0};
-                }
-                else
-                {
-                    rgbArrayDisplay[i+j] = (rgb_led){.r = 0 + i*15, .g = 150-i*10, .b = 0};
-                }
-            }
-            LED1642GW_RGB_Translation_Array(rgbArrayDisplay);
-            nrf_delay_ms(500);
-        }
-        
-    }
-    //
-    //rgb_led rgbTestColor = {.r = 255, .g = 0, .b = 0};
-    
-    
-    LED1642GW_RGB_Translation_Array(rgbArrayDisplay);
-    LED1642GW_RGB_Translation_Array(rgbArrayDisplay);
-    while(1)
-    {
-        
-    }
-    //LED1642_LED_RGB_Train_Forward();
-    /*
-    while(1)
-    {
-        rgbTestColor.r = 255;
-        rgbTestColor.g = 0;
-        rgbTestColor.b = 0;
-        
-        for(int i = 0; i < 16; i++)
-        {
-            
-            rgbTestColor.r = rgbTestColor.r - 15 * i;
-            rgbTestColor.g = rgbTestColor.g + 10 * i;
-            rgbTestColor.b = rgbTestColor.b + 5 * i;
-            
-            LED1642GW_RGB_Translation_Individual_Channel(i, rgbTestColor);
-            nrf_delay_ms(200);
-        }
-    }
-    */
-#endif
 }

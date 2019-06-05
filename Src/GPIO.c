@@ -31,7 +31,7 @@ void GPIO_Init(void)
     
     /* Configure the CHRG_STAT pin to sense toggle. */
     nrf_drv_gpiote_in_config_t chrgStatConfig = GPIOTE_CONFIG_IN_SENSE_TOGGLE(true);
-    chrgStatConfig.pull = NRF_GPIO_PIN_NOPULL;
+    chrgStatConfig.pull = NRF_GPIO_PIN_PULLDOWN;
     err_code = nrf_drv_gpiote_in_init(BATT_CHRG_STAT, &chrgStatConfig, Battery_Charger_Interrupt_handler);
     APP_ERROR_CHECK(err_code);
     
@@ -60,10 +60,13 @@ void IMU_Interrupt_Handler(nrf_drv_gpiote_pin_t pin, nrf_gpiote_polarity_t actio
 
 void Battery_Charger_Interrupt_handler(nrf_drv_gpiote_pin_t pin, nrf_gpiote_polarity_t action)
 {
-    uint32_t chrgInLevel = nrf_gpio_pin_read(TOUCH_IN);
+    uint32_t chrgInLevel = nrf_gpio_pin_read(BATT_CHRG_STAT);
     if(chrgInLevel == 1)
     {
         batteryChargingFlag = 1;
+        //MPU6500_Disable_DMP();
+        //dmp_set_interrupt_mode(DMP_INT_GESTURE);
+        //MPU6500_Enable_DMP();
     }
     else
     {
