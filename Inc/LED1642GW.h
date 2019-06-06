@@ -40,6 +40,20 @@ typedef struct rgb_led_channel
     rgb_led RGB_Color;
 }rgb_led_channel;
 
+enum LED_display_modes {
+    SINGLE_COLOR_DISPLAY_BATTERY,
+    SINGLE_COLOR_DISPLAY_YELLOW,
+    SINGLE_COLOR_DISPLAY_RED,
+    SINGLE_COLOR_DISPLAY_GREEN,
+    SINGLE_COLOR_DISPALY_BLUE,
+    SINGLE_COLOR_DISPLAY_ORANGE,
+    MOTION_MAP_DISPLAY,
+    COLOR_TRANSITION,
+    OTA_UPDATE,
+    COS_DISPLAY,
+    SIN_PLUS_COS_DISPLAY
+};
+
 uint8_t LED1642GW_Init(void);
 uint8_t LED1642GW_Enter_LPM(void);
 uint8_t LED1642GW_Driver_Count(void);
