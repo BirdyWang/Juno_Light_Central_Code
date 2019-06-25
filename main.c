@@ -23,6 +23,7 @@ extern volatile uint8_t powerOnFlag;
 extern volatile uint8_t batteryChargingFlag;
 extern volatile uint8_t ledDisplayMode;
 extern volatile uint8_t setupCompleteFlag;
+extern volatile uint8_t driveTrainBreakFlag;
 extern short gyro[3];
 extern short accel[3];
 extern short sensors;
@@ -176,7 +177,7 @@ int main(void)
                         {
                             if((batteryVoltageFloat >= 4.19f))
                             {
-                                rgbBatteryDisplay[i] = (rgb_led){.r = 0, .g = 255, .b = 0};
+                                rgbBatteryDisplay[i] = (rgb_led){.r = 0, .g = 100, .b = 0};
                             }
                             else if(batteryVoltageFloat <= 4.15f)
                             {
@@ -185,7 +186,7 @@ int main(void)
                             }
                         }
                         LED1642GW_RGB_Translation_Array(rgbBatteryDisplay);
-                        nrf_delay_ms(10);
+                        nrf_delay_ms(500);
                         break;
                     case SINGLE_COLOR_DISPLAY_YELLOW:
                         if(setupCompleteFlag == 0)
@@ -269,7 +270,7 @@ int main(void)
                             {
                                 for(i = 0; i < 16; i++)
                                 {
-                                    rgbDmpMappingDisplay[i] = (rgb_led){.r = 100, .g = 50, .b = 0};
+                                    rgbDmpMappingDisplay[i] = (rgb_led){.r = 10, .g = 5, .b = 0};
                                 }
                                 rgbDmpMappingDisplay[channel] = (rgb_led){.r = color.r, .g = color.g, .b = color.b};
                                 if(channel == 0)
@@ -296,17 +297,16 @@ int main(void)
                         }
                         break;
                     case COLOR_TRANSITION:
+                        
                         for(j = 0; j < 16; j++)
                         {
                             for(i = 0; i < 16; i++)
                             {
-                                if(imuNewGyroFlag == 1)
+                                if(driveTrainBreakFlag == 1)
                                 {
-                                    if(ledDisplayMode != COLOR_TRANSITION)
-                                    {
-                                        i = j = 100;
-                                        break;
-                                    }
+                                    i = j = 100;
+                                    driveTrainBreakFlag = 0;
+                                    break;
                                 }
                                 else
                                 {

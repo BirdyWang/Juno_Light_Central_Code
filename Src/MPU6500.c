@@ -10,6 +10,7 @@ extern volatile uint8_t powerOnFlag;
 extern volatile uint8_t batteryChargingFlag;
 volatile uint8_t ledDisplayMode = 0;
 volatile uint8_t setupCompleteFlag = 0;
+volatile uint8_t driveTrainBreakFlag = 0;
 
 uint8_t MPU6500_Connection_Test(void)
 {
@@ -122,24 +123,27 @@ static void MPU6500_tap_cb(uint8_t direction, uint8_t count)
         ledDisplayMode ++;
         if(ledDisplayMode == LED_MODE_NUM)
         {
-            ledDisplayMode = 0;
+            ledDisplayMode = SINGLE_COLOR_DISPLAY_BATTERY;
+        }
+        if(ledDisplayMode == SINGLE_COLOR_DISPLAY_BATTERY)
+        {
+            LED1642GW_Brightness_Set(0x00);
         }
         if(ledDisplayMode == MOTION_MAP_DISPLAY)
         {
-            imuNewGyroFlag = 0;
             MPU6500_Disable_DMP();
             dmp_set_interrupt_mode(DMP_INT_CONTINUOUS);
             MPU6500_Enable_DMP();
         }
         else if(ledDisplayMode == COLOR_TRANSITION)
         {
-            imuNewGyroFlag = 0;
             MPU6500_Disable_DMP();
             dmp_set_interrupt_mode(DMP_INT_GESTURE);
             MPU6500_Enable_DMP();
         }
-        else if(ledDisplayMode == 8)
+        else if(ledDisplayMode == OTA_UPDATE)
         {
+            driveTrainBreakFlag = 1;
             advertising_start();
         }
     }
@@ -151,6 +155,7 @@ static void MPU6500_tap_cb(uint8_t direction, uint8_t count)
     {
         LED1642GW_Brightness_Control_PowerOn(BRIGHTNESS_DECREASE);
     }
+    imuNewGyroFlag = 0;
     //send_packet(PACKET_TYPE_TAP, data);
 }
 
