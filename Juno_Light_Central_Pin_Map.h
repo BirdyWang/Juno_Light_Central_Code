@@ -24,11 +24,13 @@
 #define LED_PWCLK       23
 
 /**For Touch Input**/
-#define TOUCH_IN        28
+#define TOUCH_IN        27
 
 /**For Battery Charging Status**/
-#define VBAT_MON        29
+#define PLUG_STAT		28
+#define SW_STAT			29
 #define BATT_CHRG_STAT  30
+#define VBAT_MON        31
 
 /**For UART Debugging**/
 #define UART_TX         0
