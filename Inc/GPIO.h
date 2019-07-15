@@ -16,5 +16,6 @@ void GPIO_Init(void);
 void Touch_In_handler(nrf_drv_gpiote_pin_t pin, nrf_gpiote_polarity_t action);
 void IMU_Interrupt_Handler(nrf_drv_gpiote_pin_t pin, nrf_gpiote_polarity_t action);
 void Battery_Charger_Interrupt_handler(nrf_drv_gpiote_pin_t pin, nrf_gpiote_polarity_t action);
-
+void Plug_Status_Interrupt_Handler(nrf_drv_gpiote_pin_t pin, nrf_gpiote_polarity_t action);
+	
 #endif

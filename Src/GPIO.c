@@ -9,6 +9,7 @@
 volatile uint8_t imuNewGyroFlag = 0;
 volatile uint8_t powerOnFlag = 0;
 volatile uint8_t batteryChargingFlag = 0;
+volatile uint8_t swToUSBPwr = 0;
 
 short gyro[3], accel[3], sensors;
 unsigned char more;
@@ -33,15 +34,25 @@ void GPIO_Init(void)
 	err_code = nrf_drv_gpiote_in_init(IMU_INT, &imuIntConfig, IMU_Interrupt_Handler);
 	APP_ERROR_CHECK(err_code);
     
-    /* Configure the CHRG_STAT pin to sense toggle. */
+    /* Configure the BATT_CHRG_STAT pin to sense toggle. */
     nrf_drv_gpiote_in_config_t chrgStatConfig = GPIOTE_CONFIG_IN_SENSE_TOGGLE(true);
     chrgStatConfig.pull = NRF_GPIO_PIN_PULLDOWN;
     err_code = nrf_drv_gpiote_in_init(BATT_CHRG_STAT, &chrgStatConfig, Battery_Charger_Interrupt_handler);
     APP_ERROR_CHECK(err_code);
     
+	/* Configure the PLUG_STAT pin to sense toggle. */
+	nrf_drv_gpiote_in_config_t plugStatConfig = GPIOTE_CONFIG_IN_SENSE_TOGGLE(true);
+    chrgStatConfig.pull = NRF_GPIO_PIN_NOPULL;
+    err_code = nrf_drv_gpiote_in_init(PLUG_STAT, &plugStatConfig, Plug_Status_Interrupt_Handler);
+    APP_ERROR_CHECK(err_code);
+	
+	/* Configure SW_STAT as input. */
+	nrf_gpio_cfg_input(SW_STAT, NRF_GPIO_PIN_PULLUP);
+	
     /* Enable GPIO interrupt. */
     nrf_drv_gpiote_in_event_enable(TOUCH_IN, true);
     nrf_drv_gpiote_in_event_enable(BATT_CHRG_STAT, true);
+	nrf_drv_gpiote_in_event_enable(PLUG_STAT, true);
 }
 
 void Touch_In_handler(nrf_drv_gpiote_pin_t pin, nrf_gpiote_polarity_t action)
@@ -77,4 +88,17 @@ void Battery_Charger_Interrupt_handler(nrf_drv_gpiote_pin_t pin, nrf_gpiote_pola
     {
         batteryChargingFlag = 0;
     }
+}
+
+void Plug_Status_Interrupt_Handler(nrf_drv_gpiote_pin_t pin, nrf_gpiote_polarity_t action)
+{
+	uint32_t swStatus = nrf_gpio_pin_read(PLUG_STAT);
+	if(swStatus == 1)
+	{
+		swToUSBPwr = 1;
+	}
+	else
+	{
+		swToUSBPwr = 0;
+	}
 }

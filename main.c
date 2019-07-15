@@ -24,6 +24,7 @@ extern volatile uint8_t batteryChargingFlag;
 extern volatile uint8_t ledDisplayMode;
 extern volatile uint8_t setupCompleteFlag;
 extern volatile uint8_t driveTrainBreakFlag;
+extern volatile uint8_t swToUSBPwr;
 extern short gyro[3];
 extern short accel[3];
 extern short sensors;
@@ -138,7 +139,7 @@ int main(void)
     powerOnFlag = 1;
     while(1)
     {
-        if(powerOnFlag == 1)
+        if((powerOnFlag == 1) || (swToUSBPwr == 1))
         {
             if(deviceInitFlag == 0)
             {
